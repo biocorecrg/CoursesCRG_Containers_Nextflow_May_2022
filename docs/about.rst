@@ -9,18 +9,18 @@ About the course
    :toctree: generated
 
 
-This slow-paced hands-on course is designed for absolute beginners who want to start using  `Nextflow DSL2 <https://www.nextflow.io>`_ to achieve reproducibility of the data analysis. 
+This slow-paced hands-on course is designed for absolute beginners who want to start using  `Nextflow DSL2 <https://www.nextflow.io>`_ to achieve reproducibility of the data analysis.
 
 
 .. |luca| image:: images/lcozzuto.jpg
   :alt: Alternative text
-  
+
 .. |toni| image:: images/thermoso.jpg
   :alt: Alternative text
-  
+
 .. |julia| image:: images/jponomarenko.jpg
   :alt: Alternative text
-  
+
 
 .. list-table:: Main instructors:
    :widths: 50 50 50
@@ -32,25 +32,17 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
    * - |luca|
      - |toni|
      - |julia|
-   
+
 Other instructors:
 
-* Alessio Vignoli
-* Athanasios Baltzis
-* Jose Espinosa-Carrasco
-* Leila Mansouri
-* Bjorn Langer
-* Suzanne Jin
-* Emilio Palumbo
-* Edgar Garriga Nogales
-
+*
 
 .. _home-page-outline:
 
 Outline
 ============
 
-The 4-half-day Nextflow course will train participants to build Nextflow pipelines and run them with `Singularity <https://sylabs.io/singularity/>`_ containers.
+The 4-day Scientific Containrs and Nextflow course will train participants to build Nextflow pipelines and run them with `Singularity <https://sylabs.io/singularity/>`_ containers.
 
 It is designed to provide trainees with short and frequent hands-on sessions, while keeping theoretical sessions to a minimum.
 
@@ -88,7 +80,7 @@ Practitioners will need to connect during the course to a remote server via the 
 
 Those who follow the course should be able to use a command-line/screen-oriented text editor (such as nano or vi/vim, which are already available in the server) or to be able to use an editor able to connect remotely. For sake of information, below the basics of `nano <https://wiki.gentoo.org/wiki/Nano/Basics_Guide>`_
 
-Having a `GitHub account <https://github.com/join>`_ is recommended. 
+Having a `GitHub account <https://github.com/join>`_ is recommended.
 
 .. _home-page-dates:
 
@@ -119,8 +111,8 @@ Day 1: Introduction to Nextflow and Linux containers
 * 13:30-14:30 Talk by Cédric Notredame and Jose Antonio Espinosa, Comparative Bioinformatics, CRG.
 * 14:30-15:00 Introduction to Docker and Singularity containers.
 * 15:00-15:30 Break.
-* 15:30-16:30 Docker hub, BioContainers and other repositories. Find existing containers. Execute a Singularity container. 
-* 16:30-17:30 Nexflow: introduction, installation, run a simple pipeline. 
+* 15:30-16:30 Docker hub, BioContainers and other repositories. Find existing containers. Execute a Singularity container.
+* 16:30-17:30 Nexflow: introduction, installation, run a simple pipeline.
 
 
 .. _home-page-day2:
@@ -134,7 +126,7 @@ Day 2: Understand and run a basic Nexflow pipeline
 * 15:00-15:30 Break.
 * 15:30-16:30 Combining processes, directives, resuming a pipeline.
 * 16:30-17:00 Breakout rooms: write and run a more complex pipeline.
-* 17:00-17:30 Troubleshooting, Q&A.  
+* 17:00-17:30 Troubleshooting, Q&A.
 
 .. _home-page-day3:
 
@@ -145,21 +137,19 @@ Day 3: Write, modify and run a complex pipeline
 * 14:00-14:30 Breakout rooms: example of directives, get a pipeline and run it with a test dataset.
 * 14:30-15:00 Troubleshooting, Q&A.
 * 15:00-15:30 Break.
-* 15:30-16:30 Fetch public pipelines, adapt and run them. 
+* 15:30-16:30 Fetch public pipelines, adapt and run them.
 * 16:30-17:00 Breakout rooms: exercise.
-* 17:00-17:30 Troubleshooting, Q&A. 
+* 17:00-17:30 Troubleshooting, Q&A.
 
 .. _home-page-day4:
 
 Day 4: Run a Nextflow pipeline in different environments, share and report
 -------------
 
-* 13:00-14:00 Using Singularity, profiles and deploying on AWS. 
-* 14:00-14:30 Breakout rooms: deploy your pipeline on the cloud. 
+* 13:00-14:00 Using Singularity, profiles and deploying on AWS.
+* 14:00-14:30 Breakout rooms: deploy your pipeline on the cloud.
 * 14:30-15:00 Troubleshooting, Q&A.
 * 15:00-15:30 Break.
 * 15:30-16:30 Modules, reporting, share Nextflow pipelines on github. Nextflow Tower.
-* 16:30-17:00 Breakout rooms: exercise. 
-* 17:00-17:30 Troubleshooting, Q&A.  
-
-
+* 16:30-17:00 Breakout rooms: exercise.
+* 17:00-17:30 Troubleshooting, Q&A.

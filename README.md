@@ -4,9 +4,9 @@
 
 Reproducible research and data analysis using Nextflow pipelines
 <br>
-Course page: https://www.sib.swiss/training/course/20211115_NEXTF
+[Course page](https://phindaccess.org/index.php/services-page/upcoming-events/88-linux-containers-nextflow-for-reproducible-research-and-open-science-february-7th-11th-2022)
 <br>
-Course materials: https://biocorecrg.github.io/SIB_course_nextflow_Nov_2021/docs/
+[Course materials](https://biocorecrg.github.io/PHIND_course_nextflow_Feb_2022/docs/)
 
 
 ## About the course
@@ -99,8 +99,6 @@ Having a [GitHub account](https://github.com/join) is recommended.
 * 15:30-16:30 Modules, reporting, share Nextflow pipelines on github. Nextflow Tower.
 * 16:30-17:00 Breakout rooms: exercise. 
 * 17:00-17:30 Troubleshooting, Q&A.  
-
-
 
 
 

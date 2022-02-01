@@ -4,9 +4,6 @@
 PHINDaccess - Linux containers & Nextflow for reproducible research and open science
 *******************
 
-Reproducible research and data analysis using **Nextflow** pipelines
-=======
-
 
 .. |luca| image:: images/lcozzuto.jpg
   :alt: Alternative text
@@ -32,8 +29,7 @@ Reproducible research and data analysis using **Nextflow** pipelines
 Other instructors:
 
 
-Here the course page: `https://www.sib.swiss/training/course/20211115_NEXTF <https://www.sib.swiss/training/course/20211115_NEXTF>`_
-And here the `GitHub repository <https://github.com/biocorecrg/SIB_course_nextflow_Nov_2021/>`_
+`GitHub repository <https://github.com/biocorecrg/PHIND_course_nextflow_Feb_2022>`_
 
 Contents:
 

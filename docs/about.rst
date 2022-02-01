@@ -20,6 +20,9 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 
 .. |julia| image:: images/jponomarenko.jpg
   :alt: Alternative text
+  
+.. |kghedra| image:: images/jponomarenko.jpg
+  :alt: Alternative text
 
 
 .. list-table:: Main instructors:
@@ -29,9 +32,11 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
    * - Luca Cozzuto
      - Toni Hermoso
      - Julia Ponomarenko
+     - Kais Ghedra
    * - |luca|
      - |toni|
      - |julia|
+     - |kghedra|
 
 Other instructors:
 
@@ -74,7 +79,7 @@ Prerequisite / technical requirements
 
 
 Being comfortable working with the CLI (command-line interface) in a Linux-based environment.
-Knowledge of containers is not mandatory; however, this `SIB course <https://www.sib.swiss/training/course/20211014_DOCK>`_ can be advised to take. The course materials is online in the dedicated GitHub page for self-learning.
+Knowledge of containers is not mandatory. The course materials is online in the dedicated GitHub page for self-learning.
 
 Practitioners will need to connect during the course to a remote server via the "ssh" protocotol. You can learn about it `here <https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work>`_
 
@@ -87,8 +92,7 @@ Having a `GitHub account <https://github.com/join>`_ is recommended.
 Dates, time, location
 ============
 
-
-* Dates: November 15-18, 2021
+* Dates: February 07-11, 2022
 
 * Time: 13:00-17:30 **CET**
    * Afternoon coffee break: 15:00-15:30

@@ -1,0 +1,12 @@
+module_order:
+ - fastqc:
+        name: 'FastQC (raw)'
+        path_filters:
+            - '*_chr19_fastqc.zip'
+ - fastqc:
+        name: 'FastQC (trimmed)'
+        info: 'Aligned Reads'
+        target: ''
+        path_filters:
+            - '*_chr19.fastq.gz_fastqc.zip'
+

@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'PHIND_course_nextflow_Feb_2022'
+project = 'PHINDaccess - Linux containers & Nextflow for reproducible research and open science'
 
 # -- General configuration ---------------------------------------------------
 

@@ -326,10 +326,77 @@ For others, need to be done explicitly (syntax: host:container)
 
     mkdir testdir
     touch testdir/testout
-    singularity shell -e -B ./testdir:/scratch fastqc-multi-bowtie.sif
+    singularity shell -e -B ./testdir:/scratch fastqc-0.11.9.sif
     > touch /scratch/testin
     > exit
     ls -l testdir
+
+
+**Singularity recipes**
+
+-Docker bootstrap
+
+.. code-block:: console
+
+  BootStrap: docker
+  From: biocontainers/fastqc:v0.11.9_cv7
+
+  %runscript
+      echo "Welcome to FastQC Image"
+      fastqc --version
+
+  %post
+      echo "Image built"
+
+
+.. code-block:: console
+
+    sudo singularity build fastqc.sif docker.singularity
+
+-Debian bootstrap
+
+.. code-block:: console
+
+  BootStrap: debootstrap
+  OSVersion: bionic
+  MirrorURL:  http://fr.archive.ubuntu.com/ubuntu/
+  Include: build-essential curl python python-dev openjdk-11-jdk bzip2 zip unzip
+
+  %runscript
+      echo "Welcome to my Singularity Image"
+      fastqc --version
+      multiqc --version
+      bowtie --version
+
+  %post
+
+      FASTQC_VERSION=0.11.9
+      MULTIQC_VERSION=1.9
+      BOWTIE_VERSION=1.3.0
+
+      cd /usr/local; curl -k -L https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FASTQC_VERSION}.zip > fastqc.zip
+      cd /usr/local; unzip fastqc.zip; rm fastqc.zip; chmod 775 FastQC/fastqc; ln -s /usr/local/FastQC/fastqc /usr/local/bin/fastqc
+
+      cd /usr/local; curl --fail --silent --show-error --location --remote-name https://github.com/BenLangmead/bowtie/releases/download/v$BOWTIE_VERSION/bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
+      cd /usr/local; unzip -d /usr/local bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
+      cd /usr/local; rm bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
+      cd /usr/local/bin; ln -s ../bowtie-${BOWTIE_VERSION}-linux-x86_64/bowtie* .
+
+      curl --fail --silent --show-error --location --remote-name  https://bootstrap.pypa.io/get-pip.py
+      python get-pip.py
+
+      pip install numpy matplotlib
+      pip install -I multiqc==${MULTIQC_VERSION}
+
+      echo "Biocore image built"
+
+  %labels
+      Maintainer Biocorecrg
+  Version 0.1.0
+
+.. code-block:: console
+
+    sudo singularity build fastqc-multi-bowtie.sif debootstrap.singularity
 
 **Troubleshooting**
 

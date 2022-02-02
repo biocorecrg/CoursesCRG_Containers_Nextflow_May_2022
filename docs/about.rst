@@ -90,9 +90,8 @@ Dates, time, location
 
 * Dates: February 07-11, 2022
 
-* Time
-  * First day: 12:00-16:00 **CET**
-  * Rest of the days: 10:00-16.00 **CET**
+* First day: 12:00-16:00 **CET**
+* Rest of the days: 10:00-16.00 **CET**
 
 * Location: virtual, via Zoom.
 

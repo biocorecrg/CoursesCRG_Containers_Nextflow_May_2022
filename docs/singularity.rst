@@ -292,8 +292,8 @@ As a simple example, first we create a boostrapped image:
 
 More information:
 
-* `https://apptainer.com/docs/user-guide/running_services.html <https://apptainer.com/docs/user-guide/running_services.html>`
-* `https://apptainer.com/docs/user-guide/networking.html <https://apptainer.com/docs/user-guide/networking.html>`
+* `https://apptainer.com/docs/user-guide/running_services.html <https://apptainer.com/docs/user-guide/running_services.html>`__
+* `https://apptainer.com/docs/user-guide/networking.html <https://apptainer.com/docs/user-guide/networking.html>`__
 
 
 Singularity tips
@@ -309,7 +309,7 @@ Singularity tips
 
 Singularity permissions are an evolving field. If you don't have access to ``sudo``, it might be worth considering using **--fakeroot/-f** parameter.
 
-* More details at `https://apptainer.org/docs/user/main/fakeroot.html <https://apptainer.org/docs/user/main/fakeroot.html>`
+* More details at `https://apptainer.org/docs/user/main/fakeroot.html <https://apptainer.org/docs/user/main/fakeroot.html>`__
 
 **Singularity cache directory**
 

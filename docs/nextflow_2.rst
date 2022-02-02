@@ -1,4 +1,4 @@
-.. _second-page:
+.. _nextflow_2-page:
 
 *******************
 Third Day
@@ -8,7 +8,7 @@ During this day we will make more complex pipelines and separate the main code f
 
 .. image:: images/nextflow_logo_deep.png
   :width: 300
-  
+
 
 Decoupling resources, parameters and nextflow script
 =======================
@@ -35,7 +35,7 @@ This is achieved labeling processes in the nextflow.config file:
 		{
 			memory='0.6G'
 			cpus='1'
-		} 	
+		}
 
 	}
 
@@ -56,11 +56,11 @@ Then we specify resources needed for a class of processes labeled **bigmem** (i.
 
 .. code-block:: groovy
 
-	withLabel: 'bigmem'	
+	withLabel: 'bigmem'
 	{
 		memory='0.7G'
 		cpus='1'
-	} 	
+	}
 
 In the script **test2.nf file**, there are two processes to run two programs:
 
@@ -76,17 +76,17 @@ You can see that the process **fastQC** is labeled 'bigmem':
 	 */
 	process fastQC {
 
-	    publishDir fastqcOutputFolder  		
-	    tag { "${reads}" }  					
+	    publishDir fastqcOutputFolder
+	    tag { "${reads}" }
 	    label 'bigmem'
 
 	    input:
-	    path reads   							
+	    path reads
 	...
 
 
-The last two rows of the config file indicate which containers to use. 
-In this example, -- and by default, if the repository is not specified, -- a container is pulled from the DockerHub. 
+The last two rows of the config file indicate which containers to use.
+In this example, -- and by default, if the repository is not specified, -- a container is pulled from the DockerHub.
 In case of using a singularity container, you can indicate where to store the local image using the **singularity.cacheDir** option:
 
 .. code-block:: groovy
@@ -218,7 +218,7 @@ In our pipeline we define these folders here:
 	/*
  	 * Defining the output folders.
  	 */
-	
+
 	fastqcOutputFolder    = "output_fastqc"
 	multiqcOutputFolder   = "output_multiQC"
 
@@ -227,7 +227,7 @@ In our pipeline we define these folders here:
 	/*
 	 * Process 1. Run FastQC on raw data. A process is the element for executing scripts / programs etc.
 	 */
-	 
+
 	process fastQC {
 	    publishDir fastqcOutputFolder  			// where (and whether) to publish the results
 
@@ -236,7 +236,7 @@ In our pipeline we define these folders here:
 	/*
 	 * Process 2. Run multiQC on fastQC results
 	 */
-	 
+
 	process multiQC {
 	    publishDir multiqcOutputFolder, mode: 'copy' 	// this time do not link but copy the output file
 
@@ -255,7 +255,7 @@ To access the output files via the web they can be copied to your `S3 bucket <ht
 
 
 
-**Note:** In this class, each student has its own bucket, with the number correponding to the number of the AWS instance. 
+**Note:** In this class, each student has its own bucket, with the number correponding to the number of the AWS instance.
 
 Let's copy the **multiqc_report.html** file in the S3 bucket and change the privileges:
 
@@ -263,7 +263,7 @@ Let's copy the **multiqc_report.html** file in the S3 bucket and change the priv
 
 	cp output_multiQC/multiqc_report.html /mnt/class-bucket-1
 
-	sudo chmod 775 /mnt/class-bucket-1/multiqc_report.html 
+	sudo chmod 775 /mnt/class-bucket-1/multiqc_report.html
 
 
 Now you will be able to see this html file via the browser (change the bucket number to correspond to your instance):
@@ -314,10 +314,10 @@ so that launching the pipeline with `\-\-help` will show you just the parameters
 	This is the Biocore's NF test pipeline
 	Enjoy!
 
-EXERCISE 
+EXERCISE
 ------------------
 
-- Look at the very last EXERCISE of the Second Day. Change the script and the config file using the label for handling failing processes. 
+- Look at the very last EXERCISE of the Second Day. Change the script and the config file using the label for handling failing processes.
 
 .. raw:: html
 
@@ -330,7 +330,7 @@ The process should become:
 
 	process reverseSequence {
 
-	    tag { "${seq}" }                  
+	    tag { "${seq}" }
 	    publishDir "output"
 	    label 'ignorefail'
 
@@ -345,7 +345,7 @@ The process should become:
 	    cat ${seq} | AAAAA '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
 	    """
 	}
-	
+
 
 and the nextflow.config file would become:
 
@@ -354,21 +354,21 @@ and the nextflow.config file would become:
 	process {
 		withLabel: 'ignorefail'
 		{
-			errorStrategy = 'ignore' 
-	    	}   	
+			errorStrategy = 'ignore'
+	    	}
 	}
 
-   
+
 .. raw:: html
 
    </details>
-| 
-| 
+|
+|
 
 - Now look at **test2.nf**.
 Change this script and the config file using the label for handling failing processes by retrying 3 times and incrementing time.
 
-You can specify a very low time (5, 10 or 15 seconds) for the fastqc process so it would fail at beginning. 
+You can specify a very low time (5, 10 or 15 seconds) for the fastqc process so it would fail at beginning.
 
 .. raw:: html
 
@@ -384,7 +384,7 @@ The process should become:
 
 		publishDir fastqcOutputFolder	// where (and whether) to publish the results
 		tag { "${reads}" } 	// during the execution prints the indicated variable for follow-up
-		label 'keep_trying' 
+		label 'keep_trying'
 
 		input:
 		path reads   	// it defines the input of the process. It sets values from a channel
@@ -394,7 +394,7 @@ The process should become:
 
     		script:			// here you have the execution of the script / program. Basically is the command line
     		"""
-        	fastqc ${reads} 
+        	fastqc ${reads}
    		"""
 	}
 
@@ -402,22 +402,22 @@ The process should become:
 while the nextflow.config file would be:
 
 .. code-block:: groovy
-	
+
 	includeConfig "$baseDir/params.config"
 
- 
+
 	process {
 	     //containerOptions = { workflow.containerEngine == "docker" ? '-u $(id -u):$(id -g)': null}
 	     memory='0.6G'
 	     cpus='1'
 	     time='6h'
 
-	     withLabel: 'keep_trying'	
-	     { 
+	     withLabel: 'keep_trying'
+	     {
 		time = { 10.second * task.attempt }
-		errorStrategy = 'retry' 
-		maxRetries = 3	
-	     } 	
+		errorStrategy = 'retry'
+		maxRetries = 3
+	     }
 	}
 
 	process.container = 'biocorecrg/c4lwg-2018:latest'
@@ -426,19 +426,19 @@ while the nextflow.config file would be:
 .. raw:: html
 
    </details>
-| 
-| 
+|
+|
 
 Using public pipelines
 =============================================
 As an example, we will use our pipeline `Master Of Pores <https://github.com/biocorecrg/mop2>`__ published in `2019 in Frontiers in Genetics <https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full>`__ .
 
-This repository contains a collection of pipelines for processing nanopore's raw data (both cDNA and dRNA-seq), detecting putative RNA modifications and estimating RNA polyA tail sizes.  
+This repository contains a collection of pipelines for processing nanopore's raw data (both cDNA and dRNA-seq), detecting putative RNA modifications and estimating RNA polyA tail sizes.
 
 Clone the pipeline together with the submodules. The submodules contain **Nextflow modules** that will be described later.
 
 .. code-block:: console
-	
+
 	git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/MOP2.git
 
 	Cloning into 'MoP2'...
@@ -450,46 +450,46 @@ Clone the pipeline together with the submodules. The submodules contain **Nextfl
 	Resolving deltas: 100% (14/14), done.
 	Submodule 'BioNextflow' (https://github.com/biocorecrg/BioNextflow) registered for path 'BioNextflow'
 	Cloning into '/Users/lcozzuto/aaa/MoP2/BioNextflow'...
-	remote: Enumerating objects: 971, done.        
-	remote: Counting objects: 100% (641/641), done.        
-	remote: Compressing objects: 100% (456/456), done.        
-	remote: Total 971 (delta 393), reused 362 (delta 166), pack-reused 330        
+	remote: Enumerating objects: 971, done.
+	remote: Counting objects: 100% (641/641), done.
+	remote: Compressing objects: 100% (456/456), done.
+	remote: Total 971 (delta 393), reused 362 (delta 166), pack-reused 330
 	Receiving objects: 100% (971/971), 107.51 MiB | 5.66 MiB/s, done.
 	Resolving deltas: 100% (560/560), done.
 	Submodule path 'BioNextflow': checked out '0473d7f177ce718477b852b353894b71a9a9a08b'
-	
-	
+
+
 Let's inspect the folder **MoP2**.
 
 .. code-block:: console
-	
+
 	ls MoP2
-	
+
 	BioNextflow		conf			docs			mop_preprocess
 	INSTALL.sh		conf.py			img			mop_tail
 	README.md		data			local_modules.nf	nextflow.global.config
 	TODO.md			deeplexicon		mop_consensus		outdirs.nf
 	anno			docker			mop_mod			requirements.txt
 
-There are different pipelines bundled in a single repository: **mop_preprocess**, **mop_mod**, **mop_tail** and **mop_consensus**. Let's inspect the folder **mop_preprocess** that contains the Nextflow pipeline **mop_preprocess.nf**. This pipeline allows to pre-process raw fast5 files that are generated by a Nanopore instruments. Notice the presence of the folder **bin**. This folder contains the number of custom scripts that can be used by the pipeline without storing them inside containers. This provides a practical solution for using programs with restrictive licenses that prevent the code redistribution. 
+There are different pipelines bundled in a single repository: **mop_preprocess**, **mop_mod**, **mop_tail** and **mop_consensus**. Let's inspect the folder **mop_preprocess** that contains the Nextflow pipeline **mop_preprocess.nf**. This pipeline allows to pre-process raw fast5 files that are generated by a Nanopore instruments. Notice the presence of the folder **bin**. This folder contains the number of custom scripts that can be used by the pipeline without storing them inside containers. This provides a practical solution for using programs with restrictive licenses that prevent the code redistribution.
 
 .. code-block:: console
-	
+
 	cd MoP2
 	ls mop_preprocess/bin/
-	
+
 	bam2stats.py			fast5_to_fastq.py
 	extract_sequence_from_fastq.py	fast5_type.py
 
 The basecaller **Guppy** cannot be redistributed, so we had to add an **INSTALL.sh** script that has to be run by the user for downloading the Guppy executable and placing it inside the **bin** folder.
 
 .. code-block:: console
-	
+
 	sh INSTALL.sh
 
 	INSTALLING GUPPY VERSION 3.4.5
 	[...]
-	ont-guppy_3.4.5_linux64.tar. 100%[============================================>] 363,86M  5,59MB/s    in 65s     
+	ont-guppy_3.4.5_linux64.tar. 100%[============================================>] 363,86M  5,59MB/s    in 65s
 
 	2021-11-04 18:38:58 (5,63 MB/s) - ‘ont-guppy_3.4.5_linux64.tar.gz’ saved [381538294/381538294]
 
@@ -501,11 +501,11 @@ The basecaller **Guppy** cannot be redistributed, so we had to add an **INSTALL.
 We can check what is inside **bin**.
 
 .. code-block:: console
-	
+
 	cd mop_preprocess
 
 	ls bin/
-	
+
 	MINIMAP2_LICENSE			libboost_system.so.1.66.0
 	bam2stats.py				libboost_thread.so
 	extract_sequence_from_fastq.py		libboost_thread.so.1.66.0
@@ -515,7 +515,7 @@ We can check what is inside **bin**.
 	guppy_barcoder				libcurl.so
 	[...]
 
-It is always a good idea to bundle your pipeline with a little test dataset so that other can test the pipeline once it is installed. This also useful for continuous integration (CI), when each time when a commit to GitHub triggers a test run that sends you an alert in case of failure. 
+It is always a good idea to bundle your pipeline with a little test dataset so that other can test the pipeline once it is installed. This also useful for continuous integration (CI), when each time when a commit to GitHub triggers a test run that sends you an alert in case of failure.
 Let's inspect the **params.config** file that points to a small dataset contained in the repository (the **data** and **anno** folders):
 
 .. code-block:: groovy
@@ -529,7 +529,7 @@ Let's inspect the **params.config** file that points to a small dataset containe
 	    annotation          = ""
 	    ref_type            = "transcriptome"
 
-	    pars_tools          = "drna_tool_splice_opt.tsv" 
+	    pars_tools          = "drna_tool_splice_opt.tsv"
 	    output              = "$baseDir/output"
 	    qualityqc           = 5
 	    granularity         = 1
@@ -537,7 +537,7 @@ Let's inspect the **params.config** file that points to a small dataset containe
 	    basecalling         = "guppy"
 	    GPU                 = "OFF"
 	    demultiplexing      = "NO"
-	    demulti_fast5       = "NO" 
+	    demulti_fast5       = "NO"
 
 	    filtering           = "NO"
 
@@ -553,14 +553,14 @@ Let's inspect the **params.config** file that points to a small dataset containe
 	    email               = ""
 	}
 
-Let's now run the pipeline: 
+Let's now run the pipeline:
 
 .. code-block:: console
 
 	nextflow run mop_preprocess.nf -with-docker -bg > log.txt
-	
+
 	tail -f log.txt
-	
+
 	N E X T F L O W  ~  version 21.04.3
 	Launching `mop_preprocess.nf` [adoring_allen] - revision: 7457956da7
 
@@ -576,10 +576,10 @@ Let's now run the pipeline:
 	conffile	          : final_summary_01.txt
 
 	fast5                     : /Users/lcozzuto/aaa/MoP2/mop_preprocess/../data/**/*.fast5
-	fastq                     : 
+	fastq                     :
 
 	reference                 : /Users/lcozzuto/aaa/MoP2/mop_preprocess/../anno/curlcake_constructs.fasta.gz
-	annotation                : 
+	annotation                :
 
 	granularity		  : 1
 
@@ -591,8 +591,8 @@ Let's now run the pipeline:
 
 	GPU                       : OFF
 
-	basecalling               : guppy 
-	demultiplexing            : NO 
+	basecalling               : guppy
+	demultiplexing            : NO
 	demulti_fast5		  : NO
 
 	filtering                 : NO
@@ -607,7 +607,7 @@ Let's now run the pipeline:
 
 	saveSpace   		  : NO
 
-	email                     : 
+	email                     :
 
 	Skipping the email
 
@@ -657,10 +657,10 @@ Let's now run the pipeline:
 	Execution status: OK
 
 
-EXERCISE 
+EXERCISE
 ------------------
 
-- Look at the documentation of `Master Of Pores <https://github.com/biocorecrg/mop2>`__ and change the default mapper, skip the filtering and enable the demultiplexing. 
+- Look at the documentation of `Master Of Pores <https://github.com/biocorecrg/mop2>`__ and change the default mapper, skip the filtering and enable the demultiplexing.
 
 .. raw:: html
 
@@ -672,12 +672,10 @@ The params can be set on the fly like this
 .. code-block:: console
 
 	nextflow run mop_preprocess.nf -with-docker -bg --mapping graphmap --filtering nanofilt --demultiplexing deeplexicon > log.txt
-	
- 
+
+
 .. raw:: html
 
    </details>
-| 
-| 
-
-
+|
+|

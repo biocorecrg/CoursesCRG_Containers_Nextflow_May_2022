@@ -38,6 +38,8 @@ Contents:
 
    about
    containers
+   docker
+   singularity
    nextflow_1
    nextflow_2
    nextflow_3

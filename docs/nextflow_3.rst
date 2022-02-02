@@ -1,4 +1,4 @@
-.. _fourth-page:
+.. _nextflow_3-page:
 
 *******************
 Fourth Day
@@ -17,7 +17,7 @@ Within an AWS main node both Docker and Singularity are available. While within 
 .. code-block:: console
 	nextflow run test2.nf -with-singularity -bg > log
 
-		tail -f log 
+		tail -f log
 		N E X T F L O W  ~  version 20.10.0
 		Launching `test2.nf` [soggy_miescher] - revision: 5a0a513d38
 
@@ -60,13 +60,13 @@ Inspecting the `.command.run` file shows us this piece of code:
 	...
 
 
-This means that Nextflow is running the code by using the **singularity exec** command. 
+This means that Nextflow is running the code by using the **singularity exec** command.
 
 Thus we can launch this command outside the pipeline (locally):
 
 .. code-block:: console
 
-	bash .command.run 
+	bash .command.run
 
 	Started analysis of B7_H3K4me1_s_chr19.fastq.gz
 	Approx 5% complete for B7_H3K4me1_s_chr19.fastq.gz
@@ -87,13 +87,13 @@ If you have to submit a job to a HPC you need to use the corresponding program, 
 
 .. code-block:: console
 
-	qsub .command.run 
+	qsub .command.run
 
 
 Adding more processes
 ======================
 
-We can build a pipeline incrementally adding more and more processes. 
+We can build a pipeline incrementally adding more and more processes.
 Nextflow will take care of the dependencies between the input / output and of the parallelization.
 
 Let's add to the **test2.nf** pipeline two additional steps, indexing of the reference genome and the read alignment using `Bowtie <http://bowtie-bio.sourceforge.net/index.shtml>`__. For that we will have to modify the *.nf, params.config and nexflow.config files (the full solution is available in the `test3 folder on the GitHub <https://github.com/biocorecrg/SIB_course_nextflow_Nov_2021/blob/main/nextflow/test3>`__).
@@ -149,15 +149,15 @@ And we have to add two new processes. The first one is for the indexing the refe
 	 * Process 2. Bowtie index
 	 */
 	process bowtieIdx {
-	    tag { "${ref}" }  							
+	    tag { "${ref}" }
 
 	    input:
-	    path ref   							
+	    path ref
 
-	    output:									
+	    output:
 	    tuple val("${ref}"), path ("${ref}*.ebwt")
 
-	    script:									
+	    script:
 	    """
 		gunzip -c ${ref} > reference.fa
 		bowtie-build reference.fa ${ref}
@@ -184,18 +184,18 @@ The second process **bowtieAln** is the alignment step:
 	process bowtieAln {
 	    publishDir alnOutputFolder, pattern: '*.sam'
 
-	    tag { "${reads}" }  							
+	    tag { "${reads}" }
 	    label 'twocpus'
 
 	    input:
 	    tuple val(refname), path (ref_files)
-	    path reads  							
+	    path reads
 
-	    output:									
+	    output:
 	    path "${reads}.sam", emit: samples_sam
 	    path "${reads}.log", emit: samples_log
 
-	    script:									
+	    script:
 	    """
 	    bowtie -p ${task.cpus} ${refname} -q ${reads} -S > ${reads}.sam 2> ${reads}.log
 	    """
@@ -218,7 +218,7 @@ The second output will be passed to the next process, that is, the multiQC proce
 
 .. code-block:: groovy
 
-	output:									
+	output:
 	    path "${reads}.sam", emit: samples_sam
 	    path "${reads}.log", emit: samples_log
 
@@ -238,7 +238,7 @@ This section will allow us to connect these outputs directly with other processe
 As you can see, we passed the **samples_log** output to the multiqc process after mixing it with the output channel from the fastqc process.
 
 
-Profiles 
+Profiles
 =================
 
 For deploying a pipeline in a cluster or Cloud, in the **nextflow.config** file, we need to indicate what kind of the `executor <https://www.nextflow.io/docs/latest/process.html#executor>`__ to use.
@@ -247,7 +247,7 @@ In the Nextflow framework architecture, the executor indicates which the **batch
 
 The executor is completely abstracted, so you can switch from SGE to SLURM just by changing this parameter in the configuration file.
 
-You can group different classes of configuration or **profiles** within a single **nextflow.config** file. 
+You can group different classes of configuration or **profiles** within a single **nextflow.config** file.
 
 Let's inspect the **nextflow.config** file in **test3** folder. We can see three different profiles:
 
@@ -274,8 +274,8 @@ The first profile indicates the resources needed for running the pipeline locall
 		}
 		  }
 	   }
- 
- 
+
+
 As you can see, we explicitly indicated the **local** executor. By definition, the local executor is a default executor if the pipeline is run without specifying a profile.
 
 The second profile is for running the pipeline on the **cluster**; here in particular for the cluster supporting the Sun Grid Engine queuing system:
@@ -304,7 +304,7 @@ The second profile is for running the pipeline on the **cluster**; here in parti
 This profile indicates that the system uses **Sun Grid Engine** as a job scheduler and that we have different queues for small jobs and more intensive ones.
 
 
-Deployment in the AWS cloud 
+Deployment in the AWS cloud
 =============================
 
 The final profile is for running the pipeline in the **Amazon Cloud**, known as Amazon Web Services or AWS. In particular, we will use **AWS Batch** that allows the execution of containerised workloads in the Amazon cloud infrastructure (where NNNN is the number of your bucket which you can see in the mounted folder `/mnt` by typing the command **df**).
@@ -333,7 +333,7 @@ The final profile is for running the pipeline in the **Amazon Cloud**, known as 
 
 
 We indicate the **AWS specific parameters** (**region** and **cliPath**) and the executor **awsbatch**.
-Then we indicate the working directory, that should be mounted as `S3 volume <https://aws.amazon.com/s3/>`__. 
+Then we indicate the working directory, that should be mounted as `S3 volume <https://aws.amazon.com/s3/>`__.
 This is mandatory when running Nextflow on the cloud.
 
 We can now launch the pipeline indicating `-profile cloud`:
@@ -347,7 +347,7 @@ Note that there is no longer a **work** folder in the directory where test3.nf i
 
 The multiqc report can be seen on the AWS webpage at https://nf-class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/ouptut_multiQC/multiqc_report.html
 
-But you need before to change permissions for that file as (where NNNN is the number of your bucket): 
+But you need before to change permissions for that file as (where NNNN is the number of your bucket):
 
 .. code-block:: console
 
@@ -373,13 +373,13 @@ We can also tell Nextflow to directly copy the output file to the S3 bucket: to 
 
 
 
-EXERCISE 
+EXERCISE
 ---------------
 
-Modify the **test3.nf** file to make two sub-workflows: 
+Modify the **test3.nf** file to make two sub-workflows:
 
 * for fastqc of fastq files and bowtie alignment;
-* for a fastqc analysis of the aligned files produced by bowtie. 
+* for a fastqc analysis of the aligned files produced by bowtie.
 
 For convenience you can use the multiqc config file called **config.yaml** in the multiqc process.
 
@@ -393,8 +393,8 @@ Solution is in the file test3_2.nf:
 .. raw:: html
 
    </details>
-| 
-| 
+|
+|
 
 
 
@@ -442,9 +442,9 @@ The **test4** folder provides an example of using modules.
 
 
 	Channel
-	    .fromPath( params.reads )  											                            
+	    .fromPath( params.reads )
 	    .ifEmpty { error "Cannot find any reads matching: ${params.reads}" }
-	    .set {reads_for_fastqc} 											
+	    .set {reads_for_fastqc}
 
 
 	/*
@@ -512,7 +512,7 @@ In this example we have the declaration of two **parameters** that are defined a
 
 They can be overridden from the main script that is calling the module:
 
-- The parameter **params.OUTPUT** can be used for connecting the output of this module with one in the main script.  
+- The parameter **params.OUTPUT** can be used for connecting the output of this module with one in the main script.
 - The parameter **params.CONTAINER** can be used for declaring the image to use for this particular module.
 
 In this example, in our main script we pass only the OUTPUT parameters by writing them as follows:
@@ -555,7 +555,7 @@ Let's have a look at the **multiqc.nf** module:
 	    path (inputfiles)
 
 	    output:
-	    path "multiqc_report.html"					
+	    path "multiqc_report.html"
 
 	    script:
 	    """
@@ -590,7 +590,7 @@ The label **onecpu** is specified in the **nextflow.config** file:
 		{
 			memory='0.6G'
 			cpus='1'
-		} 	
+		}
 
 	}
 
@@ -600,7 +600,7 @@ The label **onecpu** is specified in the **nextflow.config** file:
 
 	IMPORTANT: You have to specify a default image to run nextflow -with-docker or -with-singularity and you have to have a container(s) defined inside modules.
 
-EXERCISE 
+EXERCISE
 ------------
 
 Make a module wrapper for the bowtie tool and change the script in test3 accordingly.
@@ -615,8 +615,8 @@ Solution in the folder test5
 .. raw:: html
 
    </details>
-| 
-| 
+|
+|
 
 
 Reporting and graphical interface
@@ -631,14 +631,14 @@ Nextflow has an embedded function for reporting informations about the resources
 
 .. image:: images/report.png
   :width: 800
-  
+
 
 **Nextflow Tower** is an open source monitoring and managing platform for Nextflow workflows. There are two versions:
 
 - Open source for monitoring of single pipelines.
 - Commercial one for workflow management, monitoring and resource optimisation.
 
-We will show the open source one. 
+We will show the open source one.
 
 First, you need to access the `tower.nf <https://tower.nf/>`__ website and login.
 
@@ -651,7 +651,7 @@ If you selected the email for receiving the instructions and the token to be use
 
 .. image:: images/tower0.png
   :width: 800
- 
+
 check the email:
 
 .. image:: images/tower1.png
@@ -725,16 +725,16 @@ Let's create a new repository with a unique name:
 
 .. image:: images/git_1.png
   :width: 800
-  
+
 .. image:: images/git_2.png
   :width: 800
-  
+
 
 And then let's clone it in one of our test folder. Let's choose **test5**. We can get the url path by clicking like on the figure:
 
 .. image:: images/git_3.png
   :width: 800
-  
+
 .. code-block:: console
 
 	git clone https://github.com/lucacozzuto/test_course.git
@@ -749,7 +749,7 @@ We have an almost empty folder named **test_course**. We can just move or copy o
 
 .. code-block:: console
 
-	cp *.* lib -r test_course/ 
+	cp *.* lib -r test_course/
 	cd test_course
 
 	git status
@@ -799,7 +799,7 @@ Now we are ready for committing and pushing everything to the online repository.
 	 create mode 100755 main.nf
 	[lcozzuto@nextflow test_course]$ git push
 	Username for 'https://github.com': ######
-	Password for 'https://######@github.com': 
+	Password for 'https://######@github.com':
 	Counting objects: 10, done.
 	Delta compression using up to 8 threads.
 	Compressing objects: 100% (7/7), done.
@@ -835,7 +835,7 @@ As you can see we just use the repository name and two Nextflow parameters:
 
 - `-with-docker`, for using Docker
 - `-r`, for using a specific branch. In this case the **main** branch.
- 
+
 Then we pass to the pipelines the path of our input files:
 - `--reads`
 - `--reference`
@@ -915,6 +915,3 @@ Finally, you can update, view or delete a project by using the Nextflow commands
 	 *
 	 *   CRG_Containers_NextFlow is distributed in the hope that it will be useful,
 	[...]
-
-
-

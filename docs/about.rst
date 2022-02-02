@@ -20,7 +20,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 
 .. |julia| image:: images/jponomarenko.jpg
   :alt: Alternative text
-  
+
 .. |kghedra| image:: images/jponomarenko.jpg
   :alt: Alternative text
 
@@ -38,16 +38,12 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
      - |julia|
      - |kghedra|
 
-Other instructors:
-
-*
-
 .. _home-page-outline:
 
 Outline
 ============
 
-The 4-day Scientific Containrs and Nextflow course will train participants to build Nextflow pipelines and run them with `Singularity <https://sylabs.io/singularity/>`_ containers.
+This Linux Containers and Nextflow course will train participants to build Nextflow pipelines and run them with `Singularity <https://sylabs.io/singularity/>`_ containers.
 
 It is designed to provide trainees with short and frequent hands-on sessions, while keeping theoretical sessions to a minimum.
 
@@ -95,35 +91,38 @@ Dates, time, location
 * Dates: February 07-11, 2022
 
 * Time: 13:00-17:30 **CET**
-   * Afternoon coffee break: 15:00-15:30
+
 
 * Location: virtual, via Zoom.
 
 .. _home-page-program:
 
 
-Program
+Suggested program
 ============
 
 
 .. _home-page-day1:
 
-Day 1: Introduction to Nextflow and Linux containers
+Day 1: Introduction to Linux containers and Docker
 -------------
 
-* 13:00-13:30 Getting started, become familiar with the working environment.
-* 13:30-14:30 Talk by Cédric Notredame and Jose Antonio Espinosa, Comparative Bioinformatics, CRG.
 * 14:30-15:00 Introduction to Docker and Singularity containers.
 * 15:00-15:30 Break.
 * 15:30-16:30 Docker hub, BioContainers and other repositories. Find existing containers. Execute a Singularity container.
-* 16:30-17:30 Nexflow: introduction, installation, run a simple pipeline.
-
 
 .. _home-page-day2:
 
-Day 2: Understand and run a basic Nexflow pipeline
+Day 2: Docker and Singularity
 -------------
 
+
+.. _home-page-day3:
+
+Day 3: Understand and run a basic Nexflow pipeline
+-------------
+
+* 16:30-17:30 Nexflow: introduction, installation, run a simple pipeline.
 * 13:00-14:00 Nexflow basic concepts. Channels and Operators. Processes, Workflows and the log.
 * 14:00-14:30 Breakout rooms: create channels starting from data. Write and run a simple pipeline.
 * 14:30-15:00 Troubleshooting, Q&A.
@@ -132,7 +131,7 @@ Day 2: Understand and run a basic Nexflow pipeline
 * 16:30-17:00 Breakout rooms: write and run a more complex pipeline.
 * 17:00-17:30 Troubleshooting, Q&A.
 
-.. _home-page-day3:
+.. _home-page-day4:
 
 Day 3: Write, modify and run a complex pipeline
 -------------
@@ -145,7 +144,7 @@ Day 3: Write, modify and run a complex pipeline
 * 16:30-17:00 Breakout rooms: exercise.
 * 17:00-17:30 Troubleshooting, Q&A.
 
-.. _home-page-day4:
+.. _home-page-day5:
 
 Day 4: Run a Nextflow pipeline in different environments, share and report
 -------------

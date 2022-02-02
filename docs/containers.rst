@@ -1,7 +1,7 @@
 .. _first-page:
 
 *******************
-First Day
+Containers
 *******************
 
 Introduction to Linux containers.
@@ -72,7 +72,7 @@ PROS. * Very similar to a full OS.     			     * No need of full OS installation
 							     * Easier distribution of recipes.
 							     * Better portability.
 
-      
+
 CONS. * Need more space and resources.                       * Some cases might not be exactly the same as a full OS.
       * Slower than containers.                              * Still less OS diversity, even with current solutions
       * Not that good automation.

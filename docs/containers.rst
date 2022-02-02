@@ -312,3 +312,32 @@ Compare ``env`` command with and without -e modifier.
 	* Consider and compare different registry sources
 * Explore the inside contents of the image
 * Execute in different ways ``samtools`` program (e. g., using *fqidx* option)
+
+
+**Troubleshooting**
+
+.. code-block:: console
+
+     singularity --help
+
+**Fakeroot**
+
+Singularity permissions are an evolving field. If you don't have access to ``sudo``, it might be worth considering using **--fakeroot/-f** parameter.
+
+* More details at [https://apptainer.org/docs/user/main/fakeroot.html](https://apptainer.org/docs/user/main/fakeroot.html)
+
+**Singularity cache directory**
+
+.. code-block:: console
+
+    $HOME/.singularity
+
+* It stores cached images from registries, instances, etc.
+* If problems may be a good place to clean. When running ``sudo``, $HOME is /root.
+
+**Global singularity configuration**
+
+Normally at ``/etc/singularity/singularity.conf`` or similar (e.g preceded by ``/usr/local/``)
+
+* It can only be modified by users with administration permissions
+* Worth noting ``bind path`` lines, which point default mounted directories in containers

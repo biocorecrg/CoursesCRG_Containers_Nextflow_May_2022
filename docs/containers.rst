@@ -332,9 +332,10 @@ For others, need to be done explicitly (syntax: host:container)
     ls -l testdir
 
 
-**Singularity recipes**
+Singularity recipes
+-------------------
 
--Docker bootstrap
+**Docker bootstrap**
 
 .. code-block:: console
 
@@ -353,7 +354,7 @@ For others, need to be done explicitly (syntax: host:container)
 
     sudo singularity build fastqc.sif docker.singularity
 
--Debian bootstrap
+**Debian bootstrap**
 
 .. code-block:: console
 
@@ -397,6 +398,9 @@ For others, need to be done explicitly (syntax: host:container)
 .. code-block:: console
 
     sudo singularity build fastqc-multi-bowtie.sif debootstrap.singularity
+
+Singularity tips
+----------------
 
 **Troubleshooting**
 

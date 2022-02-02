@@ -1,21 +1,19 @@
 # Courses@PHIND_course_nextflow_Feb_2022
 
-## Title
-
 Reproducible research and data analysis using Nextflow pipelines
 <br>
 [Course page](https://phindaccess.org/index.php/services-page/upcoming-events/88-linux-containers-nextflow-for-reproducible-research-and-open-science-february-7th-11th-2022)
 <br>
-[Course materials](https://biocorecrg.github.io/PHIND_course_nextflow_Feb_2022/docs/)
+[Course materials](https://biocorecrg.github.io/PHIND_course_nextflow_Feb_2022)
 
 
 ## About the course
 
-This slow-paced hands-on course is designed for absolute beginners who want to start using [Nextflow](https://www.nextflow.io) to achieve reproducibility of data analysis. 
+This slow-paced hands-on course is designed for absolute beginners who want to start using Linux Containers ([Docker](https://www.docker.com/) and [Singularity](https://www.apptainer.org/)) and [Nextflow](https://www.nextflow.io) to achieve reproducibility of data analysis. 
 
 ### Outline
 
-The 4-half-day Nextflow course will train participants to build Nextflow pipelines and run them with [Singularity](https://sylabs.io/singularity/)  containers.
+The course will train participants to build Nextflow pipelines and run them with Linux containers.
 
 It is designed to provide trainees with short and frequent hands-on sessions, while keeping theoretical sessions to a minimum.
 

@@ -90,8 +90,9 @@ Dates, time, location
 
 * Dates: February 07-11, 2022
 
-* Time: 13:00-17:30 **CET**
-
+* Time
+  * First day: 12:00-16:00 **CET**
+  * Rest of the days: 10:00-16.00 **CET**
 
 * Location: virtual, via Zoom.
 
@@ -107,15 +108,20 @@ Suggested program
 Day 1: Introduction to Linux containers and Docker
 -------------
 
-* 14:30-15:00 Introduction to Docker and Singularity containers.
-* 15:00-15:30 Break.
-* 15:30-16:30 Docker hub, BioContainers and other repositories. Find existing containers. Execute a Singularity container.
+* 12:00-13:30 Introduction to containers
+* 13:30-14:30 Lunch
+* 14:30-16:00 Introduction to Docker
 
 .. _home-page-day2:
 
 Day 2: Docker and Singularity
 -------------
 
+* 10:00-11:30 Docker
+* 11:30-12:00 Coffee break
+* 12:00-13:30 Docker follow-up and Introduction to Singularity
+* 13:30-14:30 Lunch
+* 14:30-16:00 Singularity
 
 .. _home-page-day3:
 

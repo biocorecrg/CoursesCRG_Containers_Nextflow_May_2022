@@ -314,6 +314,23 @@ Compare ``env`` command with and without -e modifier.
 * Execute in different ways ``samtools`` program (e. g., using *fqidx* option)
 
 
+**Bind paths (aka volumes)**
+
+Paths of host system mounted in the container
+
+* Default ones, no need to mount them explicitly (for 3.6.x): ```$HOME``` , ```/sys:/sys``` , ```/proc:/proc```, ```/tmp:/tmp```, ```/var/tmp:/var/tmp```, ```/etc/resolv.conf:/etc/resolv.conf```, ```/etc/passwd:/etc/passwd```, and ```$PWD``` [https://sylabs.io/guides/3.6/user-guide/bind_paths_and_mounts.html](https://sylabs.io/guides/3.6/user-guide/bind_paths_and_mounts.html)
+
+For others, need to be done explicitly (syntax: host:container)
+
+.. code-block:: console
+
+    mkdir testdir
+    touch testdir/testout
+    singularity shell -e -B ./testdir:/scratch fastqc-multi-bowtie.sif
+    > touch /scratch/testin
+    > exit
+    ls -l testdir
+
 **Troubleshooting**
 
 .. code-block:: console

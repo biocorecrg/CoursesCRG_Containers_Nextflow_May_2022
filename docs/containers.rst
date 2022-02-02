@@ -313,25 +313,6 @@ Compare ``env`` command with and without -e modifier.
 * Explore the inside contents of the image
 * Execute in different ways ``samtools`` program (e. g., using *fqidx* option)
 
-
-**Bind paths (aka volumes)**
-
-Paths of host system mounted in the container
-
-* Default ones, no need to mount them explicitly (for 3.6.x): ```$HOME``` , ```/sys:/sys``` , ```/proc:/proc```, ```/tmp:/tmp```, ```/var/tmp:/var/tmp```, ```/etc/resolv.conf:/etc/resolv.conf```, ```/etc/passwd:/etc/passwd```, and ```$PWD``` [https://sylabs.io/guides/3.6/user-guide/bind_paths_and_mounts.html](https://sylabs.io/guides/3.6/user-guide/bind_paths_and_mounts.html)
-
-For others, need to be done explicitly (syntax: host:container)
-
-.. code-block:: console
-
-    mkdir testdir
-    touch testdir/testout
-    singularity shell -e -B ./testdir:/scratch fastqc-0.11.9.sif
-    > touch /scratch/testin
-    > exit
-    ls -l testdir
-
-
 Singularity recipes
 -------------------
 
@@ -398,6 +379,74 @@ Singularity recipes
 .. code-block:: console
 
     sudo singularity build fastqc-multi-bowtie.sif debootstrap.singularity
+
+Singularity advanced aspects
+============================
+
+**Sandboxing**
+
+.. code-block:: console
+  singularity build --sandbox ./sandbox docker://ubuntu:18.04
+  touch sandbox/etc/myetc.conf
+  singularity build sandbox.sif ./sandbox
+
+
+**Bind paths (aka volumes)**
+
+Paths of host system mounted in the container
+
+* Default ones, no need to mount them explicitly (for 3.6.x): ```$HOME``` , ```/sys:/sys``` , ```/proc:/proc```, ```/tmp:/tmp```, ```/var/tmp:/var/tmp```, ```/etc/resolv.conf:/etc/resolv.conf```, ```/etc/passwd:/etc/passwd```, and ```$PWD``` [https://sylabs.io/guides/3.6/user-guide/bind_paths_and_mounts.html](https://sylabs.io/guides/3.6/user-guide/bind_paths_and_mounts.html)
+
+For others, need to be done explicitly (syntax: host:container)
+
+.. code-block:: console
+
+    mkdir testdir
+    touch testdir/testout
+    singularity shell -e -B ./testdir:/scratch fastqc-0.11.9.sif
+    > touch /scratch/testin
+    > exit
+    ls -l testdir
+
+**Instances**
+
+Also know as **services**. Despite Docker it is still more convenient for these tasks, it allows enabling thing such as webservices (e.g., via APIs) in HPC workflows.
+
+As a simple example, first we create a boostrapped image:
+
+.. code-block:: console
+
+  Bootstrap: docker
+  From: library/mariadb:10.3
+
+  %startscript
+          mysqld
+
+
+.. code-block:: console
+
+  sudo singularity build mariadb.sif mariadb.singularity
+
+  mkdir -p testdir
+  mkdir -p testdir/db
+  mkdir -p testdir/socket
+
+  singularity exec -B ./testdir/db:/var/lib/mysql mariadb.sif mysql_install_db
+
+  singularity instance start -B ./testdir/db:/var/lib/mysql -B ./testdir/socket:/run/mysqld mariadb.sif mydb
+
+  singularity instance list
+
+  singularity exec instance://mydb mysql -uroot
+
+  singularity instance stop mydb
+
+More information:
+
+* [https://apptainer.com/docs/user-guide/running_services.html](https://apptainer.com/docs/user-guide/running_services.html)
+* [https://apptainer.com/docs/3.6/user-guide/networking.html](https://apptainer.com/docs/user-guide/networking.html)
+
+
 
 Singularity tips
 ----------------

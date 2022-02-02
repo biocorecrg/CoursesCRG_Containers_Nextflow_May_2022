@@ -57,15 +57,19 @@ Having a [GitHub account](https://github.com/join) is recommended.
 
 ## Program
 
-### Day 1: Introduction to Nextflow and Linux containers
+### Day 1: Introduction to Linux containers and Docker
 
-* 13:00-13:30 Getting started, become familiar with the working environment.
-* 13:30-14:30 Talk by Cédric Notredame and Jose Antonio Espinosa from CRG.
-* 14:30-15:00 Introduction to Docker and Singularity containers.
-* 15:00-15:30 Break.
-* 15:30-16:30 Docker hub, BioContainers and other repositories. Find existing containers. Execute a Singularity container. 
-* 16:30-17:30 Nexflow: introduction, installation, run a simple pipeline. 
+* 12:00-13:30 Introduction to containers
+* 13:30-14:30 Lunch
+* 14:30-16:00 Introduction to Docker
 
+### Day 2: Docker and Singularity
+
+* 10:00-11:30 Docker
+* 11:30-12:00 Coffee break
+* 12:00-13:30 Docker follow-up and Introduction to Singularity
+* 13:30-14:30 Lunch
+* 14:30-16:00 Singularity
 
 ### Day 2: Understand and run a basic Nexflow pipeline
 

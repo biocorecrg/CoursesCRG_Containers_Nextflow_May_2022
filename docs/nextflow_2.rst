@@ -206,7 +206,7 @@ We observe that Docker runs as "root". This can be problematic and generates sec
 This will tell Nextflow that if it is run with Docker, it has to produce files that belong to a user rather than the root.
 
 Publishing final results
-----------------------------
+========================
 
 The script **test2.nf** generates two new folders, **output_fastqc** and **output_multiQC**, that contain the result of the pipeline output.
 We can indicate which process and output can be considered the final output of the pipeline using the **publishDir** directive that has to be specified at the beginning of a process.
@@ -315,9 +315,9 @@ so that launching the pipeline with `\-\-help` will show you just the parameters
 	Enjoy!
 
 EXERCISE
-------------------
+===============
 
-- Look at the very last EXERCISE of the Second Day. Change the script and the config file using the label for handling failing processes.
+- Look at the very last EXERCISE of the day before. Change the script and the config file using the label for handling failing processes.
 
 .. raw:: html
 
@@ -679,3 +679,88 @@ The params can be set on the fly like this
    </details>
 |
 |
+
+Using Singularity
+=======================
+
+We recommend to use Singularity instead of Docker in a HPC environments.
+This can be done using the Nextflow parameter `-with-singularity` without changing the code.
+
+Nextflow will take care of **pulling, converting and storing the image** for you. This will be done only once and then Nextflow will use the stored image for further executions.
+
+Within an AWS main node both Docker and Singularity are available. While within the AWS batch system only Docker is available.
+
+.. code-block:: console
+	nextflow run test2.nf -with-singularity -bg > log
+
+		tail -f log
+		N E X T F L O W  ~  version 20.10.0
+		Launching `test2.nf` [soggy_miescher] - revision: 5a0a513d38
+
+	BIOCORE@CRG - N F TESTPIPE  ~  version 1.0
+	=============================================
+	reads                           : /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/test2/../../testdata/*.fastq.gz
+
+	Pulling Singularity image docker://biocorecrg/c4lwg-2018:latest [cache /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/test2/singularity/biocorecrg-c4lwg-2018-latest.img]
+	[da/eb7564] Submitted process > fastQC (B7_H3K4me1_s_chr19.fastq.gz)
+	[f6/32dc41] Submitted process > fastQC (B7_input_s_chr19.fastq.gz)
+	...
+
+
+Let's inspect the folder `singularity`:
+
+.. code-block:: console
+
+	ls singularity/
+	biocorecrg-c4lwg-2018-latest.img
+
+
+This singularity image can be used to execute the code outside the pipeline **exactly the same way** as inside the pipeline.
+
+Sometimes we can be interested in launching only a specific job, because it might failed or for making a test. For that, we can go to the corresponding temporary folder; for example, one of the fastQC temporary folders:
+
+.. code-block:: console
+
+	cd work/da/eb7564*/
+
+
+Inspecting the `.command.run` file shows us this piece of code:
+
+.. code-block:: groovy
+
+	...
+
+	nxf_launch() {
+	    set +u; env - PATH="$PATH" SINGULARITYENV_TMP="$TMP" SINGULARITYENV_TMPDIR="$TMPDIR" singularity exec /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/test2/singularity/biocorecrg-c4lwg-2018-latest.img /bin/bash -c "cd $PWD; /bin/bash -ue /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/test2/work/da/eb756433aa0881d25b20afb5b1366e/.command.sh"
+	}
+	...
+
+
+This means that Nextflow is running the code by using the **singularity exec** command.
+
+Thus we can launch this command outside the pipeline (locally):
+
+.. code-block:: console
+
+	bash .command.run
+
+	Started analysis of B7_H3K4me1_s_chr19.fastq.gz
+	Approx 5% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 10% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 15% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 20% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 25% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 30% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 35% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 40% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 45% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 50% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 55% complete for B7_H3K4me1_s_chr19.fastq.gz
+	Approx 60% complete for B7_H3K4me1_s_chr19.fastq.gz
+	...
+
+If you have to submit a job to a HPC you need to use the corresponding program, **qsub** or **sbatch**.
+
+.. code-block:: console
+
+	qsub .command.run

@@ -284,16 +284,19 @@ Major clean
 ***********
 
 Check used space
+
 .. code-block:: console
   docker system df
 
 
 Remove unused containers (and others) - **DO WITH CARE**
+
 .. code-block:: console
   docker system prune
 
 
 Remove ALL non-running containers, images, etc. - **DO WITH MUCH MORE CARE!!!**
+
 .. code-block:: console
   docker system prune -a
 

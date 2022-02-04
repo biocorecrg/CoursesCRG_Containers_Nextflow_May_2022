@@ -270,6 +270,13 @@ For others, need to be done explicitly (syntax: host:container)
     > exit
     ls -l testdir
 
+
+Exercise
+********
+
+Using the 2 fastq available files, process them outside and inside a mounted directory using fastqc.
+
+
 Instances
 ---------
 

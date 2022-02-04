@@ -276,6 +276,41 @@ Exercise
 
 Using the 2 fastq available files, process them outside and inside a mounted directory using fastqc.
 
+.. raw:: html
+
+   <details>
+   <summary><a>Suggested solution</a></summary>
+
+
+.. code-block:: console
+
+	# Let's create a dummy directory
+	mkdir $HOME/scratch
+
+	# Let's copy contents of testdata in scratch
+
+	singularity exec fastqc.sif fastqc scratch/*fastq.gz
+
+	# Check you have some HTMLs there. Remove them
+	rm scratch/*html
+
+	# Let's use shell
+	singularity shell fastqc.sif
+	> cd scratch
+	> fastqc *fastq.gz
+	> exit
+
+	# Check you have some HTMLs there. Remove them
+	singularity exec -B ./scratch:/fastqcdir fastqc.sif fastqc /fastqcdir/*fastq.gz
+
+	# What happens here!
+	singularity exec -B ./scratch:/fastqcdir fastqc.sif bash -c 'fastqc /fastqcdir/*fastq.gz'
+
+.. raw:: html
+
+  </details>
+
+
 
 Instances
 ---------

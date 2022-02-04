@@ -1,7 +1,7 @@
 .. _nextflow_3-page:
 
 *******************
-Fourth Day
+Nextflow 3
 *******************
 
 Using Singularity

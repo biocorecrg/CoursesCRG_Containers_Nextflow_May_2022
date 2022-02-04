@@ -1,7 +1,7 @@
 .. _nextflow_2-page:
 
 *******************
-Third Day
+Nextflow 2
 *******************
 
 During this day we will make more complex pipelines and separate the main code from the configuration. Then we will focus on how to reuse and share your code.

@@ -1,7 +1,7 @@
 .. _nextflow_1-page:
 
 *******************
-Second Day
+Nextflow 1
 *******************
 
 Introduction to Nextflow

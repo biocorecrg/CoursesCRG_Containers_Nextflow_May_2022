@@ -43,4 +43,3 @@ Contents:
    nextflow_1
    nextflow_2
    nextflow_3
-   Final_exercise

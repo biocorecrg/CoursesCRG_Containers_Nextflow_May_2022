@@ -127,37 +127,12 @@ Day 2: Docker and Singularity
 Day 3: Understand and run a basic Nexflow pipeline
 -------------
 
-* 16:30-17:30 Nexflow: introduction, installation, run a simple pipeline.
-* 13:00-14:00 Nexflow basic concepts. Channels and Operators. Processes, Workflows and the log.
-* 14:00-14:30 Breakout rooms: create channels starting from data. Write and run a simple pipeline.
-* 14:30-15:00 Troubleshooting, Q&A.
-* 15:00-15:30 Break.
-* 15:30-16:30 Combining processes, directives, resuming a pipeline.
-* 16:30-17:00 Breakout rooms: write and run a more complex pipeline.
-* 17:00-17:30 Troubleshooting, Q&A.
-
 .. _home-page-day4:
 
-Day 3: Write, modify and run a complex pipeline
+Day 4: Write, modify and run a complex pipeline
 -------------
-
-* 13:00-14:00 Decoupling resources, parameters and nextflow script (params and nextflow config). Help section. How to get pipelines and run them.
-* 14:00-14:30 Breakout rooms: example of directives, get a pipeline and run it with a test dataset.
-* 14:30-15:00 Troubleshooting, Q&A.
-* 15:00-15:30 Break.
-* 15:30-16:30 Fetch public pipelines, adapt and run them.
-* 16:30-17:00 Breakout rooms: exercise.
-* 17:00-17:30 Troubleshooting, Q&A.
 
 .. _home-page-day5:
 
-Day 4: Run a Nextflow pipeline in different environments, share and report
+Day 5: Run a Nextflow pipeline in different environments, share and report
 -------------
-
-* 13:00-14:00 Using Singularity, profiles and deploying on AWS.
-* 14:00-14:30 Breakout rooms: deploy your pipeline on the cloud.
-* 14:30-15:00 Troubleshooting, Q&A.
-* 15:00-15:30 Break.
-* 15:30-16:30 Modules, reporting, share Nextflow pipelines on github. Nextflow Tower.
-* 16:30-17:00 Breakout rooms: exercise.
-* 17:00-17:30 Troubleshooting, Q&A.

@@ -299,6 +299,53 @@ Remove ALL non-running containers, images, etc. - **DO WITH MUCH MORE CARE!!!**
 
 * Reference: https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 
+
+Exercise
+********
+
+* Pull the imagemagick image that is official and that has the highest number of stars
+
+* Check the version of the convert command.
+
+* Start a container interactively.
+
+* Inside the container: download this png image
+
+* Convert it to .jpg using the convert command of imagemagick (format; convert image.png image.jpg).
+
+* Exit the container.
+
+* Copy the jpg image back from the stopped container! Try new command `docker cp`.
+
+
+.. raw:: html
+
+   <details>
+   <summary><a>Suggested solution</a></summary>
+
+.. code-block:: console
+
+  # Pull image
+  docker pull acleancoder/imagemagick-full
+
+  # Check version of `convert`
+  docker run acleancoder/imagemagick-full convert --version
+
+  # Start interactive container
+  docker run -it acleancoder/imagemagick-full
+    # fetch png image
+    > wget https://pbs.twimg.com/profile_images/1273307847103635465/lfVWBmiW_400x400.png
+    # convert to jpg
+    > convert lfVWBmiW_400x400.png myimage.jpg
+    # exit container
+
+  # fetch container ID with `ps -a` and use `docker cp` to copy jpg file from the stopped container to the host
+  docker cp *CONTAINER_ID*:/myimage.jpg .
+
+  .. raw:: html
+
+    </details>
+
 Volumes
 =======
 

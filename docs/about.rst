@@ -125,6 +125,13 @@ Day 2: Docker and Singularity
 .. _home-page-day3:
 
 Day 3: Understand and run a basic Nexflow pipeline
+---------------
+
+* 10:00-11:30 Introduction to Nextflow
+* 11:30-12:00 Coffee break
+* 12:00-13:30 Channels and Operators
+* 13:30-14:30 Lunch
+* 14:30-16:00 More complex scripts
 -------------
 
 .. _home-page-day4:
@@ -132,7 +139,21 @@ Day 3: Understand and run a basic Nexflow pipeline
 Day 4: Write, modify and run a complex pipeline
 -------------
 
+* 10:00-11:30 Decoupling resources and parameters
+* 11:30-12:00 Coffee break
+* 12:00-13:30 Using public pipelines
+* 13:30-14:30 Lunch
+* 14:30-16:00 Using Singularity
+
+
 .. _home-page-day5:
 
 Day 5: Run a Nextflow pipeline in different environments, share and report
 -------------
+
+* 10:00-11:30 Profiles
+* 11:30-12:00 Coffee break
+* 12:00-13:30 Deployment in the AWS cloud
+* 13:30-14:30 Lunch
+* 14:30-16:00 Modules and reporting
+

@@ -139,7 +139,8 @@ https://biocontainers.pro/#/tools/fastqc
 
     docker pull biocontainers/fastqc:v0.11.9_cv7
 
-**docker images: list images**
+docker images: list images
+--------------------------
 
 .. code-block:: console
   docker images
@@ -149,7 +150,8 @@ https://biocontainers.pro/#/tools/fastqc
 
 Each image has a unique **IMAGE ID**.
 
-**docker run: run image, i.e. start a container**
+docker run: run image, i.e. start a container
+---------------------------------------------
 
 Now we want to use what is **inside** the image.
 <br>
@@ -194,7 +196,8 @@ Run container as daemon (in background) with a given name
   docker run --detach --name myubuntu ubuntu:18.04 tail -f /dev/null
 
 
-**docker ps: check containers status**
+docker ps: check containers status
+----------------------------------
 
 List running containers:
 
@@ -210,7 +213,8 @@ List all containers (whether they are running or not):
 
 Each container has a unique ID.
 
-**docker exec: execute process in running container**
+docker exec: execute process in running container
+-------------------------------------------------
 
 .. code-block:: console
   docker exec myubuntu uname -a
@@ -222,7 +226,8 @@ Each container has a unique ID.
   docker exec -it myubuntu /bin/bash
 
 
-**docker stop, start, restart: actions on container**
+docker stop, start, restart: actions on container
+-------------------------------------------------
 
 Stop a running container:
 
@@ -261,7 +266,8 @@ Update restart policy
   docker update --restart unless-stopped myubuntu
 
 
-**docker rm, docker rmi: clean up!**
+docker rm, docker rmi: clean up!
+--------------------------------
 
 .. code-block:: console
   docker rm myubuntu
@@ -272,7 +278,8 @@ Update restart policy
   docker rmi ubuntu:18.04
 
 
-**Major clean**
+Major clean
+***********
 
 Check used space
 .. code-block:: console
@@ -290,7 +297,8 @@ Remove ALL non-running containers, images, etc. - **DO WITH MUCH MORE CARE!!!**
 
 * Reference: https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 
-**Volumes**
+Volumes
+=======
 
 Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.
 
@@ -305,12 +313,17 @@ Syntax: **--volume/-v** *host:container*
   > exit
 
 
-* Exercises:
+Exercises
+---------
+
 1. Copy the 2 fastq files from available datasets in Github repository and place them in mounted directory
+
 2. Run fastqc interactively (inside container): ```fastqc  /scratch/*.gz```
+
 3. Run fastqc outside the container
 
-**Ports**
+Ports
+=====
 
 The same as with volumes, but with ports, to access Internet services.
 
@@ -336,13 +349,16 @@ Syntax: **--publish/-p** *host:container*
   docker exec webserver curl localhost:8080
   docker rm -f webserver
 
-**Docker recipes: build your own images**
+Docker recipes: build your own images
+=====================================
 
-**Building recipes**
+Building recipes
+----------------
 
 All commands should be saved in a text file, named by default **Dockerfile**.
 
-**Basic instructions**
+Basic instructions
+------------------
 
 Each row in the recipe corresponds to a **layer** of the final image.
 
@@ -369,7 +385,8 @@ A basic recipe:
   RUN apt install -y wget
 
 
-**More instructions**
+More instructions
+-----------------
 
 **MAINTAINER**
 
@@ -440,7 +457,8 @@ A more complex recipe (save it in a text file named **Dockerfile**:
   CMD ["https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png"]
 
 
-**docker build**
+docker build
+------------
 
 Implicitely looks for a **Dockerfile** file in the current directory:
 
@@ -482,8 +500,8 @@ Then let's check the ID of the image and run it!
 .. code-block:: console
   docker run f9f41698e2f8 https://cdn-images-1.medium.com/max/1600/1*_NQN6_YnxS29m8vFzWYlEg.png
 
-
-**docker tag**
+docker tag
+-----------
 
 To tag a local image with ID "e23aaea5dff1" into the "ubuntu_wget" image name repository with version "1.0":
 
@@ -491,7 +509,8 @@ To tag a local image with ID "e23aaea5dff1" into the "ubuntu_wget" image name re
   docker tag e23aaea5dff1 --tag ubuntu_wget:1.0
 
 
-**Build cache**
+Build cache
+------------
 
 Every line of a Dockerfile is actually an image/layer by itself.
 
@@ -521,7 +540,8 @@ This is OK most of the times and very convenient for testing and trying new step
 .. code-block:: console
   docker build --no-cache -t mytestimage2 .
 
-**More advanced image building**
+More advanced image building
+----------------------------
 
 Different ways to build images.
 
@@ -536,7 +556,8 @@ Know your base system and their packages. Popular ones:
 * Conda. `Anaconda <https://anaconda.org/anaconda/repo>`__, `Conda-forge <https://conda-forge.org/feedstocks/>`__, `Bioconda <https://anaconda.org/bioconda/repo>`__, etc.
 
 
-**Additional commands**
+Additional commands
+===================
 
 * **docker inspect**: Get details from containers (both running and stopped). Things such as IPs, volumes, etc.
 
@@ -552,6 +573,7 @@ Good for long-term reproducibility and for critical production environments:
 
 * **docker import**: Import a tar archive into an image.
 
-**Exercises**
+Exercises
+=========
 
 We explore interactively the different examples in the container/docker folders.

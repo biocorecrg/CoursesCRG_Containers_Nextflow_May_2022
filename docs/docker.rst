@@ -58,7 +58,8 @@ https://stackoverflow.com/questions/23735149/what-is-the-difference-between-a-do
   :width: 300
 
 
-**Docker vocabulary**
+Docker vocabulary
+----------------------------
 
 .. code-block:: console
 
@@ -79,9 +80,11 @@ Get help:
   :width: 550
 
 
-**Using existing images**
+Using existing images
+---------------------
 
-**Explore Docker hub**
+Explore Docker hub
+******************
 
 Images can be stored locally or shared in a registry.
 <br>
@@ -93,7 +96,8 @@ Let's search the keyword **ubuntu**:
 .. image:: images/dockerhub_ubuntu.png
   :width: 900
 
-**docker pull: import image**
+docker pull: import image
+*************************
 
 * get latest image / latest release
 
@@ -115,18 +119,21 @@ Let's search the keyword **ubuntu**:
   docker pull ubuntu:18.04
 
 
-**Biocontainers**
+Biocontainers
+*************
 
 https://biocontainers.pro/
 
 Specific directory of Bioinformatics related entries
 
 * Entries in `Docker hub <https://hub.docker.com/u/biocontainers>`__ and/or `Quay.io <https://quay.io>`__ (RedHat registry)
+
 * Normally created from `Bioconda <https://bioconda.github.io>`__
 
 Example: **FastQC**
 
 https://biocontainers.pro/#/tools/fastqc
+
 
 .. code-block:: console
 
@@ -341,7 +348,7 @@ Each row in the recipe corresponds to a **layer** of the final image.
 
 **FROM**: parent image. Typically, an operating system. The **base layer**.
 
-.. code-block:: docker
+.. code-block::
   FROM ubuntu:18.04
 
 
@@ -349,13 +356,13 @@ Each row in the recipe corresponds to a **layer** of the final image.
 
 Think about it this way: every **RUN** line is essentially what you would run to install programs on a freshly installed Ubuntu OS.
 
-.. code-block:: docker
+.. code-block::
   RUN apt install wget
 
 
 A basic recipe:
 
-.. code-block:: docker
+.. code-block::
   FROM ubuntu:18.04
 
   RUN apt update && apt -y upgrade
@@ -368,13 +375,13 @@ A basic recipe:
 
 Who is maintaining the container?
 
-.. code-block:: docker
+.. code-block::
   MAINTAINER Toni Hermoso Pulido <toni.hermoso@crg.eu>
 
 
 **WORKDIR**: all subsequent actions will be executed in that working directory
 
-.. code-block:: docker
+.. code-block::
   WORKDIR ~
 
 
@@ -387,7 +394,7 @@ Difference between ADD and COPY explained [here](https://stackoverflow.com/quest
 **ADD**: same, but ADD works also for URLs, and for .tar archives that will be automatically extracted upon being copied.
 
 
-.. code-block:: docker
+.. code-block::
   # COPY source destination
   COPY ~/.bashrc .
 
@@ -405,12 +412,12 @@ Difference between ARG and ENV explained [here](https://vsupalov.com/docker-arg-
 
 The ENTRYPOINT specifies a command that will always be executed when the container starts. The CMD specifies arguments that will be fed to the ENTRYPOINT
 
-<br>
 
 In the example below, when the container is run without an argument, it will execute `echo "hello world"`.<br>
 If it is run with the argument **nice** it will execute `echo "nice"`
 
-.. code-block:: docker
+.. code-block::
+
   FROM ubuntu:18.04
   ENTRYPOINT ["/bin/echo"]
   CMD ["hello world"]
@@ -418,7 +425,8 @@ If it is run with the argument **nice** it will execute `echo "nice"`
 
 A more complex recipe (save it in a text file named **Dockerfile**:
 
-.. code-block:: docker
+.. code-block::
+
   FROM ubuntu:18.04
 
   MAINTAINER Toni Hermoso Pulido <toni.hermoso@crg.eu>
@@ -489,7 +497,7 @@ Every line of a Dockerfile is actually an image/layer by itself.
 
 Modify for instance the last bit of the previous image (let's change the image URL) and rebuild it (even with a different name/tag):
 
-.. code-block:: docker
+.. code-block::
   FROM ubuntu:18.04
 
   MAINTAINER Toni Hermoso Pulido <toni.hermoso@crg.eu>

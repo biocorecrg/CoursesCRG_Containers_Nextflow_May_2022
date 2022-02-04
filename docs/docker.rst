@@ -87,9 +87,10 @@ Explore Docker hub
 ******************
 
 Images can be stored locally or shared in a registry.
-<br>
-[Docker hub](https://hub.docker.com/) is the main public registry for Docker images.
-<br>
+
+
+`Docker hub <https://hub.docker.com/>`__ is the main public registry for Docker images.
+
 
 Let's search the keyword **ubuntu**:
 
@@ -404,7 +405,7 @@ Who is maintaining the container?
 
 **ADD, COPY**: add files to the image filesystem
 
-Difference between ADD and COPY explained [here](https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-copy-and-add-commands-in-a-dockerfile) and [here](https://nickjanetakis.com/blog/docker-tip-2-the-difference-between-copy-and-add-in-a-dockerile)
+Difference between ADD and COPY explained `here <https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-copy-and-add-commands-in-a-dockerfile>`__ and `here <https://nickjanetakis.com/blog/docker-tip-2-the-difference-between-copy-and-add-in-a-dockerile>`__
 
 **COPY**: lets you copy a local file or directory from your host (the machine from which you are building the image)
 
@@ -418,7 +419,7 @@ Difference between ADD and COPY explained [here](https://stackoverflow.com/quest
 
 **ENV, ARG**: run and build environment variables
 
-Difference between ARG and ENV explained [here](https://vsupalov.com/docker-arg-vs-env/).
+Difference between ARG and ENV explained `here <https://vsupalov.com/docker-arg-vs-env/>`__.
 
 
 * **ARG** values: available only while the image is built.

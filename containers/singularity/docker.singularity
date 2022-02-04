@@ -1,0 +1,9 @@
+BootStrap: docker
+From: biocontainers/fastqc:v0.11.9_cv7
+
+%runscript
+    echo "Welcome to FastQC Image"
+    fastqc --version
+
+%post
+    echo "Image built"

@@ -53,7 +53,8 @@ Container images, normally different versions of them, are stored in container r
 
 These repositories can be browser or discovered within, normally public, container registries.
 
-**Docker Hub**
+Docker Hub
+----------
 
 It is the first and most popular public container registry (which provides also private repositories).
 
@@ -68,7 +69,8 @@ Example:
 	singularity build fastqc-0.11.9_cv7.sif docker://biocontainers/fastqc:v0.11.9_cv7
 
 
-**Biocontainers**
+Biocontainers
+-------------
 
 * `Biocontainers <https://biocontainers.pro>`__
 
@@ -78,7 +80,8 @@ Originally Docker Hub was used, but now other registries are preferred.
 
 Example: `https://biocontainers.pro/tools/fastqc <https://biocontainers.pro/tools/fastqc>`__
 
-*Via quay.io*
+Via quay.io
+***********
 
 `https://quay.io/repository/biocontainers/fastqc <https://quay.io/repository/biocontainers/fastqc)>`__
 
@@ -87,7 +90,8 @@ Example: `https://biocontainers.pro/tools/fastqc <https://biocontainers.pro/tool
 	singularity build fastqc-0.11.9.sif docker://quay.io/biocontainers/fastqc:0.11.9--0
 
 
-*Via Galaxy project prebuilt images*
+Via Galaxy project prebuilt images
+**********************************
 
 .. code-block:: console
 
@@ -102,7 +106,8 @@ Running and executing containers
 
 Once we have some image files (or directories) ready, we can run processes.
 
-**Singularity shell**
+Singularity shell
+*****************
 
 The straight-forward exploratory approach is equivalent to ``docker run -ti biocontainers/fastqc:v0.11.9_cv7 /bin/shell`` but with a more handy syntax.
 
@@ -113,7 +118,8 @@ The straight-forward exploratory approach is equivalent to ``docker run -ti bioc
 
 Move around the directories and notice how the isolation approach is different in comparison to Docker. You can access most of the host filesystem.
 
-**Singularity exec**
+Singularity exec
+****************
 
 That is the most common way to execute Singularity (equivalent to ``docker exec``). That would be the normal approach in a HPC environment.
 
@@ -128,7 +134,8 @@ Test a processing of a file from *testdata* directory:
     singularity exec fastqc-0.11.9_cv7.sif fastqc B7_input_s_chr19.fastq.gz
 
 
-**Singularity run**
+Singularity run
+***************
 
 This executes runscript from recipe definition (equivalent to ``docker run``). Not so common for HPC uses. More common for instances (servers).
 
@@ -137,7 +144,8 @@ This executes runscript from recipe definition (equivalent to ``docker run``). N
     singularity run fastqc-0.11.9.sif
 
 
-**Environment control**
+Environment control
+*******************
 
 By default Singularity inherits a profile environment (e.g., PATH environment variable). This may be convenient in some circumstances, but it can also lead to unexpected problems when your own environment clashes with the default one from the image.
 
@@ -155,7 +163,8 @@ Compare ``env`` command with and without -e modifier.
     singularity exec fastqc-0.11.9.sif env
     singularity exec -e fastqc-0.11.9.sif env
 
-**Exercise**
+Exercise
+--------
 
 * Generate a Singularity image of the last *samtools* version
 	* Consider and compare different registry sources
@@ -163,9 +172,10 @@ Compare ``env`` command with and without -e modifier.
 * Execute in different ways ``samtools`` program (e. g., using *fqidx* option)
 
 Singularity recipes
--------------------
+===================
 
-**Docker bootstrap**
+Docker bootstrap
+----------------
 
 .. code-block:: console
 
@@ -184,7 +194,8 @@ Singularity recipes
 
     sudo singularity build fastqc.sif docker.singularity
 
-**Debian bootstrap**
+Debian bootstrap
+----------------
 
 .. code-block:: console
 
@@ -232,7 +243,8 @@ Singularity recipes
 Singularity advanced aspects
 ============================
 
-**Sandboxing**
+Sandboxing
+----------
 
 .. code-block:: console
   singularity build --sandbox ./sandbox docker://ubuntu:18.04
@@ -240,7 +252,8 @@ Singularity advanced aspects
   singularity build sandbox.sif ./sandbox
 
 
-**Bind paths (aka volumes)**
+Bind paths (aka volumes)
+------------------------
 
 Paths of host system mounted in the container
 
@@ -257,7 +270,8 @@ For others, need to be done explicitly (syntax: host:container)
     > exit
     ls -l testdir
 
-**Instances**
+Instances
+---------
 
 Also know as **services**. Despite Docker it is still more convenient for these tasks, it allows enabling thing such as webservices (e.g., via APIs) in HPC workflows.
 
@@ -299,19 +313,22 @@ More information:
 Singularity tips
 ----------------
 
-**Troubleshooting**
+Troubleshooting
+***************
 
 .. code-block:: console
 
      singularity --help
 
-**Fakeroot**
+Fakeroot
+********
 
 Singularity permissions are an evolving field. If you don't have access to ``sudo``, it might be worth considering using **--fakeroot/-f** parameter.
 
 * More details at `https://apptainer.org/docs/user/main/fakeroot.html <https://apptainer.org/docs/user/main/fakeroot.html>`__
 
-**Singularity cache directory**
+Singularity cache directory
+***************************
 
 .. code-block:: console
 
@@ -320,7 +337,8 @@ Singularity permissions are an evolving field. If you don't have access to ``sud
 * It stores cached images from registries, instances, etc.
 * If problems may be a good place to clean. When running ``sudo``, $HOME is /root.
 
-**Global singularity configuration**
+Global singularity configuration
+********************************
 
 Normally at ``/etc/singularity/singularity.conf`` or similar (e.g preceded by ``/usr/local/``)
 

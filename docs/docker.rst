@@ -144,6 +144,7 @@ docker images: list images
 --------------------------
 
 .. code-block:: console
+
   docker images
 
 .. image:: images/docker_images_list.png
@@ -165,6 +166,7 @@ The format is:
 docker run image:tag **command**
 
 .. code-block:: console
+
   docker run ubuntu:18.04 /bin/ls
 
 
@@ -177,6 +179,7 @@ Now execute **ls** in your current working directory: is the result the same?
 You can execute any program/command that is stored inside the image:
 
 .. code-block:: console
+
   docker run ubuntu:18.04 /bin/whoami
   docker run ubuntu:18.04 cat /etc/issue
 
@@ -184,17 +187,20 @@ You can execute any program/command that is stored inside the image:
 You can either execute programs in the image from the command line (see above) or **execute a container interactively**, i.e. **"enter"** the container.
 
 .. code-block:: console
+
   docker run -it ubuntu:18.04 /bin/bash
 
 
 Run container as daemon (in background)
 
 .. code-block:: console
+
   docker run --detach ubuntu:18.04 tail -f /dev/null
 
 Run container as daemon (in background) with a given name
 
 .. code-block:: console
+
   docker run --detach --name myubuntu ubuntu:18.04 tail -f /dev/null
 
 
@@ -204,12 +210,14 @@ docker ps: check containers status
 List running containers:
 
 .. code-block:: console
+
   docker ps
 
 
 List all containers (whether they are running or not):
 
 .. code-block:: console
+
   docker ps -a
 
 
@@ -219,12 +227,14 @@ docker exec: execute process in running container
 -------------------------------------------------
 
 .. code-block:: console
+
   docker exec myubuntu uname -a
 
 
 * Interactively
 
 .. code-block:: console
+
   docker exec -it myubuntu /bin/bash
 
 
@@ -234,6 +244,7 @@ docker stop, start, restart: actions on container
 Stop a running container:
 
 .. code-block:: console
+
   docker stop myubuntu
 
   docker ps -a
@@ -242,6 +253,7 @@ Stop a running container:
 Start a stopped container (does NOT create a new one):
 
 .. code-block:: console
+
   docker start myubuntu
 
   docker ps -a
@@ -250,6 +262,7 @@ Start a stopped container (does NOT create a new one):
 Restart a running container:
 
 .. code-block:: console
+
   docker restart myubuntu
 
   docker ps -a
@@ -258,6 +271,7 @@ Restart a running container:
 Run with restart enabled
 
 .. code-block:: console
+
   docker run --restart=unless-stopped --detach --name myubuntu2 ubuntu:18.04 tail -f /dev/null
 
 * Restart policies: no (default), always, on-failure, unless-stopped
@@ -265,6 +279,7 @@ Run with restart enabled
 Update restart policy
 
 .. code-block:: console
+
   docker update --restart unless-stopped myubuntu
 
 
@@ -272,11 +287,13 @@ docker rm, docker rmi: clean up!
 --------------------------------
 
 .. code-block:: console
+
   docker rm myubuntu
   docker rm -f myubuntu
 
 
 .. code-block:: console
+
   docker rmi ubuntu:18.04
 
 
@@ -286,18 +303,21 @@ Major clean
 Check used space
 
 .. code-block:: console
+
   docker system df
 
 
 Remove unused containers (and others) - **DO WITH CARE**
 
 .. code-block:: console
+
   docker system prune
 
 
 Remove ALL non-running containers, images, etc. - **DO WITH MUCH MORE CARE!!!**
 
 .. code-block:: console
+
   docker system prune -a
 
 * Reference: https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
@@ -357,6 +377,7 @@ Docker containers are fully isolated. It is necessary to mount volumes in order 
 Syntax: **--volume/-v** *host:container*
 
 .. code-block:: console
+
   mkdir datatest
   touch datatest/test
   docker run --detach --volume $(pwd)/datatest:/scratch --name fastqc_container biocontainers/fastqc:v0.11.9_cv7 tail -f /dev/null
@@ -383,17 +404,20 @@ Syntax: **--publish/-p** *host:container*
 
 
 .. code-block:: console
+
   docker run --detach --name webserver nginx
   curl localhost:80
   docker exec webserver curl localhost:80
   docker rm -f webserver
 
 .. code-block:: console
+
   docker run --detach --name webserver --publish 80:80 nginx
   curl localhost:80
   docker rm -f webserver
 
 .. code-block:: console
+
   docker run --detach --name webserver -p 8080:80 nginx
   curl localhost:80
   curl localhost:8080
@@ -417,6 +441,7 @@ Each row in the recipe corresponds to a **layer** of the final image.
 **FROM**: parent image. Typically, an operating system. The **base layer**.
 
 .. code-block::
+
   FROM ubuntu:18.04
 
 
@@ -431,6 +456,7 @@ Think about it this way: every **RUN** line is essentially what you would run to
 A basic recipe:
 
 .. code-block::
+
   FROM ubuntu:18.04
 
   RUN apt update && apt -y upgrade
@@ -451,6 +477,7 @@ Who is maintaining the container?
 **WORKDIR**: all subsequent actions will be executed in that working directory
 
 .. code-block::
+
   WORKDIR ~
 
 
@@ -516,11 +543,13 @@ docker build
 Implicitely looks for a **Dockerfile** file in the current directory:
 
 .. code-block:: console
+
   docker build .
 
 Same as:
 
 .. code-block:: console
+
   docker build --file Dockerfile .
 
 
@@ -533,6 +562,7 @@ You can define a specific name for the image during the build process.
 Syntax: **-t** *imagename:tag*. If not defined ```:tag``` default is latest.
 
 .. code-block:: console
+
   docker build -t mytestimage .
 
 
@@ -544,6 +574,7 @@ Check with ``docker images`` that you see the newly built image in the list...
 Then let's check the ID of the image and run it!
 
 .. code-block:: console
+
   docker images
 
   docker run f9f41698e2f8
@@ -551,6 +582,7 @@ Then let's check the ID of the image and run it!
 
 
 .. code-block:: console
+
   docker run f9f41698e2f8 https://cdn-images-1.medium.com/max/1600/1*_NQN6_YnxS29m8vFzWYlEg.png
 
 docker tag
@@ -559,6 +591,7 @@ docker tag
 To tag a local image with ID "e23aaea5dff1" into the "ubuntu_wget" image name repository with version "1.0":
 
 .. code-block:: console
+
   docker tag e23aaea5dff1 --tag ubuntu_wget:1.0
 
 
@@ -570,6 +603,7 @@ Every line of a Dockerfile is actually an image/layer by itself.
 Modify for instance the last bit of the previous image (let's change the image URL) and rebuild it (even with a different name/tag):
 
 .. code-block::
+
   FROM ubuntu:18.04
 
   MAINTAINER Toni Hermoso Pulido <toni.hermoso@crg.eu>
@@ -584,6 +618,7 @@ Modify for instance the last bit of the previous image (let's change the image U
 
 
 .. code-block:: console
+
   docker build -t mytestimage2 .
 
 
@@ -591,6 +626,7 @@ It will start from the last line.
 This is OK most of the times and very convenient for testing and trying new steps, but it may lead to errors when versions are updated (either FROM image or included packages). For that it is benefitial to start from scratch with ```--no-cache``` tag.
 
 .. code-block:: console
+
   docker build --no-cache -t mytestimage2 .
 
 More advanced image building

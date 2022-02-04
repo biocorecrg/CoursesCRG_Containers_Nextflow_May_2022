@@ -90,7 +90,8 @@ Images can be stored locally or shared in a registry.
 
 Let's search the keyword **ubuntu**:
 
-<img src="images/dockerhub_ubuntu.png" width="900/">
+.. image:: images/dockerhub_ubuntu.png
+  :width: 900
 
 **docker pull: import image**
 
@@ -264,7 +265,7 @@ Update restart policy
   docker rmi ubuntu:18.04
 
 
-#### Major clean
+**Major clean**
 
 Check used space
 .. code-block:: console
@@ -302,7 +303,7 @@ Syntax: **--volume/-v** *host:container*
 2. Run fastqc interactively (inside container): ```fastqc  /scratch/*.gz```
 3. Run fastqc outside the container
 
-## Ports
+**Ports**
 
 The same as with volumes, but with ports, to access Internet services.
 
@@ -431,7 +432,7 @@ A more complex recipe (save it in a text file named **Dockerfile**:
   CMD ["https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png"]
 
 
-### docker build
+**docker build**
 
 Implicitely looks for a **Dockerfile** file in the current directory:
 
@@ -457,7 +458,7 @@ Syntax: **-t** *imagename:tag*. If not defined ```:tag``` default is latest.
 
 
 The last line of installation should be **Successfully built ...**: then you are good to go.
-<br>
+
 Check with ``docker images`` that you see the newly built image in the list...
 
 
@@ -517,9 +518,13 @@ This is OK most of the times and very convenient for testing and trying new step
 Different ways to build images.
 
 Know your base system and their packages. Popular ones:
+
 * `Debian <https://packages.debian.org>`__
+
 * `CentOS <https://centos.pkgs.org/>`__
+
 * `Alpine <https://pkgs.alpinelinux.org/packages>`__
+
 * Conda. `Anaconda <https://anaconda.org/anaconda/repo>`__, `Conda-forge <https://conda-forge.org/feedstocks/>`__, `Bioconda <https://anaconda.org/bioconda/repo>`__, etc.
 
 

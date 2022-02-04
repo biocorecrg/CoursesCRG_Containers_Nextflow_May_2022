@@ -155,12 +155,13 @@ docker run: run image, i.e. start a container
 ---------------------------------------------
 
 Now we want to use what is **inside** the image.
-<br>
+
 
 **docker run** creates a fresh container (active instance of the image) from a **Docker (static) image**, and runs it.
 
-<br>
-The format is:<br>
+
+The format is:
+
 docker run image:tag **command**
 
 .. code-block:: console
@@ -413,6 +414,7 @@ Difference between ADD and COPY explained `here <https://stackoverflow.com/quest
 
 
 .. code-block::
+
   # COPY source destination
   COPY ~/.bashrc .
 
@@ -431,7 +433,7 @@ Difference between ARG and ENV explained `here <https://vsupalov.com/docker-arg-
 The ENTRYPOINT specifies a command that will always be executed when the container starts. The CMD specifies arguments that will be fed to the ENTRYPOINT
 
 
-In the example below, when the container is run without an argument, it will execute `echo "hello world"`.<br>
+In the example below, when the container is run without an argument, it will execute `echo "hello world"`.
 If it is run with the argument **nice** it will execute `echo "nice"`
 
 .. code-block::

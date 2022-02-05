@@ -50,7 +50,6 @@ It is designed to provide trainees with short and frequent hands-on sessions, wh
 The course will be fully virtual via the `Zoom <https://zoom.us/>`_ platform.
 
 .. 
-
         Trainees will work in a dedicated `AWS environment <https://en.wikipedia.org/wiki/AWS/>`_.
 
 

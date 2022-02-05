@@ -71,36 +71,30 @@ Having a [GitHub account](https://github.com/join) is recommended.
 * 13:30-14:30 Lunch
 * 14:30-16:00 Singularity
 
-### Day 2: Understand and run a basic Nexflow pipeline
+### Day 3: Understand and run a basic Nexflow pipeline
 
-* 13:00-14:00 Nexflow basic concepts. Channels and Operators. Processes, Workflows and the log
-* 14:00-14:30 Breakout rooms: create channels starting from data. Write and run more simple pipelines.
-* 14:30-15:00 Troubleshooting, Q&A.
-* 15:00-15:30 Break.
-* 15:30-16:30 Combine processes, directives, resume the pipeline.
-* 16:30-17:00 Breakout rooms: write and run a more complex pipeline.
-* 17:00-17:30 Troubleshooting, Q&A.  
+* 10:00-11:30 Introduction to Nextflow
+* 11:30-12:00 Coffee break
+* 12:00-13:30 Channels and Operators
+* 13:30-14:30 Lunch
+* 14:30-16:00 More complex scripts
 
-### Day 3: Write, modify and run a complex pipeline 
+### Day 4: Write, modify and run a complex pipeline
 
-* 13:00-14:00 Decoupling resources, parameters and nextflow script (params and nextflow config). Help section. How to get pipelines and run them.
-* 14:00-14:30 Breakout rooms: example of directives, get a pipeline and run it with a test dataset.
-* 14:30-15:00 Troubleshooting, Q&A.
-* 15:00-15:30 Break.
-* 15:30-16:30 Fetch public pipelines, adapt and run them. 
-* 16:30-17:00 Breakout rooms: exercise.
-* 17:00-17:30 Troubleshooting, Q&A. 
+* 10:00-11:30 Decoupling resources and parameters
+* 11:30-12:00 Coffee break
+* 12:00-13:30 Using public pipelines
+* 13:30-14:30 Lunch
+* 14:30-16:00 Using Singularity
 
-### Day 4: Run a Nextflow pipeline in different environments, share and report
 
-* 13:00-14:00 Using Singularity, profiles and deploying on AWS. 
-* 14:00-14:30 Breakout rooms: Deploy your pipeline on the cloud. 
-* 14:30-15:00 Troubleshooting, Q&A.
-* 15:00-15:30 Break.
-* 15:30-16:30 Modules, reporting, share Nextflow pipelines on github. Nextflow Tower.
-* 16:30-17:00 Breakout rooms: exercise. 
-* 17:00-17:30 Troubleshooting, Q&A.  
+### Day 5: Run a Nextflow pipeline in different environments, share and report
 
+* 10:00-11:30 Profiles
+* 11:30-12:00 Coffee break
+* 12:00-13:30 Deployment in the AWS cloud
+* 13:30-14:30 Lunch
+* 14:30-16:00 Modules and reporting
 
 
 ## Acknowledgements

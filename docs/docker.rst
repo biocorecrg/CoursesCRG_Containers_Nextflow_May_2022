@@ -18,7 +18,7 @@ What is Docker?
 * Infrastructure as application / code.
 * First version: 2013.
 * Company: originally dotCloud (2010), later named Docker.
-* Established [Open Container Initiative](https://www.opencontainers.org/).
+* Established `Open Container Initiative <https://www.opencontainers.org/>`__.
 
 As a software:
 

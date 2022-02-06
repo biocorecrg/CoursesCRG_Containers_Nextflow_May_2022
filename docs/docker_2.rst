@@ -29,20 +29,24 @@ Update and upgrade packages
 * In **Ubuntu**:
 
 .. code-block::
+
   apt-get update && apt-get upgrade -y
 
 
 In **CentOS**:
 
 .. code-block::
+
   yum check-update && yum update -y
 
 
-### Search and install packages:
+Search and install packages
+***************************
 
 * In **Ubuntu**:
 
 .. code-block::
+
   apt search libxml2
   apt install -y libxml2-dev
 
@@ -50,6 +54,7 @@ In **CentOS**:
 * In **CentOS**:
 
 .. code-block::
+
   yum search libxml2
   yum install -y libxml2-devel.x86_64
 

@@ -39,6 +39,7 @@ Contents:
    about
    containers
    docker
+   docker_2
    singularity
    nextflow_1
    nextflow_2

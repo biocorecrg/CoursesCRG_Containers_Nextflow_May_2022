@@ -323,8 +323,8 @@ Remove ALL non-running containers, images, etc. - **DO WITH MUCH MORE CARE!!!**
 * Reference: https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 
 
-Exercise
-********
+Exercises
+---------
 
 * 1 - **Alpine**
 
@@ -347,6 +347,7 @@ Exercise
     * Stop the container.
     
 * Remove the alpine image and all its containers (running or stopped).
+
 
 
 .. raw:: html
@@ -381,6 +382,7 @@ Exercise
 .. raw:: html
 
   </details>
+
 
 
 * 2 - **Imagemagick**

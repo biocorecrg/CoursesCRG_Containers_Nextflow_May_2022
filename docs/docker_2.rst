@@ -1,11 +1,62 @@
 .. _docker_2-page:
 
 *******************
-Docker (2)
+Docker 2
 *******************
 
 Docker recipes: build your own images
 =====================================
+
+OS commands in image building
+-----------------------------
+
+Depending on the underlying OS, there are different ways to build images.
+
+Know your base system and their packages. Popular ones:
+
+* `Debian <https://packages.debian.org>`__
+
+* `CentOS <https://centos.pkgs.org/>`__
+
+* `Alpine <https://pkgs.alpinelinux.org/packages>`__
+
+* Conda. `Anaconda <https://anaconda.org/anaconda/repo>`__, `Conda-forge <https://conda-forge.org/feedstocks/>`__, `Bioconda <https://anaconda.org/bioconda/repo>`__, etc.
+
+
+Update and upgrade packages
+***************************
+
+* In **Ubuntu**:
+
+.. code-block::
+  apt-get update && apt-get upgrade -y
+
+
+In **CentOS**:
+
+.. code-block::
+  yum check-update && yum update -y
+
+
+### Search and install packages:
+
+* In **Ubuntu**:
+
+.. code-block::
+  apt search libxml2
+  apt install -y libxml2-dev
+
+
+* In **CentOS**:
+
+.. code-block::
+  yum search libxml2
+  yum install -y libxml2-devel.x86_64
+
+
+>Note the **-y** option that we set for updating and for installing.<br>
+It is an important option in the context of Docker: it means that you *answer yes to all questions* regarding installation.
+
 
 Building recipes
 ----------------
@@ -13,7 +64,7 @@ Building recipes
 All commands should be saved in a text file, named by default **Dockerfile**.
 
 Basic instructions
-------------------
+******************
 
 Each row in the recipe corresponds to a **layer** of the final image.
 
@@ -43,7 +94,7 @@ A basic recipe:
 
 
 More instructions
------------------
+*****************
 
 **MAINTAINER**
 
@@ -207,22 +258,6 @@ This is OK most of the times and very convenient for testing and trying new step
 .. code-block:: console
 
   docker build --no-cache -t mytestimage2 .
-
-More advanced image building
-----------------------------
-
-Different ways to build images.
-
-Know your base system and their packages. Popular ones:
-
-* `Debian <https://packages.debian.org>`__
-
-* `CentOS <https://centos.pkgs.org/>`__
-
-* `Alpine <https://pkgs.alpinelinux.org/packages>`__
-
-* Conda. `Anaconda <https://anaconda.org/anaconda/repo>`__, `Conda-forge <https://conda-forge.org/feedstocks/>`__, `Bioconda <https://anaconda.org/bioconda/repo>`__, etc.
-
 
 Additional commands
 ===================

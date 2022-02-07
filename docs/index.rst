@@ -13,20 +13,23 @@ PHINDaccess - Linux containers & Nextflow for reproducible research and open sci
 
 .. |julia| image:: images/jponomarenko.jpg
   :alt: Alternative text
+  
+.. |ghedira| image:: images/Kais.jpg
+  :alt: Alternative text
 
 
 .. list-table:: Main instructors:
-   :widths: 50 50 50
+   :widths: 50 50 50 50
    :header-rows: 1
 
    * - Luca Cozzuto
      - Toni Hermoso
      - Julia Ponomarenko
+     - Kais Ghedira
    * - |luca|
      - |toni|
      - |julia|
-
-Other instructors:
+     - |ghedira|
 
 
 `GitHub repository <https://github.com/biocorecrg/PHIND_course_nextflow_Feb_2022>`_

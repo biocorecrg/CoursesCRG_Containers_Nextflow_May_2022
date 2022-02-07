@@ -493,4 +493,4 @@ A convenient command would be:
 
 .. code-block:: console
 
-  docker run --user $(id -u):$(id -g)
+  docker run --user $(id -u):$(id -g) --detach --volume $(pwd)/datatest:/scratch --name user_test biocontainers/fastqc:v0.11.9_cv7 touch /scratch/userfile

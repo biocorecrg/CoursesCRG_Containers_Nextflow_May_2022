@@ -444,15 +444,6 @@ Syntax: **--volume/-v** *host:container*
   > exit
 
 
-Exercises
----------
-
-1. Copy the 2 fastq files from available datasets in Github repository and place them in mounted directory
-
-2. Run fastqc interactively (inside container): ```fastqc  /scratch/*.gz```
-
-3. Run fastqc outside the container
-
 Ports
 =====
 
@@ -484,3 +475,11 @@ Syntax: **--publish/-p** *host:container*
   docker rm -f webserver
 
 
+Volume exercises
+================
+
+1. Copy the 2 fastq files from available datasets in Github repository and place them in mounted directory
+
+2. Run fastqc interactively (inside container): ```fastqc  /scratch/*.gz```
+
+3. Run fastqc outside the container

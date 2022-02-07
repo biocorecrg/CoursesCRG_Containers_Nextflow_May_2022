@@ -100,6 +100,7 @@ Via Galaxy project prebuilt images
 
 Galaxy project provides all Bioinformatics software from the BioContainers initiative as Singularity prebuilt images. If download and conversion time of images is an issue, this might be the best option for those working in the biomedical field.
 
+Link: https://depot.galaxyproject.org/singularity/
 
 Running and executing containers
 --------------------------------

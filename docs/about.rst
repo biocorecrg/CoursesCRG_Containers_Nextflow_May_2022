@@ -32,7 +32,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
    * - Luca Cozzuto
      - Toni Hermoso
      - Julia Ponomarenko
-     - Kais Ghedra
+     - Kais Ghedira
    * - |luca|
      - |toni|
      - |julia|

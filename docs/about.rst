@@ -133,7 +133,7 @@ Day 3: Understand and run a basic Nexflow pipeline
 * 12:00-13:30 Channels and Operators
 * 13:30-14:30 Lunch
 * 14:30-16:00 More complex scripts
--------------
+
 
 .. _home-page-day4:
 

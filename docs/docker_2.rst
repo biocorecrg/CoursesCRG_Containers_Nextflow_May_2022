@@ -287,8 +287,8 @@ This script outputs random intergers from 1 to 1000: the number of integers sele
 
 .. raw:: html
 
-   <details>
-   <summary><a>Suggested solution</a></summary>
+  <details>
+  <summary><a>Suggested solution</a></summary>
 
 .. code-block::
 

@@ -332,17 +332,17 @@ Exercises
 * Now run a container **interactively** from the same image.
 
     * Run `whoami` in the container.
-    
+
     * Exit the container and run `whoami` on the host machine: do you get the same output?
-    
+
 * Restart the container you just exited:
 
     * Is it now running?
-    
+
     * Make the container execute the command `ls`.
-    
+
     * Stop the container.
-    
+
 * Remove the alpine image and all its containers (running or stopped).
 
 
@@ -483,3 +483,14 @@ Volume exercises
 2. Run fastqc interactively (inside container): ```fastqc  /scratch/*.gz```
 
 3. Run fastqc outside the container
+
+docker run --user
+-----------------
+
+It is possible to run certain containers with a specific user, appending ```run --user```.
+
+A convenient command would be:
+
+.. code-block:: console
+
+  docker run --user $(id -u):$(id -g)

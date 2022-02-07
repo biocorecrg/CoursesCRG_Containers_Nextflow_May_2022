@@ -57,13 +57,13 @@ Having a [GitHub account](https://github.com/join) is recommended.
 
 ## Program
 
-### Day 1: Introduction to Linux containers and Docker
+### Day 1: Introduction to Linux containers and Docker
 
 * 12:00-13:30 Introduction to containers
 * 13:30-14:30 Lunch
 * 14:30-16:00 Introduction to Docker
 
-### Day 2: Docker and Singularity
+### Day 2: Docker and Singularity
 
 * 10:00-11:30 Docker
 * 11:30-12:00 Coffee break

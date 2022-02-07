@@ -248,6 +248,7 @@ Sandboxing
 ----------
 
 .. code-block:: console
+
   singularity build --sandbox ./sandbox docker://ubuntu:18.04
   touch sandbox/etc/myetc.conf
   singularity build sandbox.sif ./sandbox

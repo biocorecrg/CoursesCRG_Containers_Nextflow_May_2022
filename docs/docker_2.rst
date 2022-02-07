@@ -280,9 +280,13 @@ Build exercise
 This script outputs random intergers from 1 to 1000: the number of integers selected is given as the first argument.
 
 * Write a recipe for an image:
+
   * Based on centos:7
+
   * That will execute this script (with bash) when it is run, giving it 2 as a default argument (i.e. outputs 2 random integers): the default can be changed as the image is run.
+
   * Build the image.
+
   * Start a container with the default argument, then try it with another argument.
 
 .. raw:: html

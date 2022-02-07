@@ -264,6 +264,62 @@ This is OK most of the times and very convenient for testing and trying new step
 
   docker build --no-cache -t mytestimage2 .
 
+Build exercise
+--------------
+
+* Random numbers
+
+* Copy the following short bash script in a file called random_numbers.bash.
+
+.. code-block:: console
+
+  #!/usr/bin/bash
+  seq 1 1000 | shuf | head -$1
+
+
+This script outputs random intergers from 1 to 1000: the number of integers selected is given as the first argument.
+
+* Write a recipe for an image:
+  * Based on centos:7
+  * That will execute this script (with bash) when it is run, giving it 2 as a default argument (i.e. outputs 2 random integers): the default can be changed as the image is run.
+  * Build the image.
+  * Start a container with the default argument, then try it with another argument.
+
+  .. raw:: html
+
+     <details>
+     <summary><a>Suggested solution</a></summary>
+
+.. code-block::
+
+  FROM centos:7
+
+  MAINTAINER Name Surname <name.surname@mail.com>
+
+  # Copy script from host to image
+  COPY random_numbers.bash .
+
+  # Make script executable
+  RUN chmod +x random_numbers.bash
+
+  # As the container starts, "random_numbers.bash" is run
+  ENTRYPOINT ["/usr/bin/bash", "random_numbers.bash"]
+
+  # default argument (that can be changed on the command line)
+  CMD ["2"]
+
+Build and run:
+
+.. code-block:: console
+
+  docker build -f Dockerfile_RN -t random_numbers .
+  docker run random_numbers
+  docker run random_numbers 10
+
+.. raw:: html
+
+    </details>
+
 Additional commands
 ===================
 
@@ -280,6 +336,12 @@ Good for long-term reproducibility and for critical production environments:
 * **docker export**: Save a container into a tar archive.
 
 * **docker import**: Import a tar archive into an image.
+
+Note about the tar formats
+--------------------------
+
+If you check the tar archives generated thanks to save with the ones using export, you will notice they do not look the same. The former ones ressemble more what you will find in /var/lib/docker (that is where Docker daemon stores its data) and it includes metadata information (so it is not necessary to specify an image tag). On the other hand, tar files generated with export they simply contantain the image filesystem. You lost that way a lot of metadata associated to the original image, such as the tags, but also things such as ENTRYPOINT and CMD instructions.
+
 
 Exercises
 =========

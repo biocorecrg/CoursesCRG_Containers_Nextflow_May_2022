@@ -97,6 +97,54 @@ A basic recipe:
   RUN apt update && apt -y upgrade
   RUN apt install -y wget
 
+docker build
+------------
+
+Implicitely looks for a **Dockerfile** file in the current directory:
+
+.. code-block:: console
+
+  docker build .
+
+Same as:
+
+.. code-block:: console
+
+  docker build --file Dockerfile .
+
+
+Syntax: **--file / -f**
+
+**.** stands for the context (in this case, current directory) of the build process. This makes sense if copying files from filesystem, for instance. **IMPORTANT**: Avoid contexts (directories) overpopulated with files (even if not actually used in the recipe).
+
+You can define a specific name for the image during the build process.
+
+Syntax: **-t** *imagename:tag*. If not defined ```:tag``` default is latest.
+
+.. code-block:: console
+
+  docker build -t mytestimage .
+  # Same as:
+  docker build -t mytestimage:latest .
+
+
+* IMPORTANT: Avoid contexts (directories) over-populated with files (even if not actually used in the recipe).
+In order to avoid that some directories or files are inspected or included (e.g, with COPY command in Dockerfile), you can use .dockerignore file to specify which paths should be avoided. More information at: https://codefresh.io/docker-tutorial/not-ignore-dockerignore-2/
+
+
+The last line of installation should be **Successfully built ...**: then you are good to go.
+
+Check with ``docker images`` that you see the newly built image in the list...
+
+Then let's check the ID of the image and run it!
+
+.. code-block:: console
+
+  docker images
+
+  docker run f9f41698e2f8
+  docker run mytestimage
+
 
 More instructions
 *****************
@@ -135,15 +183,37 @@ Difference between ADD and COPY explained `here <https://stackoverflow.com/quest
 
 Difference between ARG and ENV explained `here <https://vsupalov.com/docker-arg-vs-env/>`__.
 
-
 * **ARG** values: available only while the image is built.
 * **ENV** values: available for the future running containers.
+
+With a default value
+
+.. code-block::
+
+  ARG UbuntuVersion=18.04
+
+  FROM ubuntu:${UbuntuVersion}
+
+
+Without a default value (i.e. the user is expected to provide it upon building)
+
+.. code-block::
+
+  ARG UbuntuVersion
+
+  FROM ubuntu:${UbuntuVersion}
+
+
+Provide a value for UbuntuVersion as you build the image with --build-arg:
+
+.. code-block::
+
+  docker build --build-arg UbuntuVersion=20.04 .
 
 
 **CMD, ENTRYPOINT**: command to execute when generated container starts
 
 The ENTRYPOINT specifies a command that will always be executed when the container starts. The CMD specifies arguments that will be fed to the ENTRYPOINT
-
 
 In the example below, when the container is run without an argument, it will execute `echo "hello world"`.
 If it is run with the argument **nice** it will execute `echo "nice"`
@@ -172,53 +242,11 @@ A more complex recipe (save it in a text file named **Dockerfile**:
   CMD ["https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png"]
 
 
-docker build
-------------
-
-Implicitely looks for a **Dockerfile** file in the current directory:
-
-.. code-block:: console
-
-  docker build .
-
-Same as:
-
-.. code-block:: console
-
-  docker build --file Dockerfile .
-
-
-Syntax: **--file / -f**
-
-**.** stands for the context (in this case, current directory) of the build process. This makes sense if copying files from filesystem, for instance. **IMPORTANT**: Avoid contexts (directories) overpopulated with files (even if not actually used in the recipe).
-
-You can define a specific name for the image during the build process.
-
-Syntax: **-t** *imagename:tag*. If not defined ```:tag``` default is latest.
-
-.. code-block:: console
-
-  docker build -t mytestimage .
-
-
-The last line of installation should be **Successfully built ...**: then you are good to go.
-
-Check with ``docker images`` that you see the newly built image in the list...
-
-
-Then let's check the ID of the image and run it!
-
-.. code-block:: console
-
-  docker images
-
-  docker run f9f41698e2f8
-  docker run mytestimage
-
 
 .. code-block:: console
 
   docker run f9f41698e2f8 https://cdn-images-1.medium.com/max/1600/1*_NQN6_YnxS29m8vFzWYlEg.png
+
 
 docker tag
 -----------
@@ -335,16 +363,45 @@ Additional commands
 
 Good for long-term reproducibility and for critical production environments:
 
-* **docker save**: Save an image into a tar archive.
 
-* **docker export**: Save a container into a tar archive.
+* **docker save**: Save an image into an image tar archive.
 
-* **docker import**: Import a tar archive into an image.
+* **docker load**: Load an image tar archive to become an image.
+
+* **docker export**: Save a container filesystem into a tar archive.
+
+* **docker import**: Import a filesystem tar archive into an image (you need to specify a target tag).
+
+
+Example dealing with tar images
+-------------------------------
+
+.. code-block:: console
+
+  # Let's save the image in a tar
+  docker save -o random_numbers.tar random_numbers
+
+  # Remove the original image
+  docker rmi random_numbers
+
+  # Check existing images now
+  docker images
+
+  # Recover it
+  docker load < random_numbers.tar
+
+  # Check now images
+  docker images
+
 
 Note about the tar formats
 --------------------------
 
-If you check the tar archives generated thanks to save with the ones using export, you will notice they do not look the same. The former ones ressemble more what you will find in /var/lib/docker (that is where Docker daemon stores its data) and it includes metadata information (so it is not necessary to specify an image tag). On the other hand, tar files generated with export they simply contantain the image filesystem. You lost that way a lot of metadata associated to the original image, such as the tags, but also things such as ENTRYPOINT and CMD instructions.
+* If you check the tar archives generated thanks to **save** with the ones using export, you will notice they do not look the same.
+
+* The former ones ressemble more what you will find in ``/var/lib/docker`` (that is where Docker daemon stores its data) and it includes metadata information (so it is not necessary to specify an image tag).
+
+* On the other hand, tar files generated with **export** they simply contantain the image filesystem. You lost that way a lot of metadata associated to the original image, such as the tags, but also things such as ENTRYPOINT and CMD instructions.
 
 
 Exercises

@@ -263,9 +263,9 @@ For others, need to be done explicitly (syntax: host:container)
 
 .. code-block:: console
 
-    mkdir testdir
-    touch testdir/testout
-    singularity shell -e -B ./testdir:/scratch fastqc-0.11.9.sif
+    mkdir datatest
+    touch datatest/testout
+    singularity shell -e -B ./datatest:/scratch fastqc-0.11.9.sif
     > touch /scratch/testin
     > exit
     ls -l testdir
@@ -285,26 +285,26 @@ Using the 2 fastq available files, process them outside and inside a mounted dir
 .. code-block:: console
 
 	# Let's create a dummy directory
-	mkdir $HOME/scratch
+	mkdir datatest
 
-	# Let's copy contents of testdata in scratch
+	# Let's copy contents of testdata in that directory
 
-	singularity exec fastqc.sif fastqc scratch/*fastq.gz
+	singularity exec fastqc.sif fastqc datatest/*fastq.gz
 
 	# Check you have some HTMLs there. Remove them
-	rm scratch/*html
+	rm datatest/*html
 
 	# Let's use shell
 	singularity shell fastqc.sif
-	> cd scratch
+	> cd datatest
 	> fastqc *fastq.gz
 	> exit
 
 	# Check you have some HTMLs there. Remove them
-	singularity exec -B ./scratch:/fastqcdir fastqc.sif fastqc /fastqcdir/*fastq.gz
+	singularity exec -B ./datatest:/scratch fastqc.sif fastqc /scratch/*fastq.gz
 
 	# What happens here!
-	singularity exec -B ./scratch:/fastqcdir fastqc.sif bash -c 'fastqc /fastqcdir/*fastq.gz'
+	singularity exec -B ./datatest:/scratch fastqc.sif bash -c 'fastqc /scratch/*fastq.gz'
 
 .. raw:: html
 

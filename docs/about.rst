@@ -21,12 +21,12 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 .. |julia| image:: images/jponomarenko.jpg
   :alt: Alternative text
 
-.. |kghedra| image:: images/jponomarenko.jpg
+.. |ghedira| image:: images/Kais.jpg
   :alt: Alternative text
 
 
 .. list-table:: Main instructors:
-   :widths: 50 50 50
+   :widths: 50 50 50 50
    :header-rows: 1
 
    * - Luca Cozzuto
@@ -36,7 +36,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
    * - |luca|
      - |toni|
      - |julia|
-     - |kghedra|
+     - |ghedira|
 
 .. _home-page-outline:
 

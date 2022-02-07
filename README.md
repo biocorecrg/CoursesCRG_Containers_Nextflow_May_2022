@@ -85,6 +85,7 @@ Having a [GitHub account](https://github.com/join) is recommended.
 * 14:30-16:00 Using Singularity
 
 
+
 ### Day 5: Run a Nextflow pipeline in different environments, share and report
 
 * 10:00-11:30 Profiles

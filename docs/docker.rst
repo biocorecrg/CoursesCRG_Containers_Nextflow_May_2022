@@ -54,9 +54,6 @@ When you start an image, you have a running container of this image. You can hav
 
 https://stackoverflow.com/questions/23735149/what-is-the-difference-between-a-docker-image-and-a-container
 
-.. image:: images/singularity_logo.svg
-  :width: 300
-
 
 Docker vocabulary
 ----------------------------

@@ -97,8 +97,9 @@ A basic recipe:
   RUN apt update && apt -y upgrade
   RUN apt install -y wget
 
+
 docker build
-------------
+************
 
 Implicitely looks for a **Dockerfile** file in the current directory:
 

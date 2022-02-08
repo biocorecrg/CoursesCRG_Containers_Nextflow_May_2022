@@ -315,7 +315,7 @@ Also know as **services**. Despite Docker it is still more convenient for these 
 
 As a simple example, first we create a boostrapped image:
 
-.. code-block:: console
+.. code-block::
 
   Bootstrap: docker
   From: library/mariadb:10.3

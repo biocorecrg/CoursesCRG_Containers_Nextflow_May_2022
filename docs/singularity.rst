@@ -178,7 +178,7 @@ Singularity recipes
 Docker bootstrap
 ----------------
 
-.. code-block:: console
+.. code-block::
 
   BootStrap: docker
   From: biocontainers/fastqc:v0.11.9_cv7
@@ -198,17 +198,16 @@ Docker bootstrap
 Debian bootstrap
 ----------------
 
-.. code-block:: console
+.. code-block::
 
   BootStrap: debootstrap
   OSVersion: bionic
   MirrorURL:  http://fr.archive.ubuntu.com/ubuntu/
-  Include: build-essential curl python python-dev openjdk-11-jdk bzip2 zip unzip
+  Include: build-essential curl openjdk-11-jdk bzip2 zip unzip
 
   %runscript
       echo "Welcome to my Singularity Image"
       fastqc --version
-      multiqc --version
       bowtie --version
 
   %post
@@ -225,21 +224,15 @@ Debian bootstrap
       cd /usr/local; rm bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
       cd /usr/local/bin; ln -s ../bowtie-${BOWTIE_VERSION}-linux-x86_64/bowtie* .
 
-      curl --fail --silent --show-error --location --remote-name  https://bootstrap.pypa.io/get-pip.py
-      python get-pip.py
-
-      pip install numpy matplotlib
-      pip install -I multiqc==${MULTIQC_VERSION}
-
       echo "Biocore image built"
 
   %labels
       Maintainer Biocorecrg
-  Version 0.1.0
+			Version 0.1.0
 
 .. code-block:: console
 
-    sudo singularity build fastqc-multi-bowtie.sif debootstrap.singularity
+    sudo singularity build fastqc-bowtie.sif debootstrap.singularity
 
 Singularity advanced aspects
 ============================
@@ -375,7 +368,7 @@ Singularity permissions are an evolving field. If you don't have access to ``sud
 Singularity cache directory
 ***************************
 
-.. code-block:: console
+.. code-block::
 
     $HOME/.singularity
 

@@ -256,7 +256,7 @@ To tag a local image with ID "e23aaea5dff1" into the "ubuntu_wget" image name re
 
 .. code-block:: console
 
-  docker tag e23aaea5dff1 --tag ubuntu_wget:1.0
+  docker tag e23aaea5dff1 ubuntu_wget:1.0
 
 
 Build cache

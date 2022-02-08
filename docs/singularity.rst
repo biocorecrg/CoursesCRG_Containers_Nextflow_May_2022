@@ -259,7 +259,7 @@ Bind paths (aka volumes)
 
 Paths of host system mounted in the container
 
-* Default ones, no need to mount them explicitly (for 3.6.x): ```$HOME``` , ```/sys:/sys``` , ```/proc:/proc```, ```/tmp:/tmp```, ```/var/tmp:/var/tmp```, ```/etc/resolv.conf:/etc/resolv.conf```, ```/etc/passwd:/etc/passwd```, and ```$PWD``` [https://sylabs.io/guides/3.6/user-guide/bind_paths_and_mounts.html](https://sylabs.io/guides/3.6/user-guide/bind_paths_and_mounts.html)
+* Default ones, no need to mount them explicitly (for 3.6.x): ```$HOME``` , ```/sys:/sys``` , ```/proc:/proc```, ```/tmp:/tmp```, ```/var/tmp:/var/tmp```, ```/etc/resolv.conf:/etc/resolv.conf```, ```/etc/passwd:/etc/passwd```, and ```$PWD```  `Ref <https://apptainer.org/docs/user/main/bind_paths_and_mounts.html>`__
 
 For others, need to be done explicitly (syntax: host:container)
 
@@ -351,8 +351,8 @@ As a simple example, first we create a boostrapped image:
 
 More information:
 
-* `https://apptainer.com/docs/user-guide/running_services.html <https://apptainer.com/docs/user-guide/running_services.html>`__
-* `https://apptainer.com/docs/user-guide/networking.html <https://apptainer.com/docs/user-guide/networking.html>`__
+* `https://apptainer.org/docs/user/main/running_services.html <https://apptainer.org/docs/user/main/running_services.html>`__
+* `https://apptainer.org/docs/user/main/networking.html <https://apptainer.org/docs/user/main/networking.html>`__
 
 
 Singularity tips

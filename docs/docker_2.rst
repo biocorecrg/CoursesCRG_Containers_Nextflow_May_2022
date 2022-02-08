@@ -173,11 +173,27 @@ Difference between ADD and COPY explained `here <https://stackoverflow.com/quest
 
 **ADD**: same, but ADD works also for URLs, and for .tar archives that will be automatically extracted upon being copied.
 
+If we have a file, let's say ```example.jpg```, we can copy it.
 
 .. code-block::
 
   # COPY source destination
-  COPY ~/.bashrc .
+  COPY example.jpg .
+
+A more sophisticated case:
+
+.. code-block::
+
+  FROM ubuntu:18.04
+
+  RUN apt update && apt -y upgrade
+  RUN apt install -y wget
+
+  RUN mkdir -p /data
+
+  WORKDIR /data
+
+  COPY example.jpg .
 
 
 **ENV, ARG**: run and build environment variables
@@ -187,7 +203,7 @@ Difference between ARG and ENV explained `here <https://vsupalov.com/docker-arg-
 * **ARG** values: available only while the image is built.
 * **ENV** values: available for the future running containers.
 
-With a default value
+In the case below **UbuntuVersion** argument is provided with a default value.
 
 .. code-block::
 
@@ -196,16 +212,7 @@ With a default value
   FROM ubuntu:${UbuntuVersion}
 
 
-Without a default value (i.e. the user is expected to provide it upon building)
-
-.. code-block::
-
-  ARG UbuntuVersion
-
-  FROM ubuntu:${UbuntuVersion}
-
-
-Provide a value for UbuntuVersion as you build the image with --build-arg:
+Override the value for **UbuntuVersion** as you build the image with --build-arg:
 
 .. code-block::
 

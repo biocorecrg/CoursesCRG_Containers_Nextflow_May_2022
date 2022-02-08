@@ -213,7 +213,6 @@ Debian bootstrap
   %post
 
       FASTQC_VERSION=0.11.9
-      MULTIQC_VERSION=1.9
       BOWTIE_VERSION=1.3.0
 
       cd /usr/local; curl -k -L https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FASTQC_VERSION}.zip > fastqc.zip

@@ -201,7 +201,8 @@ A more sophisticated case:
 Difference between ARG and ENV explained `here <https://vsupalov.com/docker-arg-vs-env/>`__.
 
 * **ARG** values: available only while the image is built.
-* **ENV** values: available for the future running containers.
+* **ENV** values: available during the image build process but also for the future running containers.
+  * It can be checked in a resulting running container by running ``env``.
 
 In the case below **UbuntuVersion** argument is provided with a default value.
 
@@ -219,12 +220,34 @@ Override the value for **UbuntuVersion** as you build the image with --build-arg
   docker build --build-arg UbuntuVersion=20.04 .
 
 
+We try a simple example with ENV
+
+.. code-block::
+
+  FROM ubuntu:18.04
+
+  ENV PLANET="Earth"
+
+  RUN echo ${PLANET}
+
+Enter in the container interactively and check variable ``${PLANET}``
+
+You can pass variable through commandline as well (with ``--env``/``-e``) during running process:
+
+.. code-block:: console
+
+  docker run -ti --env PLANET=Mars test
+
+
+Try to replace the examples above of **ENV** with **ARG** and see what happens.
+
+
 **CMD, ENTRYPOINT**: command to execute when generated container starts
 
 The ENTRYPOINT specifies a command that will always be executed when the container starts. The CMD specifies arguments that will be fed to the ENTRYPOINT
 
 In the example below, when the container is run without an argument, it will execute `echo "hello world"`.
-If it is run with the argument **nice** it will execute `echo "nice"`
+If it is run with the argument **hello moon** it will execute `echo "hello moon"`
 
 .. code-block::
 

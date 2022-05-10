@@ -2,8 +2,8 @@
 
 Reproducible research and data analysis using Linux Containers and Nextflow pipelines
 
-* [Course page](https://phindaccess.org/index.php/services-page/upcoming-events/88-linux-containers-nextflow-for-reproducible-research-and-open-science-february-7th-11th-2022)
-* [Course materials](https://biocorecrg.github.io/PHIND_course_nextflow_Feb_2022)
+* [Course page](https://www.crg.eu/en/event/coursescrg-reproducible-research-and-data-analysis-using-containers-nextflow-2022)
+* [Course materials](https://biocorecrg.github.io/CoursesCRG_Containers_Nextflow_May_2022)
 
 
 ## About the course

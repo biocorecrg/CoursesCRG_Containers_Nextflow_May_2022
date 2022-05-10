@@ -21,8 +21,6 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 .. |julia| image:: images/jponomarenko.jpg
   :alt: Alternative text
 
-.. |ghedira| image:: images/Kais.jpg
-  :alt: Alternative text
 
 
 .. list-table:: Main instructors:
@@ -32,11 +30,9 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
    * - Luca Cozzuto
      - Toni Hermoso
      - Julia Ponomarenko
-     - Kais Ghedira
    * - |luca|
      - |toni|
      - |julia|
-     - |ghedira|
 
 .. _home-page-outline:
 

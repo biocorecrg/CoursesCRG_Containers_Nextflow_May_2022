@@ -255,7 +255,7 @@ We can now execute `ex2.nf`:
 
 .. code-block:: console
 
-	nextflow run test2.nf
+	nextflow run ex2.nf
 
 	N E X T F L O W  ~  version 20.07.1
 	Launching `ex2.nf` [condescending_hugle] - revision: f513c0fac3

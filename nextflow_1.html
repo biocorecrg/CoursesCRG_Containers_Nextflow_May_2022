@@ -272,6 +272,30 @@ The pipeline can also recognize the queue system which is used on the machine wh
 <p>An <strong>operator</strong> is a method that reshapes or connects different channels applying specific rules.</p>
 <p>We can write a very simple Nextflow script: save the following piece of code in a file called <code class="docutils literal notranslate"><span class="pre">ex1.nf</span></code>. All the examples are in the folder
 <strong>/nextflow/examples/</strong> while the scripts are in folders named <strong>/nextflow/test</strong></p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
+<span class="c1">// This is a comment</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm"> * This is a block of comments</span>
+<span class="cm"> */</span><span class="w"></span>
+
+<span class="c1">// This is needed for activating the new DLS2</span><span class="w"></span>
+<span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span><span class="w"></span>
+
+<span class="cm">/* </span>
+<span class="cm">* This is a channel creating </span>
+<span class="cm">*/</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">values</span><span class="w"></span>
+
+<span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Channel</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s1">&#39;hello&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;hola&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;bonjour&#39;</span><span class="o">)</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">* The operator view() can be used to view the channel `str`</span>
+<span class="cm">* https://www.nextflow.io/docs/latest/operator.html#view</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="n">str</span><span class="o">.</span><span class="na">view</span><span class="o">()</span><span class="w"></span>
+</pre></div>
+</div>
 <p>Once the file is saved, execute it with:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run ex1.nf</span>
 
@@ -288,8 +312,27 @@ The pipeline can also recognize the queue system which is used on the machine wh
 </pre></div>
 </div>
 <p>and make another script (ex2.nf) with the following code:</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
+
+<span class="c1">// enable DSL2</span><span class="w"></span>
+<span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">* Let&#39;s create the channel `my_files`</span>
+<span class="cm">* using the method fromPath</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="n">Channel</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">fromPath</span><span class="o">(</span><span class="w"> </span><span class="s2">&quot;*.txt&quot;</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">set</span><span class="w"> </span><span class="o">{</span><span class="n">my_files</span><span class="o">}</span><span class="w"></span>
+
+<span class="c1">// We can use the view() operator again to see the content of channel &quot;my_files&quot;</span><span class="w"></span>
+
+<span class="n">my_files</span><span class="o">.</span><span class="na">view</span><span class="o">()</span><span class="w"></span>
+</pre></div>
+</div>
 <p>We can now execute <cite>ex2.nf</cite>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run test2.nf</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run ex2.nf</span>
 
 <span class="go">N E X T F L O W  ~  version 20.07.1</span>
 <span class="go">Launching `ex2.nf` [condescending_hugle] - revision: f513c0fac3</span>
@@ -305,6 +348,22 @@ The pipeline can also recognize the queue system which is used on the machine wh
 </pre></div>
 </div>
 <p>Then we use <a class="reference external" href="https://www.nextflow.io/docs/latest/channel.html#fromfilepairs">fromFilePairs</a> for generating a tuple:</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
+
+<span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">* Let&#39;s create the channel `my_files`</span>
+<span class="cm">* using the method fromFilePairs</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="n">Channel</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">fromFilePairs</span><span class="o">(</span><span class="w"> </span><span class="s2">&quot;aaa_{1,2}.txt&quot;</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">set</span><span class="w"> </span><span class="o">{</span><span class="n">my_files</span><span class="o">}</span><span class="w"></span>
+
+<span class="n">my_files</span><span class="o">.</span><span class="na">view</span><span class="o">()</span><span class="w"></span>
+</pre></div>
+</div>
 <p>We can reshape the channels in several ways and / or cross them using operators so that they can be used for a particular purpose. In brief, each “emission” of a channel can be used by a process for a specific purpose.</p>
 </section>
 <section id="exercise">
@@ -319,7 +378,32 @@ The pipeline can also recognize the queue system which is used on the machine wh
 </div></blockquote>
 <p>See here the list of <a class="reference external" href="https://www.nextflow.io/docs/latest/operator.html#">Operators</a> available at the official documentation.</p>
 <details>
-<summary><a>Solution</a></summary></details><div class="line-block">
+<summary><a>Solution</a></summary><div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
+
+<span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span><span class="w"></span>
+
+<span class="n">Channel</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">fromPath</span><span class="o">(</span><span class="s2">&quot;{aa,bb,cc}.txt&quot;</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">set</span><span class="w"> </span><span class="o">{</span><span class="n">my_files</span><span class="o">}</span><span class="w"></span>
+
+<span class="n">my_files</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">collect</span><span class="o">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">view</span><span class="o">()</span><span class="w"></span>
+
+<span class="c1">// You can also write it as: my_files.collect().view()</span><span class="w"></span>
+
+<span class="n">my_files</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">combine</span><span class="o">(</span><span class="n">my_files</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">view</span><span class="o">()</span><span class="w"></span>
+
+<span class="n">my_files</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">collect</span><span class="o">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">map</span><span class="o">{</span><span class="w"></span>
+<span class="w">		</span><span class="o">[</span><span class="s2">&quot;custom id&quot;</span><span class="o">,</span><span class="w"> </span><span class="n">it</span><span class="o">]</span><span class="w"></span>
+<span class="o">}.</span><span class="na">view</span><span class="o">()</span><span class="w"></span>
+</pre></div>
+</div>
+</details><div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Containers &mdash; PHINDaccess - Linux containers &amp; Nextflow for reproducible research and open science  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="canonical" href="https://biocorecrg.github.io/PHIND_course_nextflow_Feb_2022/containers.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Docker" href="docker.html" />
+    <link rel="prev" title="About the course" href="about.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PHINDaccess - Linux containers & Nextflow for reproducible research and open science
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About the course</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Containers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-linux-containers">Introduction to Linux containers.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-are-containers">What are containers?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-machines-or-containers">Virtual machines or containers ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtualisation">Virtualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#containerisation-aka-lightweight-virtualisation">Containerisation (aka lightweight virtualisation)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-machines-vs-containers">Virtual machines vs containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#history-of-containers">History of containers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker_2.html">Docker 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Singularity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_1.html">Nextflow 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_2.html">Nextflow 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_3.html">Nextflow 3</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PHINDaccess - Linux containers & Nextflow for reproducible research and open science</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Containers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/containers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="containers">
+<span id="containers-page"></span><h1>Containers<a class="headerlink" href="#containers" title="Permalink to this headline"></a></h1>
+<section id="introduction-to-linux-containers">
+<h2>Introduction to Linux containers.<a class="headerlink" href="#introduction-to-linux-containers" title="Permalink to this headline"></a></h2>
+<section id="what-are-containers">
+<h3>What are containers?<a class="headerlink" href="#what-are-containers" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg"><img alt="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg" src="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg" style="width: 700px;" /></a>
+<p>A Container can be seen as a <strong>minimal virtual environment</strong> that can be used in any Linux-compatible machine (and beyond).</p>
+<p>Using containers is time- and resource-saving as they allow:</p>
+<ul class="simple">
+<li><p>Controlling for software installation and dependencies.</p></li>
+<li><p>Reproducibility of the analysis.</p></li>
+</ul>
+<p>Containers allow us to use <strong>exactly the same versions of the tools</strong>.</p>
+</section>
+<section id="virtual-machines-or-containers">
+<h3>Virtual machines or containers ?<a class="headerlink" href="#virtual-machines-or-containers" title="Permalink to this headline"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Virtualisation</p></th>
+<th class="head"><p>Containerisation (aka lightweight virtualisation)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Abstraction of physical hardware</p></td>
+<td><p>Abstraction of application layer</p></td>
+</tr>
+<tr class="row-odd"><td><p>Depends on hypervisor (software)</p></td>
+<td><p>Depends on host kernel (OS)</p></td>
+</tr>
+<tr class="row-even"><td><p>Do not confuse with hardware emulator</p></td>
+<td><p>Application and dependencies bundled all together</p></td>
+</tr>
+<tr class="row-odd"><td><p>Enable virtual machines</p></td>
+<td><p>Every virtual machine with an OS (Operating System)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="virtualisation">
+<h3>Virtualisation<a class="headerlink" href="#virtualisation" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Abstraction of physical hardware</p></li>
+<li><p>Depends on hypervisor (software)</p></li>
+<li><p>Do not confuse with hardware emulator</p></li>
+<li><dl class="simple">
+<dt>Enable virtual machines:</dt><dd><ul>
+<li><p>Every virtual machine with an OS (Operating System)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="containerisation-aka-lightweight-virtualisation">
+<h3>Containerisation (aka lightweight virtualisation)<a class="headerlink" href="#containerisation-aka-lightweight-virtualisation" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Abstraction of application layer</p></li>
+<li><p>Depends on host kernel (OS)</p></li>
+<li><p>Application and dependencies bundled all together</p></li>
+</ul>
+</section>
+<section id="virtual-machines-vs-containers">
+<h3>Virtual machines vs containers<a class="headerlink" href="#virtual-machines-vs-containers" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/collabnix/dockerlabs/master/beginners/docker/images/vm-docker5.png"><img alt="https://raw.githubusercontent.com/collabnix/dockerlabs/master/beginners/docker/images/vm-docker5.png" src="https://raw.githubusercontent.com/collabnix/dockerlabs/master/beginners/docker/images/vm-docker5.png" style="width: 800px;" /></a>
+<p><a class="reference external" href="https://dockerlabs.collabnix.com/beginners/difference-docker-vm.html">Source</a></p>
+<p><strong>Pros and cons</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 46%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ADV</p></th>
+<th class="head"><p>Virtualisation</p></th>
+<th class="head"><p>Containerisation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PROS.</p></td>
+<td><ul class="simple">
+<li><p>Very similar to a full OS.</p></li>
+<li><p>High OS diversity</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>No need of full OS installation (less space).</p></li>
+<li><p>Better portability</p></li>
+<li><p>Faster than virtual machines.</p></li>
+<li><p>Easier automation.</p></li>
+<li><p>Easier distribution of recipes.</p></li>
+<li><p>Better portability.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>CONS.</p></td>
+<td><ul class="simple">
+<li><p>Need more space and resources.</p></li>
+<li><p>Slower than containers.</p></li>
+<li><p>Not that good automation.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Some cases might not be exactly the same as a full OS.</p></li>
+<li><p>Still less OS diversity, even with current solutions</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="history-of-containers">
+<h3>History of containers<a class="headerlink" href="#history-of-containers" title="Permalink to this headline"></a></h3>
+<p><strong>chroot</strong></p>
+<ul class="simple">
+<li><p>chroot jail (BSD jail): first concept in 1979</p></li>
+<li><p>Notable use in SSH and FTP servers</p></li>
+<li><p>Honeypot, recovery of systems, etc.</p></li>
+</ul>
+<a class="reference internal image-reference" href="https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png"><img alt="https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png" src="https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png" style="width: 550px;" /></a>
+<p><strong>Additions in Linux kernel</strong></p>
+<ul class="simple">
+<li><p>First version: 2008</p></li>
+<li><dl class="simple">
+<dt>cgroups (control groups), before “process containers”</dt><dd><ul>
+<li><p>isolate resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Linux namespaces</dt><dd><ul>
+<li><p>one set of kernel resources restrict to one set of processes</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/linux-vs-docker-comparison-architecture-docker-lxc.png"><img alt="_images/linux-vs-docker-comparison-architecture-docker-lxc.png" src="_images/linux-vs-docker-comparison-architecture-docker-lxc.png" style="width: 600px;" /></a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="about.html" class="btn btn-neutral float-left" title="About the course" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="docker.html" class="btn btn-neutral float-right" title="Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

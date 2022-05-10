@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Singularity &mdash; PHINDaccess - Linux containers &amp; Nextflow for reproducible research and open science  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="canonical" href="https://biocorecrg.github.io/PHIND_course_nextflow_Feb_2022/singularity.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Nextflow 1" href="nextflow_1.html" />
+    <link rel="prev" title="Docker 2" href="docker_2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PHINDaccess - Linux containers & Nextflow for reproducible research and open science
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About the course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containers.html">Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker_2.html">Docker 2</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Singularity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-singularity">Introduction to Singularity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#singularity-architecture">Singularity architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#container-registries">Container registries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-hub">Docker Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biocontainers">Biocontainers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#via-quay-io">Via quay.io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#via-galaxy-project-prebuilt-images">Via Galaxy project prebuilt images</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-and-executing-containers">Running and executing containers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#singularity-shell">Singularity shell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#singularity-exec">Singularity exec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#singularity-run">Singularity run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#environment-control">Environment control</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#singularity-recipes">Singularity recipes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-bootstrap">Docker bootstrap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debian-bootstrap">Debian bootstrap</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#singularity-advanced-aspects">Singularity advanced aspects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sandboxing">Sandboxing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bind-paths-aka-volumes">Bind paths (aka volumes)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Exercise</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#instances">Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#singularity-tips">Singularity tips</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fakeroot">Fakeroot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#singularity-cache-directory">Singularity cache directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#global-singularity-configuration">Global singularity configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_1.html">Nextflow 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_2.html">Nextflow 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_3.html">Nextflow 3</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PHINDaccess - Linux containers & Nextflow for reproducible research and open science</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Singularity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/singularity.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="singularity">
+<span id="singularity-page"></span><h1>Singularity<a class="headerlink" href="#singularity" title="Permalink to this headline"></a></h1>
+<section id="introduction-to-singularity">
+<h2>Introduction to Singularity<a class="headerlink" href="#introduction-to-singularity" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Focus:</dt><dd><ul>
+<li><p>Reproducibility to scientific computing and the high-performance computing (HPC) world.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Origin: Lawrence Berkeley National Laboratory. Later spin-off: Sylabs</p></li>
+<li><p>Version 1.0 -&gt; 2016</p></li>
+<li><p>More information: <a class="reference external" href="https://en.wikipedia.org/wiki/Singularity_(software)">https://en.wikipedia.org/wiki/Singularity_(software)</a></p></li>
+</ul>
+<section id="singularity-architecture">
+<h3>Singularity architecture<a class="headerlink" href="#singularity-architecture" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="_images/singularity_architecture.png"><img alt="_images/singularity_architecture.png" src="_images/singularity_architecture.png" style="width: 800px;" /></a>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Strengths</p></th>
+<th class="head"><p>Weaknesses</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>No dependency of a daemon</p></td>
+<td><p>At the time of writing only good support in Linux</p></td>
+</tr>
+<tr class="row-odd"><td><p>Can be run as a simple user</p></td>
+<td><p>Mac experimental. Desktop edition. Only running</p></td>
+</tr>
+<tr class="row-even"><td><p>Avoids permission headaches and hacks</p></td>
+<td><p>For some features you need root account (or sudo)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Image/container is a file (or directory)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>More easily portable</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Two types of images: Read-only (production)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Writable (development, via sandbox)</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trivia</strong></p>
+<p>Nowadays, there may be some confusion since there are two projects:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://singularity.hpcng.org/">HPCng Singularity</a></p></li>
+<li><p><a class="reference external" href="https://sylabs.io/singularity/">Sylabs Singularity</a></p></li>
+</ul>
+<p>They “forked” not long ago. So far they share most of the codebase, but eventually this might be different, and software might have different functionality.</p>
+<p>The former will end up being named <strong>Apptainer</strong>, and it is currently supported by the Linux Foundation.</p>
+</section>
+</section>
+<section id="container-registries">
+<h2>Container registries<a class="headerlink" href="#container-registries" title="Permalink to this headline"></a></h2>
+<p>Container images, normally different versions of them, are stored in container repositories.</p>
+<p>These repositories can be browser or discovered within, normally public, container registries.</p>
+<section id="docker-hub">
+<h3>Docker Hub<a class="headerlink" href="#docker-hub" title="Permalink to this headline"></a></h3>
+<p>It is the first and most popular public container registry (which provides also private repositories).</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hub.docker.com">Docker Hub</a></p></li>
+</ul>
+<p>Example:</p>
+<p><a class="reference external" href="https://hub.docker.com/r/biocontainers/fastqc">https://hub.docker.com/r/biocontainers/fastqc</a></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity build fastqc-0.11.9_cv7.sif docker://biocontainers/fastqc:v0.11.9_cv7</span>
+</pre></div>
+</div>
+</section>
+<section id="biocontainers">
+<h3>Biocontainers<a class="headerlink" href="#biocontainers" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://biocontainers.pro">Biocontainers</a></p></li>
+</ul>
+<p>Website gathering Bioinformatics focused container images from different registries.</p>
+<p>Originally Docker Hub was used, but now other registries are preferred.</p>
+<p>Example: <a class="reference external" href="https://biocontainers.pro/tools/fastqc">https://biocontainers.pro/tools/fastqc</a></p>
+<section id="via-quay-io">
+<h4>Via quay.io<a class="headerlink" href="#via-quay-io" title="Permalink to this headline"></a></h4>
+<p><a class="reference external" href="https://quay.io/repository/biocontainers/fastqc)">https://quay.io/repository/biocontainers/fastqc</a></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity build fastqc-0.11.9.sif docker://quay.io/biocontainers/fastqc:0.11.9--0</span>
+</pre></div>
+</div>
+</section>
+<section id="via-galaxy-project-prebuilt-images">
+<h4>Via Galaxy project prebuilt images<a class="headerlink" href="#via-galaxy-project-prebuilt-images" title="Permalink to this headline"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity pull --name fastqc-0.11.9.sif https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0</span>
+</pre></div>
+</div>
+<p>Galaxy project provides all Bioinformatics software from the BioContainers initiative as Singularity prebuilt images. If download and conversion time of images is an issue, this might be the best option for those working in the biomedical field.</p>
+<p>Link: <a class="reference external" href="https://depot.galaxyproject.org/singularity/">https://depot.galaxyproject.org/singularity/</a></p>
+</section>
+</section>
+<section id="running-and-executing-containers">
+<h3>Running and executing containers<a class="headerlink" href="#running-and-executing-containers" title="Permalink to this headline"></a></h3>
+<p>Once we have some image files (or directories) ready, we can run processes.</p>
+<section id="singularity-shell">
+<h4>Singularity shell<a class="headerlink" href="#singularity-shell" title="Permalink to this headline"></a></h4>
+<p>The straight-forward exploratory approach is equivalent to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-ti</span> <span class="pre">biocontainers/fastqc:v0.11.9_cv7</span> <span class="pre">/bin/shell</span></code> but with a more handy syntax.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity shell fastqc-0.11.9.sif</span>
+</pre></div>
+</div>
+<p>Move around the directories and notice how the isolation approach is different in comparison to Docker. You can access most of the host filesystem.</p>
+</section>
+<section id="singularity-exec">
+<h4>Singularity exec<a class="headerlink" href="#singularity-exec" title="Permalink to this headline"></a></h4>
+<p>That is the most common way to execute Singularity (equivalent to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>). That would be the normal approach in a HPC environment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9.sif fastqc</span>
+</pre></div>
+</div>
+<p>Test a processing of a file from <em>testdata</em> directory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9_cv7.sif fastqc B7_input_s_chr19.fastq.gz</span>
+</pre></div>
+</div>
+</section>
+<section id="singularity-run">
+<h4>Singularity run<a class="headerlink" href="#singularity-run" title="Permalink to this headline"></a></h4>
+<p>This executes runscript from recipe definition (equivalent to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>). Not so common for HPC uses. More common for instances (servers).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity run fastqc-0.11.9.sif</span>
+</pre></div>
+</div>
+</section>
+<section id="environment-control">
+<h4>Environment control<a class="headerlink" href="#environment-control" title="Permalink to this headline"></a></h4>
+<p>By default Singularity inherits a profile environment (e.g., PATH environment variable). This may be convenient in some circumstances, but it can also lead to unexpected problems when your own environment clashes with the default one from the image.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity shell -e fastqc-0.11.9.sif</span>
+<span class="go">singularity exec -e fastqc-0.11.9.sif fastqc</span>
+<span class="go">singularity run -e fastqc-0.11.9.sif</span>
+</pre></div>
+</div>
+<p>Compare <code class="docutils literal notranslate"><span class="pre">env</span></code> command with and without -e modifier.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9.sif env</span>
+<span class="go">singularity exec -e fastqc-0.11.9.sif env</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Generate a Singularity image of the last <em>samtools</em> version</dt><dd><ul>
+<li><p>Consider and compare different registry sources</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Explore the inside contents of the image</p></li>
+<li><p>Execute in different ways <code class="docutils literal notranslate"><span class="pre">samtools</span></code> program (e. g., using <em>fqidx</em> option)</p></li>
+</ul>
+</section>
+</section>
+<section id="singularity-recipes">
+<h2>Singularity recipes<a class="headerlink" href="#singularity-recipes" title="Permalink to this headline"></a></h2>
+<section id="docker-bootstrap">
+<h3>Docker bootstrap<a class="headerlink" href="#docker-bootstrap" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BootStrap</span><span class="p">:</span> <span class="n">docker</span>
+<span class="n">From</span><span class="p">:</span> <span class="n">biocontainers</span><span class="o">/</span><span class="n">fastqc</span><span class="p">:</span><span class="n">v0</span><span class="mf">.11.9</span><span class="n">_cv7</span>
+
+<span class="o">%</span><span class="n">runscript</span>
+    <span class="n">echo</span> <span class="s2">&quot;Welcome to FastQC Image&quot;</span>
+    <span class="n">fastqc</span> <span class="o">--</span><span class="n">version</span>
+
+<span class="o">%</span><span class="n">post</span>
+    <span class="n">echo</span> <span class="s2">&quot;Image built&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo singularity build fastqc.sif docker.singularity</span>
+</pre></div>
+</div>
+</section>
+<section id="debian-bootstrap">
+<h3>Debian bootstrap<a class="headerlink" href="#debian-bootstrap" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>BootStrap: debootstrap
+OSVersion: bionic
+MirrorURL:  http://fr.archive.ubuntu.com/ubuntu/
+Include: build-essential curl openjdk-11-jdk bzip2 zip unzip
+
+%runscript
+    echo &quot;Welcome to my Singularity Image&quot;
+    fastqc --version
+    bowtie --version
+
+%post
+
+    FASTQC_VERSION=0.11.9
+    BOWTIE_VERSION=1.3.0
+
+    cd /usr/local; curl -k -L https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FASTQC_VERSION}.zip &gt; fastqc.zip
+    cd /usr/local; unzip fastqc.zip; rm fastqc.zip; chmod 775 FastQC/fastqc; ln -s /usr/local/FastQC/fastqc /usr/local/bin/fastqc
+
+    cd /usr/local; curl --fail --silent --show-error --location --remote-name https://github.com/BenLangmead/bowtie/releases/download/v$BOWTIE_VERSION/bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
+    cd /usr/local; unzip -d /usr/local bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
+    cd /usr/local; rm bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
+    cd /usr/local/bin; ln -s ../bowtie-${BOWTIE_VERSION}-linux-x86_64/bowtie* .
+
+    echo &quot;Biocore image built&quot;
+
+%labels
+    Maintainer Biocorecrg
+                      Version 0.1.0
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo singularity build fastqc-bowtie.sif debootstrap.singularity</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="singularity-advanced-aspects">
+<h2>Singularity advanced aspects<a class="headerlink" href="#singularity-advanced-aspects" title="Permalink to this headline"></a></h2>
+<section id="sandboxing">
+<h3>Sandboxing<a class="headerlink" href="#sandboxing" title="Permalink to this headline"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity build --sandbox ./sandbox docker://ubuntu:18.04</span>
+<span class="go">touch sandbox/etc/myetc.conf</span>
+<span class="go">singularity build sandbox.sif ./sandbox</span>
+</pre></div>
+</div>
+</section>
+<section id="bind-paths-aka-volumes">
+<h3>Bind paths (aka volumes)<a class="headerlink" href="#bind-paths-aka-volumes" title="Permalink to this headline"></a></h3>
+<p>Paths of host system mounted in the container</p>
+<ul class="simple">
+<li><p>Default ones, no need to mount them explicitly (for 3.6.x): <code class="docutils literal notranslate"><span class="pre">`$HOME`</span></code> , <code class="docutils literal notranslate"><span class="pre">`/sys:/sys`</span></code> , <code class="docutils literal notranslate"><span class="pre">`/proc:/proc`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/tmp:/tmp`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/var/tmp:/var/tmp`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/etc/resolv.conf:/etc/resolv.conf`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/etc/passwd:/etc/passwd`</span></code>, and <code class="docutils literal notranslate"><span class="pre">`$PWD`</span></code>  <a class="reference external" href="https://apptainer.org/docs/user/main/bind_paths_and_mounts.html">Ref</a></p></li>
+</ul>
+<p>For others, need to be done explicitly (syntax: host:container)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir datatest</span>
+<span class="go">touch datatest/testout</span>
+<span class="go">singularity shell -e -B ./datatest:/scratch fastqc-0.11.9.sif</span>
+<span class="go">&gt; touch /scratch/testin</span>
+<span class="go">&gt; exit</span>
+<span class="go">ls -l testdir</span>
+</pre></div>
+</div>
+<section id="id1">
+<h4>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h4>
+<p>Using the 2 fastq available files, process them outside and inside a mounted directory using fastqc.</p>
+<details>
+<summary><a>Suggested solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span># Let&#39;s create a dummy directory
+mkdir datatest
+
+# Let&#39;s copy contents of testdata in that directory
+
+singularity exec fastqc.sif fastqc datatest/*fastq.gz
+
+# Check you have some HTMLs there. Remove them
+rm datatest/*html
+
+# Let&#39;s use shell
+singularity shell fastqc.sif
+&gt; cd datatest
+&gt; fastqc *fastq.gz
+&gt; exit
+
+# Check you have some HTMLs there. Remove them
+singularity exec -B ./datatest:/scratch fastqc.sif fastqc /scratch/*fastq.gz
+
+# What happens here!
+singularity exec -B ./datatest:/scratch fastqc.sif bash -c &#39;fastqc /scratch/*fastq.gz&#39;
+</pre></div>
+</div>
+</details></section>
+</section>
+<section id="instances">
+<h3>Instances<a class="headerlink" href="#instances" title="Permalink to this headline"></a></h3>
+<p>Also know as <strong>services</strong>. Despite Docker it is still more convenient for these tasks, it allows enabling thing such as webservices (e.g., via APIs) in HPC workflows.</p>
+<p>As a simple example, first we create a boostrapped image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bootstrap</span><span class="p">:</span> <span class="n">docker</span>
+<span class="n">From</span><span class="p">:</span> <span class="n">library</span><span class="o">/</span><span class="n">mariadb</span><span class="p">:</span><span class="mf">10.3</span>
+
+<span class="o">%</span><span class="n">startscript</span>
+        <span class="n">mysqld</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo singularity build mariadb.sif mariadb.singularity</span>
+
+<span class="go">mkdir -p testdir</span>
+<span class="go">mkdir -p testdir/db</span>
+<span class="go">mkdir -p testdir/socket</span>
+
+<span class="go">singularity exec -B ./testdir/db:/var/lib/mysql mariadb.sif mysql_install_db</span>
+
+<span class="go">singularity instance start -B ./testdir/db:/var/lib/mysql -B ./testdir/socket:/run/mysqld mariadb.sif mydb</span>
+
+<span class="go">singularity instance list</span>
+
+<span class="go">singularity exec instance://mydb mysql -uroot</span>
+
+<span class="go">singularity instance stop mydb</span>
+</pre></div>
+</div>
+<p>More information:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://apptainer.org/docs/user/main/running_services.html">https://apptainer.org/docs/user/main/running_services.html</a></p></li>
+<li><p><a class="reference external" href="https://apptainer.org/docs/user/main/networking.html">https://apptainer.org/docs/user/main/networking.html</a></p></li>
+</ul>
+</section>
+<section id="singularity-tips">
+<h3>Singularity tips<a class="headerlink" href="#singularity-tips" title="Permalink to this headline"></a></h3>
+<section id="troubleshooting">
+<h4>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity --help</span>
+</pre></div>
+</div>
+</section>
+<section id="fakeroot">
+<h4>Fakeroot<a class="headerlink" href="#fakeroot" title="Permalink to this headline"></a></h4>
+<p>Singularity permissions are an evolving field. If you don’t have access to <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, it might be worth considering using <strong>–fakeroot/-f</strong> parameter.</p>
+<ul class="simple">
+<li><p>More details at <a class="reference external" href="https://apptainer.org/docs/user/main/fakeroot.html">https://apptainer.org/docs/user/main/fakeroot.html</a></p></li>
+</ul>
+</section>
+<section id="singularity-cache-directory">
+<h4>Singularity cache directory<a class="headerlink" href="#singularity-cache-directory" title="Permalink to this headline"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$HOME/.singularity
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It stores cached images from registries, instances, etc.</p></li>
+<li><p>If problems may be a good place to clean. When running <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, $HOME is /root.</p></li>
+</ul>
+</section>
+<section id="global-singularity-configuration">
+<h4>Global singularity configuration<a class="headerlink" href="#global-singularity-configuration" title="Permalink to this headline"></a></h4>
+<p>Normally at <code class="docutils literal notranslate"><span class="pre">/etc/singularity/singularity.conf</span></code> or similar (e.g preceded by <code class="docutils literal notranslate"><span class="pre">/usr/local/</span></code>)</p>
+<ul class="simple">
+<li><p>It can only be modified by users with administration permissions</p></li>
+<li><p>Worth noting <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">path</span></code> lines, which point default mounted directories in containers</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="docker_2.html" class="btn btn-neutral float-left" title="Docker 2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nextflow_1.html" class="btn btn-neutral float-right" title="Nextflow 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

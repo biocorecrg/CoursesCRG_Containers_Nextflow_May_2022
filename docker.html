@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker &mdash; PHINDaccess - Linux containers &amp; Nextflow for reproducible research and open science  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="canonical" href="https://biocorecrg.github.io/PHIND_course_nextflow_Feb_2022/docker.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Docker 2" href="docker_2.html" />
+    <link rel="prev" title="Containers" href="containers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PHINDaccess - Linux containers & Nextflow for reproducible research and open science
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About the course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containers.html">Containers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-docker">Introduction to Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-docker">What is Docker?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-components">Docker components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#images-versus-containers">Images versus containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-vocabulary">Docker vocabulary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-existing-images">Using existing images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#explore-docker-hub">Explore Docker hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-pull-import-image">docker pull: import image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biocontainers">Biocontainers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-images-list-images">docker images: list images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-run-run-image-i-e-start-a-container">docker run: run image, i.e. start a container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-ps-check-containers-status">docker ps: check containers status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-exec-execute-process-in-running-container">docker exec: execute process in running container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-stop-start-restart-actions-on-container">docker stop, start, restart: actions on container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-rm-docker-rmi-clean-up">docker rm, docker rmi: clean up!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#major-clean">Major clean</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#volumes">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ports">Ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#volume-exercises">Volume exercises</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-run-user">docker run –user</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker_2.html">Docker 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Singularity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_1.html">Nextflow 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_2.html">Nextflow 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nextflow_3.html">Nextflow 3</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PHINDaccess - Linux containers & Nextflow for reproducible research and open science</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Docker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/docker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="docker">
+<span id="docker-page"></span><h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline"></a></h1>
+<section id="introduction-to-docker">
+<h2>Introduction to Docker<a class="headerlink" href="#introduction-to-docker" title="Permalink to this headline"></a></h2>
+<a class="reference internal image-reference" href="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png"><img alt="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png" src="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png" style="width: 400px;" /></a>
+<section id="what-is-docker">
+<h3>What is Docker?<a class="headerlink" href="#what-is-docker" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Platform for developing, shipping and running applications.</p></li>
+<li><p>Infrastructure as application / code.</p></li>
+<li><p>First version: 2013.</p></li>
+<li><p>Company: originally dotCloud (2010), later named Docker.</p></li>
+<li><p>Established <a class="reference external" href="https://www.opencontainers.org/">Open Container Initiative</a>.</p></li>
+</ul>
+<p>As a software:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.docker.com/products/container-runtime">Docker Community Edition</a>.</p></li>
+<li><p>Docker Enterprise Edition.</p></li>
+</ul>
+<p>There is an increasing number of alternative container technologies and providers. Many of them are actually based on software components originally from the Docker stack and they normally try to address some specific use cases or weakpoints. As a example, <strong>Singularity</strong>, that we introduce later in this couse, is focused in HPC environments. Another case, <strong>Podman</strong>, keeps a high functional compatibility with Docker but with a different focus on technology (not keeping a daemon) and permissions.</p>
+</section>
+<section id="docker-components">
+<h3>Docker components<a class="headerlink" href="#docker-components" title="Permalink to this headline"></a></h3>
+<a class="reference internal image-reference" href="http://apachebooster.com/kb/wp-content/uploads/2017/09/docker-architecture.png"><img alt="http://apachebooster.com/kb/wp-content/uploads/2017/09/docker-architecture.png" src="http://apachebooster.com/kb/wp-content/uploads/2017/09/docker-architecture.png" style="width: 700px;" /></a>
+<ul class="simple">
+<li><p>Read-only templates.</p></li>
+<li><p>Containers are run from them.</p></li>
+<li><p>Images are not run.</p></li>
+<li><p>Images have several layers.</p></li>
+</ul>
+<a class="reference internal image-reference" href="https://i.stack.imgur.com/vGuay.png"><img alt="https://i.stack.imgur.com/vGuay.png" src="https://i.stack.imgur.com/vGuay.png" style="width: 700px;" /></a>
+</section>
+<section id="images-versus-containers">
+<h3>Images versus containers<a class="headerlink" href="#images-versus-containers" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><strong>Image</strong>: A set of layers, read-only templates, inert.</p></li>
+<li><p>An instance of an image is called a <strong>container</strong>.</p></li>
+</ul>
+<p>When you start an image, you have a running container of this image. You can have many running containers of the same image.</p>
+<p><em>“The image is the recipe, the container is the cake; you can make as many cakes as you like with a given recipe.”</em></p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/23735149/what-is-the-difference-between-a-docker-image-and-a-container">https://stackoverflow.com/questions/23735149/what-is-the-difference-between-a-docker-image-and-a-container</a></p>
+</section>
+<section id="docker-vocabulary">
+<h3>Docker vocabulary<a class="headerlink" href="#docker-vocabulary" title="Permalink to this headline"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/docker_vocab.png"><img alt="_images/docker_vocab.png" src="_images/docker_vocab.png" style="width: 550px;" /></a>
+<p>Get help:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --help</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/docker_run_help.png"><img alt="_images/docker_run_help.png" src="_images/docker_run_help.png" style="width: 550px;" /></a>
+</section>
+<section id="using-existing-images">
+<h3>Using existing images<a class="headerlink" href="#using-existing-images" title="Permalink to this headline"></a></h3>
+<section id="explore-docker-hub">
+<h4>Explore Docker hub<a class="headerlink" href="#explore-docker-hub" title="Permalink to this headline"></a></h4>
+<p>Images can be stored locally or shared in a registry.</p>
+<p><a class="reference external" href="https://hub.docker.com/">Docker hub</a> is the main public registry for Docker images.</p>
+<p>Let’s search the keyword <strong>ubuntu</strong>:</p>
+<a class="reference internal image-reference" href="_images/dockerhub_ubuntu.png"><img alt="_images/dockerhub_ubuntu.png" src="_images/dockerhub_ubuntu.png" style="width: 900px;" /></a>
+</section>
+<section id="docker-pull-import-image">
+<h4>docker pull: import image<a class="headerlink" href="#docker-pull-import-image" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>get latest image / latest release</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker pull ubuntu</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/docker_pull.png"><img alt="_images/docker_pull.png" src="_images/docker_pull.png" style="width: 650px;" /></a>
+<ul class="simple">
+<li><p>choose the version of Ubuntu you are fetching: check the different tags</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/dockerhub_ubuntu_1804.png"><img alt="_images/dockerhub_ubuntu_1804.png" src="_images/dockerhub_ubuntu_1804.png" style="width: 850px;" /></a>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker pull ubuntu:18.04</span>
+</pre></div>
+</div>
+</section>
+<section id="biocontainers">
+<h4>Biocontainers<a class="headerlink" href="#biocontainers" title="Permalink to this headline"></a></h4>
+<p><a class="reference external" href="https://biocontainers.pro/">https://biocontainers.pro/</a></p>
+<p>Specific directory of Bioinformatics related entries</p>
+<ul class="simple">
+<li><p>Entries in <a class="reference external" href="https://hub.docker.com/u/biocontainers">Docker hub</a> and/or <a class="reference external" href="https://quay.io">Quay.io</a> (RedHat registry)</p></li>
+<li><p>Normally created from <a class="reference external" href="https://bioconda.github.io">Bioconda</a></p></li>
+</ul>
+<p>Example: <strong>FastQC</strong></p>
+<p><a class="reference external" href="https://biocontainers.pro/#/tools/fastqc">https://biocontainers.pro/#/tools/fastqc</a></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker pull biocontainers/fastqc:v0.11.9_cv7</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="docker-images-list-images">
+<h3>docker images: list images<a class="headerlink" href="#docker-images-list-images" title="Permalink to this headline"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker images</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/docker_images_list.png"><img alt="_images/docker_images_list.png" src="_images/docker_images_list.png" style="width: 650px;" /></a>
+<p>Each image has a unique <strong>IMAGE ID</strong>.</p>
+</section>
+<section id="docker-run-run-image-i-e-start-a-container">
+<h3>docker run: run image, i.e. start a container<a class="headerlink" href="#docker-run-run-image-i-e-start-a-container" title="Permalink to this headline"></a></h3>
+<p>Now we want to use what is <strong>inside</strong> the image.</p>
+<p><strong>docker run</strong> creates a fresh container (active instance of the image) from a <strong>Docker (static) image</strong>, and runs it.</p>
+<p>The format is:</p>
+<p>docker run image:tag <strong>command</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run ubuntu:18.04 /bin/ls</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/docker_run_ls.png"><img alt="_images/docker_run_ls.png" src="_images/docker_run_ls.png" style="width: 200px;" /></a>
+<p>Now execute <strong>ls</strong> in your current working directory: is the result the same?</p>
+<p>You can execute any program/command that is stored inside the image:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run ubuntu:18.04 /bin/whoami</span>
+<span class="go">docker run ubuntu:18.04 cat /etc/issue</span>
+</pre></div>
+</div>
+<p>You can either execute programs in the image from the command line (see above) or <strong>execute a container interactively</strong>, i.e. <strong>“enter”</strong> the container.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run -it ubuntu:18.04 /bin/bash</span>
+</pre></div>
+</div>
+<p>Run container as daemon (in background)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --detach ubuntu:18.04 tail -f /dev/null</span>
+</pre></div>
+</div>
+<p>Run container as daemon (in background) with a given name</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --detach --name myubuntu ubuntu:18.04 tail -f /dev/null</span>
+</pre></div>
+</div>
+</section>
+<section id="docker-ps-check-containers-status">
+<h3>docker ps: check containers status<a class="headerlink" href="#docker-ps-check-containers-status" title="Permalink to this headline"></a></h3>
+<p>List running containers:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker ps</span>
+</pre></div>
+</div>
+<p>List all containers (whether they are running or not):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker ps -a</span>
+</pre></div>
+</div>
+<p>Each container has a unique ID.</p>
+</section>
+<section id="docker-exec-execute-process-in-running-container">
+<h3>docker exec: execute process in running container<a class="headerlink" href="#docker-exec-execute-process-in-running-container" title="Permalink to this headline"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker exec myubuntu uname -a</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Interactively</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker exec -it myubuntu /bin/bash</span>
+</pre></div>
+</div>
+</section>
+<section id="docker-stop-start-restart-actions-on-container">
+<h3>docker stop, start, restart: actions on container<a class="headerlink" href="#docker-stop-start-restart-actions-on-container" title="Permalink to this headline"></a></h3>
+<p>Stop a running container:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker stop myubuntu</span>
+
+<span class="go">docker ps -a</span>
+</pre></div>
+</div>
+<p>Start a stopped container (does NOT create a new one):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker start myubuntu</span>
+
+<span class="go">docker ps -a</span>
+</pre></div>
+</div>
+<p>Restart a running container:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker restart myubuntu</span>
+
+<span class="go">docker ps -a</span>
+</pre></div>
+</div>
+<p>Run with restart enabled</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --restart=unless-stopped --detach --name myubuntu2 ubuntu:18.04 tail -f /dev/null</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Restart policies: no (default), always, on-failure, unless-stopped</p></li>
+</ul>
+<p>Update restart policy</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker update --restart unless-stopped myubuntu</span>
+</pre></div>
+</div>
+</section>
+<section id="docker-rm-docker-rmi-clean-up">
+<h3>docker rm, docker rmi: clean up!<a class="headerlink" href="#docker-rm-docker-rmi-clean-up" title="Permalink to this headline"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker rm myubuntu</span>
+<span class="go">docker rm -f myubuntu</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker rmi ubuntu:18.04</span>
+</pre></div>
+</div>
+<section id="major-clean">
+<h4>Major clean<a class="headerlink" href="#major-clean" title="Permalink to this headline"></a></h4>
+<p>Check used space</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker system df</span>
+</pre></div>
+</div>
+<p>Remove unused containers (and others) - <strong>DO WITH CARE</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker system prune</span>
+</pre></div>
+</div>
+<p>Remove ALL non-running containers, images, etc. - <strong>DO WITH MUCH MORE CARE!!!</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker system prune -a</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Reference: <a class="reference external" href="https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes">https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes</a></p></li>
+</ul>
+</section>
+</section>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline"></a></h3>
+<ul>
+<li><p>1 - <strong>Alpine</strong></p></li>
+<li><p><strong>Search</strong> and <strong>pull</strong> the <cite>alpine</cite> image (tag <strong>3.12</strong>) - it is an <strong>official build</strong>.</p></li>
+<li><p>Can you run a container from this image and make it print a “hello world” message?</p></li>
+<li><p>Now run a container <strong>interactively</strong> from the same image.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Run <cite>whoami</cite> in the container.</p></li>
+<li><p>Exit the container and run <cite>whoami</cite> on the host machine: do you get the same output?</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Restart the container you just exited:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Is it now running?</p></li>
+<li><p>Make the container execute the command <cite>ls</cite>.</p></li>
+<li><p>Stop the container.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Remove the alpine image and all its containers (running or stopped).</p></li>
+</ul>
+<details>
+<summary><a>Suggested solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Search and pull the alpine image <span class="o">(</span>tag <span class="m">3</span>.12<span class="o">)</span> - it is an official build.
+<span class="go">docker search alpine --filter is-official=true</span>
+<span class="go">docker pull  alpine:3.12</span>
+<span class="gp"># </span>Can you run a container from this image and make it print a “hello world” message?
+<span class="go">docker run alpine:3.12 echo &quot;hello world&quot;</span>
+<span class="gp"># </span>Now run a container **interactively** from the same image.
+<span class="go">docker run -ti alpine:3.12</span>
+<span class="gp">  # </span>Run <span class="sb">`</span>whoami<span class="sb">`</span>
+<span class="go">  whoami</span>
+<span class="gp">  # </span>Exit the container.
+<span class="go">  exit</span>
+<span class="gp"># </span>Restart the container you just exited: is it now running?
+<span class="go">docker restart CONTAINER_ID # find it with `docker ps -a`</span>
+<span class="gp"># </span>Make the container execute the <span class="nb">command</span> <span class="sb">`</span>ls<span class="sb">`</span>
+<span class="go">docker exec CONTAINER_ID ls</span>
+<span class="gp"># </span>Stop the container
+<span class="go">docker stop CONTAINER_ID</span>
+<span class="gp"># </span>Remove the alpine image and all its containers <span class="o">(</span>running or stopped<span class="o">)</span>
+<span class="go">docker rmi alpine:3.12</span>
+<span class="go">docker rm CONTAINER_ID # check all containers with `docker ps -a`</span>
+</pre></div>
+</div>
+</details><ul class="simple">
+<li><p>2 - <strong>Imagemagick</strong></p></li>
+<li><p>Pull the imagemagick image that is official and that has the highest number of stars</p></li>
+<li><p>Check the version of the convert command.</p></li>
+<li><p>Start a container interactively.</p></li>
+<li><p>Inside the container: download this png image</p></li>
+<li><p>Convert it to .jpg using the convert command of imagemagick (format; convert image.png image.jpg).</p></li>
+<li><p>Exit the container.</p></li>
+<li><p>Copy the jpg image back from the stopped container! Try new command <cite>docker cp</cite>.</p></li>
+</ul>
+<details>
+<summary><a>Suggested solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Pull image
+<span class="go">docker pull acleancoder/imagemagick-full</span>
+
+<span class="gp"># </span>Check version of <span class="sb">`</span>convert<span class="sb">`</span>
+<span class="go">docker run acleancoder/imagemagick-full convert --version</span>
+
+<span class="gp"># </span>Start interactive container
+<span class="go">docker run -it acleancoder/imagemagick-full</span>
+<span class="gp">  # </span>fetch png image
+<span class="go">  &gt; wget https://pbs.twimg.com/profile_images/1273307847103635465/lfVWBmiW_400x400.png</span>
+<span class="gp">  # </span>convert to jpg
+<span class="go">  &gt; convert lfVWBmiW_400x400.png myimage.jpg</span>
+<span class="gp">  # </span><span class="nb">exit</span> container
+
+<span class="gp"># </span>fetch container ID with <span class="sb">`</span>ps -a<span class="sb">`</span> and use <span class="sb">`</span>docker cp<span class="sb">`</span> to copy jpg file from the stopped container to the host
+<span class="go">docker cp *CONTAINER_ID*:/myimage.jpg .</span>
+</pre></div>
+</div>
+</details></section>
+</section>
+<section id="volumes">
+<h2>Volumes<a class="headerlink" href="#volumes" title="Permalink to this headline"></a></h2>
+<p>Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.</p>
+<p>Syntax: <strong>–volume/-v</strong> <em>host:container</em></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir datatest</span>
+<span class="go">touch datatest/test</span>
+<span class="go">docker run --detach --volume $(pwd)/datatest:/scratch --name fastqc_container biocontainers/fastqc:v0.11.9_cv7 tail -f /dev/null</span>
+<span class="go">docker exec -ti fastqc_container /bin/bash</span>
+<span class="go">&gt; ls -l /scratch</span>
+<span class="go">&gt; exit</span>
+</pre></div>
+</div>
+</section>
+<section id="ports">
+<h2>Ports<a class="headerlink" href="#ports" title="Permalink to this headline"></a></h2>
+<p>The same as with volumes, but with ports, to access Internet services.</p>
+<p>Syntax: <strong>–publish/-p</strong> <em>host:container</em></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --detach --name webserver nginx</span>
+<span class="go">curl localhost:80</span>
+<span class="go">docker exec webserver curl localhost:80</span>
+<span class="go">docker rm -f webserver</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --detach --name webserver --publish 80:80 nginx</span>
+<span class="go">curl localhost:80</span>
+<span class="go">docker rm -f webserver</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --detach --name webserver -p 8080:80 nginx</span>
+<span class="go">curl localhost:80</span>
+<span class="go">curl localhost:8080</span>
+<span class="go">docker exec webserver curl localhost:80</span>
+<span class="go">docker exec webserver curl localhost:8080</span>
+<span class="go">docker rm -f webserver</span>
+</pre></div>
+</div>
+</section>
+<section id="volume-exercises">
+<h2>Volume exercises<a class="headerlink" href="#volume-exercises" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Copy the 2 fastq files from available datasets in Github repository and place them in mounted directory</p></li>
+<li><p>Run fastqc interactively (inside container): <code class="docutils literal notranslate"><span class="pre">`fastqc</span>&#160; <span class="pre">/scratch/*.gz`</span></code></p></li>
+<li><p>Run fastqc outside the container</p></li>
+</ol>
+<section id="docker-run-user">
+<h3>docker run –user<a class="headerlink" href="#docker-run-user" title="Permalink to this headline"></a></h3>
+<p>It is possible to run certain containers with a specific user, appending <code class="docutils literal notranslate"><span class="pre">`run</span> <span class="pre">--user`</span></code>.</p>
+<p>A convenient command would be:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --user $(id -u):$(id -g) --detach --volume $(pwd)/datatest:/scratch --name user_test biocontainers/fastqc:v0.11.9_cv7 touch /scratch/userfile</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="containers.html" class="btn btn-neutral float-left" title="Containers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="docker_2.html" class="btn btn-neutral float-right" title="Docker 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

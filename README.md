@@ -1,4 +1,4 @@
-# Courses@PHIND_course_nextflow_Feb_2022
+# Courses@CRG_course_nextflow_May_2022
 
 Reproducible research and data analysis using Linux Containers and Nextflow pipelines
 

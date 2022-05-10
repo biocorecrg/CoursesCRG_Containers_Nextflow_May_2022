@@ -16,7 +16,7 @@ CRG - Linux containers & Nextflow for reproducible research and open science
   
 
 .. list-table:: Main instructors:
-   :widths: 50 50 50 50
+   :widths: 50 50 50
    :header-rows: 1
 
    * - Luca Cozzuto

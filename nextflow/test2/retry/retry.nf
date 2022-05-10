@@ -1,5 +1,6 @@
 #!/usr/bin/env nextflow
 
+
 /* 
  * This code enables the new dsl of Nextflow. 
  */
@@ -28,8 +29,6 @@ log.info """
 BIOCORE@CRG - N F TESTPIPE  ~  version ${version}
 =============================================
 reads                           : ${params.reads}
-reference                       : ${params.reference}
-outdir                          : ${params.outdir}
 """
 
 // this prints the help in case you use --help parameter in the command line and it stops the pipeline
@@ -43,9 +42,8 @@ if (params.help) {
 /*
  * Defining the output folders.
  */
-fastqcOutputFolder    = "${params.outdir}/ouptut_fastqc"
-alnOutputFolder       = "${params.outdir}/ouptut_aln"
-multiqcOutputFolder   = "${params.outdir}/ouptut_multiQC"
+fastqcOutputFolder    = "ouptut_fastqc"
+multiqcOutputFolder   = "ouptut_multiQC"
 
 
 /* Reading the file list and creating a "Channel": a queue that connects different channels.
@@ -54,78 +52,34 @@ multiqcOutputFolder   = "${params.outdir}/ouptut_multiQC"
  */
  
 Channel
-    .fromPath( params.reads )  											 
-    .ifEmpty { error "Cannot find any reads matching: ${params.reads}" } 
-    .set {reads} 											 
+    .fromPath( params.reads )  											 // read the files indicated by the wildcard                            
+    .ifEmpty { error "Cannot find any reads matching: ${params.reads}" } // if empty, complains
+    .set {reads_for_fastqc} 											 // make the channel "reads_for_fastqc"
 
-reference = file(params.reference)
 
 /*
  * Process 1. Run FastQC on raw data. A process is the element for executing scripts / programs etc.
  */
 process fastQC {
-    publishDir fastqcOutputFolder  			
-    tag { "${reads}" }  							
+    publishDir fastqcOutputFolder  			// where (and whether) to publish the results
+    tag { "${reads}" }  							// during the execution prints the indicated variable for follow-up
+    label 'keep_trying'
 
     input:
-    path reads   							
+    path reads   							// it defines the input of the process. It sets values from a channel
 
-    output:									
+    output:									// It defines the output of the process (i.e. files) and send to a new channel
    	path "*_fastqc.*"
 
-    script:									
+    script:									// here you have the execution of the script / program. Basically is the command line
     """
         fastqc ${reads} 
     """
 }
 
-/*
- * Process 2. Bowtie index
- */
-process bowtieIdx {
-    tag { "${ref}" }  							
-
-
-    input:
-    path ref   							
-
-    output:									
-   	tuple val("${ref}"), path ("${ref}*.ebwt")
-
-    script:									
-    """
-        gunzip -c ${ref} > reference.fa
-        bowtie-build reference.fa ${ref}
-        rm reference.fa
-    """
-}
 
 /*
- * Process 3. Bowtie alignment
- */
-process bowtieAln {
-    publishDir alnOutputFolder, pattern: '*.sam'
-
-    tag { "${reads}" }  							
-    label 'twocpus' 
-
-    input:
-    tuple val(refname), path (ref_files)
-    path reads  							
-
-    output:									
-    path "${reads}.sam", emit: samples_sam
-    path "${reads}.log", emit: samples_log
-
-    script:									
-    """
-    bowtie -p ${task.cpus} ${refname} -q ${reads} -S > ${reads}.sam 2> ${reads}.log
-    """
-}
-/*
-
-/*
- * Process 4. Run multiQC on fastQC results
+ * Process 2. Run multiQC on fastQC results
  */
 process multiQC {
     publishDir multiqcOutputFolder, mode: 'copy' 	// this time do not link but copy the output file
@@ -134,7 +88,7 @@ process multiQC {
     path (inputfiles)
 
     output:
-    path("multiqc_report.html") 					
+    path("multiqc_report.html") 					// do not send the results to any channel
 
     script:
     """
@@ -143,17 +97,12 @@ process multiQC {
 }
 
 workflow {
-    reads.view()
-	fastqc_out = fastQC(reads)
-	bowtie_index = bowtieIdx(reference)
-	bowtieAln(bowtie_index, reads)
-	
-	multiQC(fastqc_out.mix(bowtieAln.out.samples_log).collect())
+	fastqc_out = fastQC(reads_for_fastqc)
+	multiQC(fastqc_out.collect())
 }
 
 
 workflow.onComplete { 
 	println ( workflow.success ? "\nDone! Open the following report in your browser --> ${multiqcOutputFolder}/multiqc_report.html\n" : "Oops .. something went wrong" )
 }
-
 

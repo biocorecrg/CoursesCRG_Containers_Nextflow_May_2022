@@ -1,23 +1,5 @@
 #!/usr/bin/env nextflow
 
-/*
- * Copyright (c) 2013-2020, Centre for Genomic Regulation (CRG).
- *
- *   This file is part of 'CRG_Containers_NextFlow'.
- *
- *   CRG_Containers_NextFlow is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   CRG_Containers_NextFlow is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with CRG_Containers_NextFlow.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 
 /* 
@@ -74,8 +56,8 @@ Channel
 
 reference = file(params.reference)
 
-include { fastqc } from "${baseDir}/modules/fastqc" addParams(OUTPUT: fastqcOutputFolder)
-include { BOWTIE } from "${baseDir}/modules/bowtie" addParams(OUTPUT: alnOutputFolder)
+include { fastqc } from "${baseDir}/modules/fastqc" addParams(OUTPUT: fastqcOutputFolder, LABEL="twocpus")
+include { BOWTIE } from "${baseDir}/modules/bowtie" addParams(OUTPUT: alnOutputFolder, LABEL="twocpus")
 include { multiqc } from "${baseDir}/modules/multiqc" addParams(OUTPUT: multiqcOutputFolder)
  
 

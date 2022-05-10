@@ -22,25 +22,8 @@ This can be achieved using two additional files:
 The **nextflow.config** file allows to indicate resources needed for each class of processes.
 This is achieved labeling processes in the nextflow.config file:
 
-.. code-block:: groovy
-
-	includeConfig "$baseDir/params.config"
-
-	process {
-	     memory='0.6G'
-	     cpus='1'
-	     time='6h'
-
-	     withLabel: 'onecpu'
-		{
-			memory='0.6G'
-			cpus='1'
-		}
-
-	}
-
-	process.container = 'biocorecrg/c4lwg-2018:latest'
-	singularity.cacheDir = "$baseDir/singularity"
+.. literalinclude:: ../nextflow/test2/nextflow.config
+   :language: groovy
 
 
 The first row indicates to use the information stored in the **params.config** file (described later). Then follows the definition of the default resources for a process:
@@ -56,33 +39,23 @@ Then we specify resources needed for a class of processes labeled **bigmem** (i.
 
 .. code-block:: groovy
 
-	withLabel: 'bigmem'
-	{
+	withLabel: 'bigmem' {
 		memory='0.7G'
 		cpus='1'
 	}
 
-In the script **test2.nf file**, there are two processes to run two programs:
+In the script **/test2/test2.nf file**, there are two processes to run two programs:
 
 - `fastQC <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`__ - a tool that calculates a number of quality control metrics on single fastq files;
 - `multiQC <https://multiqc.info/>`__ - an aggregator of results from bioinformatics tools and samples for generating a single html report.
 
-You can see that the process **fastQC** is labeled 'bigmem':
 
-.. code-block:: groovy
+.. literalinclude:: ../nextflow/test2/test2.nf
+   :language: groovy
+   :emphasize-lines: 85
 
-	/*
-	 * Process 1. Run FastQC on raw data.
-	 */
-	process fastQC {
 
-	    publishDir fastqcOutputFolder
-	    tag { "${reads}" }
-	    label 'bigmem'
-
-	    input:
-	    path reads
-	...
+You can see that the process **fastQC** is labeled 'bigmem'.
 
 
 The last two rows of the config file indicate which containers to use.
@@ -98,6 +71,7 @@ In case of using a singularity container, you can indicate where to store the lo
 Let's now launch the script **test2.nf**.
 
 .. code-block:: console
+   :emphasize-lines: 42,43
 
 	cd test2;
 	nextflow run test2.nf
@@ -153,10 +127,10 @@ We will get a number of errors since no executable is found in our environment /
 
 
 .. code-block:: console
+   :emphasize-lines: 1
 
 	nextflow run test2.nf -with-docker
 
-	nextflow run test2.nf -with-docker
 	N E X T F L O W  ~  version 20.07.1
 	Launching `test2.nf` [boring_hamilton] - revision: e3a80b15a2
 	BIOCORE@CRG - N F TESTPIPE  ~  version 1.0
@@ -174,12 +148,8 @@ This time it worked because Nextflow used the image specified in the **nextflow.
 
 Now let's take a look at the **params.config** file:
 
-.. code-block:: groovy
-
-	params {
-		reads		= "$baseDir/../testdata/*.fastq.gz"
-		email		= "myemail@google.com"
-	}
+.. literalinclude:: ../nextflow/test2/params.config
+   :language: groovy
 
 
 As you can see, we indicated two pipeline parameters, `reads` and `email`; when running the pipeline, they can be overridden using `\-\-reads` and `\-\-email`.
@@ -213,37 +183,16 @@ We can indicate which process and output can be considered the final output of t
 
 In our pipeline we define these folders here:
 
-.. code-block:: groovy
-
-	/*
- 	 * Defining the output folders.
- 	 */
-
-	fastqcOutputFolder    = "output_fastqc"
-	multiqcOutputFolder   = "output_multiQC"
-
-	[...]
-
-	/*
-	 * Process 1. Run FastQC on raw data. A process is the element for executing scripts / programs etc.
-	 */
-
-	process fastQC {
-	    publishDir fastqcOutputFolder  			// where (and whether) to publish the results
-
-	[...]
-
-	/*
-	 * Process 2. Run multiQC on fastQC results
-	 */
-
-	process multiQC {
-	    publishDir multiqcOutputFolder, mode: 'copy' 	// this time do not link but copy the output file
+.. literalinclude:: ../nextflow/test2/test2.nf
+   :language: groovy
+   :emphasize-lines: 61-65,83,103
 
 
-You can see that the default mode to publish the results in Nextflow is soft linking. You can change this behaviour specifying the mode as indicated in the **multiQC** process.
 
-**IMPORTANT: You can also "move" the results but this is not suggested for files that will be needed for other processes. This will likely disrupt your pipeline.**
+You can see that the default mode to publish the results in Nextflow is `soft linking`. You can change this behaviour specifying the mode as indicated in the **multiQC** process.
+
+.. note::
+	IMPORTANT: You can also "move" the results but this is not suggested for files that will be needed for other processes. This will likely disrupt your pipeline
 
 To access the output files via the web they can be copied to your `S3 bucket <https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html>`__ . Your bucket is mounted in **/mnt**:
 
@@ -255,7 +204,8 @@ To access the output files via the web they can be copied to your `S3 bucket <ht
 
 
 
-**Note:** In this class, each student has its own bucket, with the number correponding to the number of the AWS instance.
+.. note::
+	In this class, each student has its own bucket, with the number correponding to the number of the AWS instance.
 
 Let's copy the **multiqc_report.html** file in the S3 bucket and change the privileges:
 
@@ -281,24 +231,11 @@ Adding help section to a pipeline
 
 Here we describe another good practice: the use of the `\-\-help` parameter. At the beginning of the pipeline we can write:
 
-.. code-block:: groovy
 
-	params.help             = false    // this prevents a warning of undefined parameter
+.. literalinclude:: ../nextflow/test2/test2.nf
+   :language: groovy
+   :emphasize-lines: 44,45-59
 
-	// this prints the input parameters
-	log.info """
-	BIOCORE@CRG - N F TESTPIPE  ~  version ${version}
-	=============================================
-	reads                           : ${params.reads}
-	"""
-
-	// this prints the help in case you use --help parameter in the command line and it stops the pipeline
-	if (params.help) {
-	    log.info 'This is the Biocore\'s NF test pipeline'
-	    log.info 'Enjoy!'
-	    log.info '\n'
-	    exit 1
-	}
 
 so that launching the pipeline with `\-\-help` will show you just the parameters and the help.
 
@@ -326,37 +263,16 @@ EXERCISE
 
 The process should become:
 
-.. code-block:: groovy
+.. literalinclude:: ../nextflow/test1/sol/sol_lab.nf
+   :language: groovy
+   :emphasize-lines: 38
 
-	process reverseSequence {
-
-	    tag { "${seq}" }
-	    publishDir "output"
-	    label 'ignorefail'
-
-	    input:
-	    path seq
-
-	    output:
-	    path "all.rev"
-
-	    script:
-	    """
-	    cat ${seq} | AAAAA '{if (\$1~">") {print \$0} else system("echo " \$0 " |rev")}' > all.rev
-	    """
-	}
 
 
 and the nextflow.config file would become:
 
-.. code-block:: groovy
-
-	process {
-		withLabel: 'ignorefail'
-		{
-			errorStrategy = 'ignore'
-	    	}
-	}
+.. literalinclude:: ../nextflow/test1/sol/nextflow.config
+   :language: groovy
 
 
 .. raw:: html
@@ -376,53 +292,20 @@ You can specify a very low time (5, 10 or 15 seconds) for the fastqc process so 
    <summary><a>Solution</a></summary>
 
 
-The process should become:
+The code should become:
 
-.. code-block:: groovy
+.. literalinclude:: ../nextflow/test2/retry/retry.nf
+   :language: groovy
+   :emphasize-lines: 85
 
-	process fastQC {
-
-		publishDir fastqcOutputFolder	// where (and whether) to publish the results
-		tag { "${reads}" } 	// during the execution prints the indicated variable for follow-up
-		label 'keep_trying'
-
-		input:
-		path reads   	// it defines the input of the process. It sets values from a channel
-
-		output:			// It defines the output of the process (i.e. files) and send to a new channel
-   		path "*_fastqc.*"
-
-    		script:			// here you have the execution of the script / program. Basically is the command line
-    		"""
-        	fastqc ${reads}
-   		"""
-	}
 
 
 while the nextflow.config file would be:
 
-.. code-block:: groovy
-
-	includeConfig "$baseDir/params.config"
-
-
-	process {
-	     //containerOptions = { workflow.containerEngine == "docker" ? '-u $(id -u):$(id -g)': null}
-	     memory='0.6G'
-	     cpus='1'
-	     time='6h'
-
-	     withLabel: 'keep_trying'
-	     {
-		time = { 10.second * task.attempt }
-		errorStrategy = 'retry'
-		maxRetries = 3
-	     }
-	}
-
-	process.container = 'biocorecrg/c4lwg-2018:latest'
-	singularity.cacheDir = "$baseDir/singularity"
-
+.. literalinclude:: ../nextflow/test2/retry/nextflow.config
+   :language: groovy
+   
+   
 .. raw:: html
 
    </details>
@@ -431,7 +314,7 @@ while the nextflow.config file would be:
 
 Using public pipelines
 =============================================
-As an example, we will use our pipeline `Master Of Pores <https://github.com/biocorecrg/mop2>`__ published in `2019 in Frontiers in Genetics <https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full>`__ .
+As an example, we will use our software `Master Of Pores <https://github.com/biocorecrg/mop2>`__ published in `2019 in Frontiers in Genetics <https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full>`__ .
 
 This repository contains a collection of pipelines for processing nanopore's raw data (both cDNA and dRNA-seq), detecting putative RNA modifications and estimating RNA polyA tail sizes.
 
@@ -465,11 +348,10 @@ Let's inspect the folder **MoP2**.
 
 	ls MoP2
 
-	BioNextflow		conf			docs			mop_preprocess
-	INSTALL.sh		conf.py			img			mop_tail
-	README.md		data			local_modules.nf	nextflow.global.config
-	TODO.md			deeplexicon		mop_consensus		outdirs.nf
-	anno			docker			mop_mod			requirements.txt
+	anno	       conf	       deeplexicon             docs       INSTALL.sh        
+	mop_consensus  mop_preprocess  nextflow.global.config  README.md  TODO.md
+	BioNextflow    data            docker                  img        local_modules.nf  
+	mop_mod        mop_tail        outdirs.nf              terraform
 
 There are different pipelines bundled in a single repository: **mop_preprocess**, **mop_mod**, **mop_tail** and **mop_consensus**. Let's inspect the folder **mop_preprocess** that contains the Nextflow pipeline **mop_preprocess.nf**. This pipeline allows to pre-process raw fast5 files that are generated by a Nanopore instruments. Notice the presence of the folder **bin**. This folder contains the number of custom scripts that can be used by the pipeline without storing them inside containers. This provides a practical solution for using programs with restrictive licenses that prevent the code redistribution.
 
@@ -478,8 +360,8 @@ There are different pipelines bundled in a single repository: **mop_preprocess**
 	cd MoP2
 	ls mop_preprocess/bin/
 
-	bam2stats.py			fast5_to_fastq.py
-	extract_sequence_from_fastq.py	fast5_type.py
+	RNA_to_DNA_fq.py	extract_sequence_from_fastq.py	fast5_type.py
+	bam2stats.py		fast5_to_fastq.py
 
 The basecaller **Guppy** cannot be redistributed, so we had to add an **INSTALL.sh** script that has to be run by the user for downloading the Guppy executable and placing it inside the **bin** folder.
 
@@ -525,11 +407,11 @@ Let's inspect the **params.config** file that points to a small dataset containe
 	    fast5               = "$baseDir/../data/**/*.fast5"
 	    fastq               = ""
 
-	    reference           = "$baseDir/../anno/curlcake_constructs.fasta.gz"
+	    reference           = "$baseDir/../anno/yeast_rRNA_ref.fa.gz"
 	    annotation          = ""
 	    ref_type            = "transcriptome"
 
-	    pars_tools          = "drna_tool_splice_opt.tsv"
+	    pars_tools          = "drna_tool_splice_opt.tsv" 
 	    output              = "$baseDir/output"
 	    qualityqc           = 5
 	    granularity         = 1
@@ -537,11 +419,11 @@ Let's inspect the **params.config** file that points to a small dataset containe
 	    basecalling         = "guppy"
 	    GPU                 = "OFF"
 	    demultiplexing      = "NO"
-	    demulti_fast5       = "NO"
+	    demulti_fast5       = "NO" 
 
-	    filtering           = "NO"
+	    filtering           = "nanoq"
 
-	    mapping             = "minimap2"
+	    mapping             = "graphmap"
 	    counting            = "nanocount"
 	    discovery           = "NO"
 
@@ -550,19 +432,22 @@ Let's inspect the **params.config** file that points to a small dataset containe
 
 	    saveSpace           = "NO"
 
-	    email               = ""
+	    email               = "lucacozzuto@crg.es"
 	}
 
-Let's now run the pipeline:
+Let's now run the pipeline following the instructions in the **README**. As you can see we need to go inside one folder for running just one pipeline.
 
 .. code-block:: console
 
-	nextflow run mop_preprocess.nf -with-docker -bg > log.txt
+	cd mop_preprocess
+	nextflow run mop_preprocess.nf -with-docker -bg -profile local > log.txt
+
+We can now inspect the **log.txt** file
 
 	tail -f log.txt
 
-	N E X T F L O W  ~  version 21.04.3
-	Launching `mop_preprocess.nf` [adoring_allen] - revision: 7457956da7
+	N E X T F L O W  ~  version 21.10.6
+	Launching `mop_preprocess.nf` [furious_church] - revision: bbe0976770
 
 
 	╔╦╗╔═╗╔═╗  ╔═╗┬─┐┌─┐┌─┐┬─┐┌─┐┌─┐┌─┐┌─┐┌─┐
@@ -573,94 +458,98 @@ Let's now run the pipeline:
 	BIOCORE@CRG Master of Pores 2. Preprocessing - N F  ~  version 2.0
 	====================================================
 
-	conffile	          : final_summary_01.txt
+	conffile.                 : final_summary_01.txt
 
-	fast5                     : /Users/lcozzuto/aaa/MoP2/mop_preprocess/../data/**/*.fast5
-	fastq                     :
+	fast5                     : /Users/lcozzuto/aaa/MOP2/mop_preprocess/../data/**/*.fast5
+	fastq                     : 
 
-	reference                 : /Users/lcozzuto/aaa/MoP2/mop_preprocess/../anno/curlcake_constructs.fasta.gz
-	annotation                :
+	reference                 : /Users/lcozzuto/aaa/MOP2/mop_preprocess/../anno/yeast_rRNA_ref.fa.gz
+	annotation                : 
 
-	granularity		  : 1
+	granularity.              : 1
 
 	ref_type                  : transcriptome
-	pars_tools		  : drna_tool_splice_opt.tsv
+	pars_tools                : drna_tool_splice_opt.tsv
 
-	output                    : /Users/lcozzuto/aaa/MoP2/mop_preprocess/output
-	qualityqc                 : 5
+	output                    : /Users/lcozzuto/aaa/MOP2/mop_preprocess/output
 
 	GPU                       : OFF
 
-	basecalling               : guppy
-	demultiplexing            : NO
-	demulti_fast5		  : NO
+	basecalling               : guppy 
+	demultiplexing            : NO 
+	demulti_fast5             : NO
 
-	filtering                 : NO
-	mapping                   : minimap2
+	filtering                 : nanoq
+	mapping                   : graphmap
 
 	counting                  : nanocount
-	discovery		  : NO
+	discovery                 : NO
 
 	cram_conv           	  : YES
-	subsampling_cram	  : 50
+	subsampling_cram          : 50
 
 
-	saveSpace   		  : NO
+	saveSpace                 : NO
+	email                     : lucacozzuto@crg.es
 
-	email                     :
-
-	Skipping the email
+	Sending the email to lucacozzuto@crg.es
 
 	----------------------CHECK TOOLS -----------------------------
 	basecalling : guppy
 	> demultiplexing will be skipped
-	mapping : minimap2
-	> filtering will be skipped
+	mapping : graphmap
+	filtering : nanoq
 	counting : nanocount
 	> discovery will be skipped
 	--------------------------------------------------------------
-	[bd/bd8dcf] Submitted process > preprocess_flow:checkRef (Checking curlcake_constructs.fasta.gz)
-	[7a/1d2244] Submitted process > FILTER_VER:getVersion
-	[26/dbd3f2] Submitted process > GRAPHMAP_VER:getVersion
-	[11/84981d] Submitted process > BWA_VER:getVersion
-	[03/2b6939] Submitted process > DEMULTIPLEX_VER:getVersion
-	[38/ec6382] Submitted process > BAMBU_VER:getVersion
-	[63/a2a072] Submitted process > SAMTOOLS_VERSION:getVersion
-	[75/0a1e9e] Submitted process > NANOPLOT_VER:getVersion
-	[4f/b50c2a] Submitted process > MULTIQC_VER:getVersion
-	[7c/de96a4] Submitted process > NANOCOUNT_VER:getVersion
-	[79/a56c5f] Submitted process > GRAPHMAP2_VER:getVersion
-	[14/b52ead] Submitted process > HTSEQ_VER:getVersion
-	[60/aaad30] Submitted process > MINIMAP2_VER:getVersion
-	[de/7077d4] Submitted process > FASTQC_VER:getVersion
-	[18/403b7d] Submitted process > flow1:GUPPY_BASECALL:baseCall (multifast---1)
-	[f8/8973d4] Submitted process > preprocess_flow:MINIMAP2:map (multifast---1)
-	[8e/d31464] Submitted process > preprocess_flow:concatenateFastQFiles (multifast)
-	[1e/37d8c5] Submitted process > preprocess_flow:MinIONQC (multifast)
-	[d3/eafd5e] Submitted process > preprocess_flow:FASTQC:fastQC (multifast.fq.gz)
-	[fb/a1a7ca] Submitted process > preprocess_flow:SAMTOOLS_CAT:catAln (multifast)
-	[3b/ee710f] Submitted process > preprocess_flow:SAMTOOLS_SORT:sortAln (multifast)
-	[19/172450] Submitted process > preprocess_flow:bam2stats (multifast)
-	[bc/9bc0d6] Submitted process > preprocess_flow:AssignReads (multifast)
-	[b8/d65861] Submitted process > preprocess_flow:NANOPLOT_QC:MOP_nanoPlot (multifast)
-	[cc/5d50c4] Submitted process > preprocess_flow:SAMTOOLS_INDEX:indexBam (multifast)
-	[ce/990016] Submitted process > preprocess_flow:NANOCOUNT:nanoCount (multifast)
-	[3a/27a47a] Submitted process > preprocess_flow:countStats (multifast)
-	[96/c53238] Submitted process > preprocess_flow:joinAlnStats (joining aln stats)
-	[93/7de48e] Submitted process > preprocess_flow:bam2Cram (multifast)
-	[8e/3c1454] Submitted process > preprocess_flow:joinCountStats (joining count stats)
-	[a9/c6149b] Submitted process > preprocess_flow:MULTIQC:makeReport
+	[73/6734e3] Submitted process > preprocess_flow:checkRef (Checking yeast_rRNA_ref.fa.gz)
+	[a0/75728f] Submitted process > flow1:GUPPY_BASECALL:baseCall (mod---1)
+	[68/4836ed] Submitted process > flow1:GUPPY_BASECALL:baseCall (wt---2)
+	[af/1f666e] Submitted process > flow1:NANOQ_FILTER:filter (wt---2)
+	[eb/4163e4] Submitted process > preprocess_flow:RNA2DNA (wt---2)
+	[51/2c755e] Submitted process > preprocess_flow:GRAPHMAP:map (wt---2)
+	[f5/a236b1] Submitted process > flow1:NANOQ_FILTER:filter (mod---1)
+	[9a/de49df] Submitted process > preprocess_flow:MinIONQC (wt)
+	[23/665791] Submitted process > preprocess_flow:MinIONQC (mod)
+	[1b/88879b] Submitted process > preprocess_flow:RNA2DNA (mod---1)
+	[79/a1ee98] Submitted process > preprocess_flow:concatenateFastQFiles (wt)
+	[57/02c2aa] Submitted process > preprocess_flow:concatenateFastQFiles (mod)
+	[22/6f493a] Submitted process > preprocess_flow:FASTQC:fastQC (wt.fq.gz)
+	[ad/b320ed] Submitted process > preprocess_flow:GRAPHMAP:map (mod---1)
+	[df/38fcda] Submitted process > preprocess_flow:FASTQC:fastQC (mod.fq.gz)
+	[65/66ff77] Submitted process > preprocess_flow:SAMTOOLS_CAT:catAln (mod)
+	[7f/21426f] Submitted process > preprocess_flow:SAMTOOLS_CAT:catAln (wt)
+	[c9/b71a9d] Submitted process > preprocess_flow:SAMTOOLS_SORT:sortAln (mod)
+	[6d/8582b7] Submitted process > preprocess_flow:SAMTOOLS_SORT:sortAln (wt)
+	[c0/12d9d7] Submitted process > preprocess_flow:bam2stats (wt)
+	[0c/161864] Submitted process > preprocess_flow:NANOPLOT_QC:MOP_nanoPlot (wt)
+	[de/778750] Submitted process > preprocess_flow:AssignReads (wt)
+	[32/ea79c9] Submitted process > preprocess_flow:SAMTOOLS_INDEX:indexBam (wt)
+	[51/e85eb2] Submitted process > preprocess_flow:bam2stats (mod)
+	[16/4a17f8] Submitted process > preprocess_flow:SAMTOOLS_INDEX:indexBam (mod)
+	[20/e6b19f] Submitted process > preprocess_flow:AssignReads (mod)
+	[5b/81b33d] Submitted process > preprocess_flow:NANOPLOT_QC:MOP_nanoPlot (mod)
+	[8c/d3efe9] Submitted process > preprocess_flow:countStats (wt)
+	[0a/84b180] Submitted process > preprocess_flow:bam2Cram (wt)
+	[95/5fee6f] Submitted process > preprocess_flow:NANOCOUNT:nanoCount (wt)
+	[15/710624] Submitted process > preprocess_flow:joinAlnStats (joining aln stats)
+	[3c/287861] Submitted process > preprocess_flow:bam2Cram (mod)
+	[50/f50978] Submitted process > preprocess_flow:NANOCOUNT:nanoCount (mod)
+	[d4/49c944] Submitted process > preprocess_flow:countStats (mod)
+	[db/ec149f] Submitted process > preprocess_flow:joinCountStats (joining count stats)
+	[61/7c5e3d] Submitted process > preprocess_flow:MULTIQC:makeReport
 	Pipeline BIOCORE@CRG Master of Pore - preprocess completed!
-	Started at  2021-11-04T19:08:12.706+01:00
-	Finished at 2021-11-04T19:11:54.580+01:00
-	Time elapsed: 3m 42s
+	Started at  2022-05-09T11:50:28.676+02:00
+	Finished at 2022-05-09T12:09:07.543+02:00
+	Time elapsed: 18m 39s
 	Execution status: OK
 
+You noticed we specify a **profile** here. This indicates where to launch the pipeline while several possiblities are available (like cluster, local computer etc). We will show this in detail later. If you skip this it will use the **default** configuration that is likely to heavy for our simple environment
 
 EXERCISE
 ------------------
 
-- Look at the documentation of `Master Of Pores <https://github.com/biocorecrg/mop2>`__ and change the default mapper, skip the filtering and enable the demultiplexing.
+- Look at the documentation of `Master Of Pores <https://github.com/biocorecrg/mop2>`__ and change the default mapper and filtering. Try to skip some step.
 
 .. raw:: html
 
@@ -671,7 +560,7 @@ The params can be set on the fly like this
 
 .. code-block:: console
 
-	nextflow run mop_preprocess.nf -with-docker -bg --mapping graphmap --filtering nanofilt --demultiplexing deeplexicon > log.txt
+	nextflow run mop_preprocess.nf -with-docker -bg --mapping minimap2 --filtering nanofilt  > log.txt
 
 
 .. raw:: html
@@ -691,11 +580,12 @@ Nextflow will take care of **pulling, converting and storing the image** for you
 Within an AWS main node both Docker and Singularity are available. While within the AWS batch system only Docker is available.
 
 .. code-block:: console
+
 	nextflow run test2.nf -with-singularity -bg > log
 
-		tail -f log
-		N E X T F L O W  ~  version 20.10.0
-		Launching `test2.nf` [soggy_miescher] - revision: 5a0a513d38
+	tail -f log
+	N E X T F L O W  ~  version 20.10.0
+	Launching `test2.nf` [soggy_miescher] - revision: 5a0a513d38
 
 	BIOCORE@CRG - N F TESTPIPE  ~  version 1.0
 	=============================================

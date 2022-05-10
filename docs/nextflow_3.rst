@@ -10,37 +10,20 @@ Adding more processes
 We can build a pipeline incrementally adding more and more processes.
 Nextflow will take care of the dependencies between the input / output and of the parallelization.
 
-Let's add to the **test2.nf** pipeline two additional steps, indexing of the reference genome and the read alignment using `Bowtie <http://bowtie-bio.sourceforge.net/index.shtml>`__. For that we will have to modify the *.nf, params.config and nexflow.config files (the full solution is available in the `test3 folder on the GitHub <https://github.com/biocorecrg/SIB_course_nextflow_Nov_2021/blob/main/nextflow/test3>`__).
+Let's add to the **test2.nf** pipeline two additional steps, indexing of the reference genome and the read alignment using `Bowtie <http://bowtie-bio.sourceforge.net/index.shtml>`__. For that we will have to modify the test2.nf, params.config and nexflow.config files (the new script is available in the **test3 folder**).
 
 In **params.config**, we have to add new parameters:
 
 
-.. code-block:: groovy
-
-	params {
-		reads		= "$baseDir/../../testdata/*.fastq.gz"
-		reference       = "$baseDir/../../testdata/chr19.fasta.gz"
-		outdir          = "$baseDir"
-		//outdir          = "s3://class-bucket-1/results"
-		email		= "myemail@google.com"
-	}
-
+.. literalinclude:: ../nextflow/test3/params.config
+   :language: groovy
 
 In **test3.nf**, we have to add a new input for the reference sequence:
 
-.. code-block:: groovy
-
-	log.info """
-	BIOCORE@CRG - N F TESTPIPE  ~  version ${version}
-	=============================================
-	reads                           : ${params.reads}
-	reference                       : ${params.reference}
-	outdir                          : ${params.outdir}
-
-	"""
-
-	reference = file(params.reference)
-
+.. literalinclude:: ../nextflow/test3/test3.nf
+   :language: groovy
+   :emphasize-lines: 31,32,43-48
+   
 
 This way, the **singleton channel** called **reference** is created. Its content can be used indefinitely. We also add a path specifying where to place the output files.
 
@@ -57,27 +40,10 @@ This way, the **singleton channel** called **reference** is created. Its content
 
 And we have to add two new processes. The first one is for the indexing the reference genome (with `bowtie-build`):
 
-.. code-block:: groovy
 
-	/*
-	 * Process 2. Bowtie index
-	 */
-	process bowtieIdx {
-	    tag { "${ref}" }
-
-	    input:
-	    path ref
-
-	    output:
-	    tuple val("${ref}"), path ("${ref}*.ebwt")
-
-	    script:
-	    """
-		gunzip -c ${ref} > reference.fa
-		bowtie-build reference.fa ${ref}
-		rm reference.fa
-	    """
-	}
+.. literalinclude:: ../nextflow/test3/test3.nf
+   :language: groovy
+   :emphasize-lines: 82-101
 
 
 Since bowtie indexing requires unzipped reference fasta file, we first **gunzip** it, then build the reference index, and finally remove the unzipped file.
@@ -90,30 +56,9 @@ The former is needed for building the command line of the alignment step, the la
 
 The second process **bowtieAln** is the alignment step:
 
-.. code-block:: groovy
-
-	/*
-	 * Process 3. Bowtie alignment
-	 */
-	process bowtieAln {
-	    publishDir alnOutputFolder, pattern: '*.sam'
-
-	    tag { "${reads}" }
-	    label 'twocpus'
-
-	    input:
-	    tuple val(refname), path (ref_files)
-	    path reads
-
-	    output:
-	    path "${reads}.sam", emit: samples_sam
-	    path "${reads}.log", emit: samples_log
-
-	    script:
-	    """
-	    bowtie -p ${task.cpus} ${refname} -q ${reads} -S > ${reads}.sam 2> ${reads}.log
-	    """
-	}
+.. literalinclude:: ../nextflow/test3/test3.nf
+   :language: groovy
+   :emphasize-lines: 103-124
 
 
 There are two different input channels, the **index** and **reads**.
@@ -139,14 +84,9 @@ The second output will be passed to the next process, that is, the multiQC proce
 
 This section will allow us to connect these outputs directly with other processes when we call them in the workflow section:
 
-.. code-block:: groovy
-
-	workflow {
-		fastqc_out = fastQC(reads)
-		bowtie_index = bowtieIdx(reference)
-		bowtieAln(bowtie_index, reads)
-		multiQC(fastqc_out.mix(bowtieAln.out.samples_log).collect())
-	}
+.. literalinclude:: ../nextflow/test3/test3.nf
+   :language: groovy
+   :emphasize-lines: 145-152
 
 
 As you can see, we passed the **samples_log** output to the multiqc process after mixing it with the output channel from the fastqc process.
@@ -171,79 +111,31 @@ Let's inspect the **nextflow.config** file in **test3** folder. We can see three
 
 The first profile indicates the resources needed for running the pipeline locally. They are quite small since we have little power and CPU on the test node.
 
-.. code-block:: groovy
 
-	profiles {
-	  standard {
-	     process {
-		containerOptions = { workflow.containerEngine == "docker" ? '-u $(id -u):$(id -g)': null}
-		executor="local"
-		memory='0.6G'
-		cpus='1'
-		time='6h'
-
-		withLabel: 'twocpus' {
-		    memory='0.6G'
-		    cpus='1'
-		}
-		  }
-	   }
+.. literalinclude:: ../nextflow/test3/nextflow.config
+   :language: groovy
+   :emphasize-lines: 8-21
 
 
 As you can see, we explicitly indicated the **local** executor. By definition, the local executor is a default executor if the pipeline is run without specifying a profile.
 
 The second profile is for running the pipeline on the **cluster**; here in particular for the cluster supporting the Sun Grid Engine queuing system:
 
-.. code-block:: groovy
-
-	   cluster {
-	     process {
-		containerOptions = { workflow.containerEngine == "docker" ? '-u $(id -u):$(id -g)': null}
-		executor="SGE"
-		queue="smallcpus"
-
-		memory='1G'
-		cpus='1'
-		time='6h'
-
-		withLabel: 'twocpus' {
-		    queue="bigcpus"
-		    memory='4G'
-		    cpus='2'
-		}
-	      }
-	   }
+.. literalinclude:: ../nextflow/test3/nextflow.config
+   :language: groovy
+   :emphasize-lines: 22-38
 
 
 This profile indicates that the system uses **Sun Grid Engine** as a job scheduler and that we have different queues for small jobs and more intensive ones.
-
 
 Deployment in the AWS cloud
 =============================
 
 The final profile is for running the pipeline in the **Amazon Cloud**, known as Amazon Web Services or AWS. In particular, we will use **AWS Batch** that allows the execution of containerised workloads in the Amazon cloud infrastructure (where NNNN is the number of your bucket which you can see in the mounted folder `/mnt` by typing the command **df**).
 
-.. code-block:: groovy
-
-	   cloud {
-	    workDir = 's3://nf-class-bucket-NNNN/work'
-	    aws.region = 'eu-central-1'
-	    aws.batch.cliPath = '/home/ec2-user/miniconda/bin/aws'
-
-	   process {
-	       containerOptions = { workflow.containerEngine == "docker" ? '-u $(id -u):$(id -g)': null}
-	       executor = 'awsbatch'
-	       queue = 'spot'
-	       memory='1G'
-	       cpus='1'
-	       time='6h'
-
-	       withLabel: 'twocpus' {
-		   memory='0.6G'
-		   cpus='2'
-	       }
-	    }
-	  }
+.. literalinclude:: ../nextflow/test3/nextflow.config
+   :language: groovy
+   :emphasize-lines: 40-58
 
 
 We indicate the **AWS specific parameters** (**region** and **cliPath**) and the executor **awsbatch**.
@@ -259,13 +151,13 @@ We can now launch the pipeline indicating `-profile cloud`:
 
 Note that there is no longer a **work** folder in the directory where test3.nf is located, because, in the AWS cloud, the output is copied locally in the folder **/mnt/class-bucket-NNN/work** (you can see the mounted folder - and the correspondign number - typing **df**).
 
-The multiqc report can be seen on the AWS webpage at https://nf-class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/output_multiQC/multiqc_report.html
+The multiqc report can be seen on the AWS webpage at https://nf-class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/ouptut_multiQC/multiqc_report.html
 
 But you need before to change permissions for that file as (where NNNN is the number of your bucket):
 
 .. code-block:: console
 
-	chmod 775 /mnt/class-bucket-NNNN/results/output_multiQCmultiqc_report.html
+	chmod 775 /mnt/class-bucket-NNNN/results/ouptut_multiQCmultiqc_report.html
 
 
 Sometimes you can find that the Nextflow process itself is very memory intensive and the main node can run out of memory. To avoid this, you can reduce the memory needed by setting an environmental variable:
@@ -302,7 +194,8 @@ For convenience you can use the multiqc config file called **config.yaml** in th
    <details>
    <summary><a>Solution</a></summary>
 
-Solution is in the file test3_2.nf:
+.. literalinclude:: ../nextflow/test3/test3_sol.nf
+   :language: groovy
 
 .. raw:: html
 
@@ -320,97 +213,20 @@ In particular, you can move a named workflow within a module and keep it aside f
 
 The **test4** folder provides an example of using modules.
 
-.. code-block:: groovy
 
-	#!/usr/bin/env nextflow
-
-	nextflow.enable.dsl=2
-
-	/*
-	 * Input parameters: read pairs
-	 * Params are stored in the params.config file
-	 */
-
-	version                 = "1.0"
-	params.help             = false
-
-	// this prints the input parameters
-	log.info """
-	BIOCORE@CRG - N F TESTPIPE  ~  version ${version}
-	=============================================
-	reads                           : ${params.reads}
-	"""
-
-	if (params.help) {
-	    log.info 'This is the Biocore\'s NF test pipeline'
-	    log.info 'Enjoy!'
-	    log.info '\n'
-	    exit 1
-	}
-
-	/*
-	 * Defining the output folders.
-	 */
-	fastqcOutputFolder    = "output_fastqc"
-	multiqcOutputFolder   = "output_multiQC"
-
-
-	Channel
-	    .fromPath( params.reads )
-	    .ifEmpty { error "Cannot find any reads matching: ${params.reads}" }
-	    .set {reads_for_fastqc}
-
-
-	/*
-	 * Here we include two modules from two files. We also add the parameter OUTPUT to pass them the folders where to publish the results
-	 */
-	include { fastqc } from "${baseDir}/modules/fastqc" addParams(OUTPUT: fastqcOutputFolder)
-	include { multiqc } from "${baseDir}/modules/multiqc" addParams(OUTPUT: multiqcOutputFolder)
-
-	// The main worflow can directly call the named workflows from the modules
-	workflow {
-		fastqc_out = fastqc(reads_for_fastqc)
-		multiqc(fastqc_out.collect())
-	}
-
-
-	workflow.onComplete {
-		println ( workflow.success ? "\nDone! Open the following report in your browser --> ${multiqcOutputFolder}/multiqc_report.html\n" : "Oops .. something went wrong" )
-	}
-
+.. literalinclude:: ../nextflow/test4/test4.nf
+   :language: groovy
+   
 
 We now include two modules, named **fastqc** and **multiqc**, from ```${baseDir}/modules/fastqc.nf``` and ```${baseDir}/modules/multiqc.nf```.
-Let's inspect the **fastqc** module:
-
-.. code-block:: groovy
-
-	/*
-	*  fastqc module
-	*/
-
-	params.CONTAINER = "quay.io/biocontainers/fastqc:0.11.9--0"
-	params.OUTPUT = "fastqc_output"
-
-	process fastqc {
-	    publishDir(params.OUTPUT, mode: 'copy')
-	    tag { "${reads}" }
-	    container params.CONTAINER
-
-	    input:
-	    path(reads)
-
-	    output:
-	    path("*_fastqc*")
-
-	    script:
-	    """
-		fastqc ${reads}
-	    """
-	}
+Let's inspect the **multiQC** module:
 
 
+.. literalinclude:: ../nextflow/test4/modules/multiqc.nf
+   :language: groovy
 
-Module **fastqc** takes as **input** a channel with files containing reads and produces as **output** the files generated by the fastqc program.
+
+The module **multiqc** takes as **input** a channel with files containing reads and produces as **output** the files generated by the multiqc program.
 
 The module contains the directive **publishDir**, the tag, the container to be used and has similar input, output and script session as the fastqc process in **test3.nf**.
 
@@ -418,10 +234,9 @@ A module can contain its own parameters that can be used for connecting the main
 
 In this example we have the declaration of two **parameters** that are defined at the beginning:
 
-.. code-block:: groovy
-
-	params.CONTAINER = "quay.io/biocontainers/fastqc:0.11.9--0"
-	params.OUTPUT = "fastqc_output"
+.. literalinclude:: ../nextflow/test4/modules/fastqc.nf
+   :language: groovy
+   :emphasize-lines: 5-6
 
 
 They can be overridden from the main script that is calling the module:
@@ -431,84 +246,40 @@ They can be overridden from the main script that is calling the module:
 
 In this example, in our main script we pass only the OUTPUT parameters by writing them as follows:
 
-.. code-block:: groovy
-
-	include { fastqc } from "${baseDir}/lib/fastqc" addParams(OUTPUT: fastqcOutputFolder)
-	include { multiqc } from "${baseDir}/lib/multiqc" addParams(OUTPUT: multiqcOutputFolder)
+.. literalinclude:: ../nextflow/test4/test4.nf
+   :language: groovy
+   :emphasize-lines: 54
 
 
 While we keep the information of the container inside the module for better reproducibility:
 
-.. code-block:: groovy
-
-	params.CONTAINER = = "quay.io/biocontainers/fastqc:0.11.9--0"
+.. literalinclude:: ../nextflow/test4/modules/multiqc.nf
+   :language: groovy
+   :emphasize-lines: 5
 
 
 Here you see that we are not using our own image, but rather we use the image provided by **biocontainers** in `quay <https://quay.io/>`__.
 
-Here you can find a list of fastqc images developed and stored by the biocontainers community `https://biocontainers.pro/#/tools/fastqc <https://biocontainers.pro/#/tools/fastqc>`__.
 
-Let's have a look at the **multiqc.nf** module:
+Let's have a look at the **fastqc.nf** module:
 
-.. code-block:: groovy
-
-	/*
-	*  multiqc module
-	*/
-
-	params.CONTAINER = "quay.io/biocontainers/multiqc:1.9--pyh9f0ad1d_0"
-	params.OUTPUT = "multiqc_output"
-	params.LABEL = ""
-
-	process multiqc {
-	    publishDir(params.OUTPUT, mode: 'copy')
-	    container params.CONTAINER
-	    label (params.LABEL)
-
-	    input:
-	    path (inputfiles)
-
-	    output:
-	    path "multiqc_report.html"
-
-	    script:
-	    """
-	    multiqc .
-	    """
-	}
+.. literalinclude:: ../nextflow/test4/modules/fastqc.nf
+   :language: groovy
 
 
-
-It is very similar to the fastqc one: we just add an extra parameter for connecting the resources defined in the **nextflow.config** file and the label indicated in the process.
+It is very similar to the multiqc one: we just add an extra parameter for connecting the resources defined in the **nextflow.config** file and the label indicated in the process. Also in the script part there is a connection between the fastqc command line and the nnumber of threads defined in the nextflow config file.
 
 To use this module, we have to change the main code as follows:
 
-.. code-block:: groovy
+.. literalinclude:: ../nextflow/test4/test4.nf
+   :language: groovy
+   :emphasize-lines: 55
 
-	include { multiqc } from "${baseDir}/lib/multiqc" addParams(OUTPUT: multiqcOutputFolder, LABEL="onecpu")
+The label **twocpus** is specified in the **nextflow.config** file for each profile:
 
-
-The label **onecpu** is specified in the **nextflow.config** file:
-
-.. code-block:: groovy
-
-	includeConfig "$baseDir/params.config"
-
-	process {
-	     container = 'biocorecrg/debian-perlbrew-pyenv3-java'
-	     memory='0.6G'
-	     cpus='1'
-	     time='6h'
-
-	     withLabel: 'onecpu'
-		{
-			memory='0.6G'
-			cpus='1'
-		}
-
-	}
-
-	singularity.cacheDir = "$baseDir/singularity"
+.. literalinclude:: ../nextflow/test4/modules/nextflow.config
+   :language: groovy
+   :emphasize-lines: 16,32,53
 
 .. note::
 
@@ -524,7 +295,7 @@ Make a module wrapper for the bowtie tool and change the script in test3 accordi
    <details>
    <summary><a>Solution</a></summary>
 
-Solution in the folder test5
+**Solution in the folder test5**
 
 .. raw:: html
 

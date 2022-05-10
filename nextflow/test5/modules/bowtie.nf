@@ -4,6 +4,7 @@
 
 params.CONTAINER = "quay.io/biocontainers/bowtie:1.2.3--py37hc9558a2_0"
 params.OUTPUT = "bowtie_output"
+params.LABEL = ""
 
 /*
  * Bowtie index
@@ -32,7 +33,9 @@ process bowtieIdx {
 process bowtieAln {
     publishDir(params.OUTPUT, pattern: '*.sam')
     container params.CONTAINER
-    tag { "${reads}" }  							
+    tag { "${reads}" }  	    
+    label (params.LABEL)
+						
 
     input:
     tuple val(refname), path (ref_files)

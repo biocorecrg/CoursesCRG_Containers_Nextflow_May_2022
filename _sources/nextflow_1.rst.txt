@@ -274,11 +274,21 @@ We can simulate this situation by generating a couple of files:
 
 	touch aaa_1.txt aaa_2.txt
 
-Then we use `fromFilePairs <https://www.nextflow.io/docs/latest/channel.html#fromfilepairs>`__ for generating a tuple:
+Then we use `fromFilePairs <https://www.nextflow.io/docs/latest/channel.html#fromfilepairs>`__ for generating a tuple (script **ex3.nf**):
 
 
 .. literalinclude:: ../nextflow/examples/ex3.nf
    :language: groovy
+
+Executing it will show the emission of a tuple which key is the common part of the two input files:
+
+.. code-block:: console
+
+	nextflow run ex3.nf 
+	N E X T F L O W  ~  version 21.10.6
+	Launching `ex3.nf` [reverent_ampere] - revision: 87d78a151f
+	[aaa, [/nfs/users/bi/lcozzuto/aaa/CoursesCRG_Containers_Nextflow_May_2022/nextflow/examples/aaa_1.txt, /nfs/users/bi/lcozzuto/aaa/CoursesCRG_Containers_Nextflow_May_2022/nextflow/examples/aaa_2.txt]]
+
 
 We can reshape the channels in several ways and / or cross them using operators so that they can be used for a particular purpose. In brief, each "emission" of a channel can be used by a process for a specific purpose.  
 

@@ -347,7 +347,7 @@ The pipeline can also recognize the queue system which is used on the machine wh
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">touch aaa_1.txt aaa_2.txt</span>
 </pre></div>
 </div>
-<p>Then we use <a class="reference external" href="https://www.nextflow.io/docs/latest/channel.html#fromfilepairs">fromFilePairs</a> for generating a tuple:</p>
+<p>Then we use <a class="reference external" href="https://www.nextflow.io/docs/latest/channel.html#fromfilepairs">fromFilePairs</a> for generating a tuple (script <strong>ex3.nf</strong>):</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
 
 <span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span><span class="w"></span>
@@ -362,6 +362,13 @@ The pipeline can also recognize the queue system which is used on the machine wh
 <span class="w">    </span><span class="o">.</span><span class="na">set</span><span class="w"> </span><span class="o">{</span><span class="n">my_files</span><span class="o">}</span><span class="w"></span>
 
 <span class="n">my_files</span><span class="o">.</span><span class="na">view</span><span class="o">()</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Executing it will show the emission of a tuple which key is the common part of the two input files:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run ex3.nf</span>
+<span class="go">N E X T F L O W  ~  version 21.10.6</span>
+<span class="go">Launching `ex3.nf` [reverent_ampere] - revision: 87d78a151f</span>
+<span class="go">[aaa, [/nfs/users/bi/lcozzuto/aaa/CoursesCRG_Containers_Nextflow_May_2022/nextflow/examples/aaa_1.txt, /nfs/users/bi/lcozzuto/aaa/CoursesCRG_Containers_Nextflow_May_2022/nextflow/examples/aaa_2.txt]]</span>
 </pre></div>
 </div>
 <p>We can reshape the channels in several ways and / or cross them using operators so that they can be used for a particular purpose. In brief, each “emission” of a channel can be used by a process for a specific purpose.</p>

@@ -107,16 +107,16 @@ Suggested program
 
 .. _home-page-day1:
 
-Day 1: Introduction to Linux containers and Docker (May 31)
+Day 1: Introduction to Linux containers and Docker (May 30)
 -------------
 
 * 9:30-11:00 Introduction to containers and Docker
 * 11:00-11:30 Break
-* 11:30-13:00 Docker
+* 11:30-13:30 Docker
 
 .. _home-page-day2:
 
-Day 2: Docker and Singularity (June 1)
+Day 2: Docker and Singularity (May 31)
 -------------
 
 * 9:30-11:00 More advanced Docker
@@ -125,20 +125,20 @@ Day 2: Docker and Singularity (June 1)
 
 .. _home-page-day3:
 
-Day 3: Understand and run a basic Nexflow pipeline (June 2)
+Day 3: Understand and run a basic Nexflow pipeline (June 1)
 ---------------
 
 
 
 .. _home-page-day4:
 
-Day 4: Write, modify and run a complex pipeline (June 3)
+Day 4: Write, modify and run a complex pipeline (June 2)
 -------------
 
 
 .. _home-page-day5:
 
-Day 5: Run a Nextflow pipeline in different environments, share and report (June 4)
+Day 5: Run a Nextflow pipeline in different environments, share and report (June 3)
 -------------
 
 

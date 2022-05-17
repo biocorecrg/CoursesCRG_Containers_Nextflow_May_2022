@@ -54,42 +54,28 @@ Having a [GitHub account](https://github.com/join) is recommended.
 
 ## Program
  
-### Day 1: Introduction to Linux containers, Docker and Singularity
+### Day 1: Introduction to Linux containers, Docker
 
-* 12:00-13:30 Introduction to containers
-* 13:30-14:30 Lunch
-* 14:30-16:00 Introduction to Docker
-* 10:00-11:30 Docker
-* 11:30-12:00 Coffee break
-* 12:00-13:30 Docker follow-up and Introduction to Singularity
-* 13:30-14:30 Lunch
-* 14:30-16:00 Singularity
+* 9:30-11:00 Introduction to containers and Docker
+* 11:00-11:30 Break
+* 11:30-13:00 Docker
 
+### Day 2: Docker and Singularity
 
-### Day 2: Understand and run a basic Nexflow pipeline
+* 9:30-11:00 More advanced Docker
+* 11:00-11:30 Coffee break
+* 11:30-13:30 Singularity
 
-* 9:30-11:30 Introduction to Nextflow
-* 11:30-12:00 Coffee break
-* 12:00-13:30 Channels and Operators
-* 13:30-14:30 Lunch
-* 14:30-13:30 More complex scripts
-
-### Day 3: Write, modify and run a complex pipeline
-
-* 10:00-11:30 Decoupling resources and parameters
-* 11:30-12:00 Coffee break
-* 12:00-13:30 Using public pipelines
-* 13:30-14:30 Lunch
-* 14:30-16:00 Using Singularity
+### Day 3: Understand and run a basic Nexflow pipeline
 
 
-### Day 4: Run a Nextflow pipeline in different environments, share and report
 
-* 10:00-11:30 Profiles
-* 11:30-12:00 Coffee break
-* 12:00-13:30 Deployment in the AWS cloud
-* 13:30-14:30 Lunch
-* 14:30-16:00 Modules and reporting
+### Day 4: Write, modify and run a complex pipeline
+
+
+### Day 5: Run a Nextflow pipeline in different environments, share and report
+
+
 
 
 

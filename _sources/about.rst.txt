@@ -33,7 +33,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 
    * - Luca Cozzuto
      - Toni Hermoso
-     - Jose-Antonio Espinosa
+     - Jose Espinosa-Carrasco
      - Julia Ponomarenko
    * - |luca|
      - |toni|

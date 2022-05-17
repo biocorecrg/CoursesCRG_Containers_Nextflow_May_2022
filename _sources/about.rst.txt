@@ -19,7 +19,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 .. |toni| image:: images/thermoso.jpg
   :alt: Alternative text
   
-.. |jespi| image:: images/jespionosa.jpg
+.. |jespi| image:: images/jespinosa.jpg
   :alt: Alternative text
 
 .. |julia| image:: images/jponomarenko.jpg

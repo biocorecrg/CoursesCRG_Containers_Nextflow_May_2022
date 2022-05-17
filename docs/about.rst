@@ -14,15 +14,19 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 
 
 .. |luca| image:: images/lcozzuto.jpg
+  :height: 300
   :alt: Alternative text
 
 .. |toni| image:: images/thermoso.jpg
+  :height: 300
   :alt: Alternative text
   
 .. |jespi| image:: images/jespinosa.jpg
+  :height: 300
   :alt: Alternative text
 
 .. |julia| image:: images/jponomarenko.jpg
+  :height: 300
   :alt: Alternative text
 
 

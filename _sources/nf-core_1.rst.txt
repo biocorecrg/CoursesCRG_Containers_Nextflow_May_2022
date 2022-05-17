@@ -1,15 +1,11 @@
 .. _nf-core_1-page:
 
-*******************
-nf-core 1
-*******************
+.. image:: images/nf-core-logo.png
+	:width: 400
 
 Introduction to nf-core
 =======================
 nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow. 
-
-.. image:: images/nf-core-logo.png
-	:width: 400
 
 Community
 ---------

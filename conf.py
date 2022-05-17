@@ -19,8 +19,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'Reproducible research and data analysis using Nextflow pipelines'
-copyright = u'2021, CRG'
+project = u'Courses@CRG: Reproducible research and data analysis using Containers & Nextflow 2022'
+copyright = u'2022, CRG'
 author = u'Luca Cozzuto'
 author = u'Julia Ponomarenko'
 author = u'Toni Hermoso'

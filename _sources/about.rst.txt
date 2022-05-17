@@ -19,7 +19,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 .. |toni| image:: images/thermoso.jpg
   :alt: Alternative text
   
-.. |jespi| image:: images/jespionosa.jpg
+.. |jespi| image:: images/jespinosa.jpg
   :alt: Alternative text
 
 .. |julia| image:: images/jponomarenko.jpg
@@ -33,7 +33,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 
    * - Luca Cozzuto
      - Toni Hermoso
-     - Jose-Antonio Espinosa
+     - Jose Espinosa-Carrasco
      - Julia Ponomarenko
    * - |luca|
      - |toni|
@@ -158,3 +158,13 @@ Day 5: Run a Nextflow pipeline in different environments, share and report
 * 13:30-14:30 Lunch
 * 14:30-16:00 Modules and reporting
 
+.. _home-page-day6:
+
+Day : nf-core (June 7)
+-------------
+
+* 10:00-11:00 Introduction to nf-core
+* 11:00-11:30 Use nf-core pipelines I
+* 11:30-12:00 Coffee break
+* 12:00-12:30 Use nf-core pipelines II
+* 12:30-13:30 Develop/contribute to nf-core

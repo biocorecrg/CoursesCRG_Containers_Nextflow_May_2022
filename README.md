@@ -48,35 +48,33 @@ Having a [GitHub account](https://github.com/join) is recommended.
 
 ## Dates, time, location
 
-* Dates: February 07-11, 2022
+* Dates: 30th May until 3rd June 2022 and additionaly 7th of June 2022. Time: 9:30 - 13:30h (CET)
 
 * Location: virtual, via Zoom.
 
 ## Program
-
-### Day 1: Introduction to Linux containers and Docker
+ 
+### Day 1: Introduction to Linux containers, Docker and Singularity
 
 * 12:00-13:30 Introduction to containers
 * 13:30-14:30 Lunch
 * 14:30-16:00 Introduction to Docker
-
-### Day 2: Docker and Singularity
-
 * 10:00-11:30 Docker
 * 11:30-12:00 Coffee break
 * 12:00-13:30 Docker follow-up and Introduction to Singularity
 * 13:30-14:30 Lunch
 * 14:30-16:00 Singularity
 
-### Day 3: Understand and run a basic Nexflow pipeline
 
-* 10:00-11:30 Introduction to Nextflow
+### Day 2: Understand and run a basic Nexflow pipeline
+
+* 9:30-11:30 Introduction to Nextflow
 * 11:30-12:00 Coffee break
 * 12:00-13:30 Channels and Operators
 * 13:30-14:30 Lunch
-* 14:30-16:00 More complex scripts
+* 14:30-13:30 More complex scripts
 
-### Day 4: Write, modify and run a complex pipeline
+### Day 3: Write, modify and run a complex pipeline
 
 * 10:00-11:30 Decoupling resources and parameters
 * 11:30-12:00 Coffee break
@@ -85,14 +83,19 @@ Having a [GitHub account](https://github.com/join) is recommended.
 * 14:30-16:00 Using Singularity
 
 
-
-### Day 5: Run a Nextflow pipeline in different environments, share and report
+### Day 4: Run a Nextflow pipeline in different environments, share and report
 
 * 10:00-11:30 Profiles
 * 11:30-12:00 Coffee break
 * 12:00-13:30 Deployment in the AWS cloud
 * 13:30-14:30 Lunch
 * 14:30-16:00 Modules and reporting
+
+
+
+### Day 5: NF-core
+
+...
 
 
 ## Acknowledgements

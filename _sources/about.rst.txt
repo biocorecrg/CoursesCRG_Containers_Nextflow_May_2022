@@ -17,6 +17,9 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 
 .. |toni| image:: images/thermoso.jpg
   :alt: Alternative text
+  
+.. |toni| image:: images/jespionosa.jpg
+  :alt: Alternative text
 
 .. |julia| image:: images/jponomarenko.jpg
   :alt: Alternative text
@@ -29,6 +32,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 
    * - Luca Cozzuto
      - Toni Hermoso
+     - Jose-Antonio Espinosa
      - Julia Ponomarenko
    * - |luca|
      - |toni|
@@ -85,10 +89,10 @@ Having a `GitHub account <https://github.com/join>`_ is recommended.
 Dates, time, location
 ============
 
-* Dates: February 07-11, 2022
+* Dates: Monday May 30 - Friday June 3, 2022
 
-* First day: 12:00-16:00 **CET**
-* Rest of the days: 10:00-16.00 **CET**
+* 9:30 - 13:30 **CET**
+
 
 * Location: virtual, via Zoom.
 
@@ -104,20 +108,18 @@ Suggested program
 Day 1: Introduction to Linux containers and Docker
 -------------
 
-* 12:00-13:30 Introduction to containers
-* 13:30-14:30 Lunch
-* 14:30-16:00 Introduction to Docker
+* 9:30-11:00 Introduction to containers
+* 11:00-11:30 Break
+* 11:30-13:00 Introduction to Docker
 
 .. _home-page-day2:
 
 Day 2: Docker and Singularity
 -------------
 
-* 10:00-11:30 Docker
-* 11:30-12:00 Coffee break
-* 12:00-13:30 Docker follow-up and Introduction to Singularity
-* 13:30-14:30 Lunch
-* 14:30-16:00 Singularity
+* 9:30-11:00 Docker
+* 11:00-11:30 Coffee break
+* 11:30-13:30 Singularity
 
 .. _home-page-day3:
 

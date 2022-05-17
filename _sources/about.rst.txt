@@ -10,7 +10,7 @@ About the course
 
 This slow-paced hands-on course is designed for absolute beginners who want to start using  `Nextflow DSL2 <https://www.nextflow.io>`_ to achieve reproducibility of the data analysis.
 
-* `Course page <https://www.crg.eu/en/event/coursescrg-reproducible-research-and-data-analysis-using-containers-nextflow-2022>`
+* `Course page <https://www.crg.eu/en/event/coursescrg-reproducible-research-and-data-analysis-using-containers-nextflow-2022>`_
 
 
 .. |luca| image:: images/lcozzuto.jpg

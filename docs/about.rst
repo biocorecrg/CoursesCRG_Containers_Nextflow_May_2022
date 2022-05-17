@@ -128,7 +128,9 @@ Day 2: Docker and Singularity (May 31)
 Day 3: Understand and run a basic Nexflow pipeline (June 1)
 ---------------
 
-
+* 09:30-11:00 
+* 11:00-11:30 
+* 11:30-13:30 
 
 .. _home-page-day4:
 
@@ -136,11 +138,19 @@ Day 4: Write, modify and run a complex pipeline (June 2)
 -------------
 
 
+* 09:30-11:00 
+* 11:00-11:30 
+* 11:30-13:30 
+
 .. _home-page-day5:
 
 Day 5: Run a Nextflow pipeline in different environments, share and report (June 3)
 -------------
 
+
+* 09:30-11:00 
+* 11:00-11:30 
+* 11:30-13:30 
 
 .. _home-page-day6:
 

@@ -91,7 +91,7 @@ Having a `GitHub account <https://github.com/join>`_ is recommended.
 Dates, time, location
 ============
 
-* Dates: Monday May 30 - Friday June 3, 2022
+* Dates: Monday May 30 - Friday June 3, 2022. Tuesday June 7, 2022
 
 * 9:30 - 13:30 **CET**
 

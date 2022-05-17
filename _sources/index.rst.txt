@@ -1,7 +1,7 @@
 .. _home-page:
 
 *******************
-CRG - Linux containers & Nextflow for reproducible research and open science
+Courses@CRG: Reproducible research and data analysis using Containers & Nextflow 2022
 *******************
 
 

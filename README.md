@@ -54,32 +54,32 @@ Having a [GitHub account](https://github.com/join) is recommended.
 
 ## Program
  
-### Day 1: Introduction to Linux containers, Docker
+### Day 1: Introduction to Linux containers, Docker (May 31)
 
 * 9:30-11:00 Introduction to containers and Docker
 * 11:00-11:30 Break
 * 11:30-13:00 Docker
 
-### Day 2: Docker and Singularity
+### Day 2: Docker and Singularity (June 1)
 
 * 9:30-11:00 More advanced Docker
 * 11:00-11:30 Coffee break
 * 11:30-13:30 Singularity
 
-### Day 3: Understand and run a basic Nexflow pipeline
+### Day 3: Understand and run a basic Nexflow pipeline (June 2)
 
 
 
-### Day 4: Write, modify and run a complex pipeline
+### Day 4: Write, modify and run a complex pipeline (June 3)
 
 
-### Day 5: Run a Nextflow pipeline in different environments, share and report
+### Day 5: Run a Nextflow pipeline in different environments, share and report (June 4)
 
 
 
 
 
-### Day 5: NF-core
+### Day 6: NF-core (June 7)
 
 ...
 

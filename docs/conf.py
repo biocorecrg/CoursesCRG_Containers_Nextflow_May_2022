@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'CRG - Linux containers & Nextflow for reproducible research and open science'
+project = 'Courses@CRG: Reproducible research and data analysis using Containers & Nextflow 2022'
 
 # -- General configuration ---------------------------------------------------
 

@@ -4,12 +4,13 @@
 About the course
 **************
 
-
 .. autosummary::
    :toctree: generated
 
 
 This slow-paced hands-on course is designed for absolute beginners who want to start using  `Nextflow DSL2 <https://www.nextflow.io>`_ to achieve reproducibility of the data analysis.
+
+* `Course page <https://www.crg.eu/en/event/coursescrg-reproducible-research-and-data-analysis-using-containers-nextflow-2022>`
 
 
 .. |luca| image:: images/lcozzuto.jpg
@@ -108,16 +109,16 @@ Suggested program
 Day 1: Introduction to Linux containers and Docker
 -------------
 
-* 9:30-11:00 Introduction to containers
+* 9:30-11:00 Introduction to containers and Docker
 * 11:00-11:30 Break
-* 11:30-13:00 Introduction to Docker
+* 11:30-13:00 Docker
 
 .. _home-page-day2:
 
 Day 2: Docker and Singularity
 -------------
 
-* 9:30-11:00 Docker
+* 9:30-11:00 More advanced Docker
 * 11:00-11:30 Coffee break
 * 11:30-13:30 Singularity
 

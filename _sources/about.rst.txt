@@ -153,7 +153,7 @@ Day 5: Run a Nextflow pipeline in different environments, share and report (June
 
 .. _home-page-day6:
 
-Day : nf-core (June 7)
+Day 6: nf-core (June 7)
 -------------
 
 * 09:30-10:30 Introduction to nf-core (TBC)

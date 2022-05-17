@@ -53,7 +53,7 @@ This Linux Containers and Nextflow course will train participants to build Nextf
 
 It is designed to provide trainees with short and frequent hands-on sessions, while keeping theoretical sessions to a minimum.
 
-The course will be fully virtual via the `Zoom <https://zoom.us/>`_ platform.
+The course will be fully virtual via the `Zoom <https://zoom.us/>`_ platform. The link will be provided via the `CRG learning platform <https://moodle.crg.eu/>`_.
 
 .. 
         Trainees will work in a dedicated `AWS environment <https://en.wikipedia.org/wiki/AWS/>`_.

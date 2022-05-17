@@ -14,19 +14,15 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 
 
 .. |luca| image:: images/lcozzuto.jpg
-  :height: 300
   :alt: Alternative text
 
 .. |toni| image:: images/thermoso.jpg
-  :height: 300
   :alt: Alternative text
   
 .. |jespi| image:: images/jespinosa.jpg
-  :height: 300
   :alt: Alternative text
 
 .. |julia| image:: images/jponomarenko.jpg
-  :height: 300
   :alt: Alternative text
 
 
@@ -53,7 +49,7 @@ This Linux Containers and Nextflow course will train participants to build Nextf
 
 It is designed to provide trainees with short and frequent hands-on sessions, while keeping theoretical sessions to a minimum.
 
-The course will be fully virtual via the `Zoom <https://zoom.us/>`_ platform.
+The course will be fully virtual via the `Zoom <https://zoom.us/>`_ platform. The link will be provided via the `CRG learning platform <https://moodle.crg.eu/>`_.
 
 .. 
         Trainees will work in a dedicated `AWS environment <https://en.wikipedia.org/wiki/AWS/>`_.
@@ -132,19 +128,18 @@ Day 2: Docker and Singularity (May 31)
 Day 3: Understand and run a basic Nexflow pipeline (June 1)
 ---------------
 
-* 09:30-11:00 
-* 11:00-11:30 
-* 11:30-13:30 
+* 09:30-11:00 (TBC)
+* 11:00-11:30 (TBC)
+* 11:30-13:30 (TBC)
 
 .. _home-page-day4:
 
 Day 4: Write, modify and run a complex pipeline (June 2)
 -------------
 
-
-* 09:30-11:00 
-* 11:00-11:30 
-* 11:30-13:30 
+* 09:30-11:00 (TBC)
+* 11:00-11:30 (TBC)
+* 11:30-13:30 (TBC)
 
 .. _home-page-day5:
 
@@ -152,13 +147,13 @@ Day 5: Run a Nextflow pipeline in different environments, share and report (June
 -------------
 
 
-* 09:30-11:00 
-* 11:00-11:30 
-* 11:30-13:30 
+* 09:30-11:00 (TBC)
+* 11:00-11:30 (TBC)
+* 11:30-13:30 (TBC)
 
 .. _home-page-day6:
 
-Day : nf-core (June 7)
+Day 6: nf-core (June 7)
 -------------
 
 * 09:30-10:30 Introduction to nf-core (TBC)

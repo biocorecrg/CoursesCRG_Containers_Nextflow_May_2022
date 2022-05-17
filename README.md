@@ -1,6 +1,6 @@
 # Courses@CRG_course_nextflow_May_2022
 
-Reproducible research and data analysis using Linux Containers and Nextflow pipelines
+Reproducible research and data analysis using Containers & Nextflow
 
 * [Course page](https://www.crg.eu/en/event/coursescrg-reproducible-research-and-data-analysis-using-containers-nextflow-2022)
 * [Course materials](https://biocorecrg.github.io/CoursesCRG_Containers_Nextflow_May_2022)

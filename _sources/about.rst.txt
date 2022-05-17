@@ -53,7 +53,7 @@ This Linux Containers and Nextflow course will train participants to build Nextf
 
 It is designed to provide trainees with short and frequent hands-on sessions, while keeping theoretical sessions to a minimum.
 
-The course will be fully virtual via the `Zoom <https://zoom.us/>`_ platform.
+The course will be fully virtual via the `Zoom <https://zoom.us/>`_ platform. The link will be provided via the `CRG learning platform <https://moodle.crg.eu/>`_.
 
 .. 
         Trainees will work in a dedicated `AWS environment <https://en.wikipedia.org/wiki/AWS/>`_.
@@ -132,19 +132,18 @@ Day 2: Docker and Singularity (May 31)
 Day 3: Understand and run a basic Nexflow pipeline (June 1)
 ---------------
 
-* 09:30-11:00 
-* 11:00-11:30 
-* 11:30-13:30 
+* 09:30-11:00 (TBC)
+* 11:00-11:30 (TBC)
+* 11:30-13:30 (TBC)
 
 .. _home-page-day4:
 
 Day 4: Write, modify and run a complex pipeline (June 2)
 -------------
 
-
-* 09:30-11:00 
-* 11:00-11:30 
-* 11:30-13:30 
+* 09:30-11:00 (TBC)
+* 11:00-11:30 (TBC)
+* 11:30-13:30 (TBC)
 
 .. _home-page-day5:
 
@@ -152,9 +151,9 @@ Day 5: Run a Nextflow pipeline in different environments, share and report (June
 -------------
 
 
-* 09:30-11:00 
-* 11:00-11:30 
-* 11:30-13:30 
+* 09:30-11:00 (TBC)
+* 11:00-11:30 (TBC)
+* 11:30-13:30 (TBC)
 
 .. _home-page-day6:
 

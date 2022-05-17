@@ -19,7 +19,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
 .. |toni| image:: images/thermoso.jpg
   :alt: Alternative text
   
-.. |toni| image:: images/jespionosa.jpg
+.. |jespi| image:: images/jespionosa.jpg
   :alt: Alternative text
 
 .. |julia| image:: images/jponomarenko.jpg
@@ -37,6 +37,7 @@ This slow-paced hands-on course is designed for absolute beginners who want to s
      - Julia Ponomarenko
    * - |luca|
      - |toni|
+     - |jespi|
      - |julia|
 
 .. _home-page-outline:

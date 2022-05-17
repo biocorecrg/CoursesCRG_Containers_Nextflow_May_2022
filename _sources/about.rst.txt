@@ -110,7 +110,7 @@ Suggested program
 Day 1: Introduction to Linux containers and Docker (May 30)
 -------------
 
-* 9:30-11:00 Introduction to containers and Docker
+* 09:30-11:00 Introduction to containers and Docker
 * 11:00-11:30 Break
 * 11:30-13:30 Docker
 
@@ -119,7 +119,7 @@ Day 1: Introduction to Linux containers and Docker (May 30)
 Day 2: Docker and Singularity (May 31)
 -------------
 
-* 9:30-11:00 More advanced Docker
+* 09:30-11:00 More advanced Docker
 * 11:00-11:30 Coffee break
 * 11:30-13:30 Singularity
 
@@ -144,7 +144,11 @@ Day 5: Run a Nextflow pipeline in different environments, share and report (June
 
 .. _home-page-day6:
 
-Day : NF-core (June 7)
+Day : nf-core (June 7)
 -------------
 
-
+* 09:30-10:30 Introduction to nf-core (TBC)
+* 10:30-11:00 Use nf-core pipelines I (TBC)
+* 11:00-11:30 Coffee break (TBC)
+* 11:30-12:30 Use nf-core pipelines II (TBC)
+* 12:30-13:30 Develop/contribute to nf-core (TBC)

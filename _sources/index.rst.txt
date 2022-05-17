@@ -1,7 +1,7 @@
 .. _home-page:
 
 *******************
-Courses@CRG: Reproducible research and data analysis using Containers & Nextflow 2022
+Courses @ CRG: Reproducible research and data analysis using Containers & Nextflow 2022
 *******************
 
 

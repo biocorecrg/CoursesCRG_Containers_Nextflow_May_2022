@@ -101,6 +101,54 @@
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<p>You can use Conda to install nf-core tools, in the command below we create a new named environment with nf-core and activate it.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda create --name nf-core nf-core</span>
+<span class="go">conda activate nf-core</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Find alternative ways of installation on the nf-core <a class="reference external" href="https://nf-co.re/tools/#installation">documentation</a></p>
+</div>
+<p>We can now check nf-core available commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">    nf-core</span>
+<span class="go">                                      ,--./,-.</span>
+<span class="go">      ___     __   __   __   ___     /,-._.--~\</span>
+<span class="go">|\ | |__  __ /  ` /  \ |__) |__         }  {</span>
+<span class="go">| \| |       \__, \__/ |  \ |___     \`-._,-`-,</span>
+<span class="go">                                      `._,._,&#39;</span>
+
+<span class="go">nf-core/tools version 2.4.1 - https://nf-co.re</span>
+
+
+
+<span class="go">    Usage: nf-core [OPTIONS] COMMAND [ARGS]...</span>
+
+<span class="go">    nf-core/tools provides a set of helper tools for use with nf-core Nextflow pipelines.</span>
+<span class="go">    It is designed for both end-users running pipelines and also developers creating new pipelines.</span>
+
+<span class="go">    ╭─ Options ────────────────────────────────────────────────────────────────────────────────────────╮</span>
+<span class="go">    │  --version                   Show the version and exit.                                          │</span>
+<span class="go">    │  --verbose   -v              Print verbose output to the console.                                │</span>
+<span class="go">    │  --log-file  -l  &lt;filename&gt;  Save a verbose log to a file.                                       │</span>
+<span class="go">    │  --help      -h              Show this message and exit.                                         │</span>
+<span class="go">    ╰──────────────────────────────────────────────────────────────────────────────────────────────────╯</span>
+<span class="go">    ╭─ Commands for users ─────────────────────────────────────────────────────────────────────────────╮</span>
+<span class="go">    │  list      List available nf-core pipelines with local info.                                     │</span>
+<span class="go">    │  launch    Launch a pipeline using a web GUI or command line prompts.                            │</span>
+<span class="go">    │  download  Download a pipeline, nf-core/configs and pipeline singularity images.                 │</span>
+<span class="go">    │  licences  List software licences for a given workflow.                                          │</span>
+<span class="go">    ╰──────────────────────────────────────────────────────────────────────────────────────────────────╯</span>
+<span class="go">    ╭─ Commands for developers ────────────────────────────────────────────────────────────────────────╮</span>
+<span class="go">    │  create        Create a new pipeline using the nf-core template.                                 │</span>
+<span class="go">    │  lint          Check pipeline code against nf-core guidelines.                                   │</span>
+<span class="go">    │  modules       Commands to manage Nextflow DSL2 modules (tool wrappers).                         │</span>
+<span class="go">    │  schema        Suite of tools for developers to manage pipeline schema.                          │</span>
+<span class="go">    │  bump-version  Update nf-core pipeline version number.                                           │</span>
+<span class="go">    │  sync          Sync a pipeline TEMPLATE branch with the nf-core template.                        │</span>
+<span class="go">    ╰──────────────────────────────────────────────────────────────────────────────────────────────────╯</span>
+</pre></div>
+</div>
 </section>
 </section>
 

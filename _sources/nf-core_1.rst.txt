@@ -27,3 +27,55 @@ The main nf-core was published in 2020 in `Nature Biotechnology <https://pubmed.
 Installation
 ------------
 
+You can use Conda to install nf-core tools, in the command below we create a new named environment with nf-core and activate it. 
+
+.. code-block:: console
+
+	conda create --name nf-core nf-core 
+	conda activate nf-core
+
+.. tip::
+	
+	Find alternative ways of installation on the nf-core `documentation <https://nf-co.re/tools/#installation>`__
+
+We can now check nf-core available commands:
+
+.. code-block:: console
+
+	nf-core
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.4.1 - https://nf-co.re
+
+
+																																			
+	Usage: nf-core [OPTIONS] COMMAND [ARGS]...                                                                                                
+																																			
+	nf-core/tools provides a set of helper tools for use with nf-core Nextflow pipelines.                                                     
+	It is designed for both end-users running pipelines and also developers creating new pipelines.                                           
+																																			
+	╭─ Options ────────────────────────────────────────────────────────────────────────────────────────╮
+	│  --version                   Show the version and exit.                                          │
+	│  --verbose   -v              Print verbose output to the console.                                │
+	│  --log-file  -l  <filename>  Save a verbose log to a file.                                       │
+	│  --help      -h              Show this message and exit.                                         │
+	╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+	╭─ Commands for users ─────────────────────────────────────────────────────────────────────────────╮
+	│  list      List available nf-core pipelines with local info.                                     │
+	│  launch    Launch a pipeline using a web GUI or command line prompts.                            │
+	│  download  Download a pipeline, nf-core/configs and pipeline singularity images.                 │
+	│  licences  List software licences for a given workflow.                                          │
+	╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+	╭─ Commands for developers ────────────────────────────────────────────────────────────────────────╮
+	│  create        Create a new pipeline using the nf-core template.                                 │
+	│  lint          Check pipeline code against nf-core guidelines.                                   │
+	│  modules       Commands to manage Nextflow DSL2 modules (tool wrappers).                         │
+	│  schema        Suite of tools for developers to manage pipeline schema.                          │
+	│  bump-version  Update nf-core pipeline version number.                                           │
+	│  sync          Sync a pipeline TEMPLATE branch with the nf-core template.                        │
+	╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+

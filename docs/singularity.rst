@@ -83,7 +83,7 @@ Example: `https://biocontainers.pro/tools/fastqc <https://biocontainers.pro/tool
 Via quay.io
 ***********
 
-`https://quay.io/repository/biocontainers/fastqc <https://quay.io/repository/biocontainers/fastqc)>`__
+`https://quay.io/repository/biocontainers/fastqc <https://quay.io/repository/biocontainers/fastqc>`__
 
 .. code-block:: console
 

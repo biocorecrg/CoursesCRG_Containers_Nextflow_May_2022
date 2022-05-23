@@ -438,4 +438,4 @@ Note about the tar formats
 Exercises
 =========
 
-We explore interactively the different examples in the container/docker folders.
+We explore interactively the different examples in the containers/docker folders.

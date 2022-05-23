@@ -44,7 +44,7 @@ Nowadays, there may be some confusion since there are two projects:
 
 They "forked" in 2021. So far they share most of the codebase, but eventually this could be different, and software might have different functionality.
 
-The former is already "End Of Life" and its development continues named as **`Apptainer <http://apptainer.org/>`_**, under the support of the Linux Foundation.
+The former is already "End Of Life" and its development continues named as `Apptainer <http://apptainer.org/>`_, under the support of the Linux Foundation.
 
 Container registries
 ====================

@@ -39,12 +39,12 @@ Writable (development, via sandbox)
 
 Nowadays, there may be some confusion since there are two projects:
 
-* `HPCng Singularity <https://singularity.hpcng.org/>`__
+* `Apptainer Singularity <https://github.com/apptainer/singularity>`__
 * `Sylabs Singularity <https://sylabs.io/singularity/>`__
 
-They "forked" not long ago. So far they share most of the codebase, but eventually this might be different, and software might have different functionality.
+They "forked" in 2021. So far they share most of the codebase, but eventually this could be different, and software might have different functionality.
 
-The former will end up being named **Apptainer**, and it is currently supported by the Linux Foundation.
+The former is already "End Of Life" and its development continues named as `**Apptainer** <http://apptainer.org/>`_, under the support of the Linux Foundation.
 
 Container registries
 ====================

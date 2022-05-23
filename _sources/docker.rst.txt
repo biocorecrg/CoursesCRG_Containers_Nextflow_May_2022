@@ -482,7 +482,7 @@ Volume exercises
 
 2. Run fastqc interactively (inside container): ```fastqc  /scratch/*.gz```
 
-3. Run fastqc outside the container
+3. Run fastqc non-interactively (outside the container)
 
 docker run --user
 -----------------

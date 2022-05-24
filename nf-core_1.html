@@ -57,7 +57,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#nf-core-for-users">nf-core for users</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#listing-pipelines">Listing pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#launching-pipelines">Launching pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filtering-available-nf-core-pipelines">Filtering available nf-core pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pulling-pipelines">Pulling pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launching-pipelines">Launching pipelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nf-core-profiles">nf-core profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nf-core-configs">nf-core configs</a></li>
 </ul>
 </li>
 </ul>
@@ -101,7 +108,8 @@
 </section>
 <section id="helper-tools">
 <h2>Helper tools<a class="headerlink" href="#helper-tools" title="Permalink to this headline"></a></h2>
-<p>The main nf-core was published in 2020 in <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/32055031/">Nature Biotechnology</a> and describes the community and framework.</p>
+<p>The main nf-core was published in 2020 in <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/32055031/">Nature Biotechnology</a> and
+describes the community and framework.</p>
 <a class="reference internal image-reference" href="_images/nf-core-paper.png"><img alt="_images/nf-core-paper.png" src="_images/nf-core-paper.png" style="width: 600px;" /></a>
 </section>
 <section id="installation">
@@ -114,8 +122,8 @@ and then, we activate it.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We assume <code class="docutils literal notranslate"><span class="pre">Nextflow</span></code> has been installed in your system during the previous sessions of the course and it is available
-in your path.</p>
+<p>We assume <code class="docutils literal notranslate"><span class="pre">Nextflow</span></code> has been installed in your system during the previous sessions of the course and it is
+available in your path.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -203,13 +211,54 @@ and when you last pulled the pipeline to your local system.</p>
 <span class="go">│ bactmap                │    29 │          1.0.0 │ 11 months ago │            - │ -                    │</span>
 <span class="go">│ smrnaseq               │    39 │          1.1.0 │ 11 months ago │ 6 months ago │ Yes (v1.1.0)         │</span>
 <span class="go">│ sarek                  │   167 │          2.7.1 │ 11 months ago │ 2 months ago │ Yes (v2.7.1)         │</span>
-<span class="go">...</span>
+<span class="go">[..truncated..]</span>
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The pipelines can be sorted by latest release (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">release</span></code>, default), by the last time you pulled a local copy (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">pulled</span></code>),
-alphabetically (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">name</span></code>) or by the number of GitHub stars (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">stars</span></code>).</p>
+<p>The pipelines can be sorted by latest release (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">release</span></code>, default), by the last time you pulled a local copy
+(<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">pulled</span></code>), alphabetically (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">name</span></code>) or by the number of GitHub stars (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">stars</span></code>).</p>
+</div>
+</section>
+<section id="filtering-available-nf-core-pipelines">
+<h2>Filtering available nf-core pipelines<a class="headerlink" href="#filtering-available-nf-core-pipelines" title="Permalink to this headline"></a></h2>
+<p>It is also possible to use keywords after the <code class="docutils literal notranslate"><span class="pre">list</span></code> command so that the list of pipelines is shortened to those
+matching the keywords or including them in the description. We can use the command below to filter on the <strong>rna</strong>
+and <strong>rna-seq</strong> keywords:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core list rna rna-seq
+<span class="go">                                          ,--./,-.</span>
+<span class="go">          ___     __   __   __   ___     /,-._.--~\</span>
+<span class="go">    |\ | |__  __ /  ` /  \ |__) |__         }  {</span>
+<span class="go">    | \| |       \__, \__/ |  \ |___     \`-._,-`-,</span>
+<span class="go">                                          `._,._,&#39;</span>
+
+<span class="go">nf-core/tools version 2.4.1 - https://nf-co.re</span>
+
+
+<span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓</span>
+<span class="go">┃ Pipeline Name          ┃ Stars ┃ Latest Release ┃      Released ┃  Last Pulled ┃ Have latest release? ┃</span>
+<span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩</span>
+<span class="go">│ rnafusion              │    70 │          2.0.0 │    5 days ago │            - │ -                    │</span>
+<span class="go">│ rnaseq                 │   460 │            3.7 │   3 weeks ago │ 2 months ago │ No (v3.6)            │</span>
+<span class="go">│ smrnaseq               │    39 │          1.1.0 │ 11 months ago │ 6 months ago │ Yes (v1.1.0)         │</span>
+<span class="go">│ dualrnaseq             │     7 │          1.0.0 │   1 years ago │            - │ -                    │</span>
+<span class="go">│ circrna                │    18 │            dev │             - │            - │ -                    │</span>
+<span class="go">│ lncpipe                │    23 │            dev │             - │            - │ -                    │</span>
+<span class="go">│ scflow                 │    12 │            dev │             - │            - │ -                    │</span>
+<span class="go">│ spatialtranscriptomics │     3 │            dev │             - │            - │ -                    │</span>
+<span class="go">└────────────────────────┴───────┴────────────────┴───────────────┴──────────────┴──────────────────────┘</span>
+</pre></div>
+</div>
+</section>
+<section id="pulling-pipelines">
+<h2>Pulling pipelines<a class="headerlink" href="#pulling-pipelines" title="Permalink to this headline"></a></h2>
+<p>Once we have identified the nf-core pipeline we want to use we can pull it using the Nextflow <a class="reference external" href="https://www.nextflow.io/docs/latest/sharing.html#pulling-or-updating-a-project">built-in functionality</a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nextflow pull nf-core/&lt;PIPELINE&gt;
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Nextflow will also automatically pull a project if you use <code class="docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">nf-core/&lt;PIPELINE&gt;</span></code></p>
 </div>
 </section>
 <section id="launching-pipelines">
@@ -226,15 +275,32 @@ since it displays the documentation alongside each of the parameters and validat
 <p>The pipelines can be sorted by latest release (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">release</span></code>, default), by the last time you pulled a local copy
 (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">pulled</span></code>), alphabetically (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">name</span></code>) or by the number of GitHub stars (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">stars</span></code>).</p>
 </div>
-<p>To render the description of the parameters, its grouping and defaults, the tool uses the <code class="docutils literal notranslate"><span class="pre">nextflow_schema.json</span></code>.</p>
-<p>The chosen parameters are dumped into a JSON file called <code class="docutils literal notranslate"><span class="pre">nf-params.json</span></code>. This file can be provided to new executions using
-the <code class="docutils literal notranslate"><span class="pre">-params-file</span></code> flag.</p>
+<p>To render the description of the parameters, its grouping and defaults, the tool uses the <code class="docutils literal notranslate"><span class="pre">nextflow_schema.json</span></code>. This
+JSON file is bundled with the pipeline and includes all the information mentioned above, see an example <a class="reference external" href="https://github.com/nf-core/rnaseq/blob/03d17893618c44075e4c91d83dc0e72b58f6f0f7/nextflow_schema.json">here</a>.</p>
+<p>The chosen not default parameters are dumped into a JSON file called <code class="docutils literal notranslate"><span class="pre">nf-params.json</span></code>. This file can be provided to new executions
+using the <code class="docutils literal notranslate"><span class="pre">-params-file</span></code> flag. See below an example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;outdir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;results&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/nf-core/test-datasets/rnaseq/samplesheet/v3.4/samplesheet_test.csv&quot;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+<p>It is a good practice in terms of reproducibility to explicitly indicate the version (revision) of the pipeline that
+you want to use, this can be indicated using the <cite>-r</cite> flag e.g. <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">launch</span> <span class="pre">rnaseq</span> <span class="pre">-r</span> <span class="pre">3.7</span></code>.</p>
+<section id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline"></a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">launch</span></code> command to run a previous version of the pipeline and produce the <code class="docutils literal notranslate"><span class="pre">nf-params.json</span></code></p>
+<details>
+<summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core launch rnaseq -r 3.6</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="nf-core-profiles">
+<h2>nf-core profiles<a class="headerlink" href="#nf-core-profiles" title="Permalink to this headline"></a></h2>
+</section>
+<section id="nf-core-configs">
+<h2>nf-core configs<a class="headerlink" href="#nf-core-configs" title="Permalink to this headline"></a></h2>
 </section>
 </section>
 

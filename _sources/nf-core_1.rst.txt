@@ -20,7 +20,8 @@ Standard
 Helper tools
 ------------
 
-The main nf-core was published in 2020 in `Nature Biotechnology <https://pubmed.ncbi.nlm.nih.gov/32055031/>`__ and describes the community and framework.
+The main nf-core was published in 2020 in `Nature Biotechnology <https://pubmed.ncbi.nlm.nih.gov/32055031/>`__ and 
+describes the community and framework.
 
 .. image:: images/nf-core-paper.png
 	:width: 600
@@ -37,8 +38,8 @@ and then, we activate it.
 	conda activate nf-core
 
 .. note::	
-	We assume ``Nextflow`` has been installed in your system during the previous sessions of the course and it is available 
-	in your path. 
+	We assume ``Nextflow`` has been installed in your system during the previous sessions of the course and it is 
+	available in your path. 
 
 .. tip::
 	Find alternative ways of installation on the nf-core `documentation <https://nf-co.re/tools/#installation>`__
@@ -132,11 +133,56 @@ and when you last pulled the pipeline to your local system.
 	│ bactmap                │    29 │          1.0.0 │ 11 months ago │            - │ -                    │
 	│ smrnaseq               │    39 │          1.1.0 │ 11 months ago │ 6 months ago │ Yes (v1.1.0)         │
 	│ sarek                  │   167 │          2.7.1 │ 11 months ago │ 2 months ago │ Yes (v2.7.1)         │
-	...
+	[..truncated..]
 
 .. tip::
-	The pipelines can be sorted by latest release (``-s release``, default), by the last time you pulled a local copy (``-s pulled``), 
-	alphabetically (``-s name``) or by the number of GitHub stars (``-s stars``).
+	The pipelines can be sorted by latest release (``-s release``, default), by the last time you pulled a local copy 
+	(``-s pulled``), alphabetically (``-s name``) or by the number of GitHub stars (``-s stars``).
+
+Filtering available nf-core pipelines
+-------------------------------------
+
+It is also possible to use keywords after the ``list`` command so that the list of pipelines is shortened to those
+matching the keywords or including them in the description. We can use the command below to filter on the **rna**
+and **rna-seq** keywords:
+
+.. code-block:: console
+	
+	$ nf-core list rna rna-seq
+	                                          ,--./,-.
+	          ___     __   __   __   ___     /,-._.--~\
+	    |\ | |__  __ /  ` /  \ |__) |__         }  {
+	    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+	                                          `._,._,'
+
+    	nf-core/tools version 2.4.1 - https://nf-co.re
+
+
+	┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+	┃ Pipeline Name          ┃ Stars ┃ Latest Release ┃      Released ┃  Last Pulled ┃ Have latest release? ┃
+	┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+	│ rnafusion              │    70 │          2.0.0 │    5 days ago │            - │ -                    │
+	│ rnaseq                 │   460 │            3.7 │   3 weeks ago │ 2 months ago │ No (v3.6)            │
+	│ smrnaseq               │    39 │          1.1.0 │ 11 months ago │ 6 months ago │ Yes (v1.1.0)         │
+	│ dualrnaseq             │     7 │          1.0.0 │   1 years ago │            - │ -                    │
+	│ circrna                │    18 │            dev │             - │            - │ -                    │
+	│ lncpipe                │    23 │            dev │             - │            - │ -                    │
+	│ scflow                 │    12 │            dev │             - │            - │ -                    │
+	│ spatialtranscriptomics │     3 │            dev │             - │            - │ -                    │
+	└────────────────────────┴───────┴────────────────┴───────────────┴──────────────┴──────────────────────┘
+
+
+Pulling pipelines
+-----------------
+
+Once we have identified the nf-core pipeline we want to use we can pull it using the Nextflow `built-in functionality <https://www.nextflow.io/docs/latest/sharing.html#pulling-or-updating-a-project>`__.
+
+.. code-block:: console
+
+	$ nextflow pull nf-core/<PIPELINE>
+
+.. tip::
+	Nextflow will also automatically pull a project if you use ``nextflow run nf-core/<PIPELINE>``
 
 Launching pipelines
 -------------------
@@ -155,12 +201,33 @@ We can now launch an nf-core pipeline:
 	The pipelines can be sorted by latest release (``-s release``, default), by the last time you pulled a local copy 
 	(``-s pulled``), alphabetically (``-s name``) or by the number of GitHub stars (``-s stars``).
 
-To render the description of the parameters, its grouping and defaults, the tool uses the ``nextflow_schema.json``.
+To render the description of the parameters, its grouping and defaults, the tool uses the ``nextflow_schema.json``. This
+JSON file is bundled with the pipeline and includes all the information mentioned above, see an example `here <https://github.com/nf-core/rnaseq/blob/03d17893618c44075e4c91d83dc0e72b58f6f0f7/nextflow_schema.json>`__.
 
-The chosen parameters are dumped into a JSON file called ``nf-params.json``. This file can be provided to new executions using
-the ``-params-file`` flag.
+The chosen not default parameters are dumped into a JSON file called ``nf-params.json``. This file can be provided to new executions 
+using the ``-params-file`` flag. See below an example:
 
 .. literalinclude:: ../nf-core/examples/nf-params.json
 	:language: json
 
-.. note::
+It is a good practice in terms of reproducibility to explicitly indicate the version (revision) of the pipeline that 
+you want to use, this can be indicated using the `-r` flag e.g. ``nf-core launch rnaseq -r 3.7``.
+
+Exercise
+*********
+Use the ``nf-core launch`` command to run a previous version of the pipeline and produce the ``nf-params.json``
+
+.. raw:: html
+
+	<details>
+	<summary><a>Solution</a></summary>
+
+.. code-block:: console
+
+	nf-core launch rnaseq -r 3.6
+
+nf-core profiles
+----------------
+
+nf-core configs
+---------------

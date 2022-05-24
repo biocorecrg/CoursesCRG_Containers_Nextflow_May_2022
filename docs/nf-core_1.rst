@@ -5,6 +5,7 @@
 
 Introduction to nf-core
 =======================
+
 nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow. 
 
 Community
@@ -42,7 +43,7 @@ We can now check nf-core available commands:
 
 .. code-block:: console
 
-	nf-core
+	$ nf-core
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
     |\ | |__  __ /  ` /  \ |__) |__         }  {
@@ -79,3 +80,20 @@ We can now check nf-core available commands:
 	│  sync          Sync a pipeline TEMPLATE branch with the nf-core template.                        │
 	╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
 
+As shown in the screenshot, nf-core tools provide with some commands meant for users and with some commands meant
+for developers. We will start first discussing how nf-core can be used from a user point of view.
+
+nf-core for users
+=================
+
+Listing pipelines
+------------------
+
+To show all the nf-core available pipelines, we can use the nf-core list command. This command also
+provides some other information as the last version of each of the nf-core pipelines, its publication and
+and when you last pulled the pipeline to your local system.
+
+
+.. code-block:: console
+
+	$ nf-core list

@@ -87,10 +87,10 @@ Having a [GitHub account](https://github.com/join) is recommended.
 ### Day 6: nf-core (June 7)
 
 * 09:30-10:30 Introduction to nf-core (TBC)
-* 10:30-11:00 Use nf-core pipelines I (TBC)
+* 10:30-11:00 nf-core for users I (TBC)
 * 11:00-11:30 Coffee break (TBC)
-* 11:30-12:30 Use nf-core pipelines II (TBC)
-* 12:30-13:30 Develop/contribute to nf-core (TBC)
+* 11:30-12:30 nf-core for users II (TBC)
+* 12:30-13:30 nf-core for developers (TBC)
 
 ## Acknowledgements
 

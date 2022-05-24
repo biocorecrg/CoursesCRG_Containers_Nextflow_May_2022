@@ -57,6 +57,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#nf-core-for-users">nf-core for users</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#listing-pipelines">Listing pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launching-pipelines">Launching pipelines</a></li>
 </ul>
 </li>
 </ul>
@@ -105,10 +106,16 @@
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
-<p>You can use Conda to install nf-core tools, in the command below we create a new named environment with nf-core and activate it.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda create --name nf-core nf-core</span>
+<p>You can use Conda to install nf-core tools, in the command below we create a new named environment that includes nf-core
+and then, we activate it.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda create --name nf-core nf-core -c bioconda -y</span>
 <span class="go">conda activate nf-core</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We assume <code class="docutils literal notranslate"><span class="pre">Nextflow</span></code> has been installed in your system during the previous sessions of the course and it is available
+in your path.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -165,6 +172,67 @@ for developers. We will start first discussing how nf-core can be used from a us
 provides some other information as the last version of each of the nf-core pipelines, its publication and
 and when you last pulled the pipeline to your local system.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core list
+<span class="go">                                          ,--./,-.</span>
+<span class="go">          ___     __   __   __   ___     /,-._.--~\</span>
+<span class="go">    |\ | |__  __ /  ` /  \ |__) |__         }  {</span>
+<span class="go">    | \| |       \__, \__/ |  \ |___     \`-._,-`-,</span>
+<span class="go">                                          `._,._,&#39;</span>
+
+<span class="go">nf-core/tools version 2.4.1 - https://nf-co.re</span>
+
+
+<span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓</span>
+<span class="go">┃ Pipeline Name          ┃ Stars ┃ Latest Release ┃      Released ┃  Last Pulled ┃ Have latest release? ┃</span>
+<span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩</span>
+<span class="go">│ rnafusion              │    70 │          2.0.0 │    5 days ago │            - │ -                    │</span>
+<span class="go">│ fetchngs               │    57 │            1.6 │    1 week ago │            - │ -                    │</span>
+<span class="go">│ atacseq                │   106 │          1.2.2 │   2 weeks ago │  5 hours ago │ Yes (v1.2.2)         │</span>
+<span class="go">│ mhcquant               │    19 │          2.3.1 │   2 weeks ago │            - │ -                    │</span>
+<span class="go">│ hicar                  │     2 │          1.0.0 │   3 weeks ago │            - │ -                    │</span>
+<span class="go">│ rnaseq                 │   460 │            3.7 │   3 weeks ago │ 2 months ago │ No (v3.6)            │</span>
+<span class="go">│ quantms                │     1 │            1.0 │   3 weeks ago │            - │ -                    │</span>
+<span class="go">│ airrflow               │    19 │          2.1.0 │   3 weeks ago │            - │ -                    │</span>
+<span class="go">│ eager                  │    65 │          2.4.4 │  2 months ago │            - │ -                    │</span>
+<span class="go">│ ampliseq               │    88 │          2.3.1 │  2 months ago │            - │ -                    │</span>
+<span class="go">│ viralrecon             │    69 │          2.4.1 │  3 months ago │ 6 months ago │ No (v2.2)            │</span>
+<span class="go">│ cutandrun              │    27 │            1.1 │  4 months ago │            - │ -                    │</span>
+<span class="go">│ epitopeprediction      │    18 │          2.0.0 │  5 months ago │            - │ -                    │</span>
+<span class="go">│ nanoseq                │    73 │          2.0.1 │  6 months ago │            - │ -                    │</span>
+<span class="go">│ mag                    │    88 │          2.1.1 │  6 months ago │            - │ -                    │</span>
+<span class="go">│ bacass                 │    35 │          2.0.0 │  9 months ago │            - │ -                    │</span>
+<span class="go">│ bactmap                │    29 │          1.0.0 │ 11 months ago │            - │ -                    │</span>
+<span class="go">│ smrnaseq               │    39 │          1.1.0 │ 11 months ago │ 6 months ago │ Yes (v1.1.0)         │</span>
+<span class="go">│ sarek                  │   167 │          2.7.1 │ 11 months ago │ 2 months ago │ Yes (v2.7.1)         │</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The pipelines can be sorted by latest release (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">release</span></code>, default), by the last time you pulled a local copy (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">pulled</span></code>),
+alphabetically (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">name</span></code>) or by the number of GitHub stars (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">stars</span></code>).</p>
+</div>
+</section>
+<section id="launching-pipelines">
+<h2>Launching pipelines<a class="headerlink" href="#launching-pipelines" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">launch</span></code> command enables to launch nf-core, and also Nextflow, pipelines via a web-based graphical interface or an
+interactive command-line wizard tool. This command becomes handy for pipelines with a considerable number of parameters
+since it displays the documentation alongside each of the parameters and validate your inputs.</p>
+<p>We can now launch an nf-core pipeline:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core launch
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The pipelines can be sorted by latest release (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">release</span></code>, default), by the last time you pulled a local copy
+(<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">pulled</span></code>), alphabetically (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">name</span></code>) or by the number of GitHub stars (<code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">stars</span></code>).</p>
+</div>
+<p>To render the description of the parameters, its grouping and defaults, the tool uses the <code class="docutils literal notranslate"><span class="pre">nextflow_schema.json</span></code>.</p>
+<p>The chosen parameters are dumped into a JSON file called <code class="docutils literal notranslate"><span class="pre">nf-params.json</span></code>. This file can be provided to new executions using
+the <code class="docutils literal notranslate"><span class="pre">-params-file</span></code> flag.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;outdir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;results&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/nf-core/test-datasets/rnaseq/samplesheet/v3.4/samplesheet_test.csv&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

@@ -28,15 +28,19 @@ The main nf-core was published in 2020 in `Nature Biotechnology <https://pubmed.
 Installation
 ------------
 
-You can use Conda to install nf-core tools, in the command below we create a new named environment with nf-core and activate it. 
+You can use Conda to install nf-core tools, in the command below we create a new named environment that includes nf-core
+and then, we activate it.
 
 .. code-block:: console
 
-	conda create --name nf-core nf-core 
+	conda create --name nf-core nf-core -c bioconda -y 
 	conda activate nf-core
 
+.. note::	
+	We assume ``Nextflow`` has been installed in your system during the previous sessions of the course and it is available 
+	in your path. 
+
 .. tip::
-	
 	Find alternative ways of installation on the nf-core `documentation <https://nf-co.re/tools/#installation>`__
 
 We can now check nf-core available commands:
@@ -97,3 +101,66 @@ and when you last pulled the pipeline to your local system.
 .. code-block:: console
 
 	$ nf-core list
+	                                          ,--./,-.
+	          ___     __   __   __   ___     /,-._.--~\
+	    |\ | |__  __ /  ` /  \ |__) |__         }  {
+	    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+	                                          `._,._,'
+
+    	nf-core/tools version 2.4.1 - https://nf-co.re
+
+
+	┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+	┃ Pipeline Name          ┃ Stars ┃ Latest Release ┃      Released ┃  Last Pulled ┃ Have latest release? ┃
+	┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+	│ rnafusion              │    70 │          2.0.0 │    5 days ago │            - │ -                    │
+	│ fetchngs               │    57 │            1.6 │    1 week ago │            - │ -                    │
+	│ atacseq                │   106 │          1.2.2 │   2 weeks ago │  5 hours ago │ Yes (v1.2.2)         │
+	│ mhcquant               │    19 │          2.3.1 │   2 weeks ago │            - │ -                    │
+	│ hicar                  │     2 │          1.0.0 │   3 weeks ago │            - │ -                    │
+	│ rnaseq                 │   460 │            3.7 │   3 weeks ago │ 2 months ago │ No (v3.6)            │
+	│ quantms                │     1 │            1.0 │   3 weeks ago │            - │ -                    │
+	│ airrflow               │    19 │          2.1.0 │   3 weeks ago │            - │ -                    │
+	│ eager                  │    65 │          2.4.4 │  2 months ago │            - │ -                    │
+	│ ampliseq               │    88 │          2.3.1 │  2 months ago │            - │ -                    │
+	│ viralrecon             │    69 │          2.4.1 │  3 months ago │ 6 months ago │ No (v2.2)            │
+	│ cutandrun              │    27 │            1.1 │  4 months ago │            - │ -                    │
+	│ epitopeprediction      │    18 │          2.0.0 │  5 months ago │            - │ -                    │
+	│ nanoseq                │    73 │          2.0.1 │  6 months ago │            - │ -                    │
+	│ mag                    │    88 │          2.1.1 │  6 months ago │            - │ -                    │
+	│ bacass                 │    35 │          2.0.0 │  9 months ago │            - │ -                    │
+	│ bactmap                │    29 │          1.0.0 │ 11 months ago │            - │ -                    │
+	│ smrnaseq               │    39 │          1.1.0 │ 11 months ago │ 6 months ago │ Yes (v1.1.0)         │
+	│ sarek                  │   167 │          2.7.1 │ 11 months ago │ 2 months ago │ Yes (v2.7.1)         │
+	...
+
+.. tip::
+	The pipelines can be sorted by latest release (``-s release``, default), by the last time you pulled a local copy (``-s pulled``), 
+	alphabetically (``-s name``) or by the number of GitHub stars (``-s stars``).
+
+Launching pipelines
+-------------------
+
+The ``launch`` command enables to launch nf-core, and also Nextflow, pipelines via a web-based graphical interface or an
+interactive command-line wizard tool. This command becomes handy for pipelines with a considerable number of parameters 
+since it displays the documentation alongside each of the parameters and validate your inputs.
+
+We can now launch an nf-core pipeline:
+
+.. code-block:: console
+
+	$ nf-core launch
+
+.. note::
+	The pipelines can be sorted by latest release (``-s release``, default), by the last time you pulled a local copy 
+	(``-s pulled``), alphabetically (``-s name``) or by the number of GitHub stars (``-s stars``).
+
+To render the description of the parameters, its grouping and defaults, the tool uses the ``nextflow_schema.json``.
+
+The chosen parameters are dumped into a JSON file called ``nf-params.json``. This file can be provided to new executions using
+the ``-params-file`` flag.
+
+.. literalinclude:: ../nf-core/examples/nf-params.json
+	:language: json
+
+.. note::

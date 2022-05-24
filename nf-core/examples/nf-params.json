@@ -1,0 +1,4 @@
+{
+    "outdir": "results",
+    "input": "https://raw.githubusercontent.com/nf-core/test-datasets/rnaseq/samplesheet/v3.4/samplesheet_test.csv"
+}

@@ -55,6 +55,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#nf-core-for-users">nf-core for users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#listing-pipelines">Listing pipelines</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -111,7 +115,7 @@
 <p>Find alternative ways of installation on the nf-core <a class="reference external" href="https://nf-co.re/tools/#installation">documentation</a></p>
 </div>
 <p>We can now check nf-core available commands:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">    nf-core</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">    $ </span>nf-core
 <span class="go">                                      ,--./,-.</span>
 <span class="go">      ___     __   __   __   ___     /,-._.--~\</span>
 <span class="go">|\ | |__  __ /  ` /  \ |__) |__         }  {</span>
@@ -147,6 +151,20 @@
 <span class="go">    │  bump-version  Update nf-core pipeline version number.                                           │</span>
 <span class="go">    │  sync          Sync a pipeline TEMPLATE branch with the nf-core template.                        │</span>
 <span class="go">    ╰──────────────────────────────────────────────────────────────────────────────────────────────────╯</span>
+</pre></div>
+</div>
+<p>As shown in the screenshot, nf-core tools provide with some commands meant for users and with some commands meant
+for developers. We will start first discussing how nf-core can be used from a user point of view.</p>
+</section>
+</section>
+<section id="nf-core-for-users">
+<h1>nf-core for users<a class="headerlink" href="#nf-core-for-users" title="Permalink to this headline"></a></h1>
+<section id="listing-pipelines">
+<h2>Listing pipelines<a class="headerlink" href="#listing-pipelines" title="Permalink to this headline"></a></h2>
+<p>To show all the nf-core available pipelines, we can use the nf-core list command. This command also
+provides some other information as the last version of each of the nf-core pipelines, its publication and
+and when you last pulled the pipeline to your local system.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core list
 </pre></div>
 </div>
 </section>

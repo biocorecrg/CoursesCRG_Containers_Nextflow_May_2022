@@ -59,7 +59,7 @@ Search and install packages
   yum install -y libxml2-devel.x86_64
 
 
->Note the **-y** option that we set for updating and for installing.<br>
+Note the **-y** option that we set for updating and for installing.<br>
 It is an important option in the context of Docker: it means that you *answer yes to all questions* regarding installation.
 
 
@@ -438,4 +438,4 @@ Note about the tar formats
 Exercises
 =========
 
-We explore interactively the different examples in the container/docker folders.
+We explore interactively the different examples in the containers/docker folders.

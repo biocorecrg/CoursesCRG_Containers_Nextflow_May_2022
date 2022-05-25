@@ -39,12 +39,12 @@ Writable (development, via sandbox)
 
 Nowadays, there may be some confusion since there are two projects:
 
-* `HPCng Singularity <https://singularity.hpcng.org/>`__
+* `Apptainer Singularity <https://github.com/apptainer/singularity>`__
 * `Sylabs Singularity <https://sylabs.io/singularity/>`__
 
-They "forked" not long ago. So far they share most of the codebase, but eventually this might be different, and software might have different functionality.
+They "forked" in 2021. So far they share most of the codebase, but eventually this could be different, and software might have different functionality.
 
-The former will end up being named **Apptainer**, and it is currently supported by the Linux Foundation.
+The former is already "End Of Life" and its development continues named as `Apptainer <http://apptainer.org/>`_, under the support of the Linux Foundation.
 
 Container registries
 ====================
@@ -83,7 +83,7 @@ Example: `https://biocontainers.pro/tools/fastqc <https://biocontainers.pro/tool
 Via quay.io
 ***********
 
-`https://quay.io/repository/biocontainers/fastqc <https://quay.io/repository/biocontainers/fastqc)>`__
+`https://quay.io/repository/biocontainers/fastqc <https://quay.io/repository/biocontainers/fastqc>`__
 
 .. code-block:: console
 
@@ -195,43 +195,6 @@ Docker bootstrap
 
     sudo singularity build fastqc.sif docker.singularity
 
-Debian bootstrap
-----------------
-
-.. code-block::
-
-  BootStrap: debootstrap
-  OSVersion: bionic
-  MirrorURL:  http://fr.archive.ubuntu.com/ubuntu/
-  Include: build-essential curl openjdk-11-jdk bzip2 zip unzip
-
-  %runscript
-      echo "Welcome to my Singularity Image"
-      fastqc --version
-      bowtie --version
-
-  %post
-
-      FASTQC_VERSION=0.11.9
-      BOWTIE_VERSION=1.3.0
-
-      cd /usr/local; curl -k -L https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FASTQC_VERSION}.zip > fastqc.zip
-      cd /usr/local; unzip fastqc.zip; rm fastqc.zip; chmod 775 FastQC/fastqc; ln -s /usr/local/FastQC/fastqc /usr/local/bin/fastqc
-
-      cd /usr/local; curl --fail --silent --show-error --location --remote-name https://github.com/BenLangmead/bowtie/releases/download/v$BOWTIE_VERSION/bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
-      cd /usr/local; unzip -d /usr/local bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
-      cd /usr/local; rm bowtie-${BOWTIE_VERSION}-linux-x86_64.zip
-      cd /usr/local/bin; ln -s ../bowtie-${BOWTIE_VERSION}-linux-x86_64/bowtie* .
-
-      echo "Biocore image built"
-
-  %labels
-      Maintainer Biocorecrg
-			Version 0.1.0
-
-.. code-block:: console
-
-    sudo singularity build fastqc-bowtie.sif debootstrap.singularity
 
 Singularity advanced aspects
 ============================

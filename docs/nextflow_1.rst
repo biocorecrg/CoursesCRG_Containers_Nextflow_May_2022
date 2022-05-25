@@ -351,7 +351,24 @@ Any kind of code / command line can be run there, as it is **language agnostic**
 Workflow
 ------------
 
-The code above will produce nothing, because it requires the part that will actually **call the process** and connect it to the input channel.
+The code above will produce nothing (actually a warning), because it requires the part that will actually **call the process** and connect it to the input channel.
+
+.. code-block:: console
+
+	nextflow run ex1_a.nf -dsl2
+	N E X T F L O W  ~  version 22.04.3
+	Launching `ex1_a.nf` [irreverent_leakey] DSL2 - revision: 224d75e0c7
+	=============================================================================
+	=                                WARNING                                    =
+	= You are running this script using DSL2 syntax, however it does not        = 
+	= contain any 'workflow' definition so there's nothing for Nextflow to run. =
+	=                                                                           =
+	= If this script was written using Nextflow DSL1 syntax, please add the     = 
+	= setting 'nextflow.enable.dsl=1' to the nextflow.config file or use the    =
+	= command-line option '-dsl1' when running the pipeline.                    =
+	=                                                                           =
+	= More details at this link: https://www.nextflow.io/docs/latest/dsl2.html  =
+	=============================================================================
 
 This part is called a **workflow**.
 

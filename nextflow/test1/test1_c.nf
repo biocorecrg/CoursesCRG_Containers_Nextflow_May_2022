@@ -9,7 +9,7 @@ params.inputfile = "$baseDir/../../testdata/test.fa"
 sequences_file = file(params.inputfile)
 
 // check if the file exists
-if( !sequences_file.exists() ) exit 1, "Missing genome file: ${genome_file}"
+if( !sequences_file.exists() ) exit 1, "Missing genome file: ${sequences_file}"
 
 /*
  * Process 1 for splitting a fasta file in multiple files

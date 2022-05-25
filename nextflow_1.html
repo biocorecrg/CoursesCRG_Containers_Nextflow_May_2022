@@ -438,7 +438,23 @@ The pipeline can also recognize the queue system which is used on the machine wh
 </section>
 <section id="workflow">
 <h3>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h3>
-<p>The code above will produce nothing, because it requires the part that will actually <strong>call the process</strong> and connect it to the input channel.</p>
+<p>The code above will produce nothing (actually a warning), because it requires the part that will actually <strong>call the process</strong> and connect it to the input channel.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run ex1_a.nf -dsl2</span>
+<span class="go">N E X T F L O W  ~  version 22.04.3</span>
+<span class="go">Launching `ex1_a.nf` [irreverent_leakey] DSL2 - revision: 224d75e0c7</span>
+<span class="go">=============================================================================</span>
+<span class="go">=                                WARNING                                    =</span>
+<span class="go">= You are running this script using DSL2 syntax, however it does not        =</span>
+<span class="go">= contain any &#39;workflow&#39; definition so there&#39;s nothing for Nextflow to run. =</span>
+<span class="go">=                                                                           =</span>
+<span class="go">= If this script was written using Nextflow DSL1 syntax, please add the     =</span>
+<span class="go">= setting &#39;nextflow.enable.dsl=1&#39; to the nextflow.config file or use the    =</span>
+<span class="go">= command-line option &#39;-dsl1&#39; when running the pipeline.                    =</span>
+<span class="go">=                                                                           =</span>
+<span class="go">= More details at this link: https://www.nextflow.io/docs/latest/dsl2.html  =</span>
+<span class="go">=============================================================================</span>
+</pre></div>
+</div>
 <p>This part is called a <strong>workflow</strong>.</p>
 <p>Let’s add a workflow to our code <cite>ex1_a.nf</cite>. Now we will have our first prototype of a Nextflow pipeline, so we can rename it <cite>test0.nf</cite>. You can find this code in <strong>/nextflow/test0/</strong> folder:</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>

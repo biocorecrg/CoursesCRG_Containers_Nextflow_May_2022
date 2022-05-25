@@ -68,21 +68,21 @@ Having a [GitHub account](https://github.com/join) is recommended.
 
 ### Day 3: Understand and run a basic Nexflow pipeline (June 1)
 
-* 09:30-11:00 (TBC)
-* 11:00-11:30 (TBC)
-* 11:30-13:30 (TBC)
+* 09:30-11:00 Introduction to Nextflow
+* 11:00-11:30 Coffee break
+* 11:30-13:30 Making simple scripts
 
 ### Day 4: Write, modify and run a complex pipeline (June 2)
 
-* 09:30-11:00 (TBC)
-* 11:00-11:30 (TBC)
-* 11:30-13:30 (TBC)
+* 09:30-11:00 Decoupling params, resources and main script
+* 11:00-11:30 Coffee break
+* 11:30-13:30 Using public pipelines
 
 ### Day 5: Run a Nextflow pipeline in different environments, share and report (June 3)
 
-* 09:30-11:00 (TBC)
-* 11:00-11:30 (TBC)
-* 11:30-13:30 (TBC)
+* 09:30-11:00 Profiles and cloud
+* 11:00-11:30 Coffee break
+* 11:30-13:30 Modules and Tower
 
 ### Day 6: nf-core (June 7)
 

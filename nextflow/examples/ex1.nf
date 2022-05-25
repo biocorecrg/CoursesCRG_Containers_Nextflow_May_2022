@@ -10,7 +10,8 @@ nextflow.enable.dsl=2
 
 /* 
 * This is a channel creating 
-*/ from string values
+* from string values
+*/
 
 str = Channel.from('hello', 'hola', 'bonjour')
 

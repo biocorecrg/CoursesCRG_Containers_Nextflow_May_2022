@@ -214,7 +214,7 @@ It is a good practice in terms of reproducibility to explicitly indicate the ver
 you want to use, this can be indicated using the `-r` flag e.g. ``nf-core launch rnaseq -r 3.7``.
 
 Exercise
-*********
+********
 Use the ``nf-core launch`` command to run a previous version of the pipeline and produce the ``nf-params.json``
 
 .. raw:: html
@@ -238,15 +238,19 @@ nf-core configs
 
 We have already introduced Nextflow configuration files and profiles during the course. Config files are used by 
 nf-core pipelines to specify the computational requirements of the pipeline, define custom parameters and set which 
-software management system to be used (Docker, Singularity or Conda). 
+software management system to be used (Docker, Singularity or Conda). As an example take a look to the `base.config <https://github.com/nf-core/chipseq/blob/master/conf/base.config>`__
+that is used to set sensible defaults for the computational resources needed by the pipeline. 
 
 nf-core core profiles
 *********************
 
-nf-core pipelines use nf-core profiles to bundle a set of configuration attributes. By doing so, we can activate these 
-attributes by using the ``-profile`` Nextflow command line option. All nf-core pipelines include a set of common "Core profiles"
-that include the ``conda``, ``docker`` and ``singularity`` that define which software manager to use and the ``test`` profile
-that specifies a minimal test dataset to check that the pipelines works properly.
+nf-core pipelines use profiles to bundle a set of configuration attributes. By doing so, we can activate these 
+attributes by using the ``-profile`` Nextflow command line option.  All nf-core pipelines come along with a set of common 
+"Core profiles" that include the ``conda``, ``docker`` and ``singularity`` that define which software manager to use and the
+``test`` profile that specifies a minimal test dataset to check that the pipelines works properly.
+
+.. note:: 
+	Each configuration file can include one or several profiles
 
 Institutional profiles
 **********************
@@ -257,14 +261,39 @@ these profiles set the custom config attributes to run nf-core pipelines in your
 resources, etc.). This way all the users in a cluster can make use of the profile just setting the profile of your institution 
 (``-profile institution``).
 
+.. tip::
+	You can use more than profile at a time by separating them by a comma without space, e.g. ``-profile test,docker``
+
+Custom config
+*************
+
+If you need to provide any custom parameter or setting when running a nf-core pipeline, you can do it by creating a local custom 
+config file and add it to your command with the ``-c`` flag.
 
 .. image:: images/nfcore_config.png
 	:width: 600
 
+.. note::	
+	Profiles will be prioritized from left to right in case conflicting settings are found.	 
 
+Exercise
+********
 
-.. tip::
-	You can use more than profile at a time by separating them by a comma, e.g. ``-profile test,docker``
+* 1 - Create a custom config that sets ``params.email`` to your email address and try to run the pipeline.
+
+.. * 2 - Create a custom config that sets the process cpus to 1 and the memory to 500 Mb.
+
+.. * 3 - Why do you think the ``NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GUNZIP_GTF`` process stills complains about not having enough CPUs?
+
+.. raw:: html
+
+	<details>
+	<summary><a>Solution</a></summary>
+
+.. code-block:: console
+
+	params.email = "youremail@address.com"
+
 
 Downloading pipelines
 ---------------------
@@ -282,14 +311,11 @@ Finally, you can also download any singularity image files required by the pipel
 	If you don't provide any option to ```nf-core download`` a interactive prompt will ask you for the required options.
 
 
-
-
-
 nf-core modules
 ---------------
 
-Fix corrupted pipeline
+.. Fix corrupted pipeline
 
-N E X T F L O W  ~  version 22.04.0
-Can't find git repository config file -- Repository may be corrupted: .nextflow/assets/nf-core/atacseq
-explain -r ~/.nextflow/assets/nf-core/chipseq/
+.. N E X T F L O W  ~  version 22.04.0
+.. Can't find git repository config file -- Repository may be corrupted: .nextflow/assets/nf-core/atacseq
+.. explain -r ~/.nextflow/assets/nf-core/chipseq/

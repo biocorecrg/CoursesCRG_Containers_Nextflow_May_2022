@@ -286,7 +286,8 @@ The pipeline can also recognize the queue system which is used on the machine wh
 
 <span class="cm">/* </span>
 <span class="cm">* This is a channel creating </span>
-<span class="cm">*/</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">values</span><span class="w"></span>
+<span class="cm">* from string values</span>
+<span class="cm">*/</span><span class="w"></span>
 
 <span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Channel</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s1">&#39;hello&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;hola&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;bonjour&#39;</span><span class="o">)</span><span class="w"></span>
 
@@ -869,7 +870,7 @@ This avoids clashes, and each process is isolated from the other.</p>
 <span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span><span class="w"></span>
 
 <span class="c1">// this can be overridden by using --inputfile OTHERFILENAME</span><span class="w"></span>
-<span class="n">params</span><span class="o">.</span><span class="na">inputfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$baseDir/testdata/test.fa&quot;</span><span class="w"></span>
+<span class="n">params</span><span class="o">.</span><span class="na">inputfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$baseDir/../../testdata/test.fa&quot;</span><span class="w"></span>
 
 <span class="c1">// the &quot;file method&quot; returns a file system object given a file path string</span><span class="w"></span>
 <span class="n">sequences_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">inputfile</span><span class="o">)</span><span class="w"></span>
@@ -1036,7 +1037,7 @@ This avoids clashes, and each process is isolated from the other.</p>
 <span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span><span class="w"></span>
 
 <span class="c1">// this can be overridden by using --inputfile OTHERFILENAME</span><span class="w"></span>
-<span class="n">params</span><span class="o">.</span><span class="na">inputfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$baseDir/testdata/test.fa&quot;</span><span class="w"></span>
+<span class="n">params</span><span class="o">.</span><span class="na">inputfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;$baseDir/../../testdata/test.fa&quot;</span><span class="w"></span>
 
 <span class="c1">// the &quot;file method&quot; returns a file system object given a file path string</span><span class="w"></span>
 <span class="n">sequences_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">inputfile</span><span class="o">)</span><span class="w"></span>

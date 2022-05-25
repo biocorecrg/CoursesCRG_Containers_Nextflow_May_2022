@@ -56,8 +56,8 @@ Channel
 
 reference = file(params.reference)
 
-include { fastqc } from "${baseDir}/modules/fastqc" addParams(OUTPUT: fastqcOutputFolder, LABEL="twocpus")
-include { BOWTIE } from "${baseDir}/modules/bowtie" addParams(OUTPUT: alnOutputFolder, LABEL="twocpus")
+include { fastqc } from "${baseDir}/modules/fastqc" addParams(OUTPUT: fastqcOutputFolder, LABEL:"twocpus")
+include { BOWTIE } from "${baseDir}/modules/bowtie" addParams(OUTPUT: alnOutputFolder, LABEL:"twocpus")
 include { multiqc } from "${baseDir}/modules/multiqc" addParams(OUTPUT: multiqcOutputFolder)
  
 

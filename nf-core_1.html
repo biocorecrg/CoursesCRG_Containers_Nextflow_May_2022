@@ -63,8 +63,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#exercise">Exercise</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#nf-core-profiles">nf-core profiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#nf-core-configs">nf-core configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nf-core-configs-and-profiles">nf-core configs and profiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nf-core-configs">nf-core configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nf-core-core-profiles">nf-core core profiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#institutional-profiles">Institutional profiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-pipelines">Downloading pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nf-core-modules">nf-core modules</a></li>
 </ul>
 </li>
 </ul>
@@ -253,7 +259,7 @@ and <strong>rna-seq</strong> keywords:</p>
 <section id="pulling-pipelines">
 <h2>Pulling pipelines<a class="headerlink" href="#pulling-pipelines" title="Permalink to this headline"></a></h2>
 <p>Once we have identified the nf-core pipeline we want to use we can pull it using the Nextflow <a class="reference external" href="https://www.nextflow.io/docs/latest/sharing.html#pulling-or-updating-a-project">built-in functionality</a>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nextflow pull nf-core/&lt;PIPELINE&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow pull nf-core/&lt;PIPELINE&gt;</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -267,7 +273,7 @@ and <strong>rna-seq</strong> keywords:</p>
 interactive command-line wizard tool. This command becomes handy for pipelines with a considerable number of parameters
 since it displays the documentation alongside each of the parameters and validate your inputs.</p>
 <p>We can now launch an nf-core pipeline:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core launch
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core launch</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -294,13 +300,61 @@ you want to use, this can be indicated using the <cite>-r</cite> flag e.g. <code
 <summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core launch rnaseq -r 3.6</span>
 </pre></div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>nf-core launch internally uses Nextflow pull to obtain the revision of the pipeline indicated so you can skip
+this step.</p>
+</div>
 </section>
 </section>
-<section id="nf-core-profiles">
-<h2>nf-core profiles<a class="headerlink" href="#nf-core-profiles" title="Permalink to this headline"></a></h2>
-</section>
+<section id="nf-core-configs-and-profiles">
+<h2>nf-core configs and profiles<a class="headerlink" href="#nf-core-configs-and-profiles" title="Permalink to this headline"></a></h2>
 <section id="nf-core-configs">
-<h2>nf-core configs<a class="headerlink" href="#nf-core-configs" title="Permalink to this headline"></a></h2>
+<h3>nf-core configs<a class="headerlink" href="#nf-core-configs" title="Permalink to this headline"></a></h3>
+<p>We have already introduced Nextflow configuration files and profiles during the course. Config files are used by
+nf-core pipelines to specify the computational requirements of the pipeline, define custom parameters and set which
+software management system to be used (Docker, Singularity or Conda).</p>
+</section>
+<section id="nf-core-core-profiles">
+<h3>nf-core core profiles<a class="headerlink" href="#nf-core-core-profiles" title="Permalink to this headline"></a></h3>
+<p>nf-core pipelines use nf-core profiles to bundle a set of configuration attributes. By doing so, we can activate these
+attributes by using the <code class="docutils literal notranslate"><span class="pre">-profile</span></code> Nextflow command line option. All nf-core pipelines include a set of common “Core profiles”
+that include the <code class="docutils literal notranslate"><span class="pre">conda</span></code>, <code class="docutils literal notranslate"><span class="pre">docker</span></code> and <code class="docutils literal notranslate"><span class="pre">singularity</span></code> that define which software manager to use and the <code class="docutils literal notranslate"><span class="pre">test</span></code> profile
+that specifies a minimal test dataset to check that the pipelines works properly.</p>
+</section>
+<section id="institutional-profiles">
+<h3>Institutional profiles<a class="headerlink" href="#institutional-profiles" title="Permalink to this headline"></a></h3>
+<p>Institutional profiles are profiles where you can specify the configuration attributes for your institution system. They are
+hosted in <a class="reference external" href="https://github.com/nf-core/configs">https://github.com/nf-core/configs</a> and all pipelines pull this repository when a pipeline is run. The idea is that
+these profiles set the custom config attributes to run nf-core pipelines in your institution (scheduler, container technology,
+resources, etc.). This way all the users in a cluster can make use of the profile just setting the profile of your institution
+(<code class="docutils literal notranslate"><span class="pre">-profile</span> <span class="pre">institution</span></code>).</p>
+<a class="reference internal image-reference" href="_images/nfcore_config.png"><img alt="_images/nfcore_config.png" src="_images/nfcore_config.png" style="width: 600px;" /></a>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use more than profile at a time by separating them by a comma, e.g. <code class="docutils literal notranslate"><span class="pre">-profile</span> <span class="pre">test,docker</span></code></p>
+</div>
+</section>
+</section>
+<section id="downloading-pipelines">
+<h2>Downloading pipelines<a class="headerlink" href="#downloading-pipelines" title="Permalink to this headline"></a></h2>
+<p>If your HPC system or server does not have an internet connection you can still run nf-core pipelines by fetching the
+pipeline files first and then, manually transferring them to your system.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">download</span></code> option simplifies this process and ensures the correct versioning of all the code and containers
+needed to run the pipeline. By default, the command will download the pipeline code and the institutional <a class="reference external" href="https://github.com/nf-core/configs">nf-core/configs</a>
+files. Again, the <code class="docutils literal notranslate"><span class="pre">-r</span></code> flag allows to fetch a given revision of the pipeline.</p>
+<p>Finally, you can also download any singularity image files required by the pipeline, if you specify the <code class="docutils literal notranslate"><span class="pre">--singularity</span></code> flag.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you don’t provide any option to <code class="docutils literal notranslate"><span class="pre">`nf-core</span> <span class="pre">download</span></code> a interactive prompt will ask you for the required options.</p>
+</div>
+</section>
+<section id="nf-core-modules">
+<h2>nf-core modules<a class="headerlink" href="#nf-core-modules" title="Permalink to this headline"></a></h2>
+<p>Fix corrupted pipeline</p>
+<p>N E X T F L O W  ~  version 22.04.0
+Can’t find git repository config file – Repository may be corrupted: .nextflow/assets/nf-core/atacseq
+explain -r ~/.nextflow/assets/nf-core/chipseq/</p>
 </section>
 </section>
 

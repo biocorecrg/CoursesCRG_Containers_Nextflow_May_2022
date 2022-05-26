@@ -135,7 +135,7 @@ The final profile is for running the pipeline in the **Amazon Cloud**, known as 
 
 .. literalinclude:: ../nextflow/test3/nextflow.config
    :language: groovy
-   :emphasize-lines: 40-58
+   :emphasize-lines: 40-57
 
 
 We indicate the **AWS specific parameters** (**region** and **cliPath**) and the executor **awsbatch**.

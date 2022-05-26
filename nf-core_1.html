@@ -130,8 +130,8 @@ and then, we activate it.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We assume <code class="docutils literal notranslate"><span class="pre">Nextflow</span></code> has been installed in your system during the previous sessions of the course and it is
-available in your path.</p>
+<p>You will need to install again Nextflow in the instances using <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-s</span> <span class="pre">https://get.nextflow.io</span> <span class="pre">|</span> <span class="pre">bash</span></code> and move the
+executable to <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">mv</span> <span class="pre">nextflow</span> <span class="pre">/usr/local/bin</span></code></p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -285,8 +285,8 @@ since it displays the documentation alongside each of the parameters and validat
 </div>
 <p>To render the description of the parameters, its grouping and defaults, the tool uses the <code class="docutils literal notranslate"><span class="pre">nextflow_schema.json</span></code>. This
 JSON file is bundled with the pipeline and includes all the information mentioned above, see an example <a class="reference external" href="https://github.com/nf-core/rnaseq/blob/03d17893618c44075e4c91d83dc0e72b58f6f0f7/nextflow_schema.json">here</a>.</p>
-<p>The chosen not default parameters are dumped into a JSON file called <code class="docutils literal notranslate"><span class="pre">nf-params.json</span></code>. This file can be provided to new executions
-using the <code class="docutils literal notranslate"><span class="pre">-params-file</span></code> flag. See below an example:</p>
+<p>The chosen not default parameters are dumped into a JSON file called <code class="docutils literal notranslate"><span class="pre">nf-params.json</span></code>. This file can be provided to new
+executions using the <code class="docutils literal notranslate"><span class="pre">-params-file</span></code> flag. See below an example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;outdir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;results&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/nf-core/test-datasets/rnaseq/samplesheet/v3.4/samplesheet_test.csv&quot;</span><span class="w"></span>
@@ -305,7 +305,7 @@ you want to use, this can be indicated using the <cite>-r</cite> flag e.g. <code
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>nf-core launch internally uses Nextflow pull to obtain the revision of the pipeline indicated so you can skip
-this step.</p>
+this step in the case of releases but not in the case of branches.</p>
 </div>
 </section>
 </section>

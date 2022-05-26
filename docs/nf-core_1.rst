@@ -38,8 +38,8 @@ and then, we activate it.
 	conda activate nf-core
 
 .. note::	
-	We assume ``Nextflow`` has been installed in your system during the previous sessions of the course and it is 
-	available in your path. 
+	You will need to install again Nextflow in the instances using ``curl -s https://get.nextflow.io | bash`` and move the
+	executable to ``sudo mv nextflow /usr/local/bin``
 
 .. tip::
 	Find alternative ways of installation on the nf-core `documentation <https://nf-co.re/tools/#installation>`__
@@ -204,8 +204,8 @@ We can now launch an nf-core pipeline:
 To render the description of the parameters, its grouping and defaults, the tool uses the ``nextflow_schema.json``. This
 JSON file is bundled with the pipeline and includes all the information mentioned above, see an example `here <https://github.com/nf-core/rnaseq/blob/03d17893618c44075e4c91d83dc0e72b58f6f0f7/nextflow_schema.json>`__.
 
-The chosen not default parameters are dumped into a JSON file called ``nf-params.json``. This file can be provided to new executions 
-using the ``-params-file`` flag. See below an example:
+The chosen not default parameters are dumped into a JSON file called ``nf-params.json``. This file can be provided to new 
+executions using the ``-params-file`` flag. See below an example:
 
 .. literalinclude:: ../nf-core/examples/nf-params.json
 	:language: json
@@ -228,7 +228,7 @@ Use the ``nf-core launch`` command to run a previous version of the pipeline and
 
 .. tip::
 	nf-core launch internally uses Nextflow pull to obtain the revision of the pipeline indicated so you can skip 
-	this step.
+	this step in the case of releases but not in the case of branches.
 
 nf-core configs and profiles
 ----------------------------
@@ -310,6 +310,11 @@ Finally, you can also download any singularity image files required by the pipel
 .. tip::
 	If you don't provide any option to ```nf-core download`` a interactive prompt will ask you for the required options.
 
+.. Exercise
+.. ********
+
+.. Launch the nf-core chipseq pipeline dev branch --> you need to first do a nextflow pull
+.. Check if this can be done using nf-core launch?
 
 nf-core modules
 ---------------

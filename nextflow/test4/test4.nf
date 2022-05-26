@@ -52,7 +52,7 @@ Channel
 
 
 include { multiqc } from "${baseDir}/modules/multiqc" addParams(OUTPUT: multiqcOutputFolder)
-include { fastqc } from "${baseDir}/modules/fastqc" addParams(OUTPUT: fastqcOutputFolder, LABEL="twocpus")
+include { fastqc } from "${baseDir}/modules/fastqc" addParams(OUTPUT: fastqcOutputFolder, LABEL:"twocpus")
  
 workflow {
 	fastqc_out = fastqc(reads_for_fastqc)

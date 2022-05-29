@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
@@ -108,12 +109,12 @@
            <div itemprop="articleBody">
              
   <section id="docker">
-<span id="docker-page"></span><h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline"></a></h1>
+<span id="docker-page"></span><h1>Docker<a class="headerlink" href="#docker" title="Permalink to this heading"></a></h1>
 <section id="introduction-to-docker">
-<h2>Introduction to Docker<a class="headerlink" href="#introduction-to-docker" title="Permalink to this headline"></a></h2>
+<h2>Introduction to Docker<a class="headerlink" href="#introduction-to-docker" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png"><img alt="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png" src="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png" style="width: 400px;" /></a>
 <section id="what-is-docker">
-<h3>What is Docker?<a class="headerlink" href="#what-is-docker" title="Permalink to this headline"></a></h3>
+<h3>What is Docker?<a class="headerlink" href="#what-is-docker" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Platform for developing, shipping and running applications.</p></li>
 <li><p>Infrastructure as application / code.</p></li>
@@ -129,7 +130,7 @@
 <p>There is an increasing number of alternative container technologies and providers. Many of them are actually based on software components originally from the Docker stack and they normally try to address some specific use cases or weakpoints. As a example, <strong>Singularity</strong>, that we introduce later in this couse, is focused in HPC environments. Another case, <strong>Podman</strong>, keeps a high functional compatibility with Docker but with a different focus on technology (not keeping a daemon) and permissions.</p>
 </section>
 <section id="docker-components">
-<h3>Docker components<a class="headerlink" href="#docker-components" title="Permalink to this headline"></a></h3>
+<h3>Docker components<a class="headerlink" href="#docker-components" title="Permalink to this heading"></a></h3>
 <a class="reference internal image-reference" href="http://apachebooster.com/kb/wp-content/uploads/2017/09/docker-architecture.png"><img alt="http://apachebooster.com/kb/wp-content/uploads/2017/09/docker-architecture.png" src="http://apachebooster.com/kb/wp-content/uploads/2017/09/docker-architecture.png" style="width: 700px;" /></a>
 <ul class="simple">
 <li><p>Read-only templates.</p></li>
@@ -140,7 +141,7 @@
 <a class="reference internal image-reference" href="https://i.stack.imgur.com/vGuay.png"><img alt="https://i.stack.imgur.com/vGuay.png" src="https://i.stack.imgur.com/vGuay.png" style="width: 700px;" /></a>
 </section>
 <section id="images-versus-containers">
-<h3>Images versus containers<a class="headerlink" href="#images-versus-containers" title="Permalink to this headline"></a></h3>
+<h3>Images versus containers<a class="headerlink" href="#images-versus-containers" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Image</strong>: A set of layers, read-only templates, inert.</p></li>
 <li><p>An instance of an image is called a <strong>container</strong>.</p></li>
@@ -150,7 +151,7 @@
 <p><a class="reference external" href="https://stackoverflow.com/questions/23735149/what-is-the-difference-between-a-docker-image-and-a-container">https://stackoverflow.com/questions/23735149/what-is-the-difference-between-a-docker-image-and-a-container</a></p>
 </section>
 <section id="docker-vocabulary">
-<h3>Docker vocabulary<a class="headerlink" href="#docker-vocabulary" title="Permalink to this headline"></a></h3>
+<h3>Docker vocabulary<a class="headerlink" href="#docker-vocabulary" title="Permalink to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker</span>
 </pre></div>
 </div>
@@ -162,16 +163,16 @@
 <a class="reference internal image-reference" href="_images/docker_run_help.png"><img alt="_images/docker_run_help.png" src="_images/docker_run_help.png" style="width: 550px;" /></a>
 </section>
 <section id="using-existing-images">
-<h3>Using existing images<a class="headerlink" href="#using-existing-images" title="Permalink to this headline"></a></h3>
+<h3>Using existing images<a class="headerlink" href="#using-existing-images" title="Permalink to this heading"></a></h3>
 <section id="explore-docker-hub">
-<h4>Explore Docker hub<a class="headerlink" href="#explore-docker-hub" title="Permalink to this headline"></a></h4>
+<h4>Explore Docker hub<a class="headerlink" href="#explore-docker-hub" title="Permalink to this heading"></a></h4>
 <p>Images can be stored locally or shared in a registry.</p>
 <p><a class="reference external" href="https://hub.docker.com/">Docker hub</a> is the main public registry for Docker images.</p>
 <p>Let’s search the keyword <strong>ubuntu</strong>:</p>
 <a class="reference internal image-reference" href="_images/dockerhub_ubuntu.png"><img alt="_images/dockerhub_ubuntu.png" src="_images/dockerhub_ubuntu.png" style="width: 900px;" /></a>
 </section>
 <section id="docker-pull-import-image">
-<h4>docker pull: import image<a class="headerlink" href="#docker-pull-import-image" title="Permalink to this headline"></a></h4>
+<h4>docker pull: import image<a class="headerlink" href="#docker-pull-import-image" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>get latest image / latest release</p></li>
 </ul>
@@ -188,7 +189,7 @@
 </div>
 </section>
 <section id="biocontainers">
-<h4>Biocontainers<a class="headerlink" href="#biocontainers" title="Permalink to this headline"></a></h4>
+<h4>Biocontainers<a class="headerlink" href="#biocontainers" title="Permalink to this heading"></a></h4>
 <p><a class="reference external" href="https://biocontainers.pro/">https://biocontainers.pro/</a></p>
 <p>Specific directory of Bioinformatics related entries</p>
 <ul class="simple">
@@ -203,7 +204,7 @@
 </section>
 </section>
 <section id="docker-images-list-images">
-<h3>docker images: list images<a class="headerlink" href="#docker-images-list-images" title="Permalink to this headline"></a></h3>
+<h3>docker images: list images<a class="headerlink" href="#docker-images-list-images" title="Permalink to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker images</span>
 </pre></div>
 </div>
@@ -211,7 +212,7 @@
 <p>Each image has a unique <strong>IMAGE ID</strong>.</p>
 </section>
 <section id="docker-run-run-image-i-e-start-a-container">
-<h3>docker run: run image, i.e. start a container<a class="headerlink" href="#docker-run-run-image-i-e-start-a-container" title="Permalink to this headline"></a></h3>
+<h3>docker run: run image, i.e. start a container<a class="headerlink" href="#docker-run-run-image-i-e-start-a-container" title="Permalink to this heading"></a></h3>
 <p>Now we want to use what is <strong>inside</strong> the image.</p>
 <p><strong>docker run</strong> creates a fresh container (active instance of the image) from a <strong>Docker (static) image</strong>, and runs it.</p>
 <p>The format is:</p>
@@ -240,7 +241,7 @@
 </div>
 </section>
 <section id="docker-ps-check-containers-status">
-<h3>docker ps: check containers status<a class="headerlink" href="#docker-ps-check-containers-status" title="Permalink to this headline"></a></h3>
+<h3>docker ps: check containers status<a class="headerlink" href="#docker-ps-check-containers-status" title="Permalink to this heading"></a></h3>
 <p>List running containers:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker ps</span>
 </pre></div>
@@ -252,7 +253,7 @@
 <p>Each container has a unique ID.</p>
 </section>
 <section id="docker-exec-execute-process-in-running-container">
-<h3>docker exec: execute process in running container<a class="headerlink" href="#docker-exec-execute-process-in-running-container" title="Permalink to this headline"></a></h3>
+<h3>docker exec: execute process in running container<a class="headerlink" href="#docker-exec-execute-process-in-running-container" title="Permalink to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker exec myubuntu uname -a</span>
 </pre></div>
 </div>
@@ -264,7 +265,7 @@
 </div>
 </section>
 <section id="docker-stop-start-restart-actions-on-container">
-<h3>docker stop, start, restart: actions on container<a class="headerlink" href="#docker-stop-start-restart-actions-on-container" title="Permalink to this headline"></a></h3>
+<h3>docker stop, start, restart: actions on container<a class="headerlink" href="#docker-stop-start-restart-actions-on-container" title="Permalink to this heading"></a></h3>
 <p>Stop a running container:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker stop myubuntu</span>
 
@@ -296,7 +297,7 @@
 </div>
 </section>
 <section id="docker-rm-docker-rmi-clean-up">
-<h3>docker rm, docker rmi: clean up!<a class="headerlink" href="#docker-rm-docker-rmi-clean-up" title="Permalink to this headline"></a></h3>
+<h3>docker rm, docker rmi: clean up!<a class="headerlink" href="#docker-rm-docker-rmi-clean-up" title="Permalink to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker rm myubuntu</span>
 <span class="go">docker rm -f myubuntu</span>
 </pre></div>
@@ -305,7 +306,7 @@
 </pre></div>
 </div>
 <section id="major-clean">
-<h4>Major clean<a class="headerlink" href="#major-clean" title="Permalink to this headline"></a></h4>
+<h4>Major clean<a class="headerlink" href="#major-clean" title="Permalink to this heading"></a></h4>
 <p>Check used space</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker system df</span>
 </pre></div>
@@ -324,7 +325,7 @@
 </section>
 </section>
 <section id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline"></a></h3>
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>1 - <strong>Alpine</strong></p></li>
 <li><p><strong>Search</strong> and <strong>pull</strong> the <cite>alpine</cite> image (tag <strong>3.12</strong>) - it is an <strong>official build</strong>.</p></li>
@@ -403,7 +404,7 @@
 </details></section>
 </section>
 <section id="volumes">
-<h2>Volumes<a class="headerlink" href="#volumes" title="Permalink to this headline"></a></h2>
+<h2>Volumes<a class="headerlink" href="#volumes" title="Permalink to this heading"></a></h2>
 <p>Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.</p>
 <p>Syntax: <strong>–volume/-v</strong> <em>host:container</em></p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir datatest</span>
@@ -416,7 +417,7 @@
 </div>
 </section>
 <section id="ports">
-<h2>Ports<a class="headerlink" href="#ports" title="Permalink to this headline"></a></h2>
+<h2>Ports<a class="headerlink" href="#ports" title="Permalink to this heading"></a></h2>
 <p>The same as with volumes, but with ports, to access Internet services.</p>
 <p>Syntax: <strong>–publish/-p</strong> <em>host:container</em></p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --detach --name webserver nginx</span>
@@ -440,14 +441,14 @@
 </div>
 </section>
 <section id="volume-exercises">
-<h2>Volume exercises<a class="headerlink" href="#volume-exercises" title="Permalink to this headline"></a></h2>
+<h2>Volume exercises<a class="headerlink" href="#volume-exercises" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Copy the 2 fastq files from available datasets in Github repository and place them in mounted directory</p></li>
 <li><p>Run fastqc interactively (inside container): <code class="docutils literal notranslate"><span class="pre">`fastqc</span>&#160; <span class="pre">/scratch/*.gz`</span></code></p></li>
 <li><p>Run fastqc non-interactively (outside the container)</p></li>
 </ol>
 <section id="docker-run-user">
-<h3>docker run –user<a class="headerlink" href="#docker-run-user" title="Permalink to this headline"></a></h3>
+<h3>docker run –user<a class="headerlink" href="#docker-run-user" title="Permalink to this heading"></a></h3>
 <p>It is possible to run certain containers with a specific user, appending <code class="docutils literal notranslate"><span class="pre">`run</span> <span class="pre">--user`</span></code>.</p>
 <p>A convenient command would be:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker run --user $(id -u):$(id -g) --detach --volume $(pwd)/datatest:/scratch --name user_test biocontainers/fastqc:v0.11.9_cv7 touch /scratch/userfile</span>

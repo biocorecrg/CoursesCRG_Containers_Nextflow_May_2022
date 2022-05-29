@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
@@ -120,9 +121,9 @@
            <div itemprop="articleBody">
              
   <section id="singularity">
-<span id="singularity-page"></span><h1>Singularity<a class="headerlink" href="#singularity" title="Permalink to this headline"></a></h1>
+<span id="singularity-page"></span><h1>Singularity<a class="headerlink" href="#singularity" title="Permalink to this heading"></a></h1>
 <section id="introduction-to-singularity">
-<h2>Introduction to Singularity<a class="headerlink" href="#introduction-to-singularity" title="Permalink to this headline"></a></h2>
+<h2>Introduction to Singularity<a class="headerlink" href="#introduction-to-singularity" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Focus:</dt><dd><ul>
@@ -136,7 +137,7 @@
 <li><p>More information: <a class="reference external" href="https://en.wikipedia.org/wiki/Singularity_(software)">https://en.wikipedia.org/wiki/Singularity_(software)</a></p></li>
 </ul>
 <section id="singularity-architecture">
-<h3>Singularity architecture<a class="headerlink" href="#singularity-architecture" title="Permalink to this headline"></a></h3>
+<h3>Singularity architecture<a class="headerlink" href="#singularity-architecture" title="Permalink to this heading"></a></h3>
 <a class="reference internal image-reference" href="_images/singularity_architecture.png"><img alt="_images/singularity_architecture.png" src="_images/singularity_architecture.png" style="width: 800px;" /></a>
 <table class="docutils align-default">
 <colgroup>
@@ -183,11 +184,11 @@
 </section>
 </section>
 <section id="container-registries">
-<h2>Container registries<a class="headerlink" href="#container-registries" title="Permalink to this headline"></a></h2>
+<h2>Container registries<a class="headerlink" href="#container-registries" title="Permalink to this heading"></a></h2>
 <p>Container images, normally different versions of them, are stored in container repositories.</p>
 <p>These repositories can be browser or discovered within, normally public, container registries.</p>
 <section id="docker-hub">
-<h3>Docker Hub<a class="headerlink" href="#docker-hub" title="Permalink to this headline"></a></h3>
+<h3>Docker Hub<a class="headerlink" href="#docker-hub" title="Permalink to this heading"></a></h3>
 <p>It is the first and most popular public container registry (which provides also private repositories).</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://hub.docker.com">Docker Hub</a></p></li>
@@ -199,7 +200,7 @@
 </div>
 </section>
 <section id="biocontainers">
-<h3>Biocontainers<a class="headerlink" href="#biocontainers" title="Permalink to this headline"></a></h3>
+<h3>Biocontainers<a class="headerlink" href="#biocontainers" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://biocontainers.pro">Biocontainers</a></p></li>
 </ul>
@@ -207,14 +208,14 @@
 <p>Originally Docker Hub was used, but now other registries are preferred.</p>
 <p>Example: <a class="reference external" href="https://biocontainers.pro/tools/fastqc">https://biocontainers.pro/tools/fastqc</a></p>
 <section id="via-quay-io">
-<h4>Via quay.io<a class="headerlink" href="#via-quay-io" title="Permalink to this headline"></a></h4>
+<h4>Via quay.io<a class="headerlink" href="#via-quay-io" title="Permalink to this heading"></a></h4>
 <p><a class="reference external" href="https://quay.io/repository/biocontainers/fastqc">https://quay.io/repository/biocontainers/fastqc</a></p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity build fastqc-0.11.9.sif docker://quay.io/biocontainers/fastqc:0.11.9--0</span>
 </pre></div>
 </div>
 </section>
 <section id="via-galaxy-project-prebuilt-images">
-<h4>Via Galaxy project prebuilt images<a class="headerlink" href="#via-galaxy-project-prebuilt-images" title="Permalink to this headline"></a></h4>
+<h4>Via Galaxy project prebuilt images<a class="headerlink" href="#via-galaxy-project-prebuilt-images" title="Permalink to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity pull --name fastqc-0.11.9.sif https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0</span>
 </pre></div>
 </div>
@@ -223,10 +224,10 @@
 </section>
 </section>
 <section id="running-and-executing-containers">
-<h3>Running and executing containers<a class="headerlink" href="#running-and-executing-containers" title="Permalink to this headline"></a></h3>
+<h3>Running and executing containers<a class="headerlink" href="#running-and-executing-containers" title="Permalink to this heading"></a></h3>
 <p>Once we have some image files (or directories) ready, we can run processes.</p>
 <section id="singularity-shell">
-<h4>Singularity shell<a class="headerlink" href="#singularity-shell" title="Permalink to this headline"></a></h4>
+<h4>Singularity shell<a class="headerlink" href="#singularity-shell" title="Permalink to this heading"></a></h4>
 <p>The straight-forward exploratory approach is equivalent to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-ti</span> <span class="pre">biocontainers/fastqc:v0.11.9_cv7</span> <span class="pre">/bin/shell</span></code> but with a more handy syntax.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity shell fastqc-0.11.9.sif</span>
 </pre></div>
@@ -234,7 +235,7 @@
 <p>Move around the directories and notice how the isolation approach is different in comparison to Docker. You can access most of the host filesystem.</p>
 </section>
 <section id="singularity-exec">
-<h4>Singularity exec<a class="headerlink" href="#singularity-exec" title="Permalink to this headline"></a></h4>
+<h4>Singularity exec<a class="headerlink" href="#singularity-exec" title="Permalink to this heading"></a></h4>
 <p>That is the most common way to execute Singularity (equivalent to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>). That would be the normal approach in a HPC environment.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9.sif fastqc</span>
 </pre></div>
@@ -245,14 +246,14 @@
 </div>
 </section>
 <section id="singularity-run">
-<h4>Singularity run<a class="headerlink" href="#singularity-run" title="Permalink to this headline"></a></h4>
+<h4>Singularity run<a class="headerlink" href="#singularity-run" title="Permalink to this heading"></a></h4>
 <p>This executes runscript from recipe definition (equivalent to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>). Not so common for HPC uses. More common for instances (servers).</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity run fastqc-0.11.9.sif</span>
 </pre></div>
 </div>
 </section>
 <section id="environment-control">
-<h4>Environment control<a class="headerlink" href="#environment-control" title="Permalink to this headline"></a></h4>
+<h4>Environment control<a class="headerlink" href="#environment-control" title="Permalink to this heading"></a></h4>
 <p>By default Singularity inherits a profile environment (e.g., PATH environment variable). This may be convenient in some circumstances, but it can also lead to unexpected problems when your own environment clashes with the default one from the image.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity shell -e fastqc-0.11.9.sif</span>
 <span class="go">singularity exec -e fastqc-0.11.9.sif fastqc</span>
@@ -267,7 +268,7 @@
 </section>
 </section>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline"></a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Generate a Singularity image of the last <em>samtools</em> version</dt><dd><ul>
@@ -282,9 +283,9 @@
 </section>
 </section>
 <section id="singularity-recipes">
-<h2>Singularity recipes<a class="headerlink" href="#singularity-recipes" title="Permalink to this headline"></a></h2>
+<h2>Singularity recipes<a class="headerlink" href="#singularity-recipes" title="Permalink to this heading"></a></h2>
 <section id="docker-bootstrap">
-<h3>Docker bootstrap<a class="headerlink" href="#docker-bootstrap" title="Permalink to this headline"></a></h3>
+<h3>Docker bootstrap<a class="headerlink" href="#docker-bootstrap" title="Permalink to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BootStrap</span><span class="p">:</span> <span class="n">docker</span>
 <span class="n">From</span><span class="p">:</span> <span class="n">biocontainers</span><span class="o">/</span><span class="n">fastqc</span><span class="p">:</span><span class="n">v0</span><span class="mf">.11.9</span><span class="n">_cv7</span>
 
@@ -302,9 +303,9 @@
 </section>
 </section>
 <section id="singularity-advanced-aspects">
-<h2>Singularity advanced aspects<a class="headerlink" href="#singularity-advanced-aspects" title="Permalink to this headline"></a></h2>
+<h2>Singularity advanced aspects<a class="headerlink" href="#singularity-advanced-aspects" title="Permalink to this heading"></a></h2>
 <section id="sandboxing">
-<h3>Sandboxing<a class="headerlink" href="#sandboxing" title="Permalink to this headline"></a></h3>
+<h3>Sandboxing<a class="headerlink" href="#sandboxing" title="Permalink to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity build --sandbox ./sandbox docker://ubuntu:18.04</span>
 <span class="go">touch sandbox/etc/myetc.conf</span>
 <span class="go">singularity build sandbox.sif ./sandbox</span>
@@ -312,7 +313,7 @@
 </div>
 </section>
 <section id="bind-paths-aka-volumes">
-<h3>Bind paths (aka volumes)<a class="headerlink" href="#bind-paths-aka-volumes" title="Permalink to this headline"></a></h3>
+<h3>Bind paths (aka volumes)<a class="headerlink" href="#bind-paths-aka-volumes" title="Permalink to this heading"></a></h3>
 <p>Paths of host system mounted in the container</p>
 <ul class="simple">
 <li><p>Default ones, no need to mount them explicitly (for 3.6.x): <code class="docutils literal notranslate"><span class="pre">`$HOME`</span></code> , <code class="docutils literal notranslate"><span class="pre">`/sys:/sys`</span></code> , <code class="docutils literal notranslate"><span class="pre">`/proc:/proc`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/tmp:/tmp`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/var/tmp:/var/tmp`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/etc/resolv.conf:/etc/resolv.conf`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/etc/passwd:/etc/passwd`</span></code>, and <code class="docutils literal notranslate"><span class="pre">`$PWD`</span></code>  <a class="reference external" href="https://apptainer.org/docs/user/main/bind_paths_and_mounts.html">Ref</a></p></li>
@@ -327,7 +328,7 @@
 </pre></div>
 </div>
 <section id="id1">
-<h4>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h4>
+<h4>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
 <p>Using the 2 fastq available files, process them outside and inside a mounted directory using fastqc.</p>
 <details>
 <summary><a>Suggested solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span># Let&#39;s create a dummy directory
@@ -356,7 +357,7 @@ singularity exec -B ./datatest:/scratch fastqc.sif bash -c &#39;fastqc /scratch/
 </details></section>
 </section>
 <section id="instances">
-<h3>Instances<a class="headerlink" href="#instances" title="Permalink to this headline"></a></h3>
+<h3>Instances<a class="headerlink" href="#instances" title="Permalink to this heading"></a></h3>
 <p>Also know as <strong>services</strong>. Despite Docker it is still more convenient for these tasks, it allows enabling thing such as webservices (e.g., via APIs) in HPC workflows.</p>
 <p>As a simple example, first we create a boostrapped image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bootstrap</span><span class="p">:</span> <span class="n">docker</span>
@@ -390,22 +391,22 @@ singularity exec -B ./datatest:/scratch fastqc.sif bash -c &#39;fastqc /scratch/
 </ul>
 </section>
 <section id="singularity-tips">
-<h3>Singularity tips<a class="headerlink" href="#singularity-tips" title="Permalink to this headline"></a></h3>
+<h3>Singularity tips<a class="headerlink" href="#singularity-tips" title="Permalink to this heading"></a></h3>
 <section id="troubleshooting">
-<h4>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h4>
+<h4>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h4>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity --help</span>
 </pre></div>
 </div>
 </section>
 <section id="fakeroot">
-<h4>Fakeroot<a class="headerlink" href="#fakeroot" title="Permalink to this headline"></a></h4>
+<h4>Fakeroot<a class="headerlink" href="#fakeroot" title="Permalink to this heading"></a></h4>
 <p>Singularity permissions are an evolving field. If you don’t have access to <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, it might be worth considering using <strong>–fakeroot/-f</strong> parameter.</p>
 <ul class="simple">
 <li><p>More details at <a class="reference external" href="https://apptainer.org/docs/user/main/fakeroot.html">https://apptainer.org/docs/user/main/fakeroot.html</a></p></li>
 </ul>
 </section>
 <section id="singularity-cache-directory">
-<h4>Singularity cache directory<a class="headerlink" href="#singularity-cache-directory" title="Permalink to this headline"></a></h4>
+<h4>Singularity cache directory<a class="headerlink" href="#singularity-cache-directory" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$HOME/.singularity
 </pre></div>
 </div>
@@ -415,7 +416,7 @@ singularity exec -B ./datatest:/scratch fastqc.sif bash -c &#39;fastqc /scratch/
 </ul>
 </section>
 <section id="global-singularity-configuration">
-<h4>Global singularity configuration<a class="headerlink" href="#global-singularity-configuration" title="Permalink to this headline"></a></h4>
+<h4>Global singularity configuration<a class="headerlink" href="#global-singularity-configuration" title="Permalink to this heading"></a></h4>
 <p>Normally at <code class="docutils literal notranslate"><span class="pre">/etc/singularity/singularity.conf</span></code> or similar (e.g preceded by <code class="docutils literal notranslate"><span class="pre">/usr/local/</span></code>)</p>
 <ul class="simple">
 <li><p>It can only be modified by users with administration permissions</p></li>

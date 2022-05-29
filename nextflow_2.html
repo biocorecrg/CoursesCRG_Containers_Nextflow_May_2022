@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
@@ -88,11 +89,11 @@
            <div itemprop="articleBody">
              
   <section id="nextflow-2">
-<span id="nextflow-2-page"></span><h1>Nextflow 2<a class="headerlink" href="#nextflow-2" title="Permalink to this headline"></a></h1>
+<span id="nextflow-2-page"></span><h1>Nextflow 2<a class="headerlink" href="#nextflow-2" title="Permalink to this heading"></a></h1>
 <p>During this day we will make more complex pipelines and separate the main code from the configuration. Then we will focus on how to reuse and share your code.</p>
 <a class="reference internal image-reference" href="_images/nextflow_logo_deep.png"><img alt="_images/nextflow_logo_deep.png" src="_images/nextflow_logo_deep.png" style="width: 300px;" /></a>
 <section id="decoupling-resources-parameters-and-nextflow-script">
-<h2>Decoupling resources, parameters and nextflow script<a class="headerlink" href="#decoupling-resources-parameters-and-nextflow-script" title="Permalink to this headline"></a></h2>
+<h2>Decoupling resources, parameters and nextflow script<a class="headerlink" href="#decoupling-resources-parameters-and-nextflow-script" title="Permalink to this heading"></a></h2>
 <p>When making a complex pipelines it is convenient to keep the definition of resources needed, the default parameters and the main script separately from each other.
 This can be achieved using two additional files:</p>
 <ul class="simple">
@@ -346,7 +347,7 @@ In case of using a singularity container, you can indicate where to store the lo
 <p>This will tell Nextflow that if it is run with Docker, it has to produce files that belong to a user rather than the root.</p>
 </section>
 <section id="publishing-final-results">
-<h2>Publishing final results<a class="headerlink" href="#publishing-final-results" title="Permalink to this headline"></a></h2>
+<h2>Publishing final results<a class="headerlink" href="#publishing-final-results" title="Permalink to this heading"></a></h2>
 <p>The script <strong>test2.nf</strong> generates two new folders, <strong>output_fastqc</strong> and <strong>output_multiQC</strong>, that contain the result of the pipeline output.
 We can indicate which process and output can be considered the final output of the pipeline using the <strong>publishDir</strong> directive that has to be specified at the beginning of a process.</p>
 <p>In our pipeline we define these folders here:</p>
@@ -485,7 +486,7 @@ We can indicate which process and output can be considered the final output of t
 </div>
 </section>
 <section id="adding-help-section-to-a-pipeline">
-<h2>Adding help section to a pipeline<a class="headerlink" href="#adding-help-section-to-a-pipeline" title="Permalink to this headline"></a></h2>
+<h2>Adding help section to a pipeline<a class="headerlink" href="#adding-help-section-to-a-pipeline" title="Permalink to this heading"></a></h2>
 <p>Here we describe another good practice: the use of the <cite>--help</cite> parameter. At the beginning of the pipeline we can write:</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
 
@@ -609,7 +610,7 @@ We can indicate which process and output can be considered the final output of t
 </div>
 </section>
 <section id="exercise">
-<h2>EXERCISE<a class="headerlink" href="#exercise" title="Permalink to this headline"></a></h2>
+<h2>EXERCISE<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Look at the very last EXERCISE of the day before. Change the script and the config file using the label for handling failing processes.</p></li>
 </ul>
@@ -842,7 +843,7 @@ We can indicate which process and output can be considered the final output of t
 </div>
 </section>
 <section id="using-public-pipelines">
-<h2>Using public pipelines<a class="headerlink" href="#using-public-pipelines" title="Permalink to this headline"></a></h2>
+<h2>Using public pipelines<a class="headerlink" href="#using-public-pipelines" title="Permalink to this heading"></a></h2>
 <p>As an example, we will use our software <a class="reference external" href="https://github.com/biocorecrg/mop2">Master Of Pores</a> published in <a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full">2019 in Frontiers in Genetics</a> .</p>
 <p>This repository contains a collection of pipelines for processing nanopore’s raw data (both cDNA and dRNA-seq), detecting putative RNA modifications and estimating RNA polyA tail sizes.</p>
 <p>Clone the pipeline together with the submodules. The submodules contain <strong>Nextflow modules</strong> that will be described later.</p>
@@ -1036,7 +1037,7 @@ Execution status: OK</p>
 </div></blockquote>
 <p>You noticed we specify a <strong>profile</strong> here. This indicates where to launch the pipeline while several possiblities are available (like cluster, local computer etc). We will show this in detail later. If you skip this it will use the <strong>default</strong> configuration that is likely to heavy for our simple environment</p>
 <section id="id5">
-<h3>EXERCISE<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<h3>EXERCISE<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Look at the documentation of <a class="reference external" href="https://github.com/biocorecrg/mop2">Master Of Pores</a> and change the default mapper and filtering. Try to skip some step.</p></li>
 </ul>
@@ -1052,7 +1053,7 @@ Execution status: OK</p>
 </section>
 </section>
 <section id="using-singularity">
-<h2>Using Singularity<a class="headerlink" href="#using-singularity" title="Permalink to this headline"></a></h2>
+<h2>Using Singularity<a class="headerlink" href="#using-singularity" title="Permalink to this heading"></a></h2>
 <p>We recommend to use Singularity instead of Docker in a HPC environments.
 This can be done using the Nextflow parameter <cite>-with-singularity</cite> without changing the code.</p>
 <p>Nextflow will take care of <strong>pulling, converting and storing the image</strong> for you. This will be done only once and then Nextflow will use the stored image for further executions.</p>

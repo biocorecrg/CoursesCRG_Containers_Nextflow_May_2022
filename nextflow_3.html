@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
@@ -87,9 +88,9 @@
            <div itemprop="articleBody">
              
   <section id="nextflow-3">
-<span id="nextflow-3-page"></span><h1>Nextflow 3<a class="headerlink" href="#nextflow-3" title="Permalink to this headline"></a></h1>
+<span id="nextflow-3-page"></span><h1>Nextflow 3<a class="headerlink" href="#nextflow-3" title="Permalink to this heading"></a></h1>
 <section id="adding-more-processes">
-<h2>Adding more processes<a class="headerlink" href="#adding-more-processes" title="Permalink to this headline"></a></h2>
+<h2>Adding more processes<a class="headerlink" href="#adding-more-processes" title="Permalink to this heading"></a></h2>
 <p>We can build a pipeline incrementally adding more and more processes.
 Nextflow will take care of the dependencies between the input / output and of the parallelization.</p>
 <p>Let’s add to the <strong>test2.nf</strong> pipeline two additional steps, indexing of the reference genome and the read alignment using <a class="reference external" href="http://bowtie-bio.sourceforge.net/index.shtml">Bowtie</a>. For that we will have to modify the test2.nf, params.config and nexflow.config files (the new script is available in the <strong>test3 folder</strong>).</p>
@@ -772,7 +773,7 @@ The first one is the one we want to keep as a final result; for that, we specify
 <p>As you can see, we passed the <strong>samples_log</strong> output to the multiqc process after mixing it with the output channel from the fastqc process.</p>
 </section>
 <section id="profiles">
-<h2>Profiles<a class="headerlink" href="#profiles" title="Permalink to this headline"></a></h2>
+<h2>Profiles<a class="headerlink" href="#profiles" title="Permalink to this heading"></a></h2>
 <p>For deploying a pipeline in a cluster or Cloud, in the <strong>nextflow.config</strong> file, we need to indicate what kind of the <a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#executor">executor</a> to use.</p>
 <p>In the Nextflow framework architecture, the executor indicates which the <strong>batch-queue system</strong> to use to submit jobs to a HPC or to Cloud.</p>
 <p>The executor is completely abstracted, so you can switch from SGE to SLURM just by changing this parameter in the configuration file.</p>
@@ -909,7 +910,7 @@ The first one is the one we want to keep as a final result; for that, we specify
 <p>This profile indicates that the system uses <strong>Sun Grid Engine</strong> as a job scheduler and that we have different queues for small jobs and more intensive ones.</p>
 </section>
 <section id="deployment-in-the-aws-cloud">
-<h2>Deployment in the AWS cloud<a class="headerlink" href="#deployment-in-the-aws-cloud" title="Permalink to this headline"></a></h2>
+<h2>Deployment in the AWS cloud<a class="headerlink" href="#deployment-in-the-aws-cloud" title="Permalink to this heading"></a></h2>
 <p>The final profile is for running the pipeline in the <strong>Amazon Cloud</strong>, known as Amazon Web Services or AWS. In particular, we will use <strong>AWS Batch</strong> that allows the execution of containerised workloads in the Amazon cloud infrastructure (where NNNN is the number of your bucket which you can see in the mounted folder <cite>/mnt</cite> by typing the command <strong>df</strong>).</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">includeConfig</span><span class="w"> </span><span class="s2">&quot;$baseDir/params.config&quot;</span><span class="w"></span>
 
@@ -979,7 +980,7 @@ This is mandatory when running Nextflow on the cloud.</p>
 </pre></div>
 </div>
 <p>Note that there is no longer a <strong>work</strong> folder in the directory where test3.nf is located, because, in the AWS cloud, the output is copied locally in the folder <strong>/mnt/class-bucket-NNN/work</strong> (you can see the mounted folder - and the correspondign number - typing <strong>df</strong>).</p>
-<p>The multiqc report can be seen on the AWS webpage at <a class="reference external" href="https://nf-class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/ouptut_multiQC/multiqc_report.html">https://nf-class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/ouptut_multiQC/multiqc_report.html</a></p>
+<p>The multiqc report can be seen on the AWS webpage at <a class="reference external" href="https://class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/ouptut_multiQC/multiqc_report.html">https://class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/ouptut_multiQC/multiqc_report.html</a></p>
 <p>But you need before to change permissions for that file as (where NNNN is the number of your bucket):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">chmod 775 /mnt/class-bucket-NNNN/results/ouptut_multiQCmultiqc_report.html</span>
 </pre></div>
@@ -990,12 +991,12 @@ This is mandatory when running Nextflow on the cloud.</p>
 </div>
 <p>Again we can copy the output file to the bucket.</p>
 <p>We can also tell Nextflow to directly copy the output file to the S3 bucket: to do so, change the parameter <strong>outdir</strong> in the params file (use the bucket corresponding to your AWS instance):</p>
-<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;s3://nf-class-bucket-NNNN/results&quot;</span><span class="w"></span>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;s3://class-bucket-NNNN/results&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="exercise">
-<h2>EXERCISE<a class="headerlink" href="#exercise" title="Permalink to this headline"></a></h2>
+<h2>EXERCISE<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h2>
 <p>Modify the <strong>test3.nf</strong> file to make two sub-workflows:</p>
 <ul class="simple">
 <li><p>for fastqc of fastq files and bowtie alignment;</p></li>
@@ -1185,7 +1186,7 @@ This is mandatory when running Nextflow on the cloud.</p>
 </div>
 </section>
 <section id="modules-and-how-to-re-use-the-code">
-<h2>Modules and how to re-use the code<a class="headerlink" href="#modules-and-how-to-re-use-the-code" title="Permalink to this headline"></a></h2>
+<h2>Modules and how to re-use the code<a class="headerlink" href="#modules-and-how-to-re-use-the-code" title="Permalink to this heading"></a></h2>
 <p>A great advantage of the new DSL2 is to allow the <strong>modularization of the code</strong>.
 In particular, you can move a named workflow within a module and keep it aside for being accessed by different pipelines.</p>
 <p>The <strong>test4</strong> folder provides an example of using modules.</p>
@@ -1518,7 +1519,7 @@ Let’s inspect the <strong>multiQC</strong> module:</p>
 </div>
 </section>
 <section id="id1">
-<h2>EXERCISE<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>EXERCISE<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Make a module wrapper for the bowtie tool and change the script in test3 accordingly.</p>
 <details>
 <summary><a>Solution</a></summary><p><strong>Solution in the folder test5</strong></p>
@@ -1528,7 +1529,7 @@ Let’s inspect the <strong>multiQC</strong> module:</p>
 </div>
 </section>
 <section id="reporting-and-graphical-interface">
-<h2>Reporting and graphical interface<a class="headerlink" href="#reporting-and-graphical-interface" title="Permalink to this headline"></a></h2>
+<h2>Reporting and graphical interface<a class="headerlink" href="#reporting-and-graphical-interface" title="Permalink to this heading"></a></h2>
 <p>Nextflow has an embedded function for reporting informations about the resources requested for each job and the timing; to generate a html report, run Nextflow with the <cite>-with-report</cite> parameter :</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run test5.nf -with-docker -bg -with-report &gt; log</span>
 </pre></div>
@@ -1580,7 +1581,7 @@ Let’s inspect the <strong>multiQC</strong> module:</p>
 <a class="reference internal image-reference" href="_images/tower4.png"><img alt="_images/tower4.png" src="_images/tower4.png" style="width: 800px;" /></a>
 </section>
 <section id="share-nextflow-pipelines-and-good-practices">
-<h2>Share Nextflow pipelines and good practices<a class="headerlink" href="#share-nextflow-pipelines-and-good-practices" title="Permalink to this headline"></a></h2>
+<h2>Share Nextflow pipelines and good practices<a class="headerlink" href="#share-nextflow-pipelines-and-good-practices" title="Permalink to this heading"></a></h2>
 <p>Nextflow supports a number of code sharing platforms: <strong>BitBucket</strong>, <strong>GitHub</strong>, and <strong>GitLab</strong>.
 This feature allows to run pipelines by just pointing to an online repository without caring about downloading etc.</p>
 <p>The default platform is <strong>GitHub</strong>, so we will use this repository as an example.</p>

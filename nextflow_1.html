@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
@@ -102,13 +103,13 @@
            <div itemprop="articleBody">
              
   <section id="nextflow-1">
-<span id="nextflow-1-page"></span><h1>Nextflow 1<a class="headerlink" href="#nextflow-1" title="Permalink to this headline"></a></h1>
+<span id="nextflow-1-page"></span><h1>Nextflow 1<a class="headerlink" href="#nextflow-1" title="Permalink to this heading"></a></h1>
 <section id="introduction-to-nextflow">
-<h2>Introduction to Nextflow<a class="headerlink" href="#introduction-to-nextflow" title="Permalink to this headline"></a></h2>
+<h2>Introduction to Nextflow<a class="headerlink" href="#introduction-to-nextflow" title="Permalink to this heading"></a></h2>
 <p>DSL for data-driven computational pipelines. <a class="reference external" href="https://www.nextflow.io">www.nextflow.io</a>.</p>
 <a class="reference internal image-reference" href="_images/nextflow_logo_deep.png"><img alt="_images/nextflow_logo_deep.png" src="_images/nextflow_logo_deep.png" style="width: 400px;" /></a>
 <section id="what-is-nextflow">
-<h3>What is Nextflow?<a class="headerlink" href="#what-is-nextflow" title="Permalink to this headline"></a></h3>
+<h3>What is Nextflow?<a class="headerlink" href="#what-is-nextflow" title="Permalink to this heading"></a></h3>
 <a class="reference internal image-reference" href="_images/nextf_groovy.png"><img alt="_images/nextf_groovy.png" src="_images/nextf_groovy.png" style="width: 600px;" /></a>
 <p><a class="reference external" href="https://www.nextflow.io">Nextflow</a> is a domain specific language (DSL) for workflow orchestration that stems from <a class="reference external" href="https://groovy-lang.org/">Groovy</a>. It enables scalable and reproducible workflows using software containers.
 It was developed at the <a class="reference external" href="www.crg.eu">CRG</a> in the Lab of Cedric Notredame by <a class="reference external" href="https://github.com/pditommaso">Paolo Di Tommaso</a>.
@@ -116,7 +117,7 @@ The Nextflow documentation is <a class="reference external" href="https://www.ne
 <p>In 2020, Nextflow has been upgraded from DSL1 version to DSL2. In this course we will use exclusively DSL2.</p>
 </section>
 <section id="what-is-nextflow-for">
-<h3>What is Nextflow for?<a class="headerlink" href="#what-is-nextflow-for" title="Permalink to this headline"></a></h3>
+<h3>What is Nextflow for?<a class="headerlink" href="#what-is-nextflow-for" title="Permalink to this heading"></a></h3>
 <p>It is for making pipelines without caring about parallelization, dependencies, intermediate file names, data structures, handling exceptions, resuming executions, etc.</p>
 <p>It was published in <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/28398311/">Nature Biotechnology in 2017</a>.</p>
 <a class="reference internal image-reference" href="_images/NF_pub.png"><img alt="_images/NF_pub.png" src="_images/NF_pub.png" style="width: 600px;" /></a>
@@ -132,7 +133,7 @@ The Nextflow documentation is <a class="reference external" href="https://www.ne
 </ul>
 </section>
 <section id="main-advantages">
-<h3>Main advantages<a class="headerlink" href="#main-advantages" title="Permalink to this headline"></a></h3>
+<h3>Main advantages<a class="headerlink" href="#main-advantages" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Fast prototyping</strong></p></li>
 </ul>
@@ -160,7 +161,7 @@ The resulting applications are inherently parallel and can scale-up or scale-out
 For each process <strong>a temporary folder is created and is cached (or not) once resuming an execution</strong>.</p>
 </section>
 <section id="workflow-structure">
-<h3>Workflow structure<a class="headerlink" href="#workflow-structure" title="Permalink to this headline"></a></h3>
+<h3>Workflow structure<a class="headerlink" href="#workflow-structure" title="Permalink to this heading"></a></h3>
 <p>The workflows can be represented as graphs where the nodes are the <strong>processes</strong> and the edges are the <strong>channels</strong>.
 The <strong>processes</strong> are blocks of code that can be executed - such as scripts or programs - while the <strong>channels</strong> are asynchronous queues able to <strong>connect processes among them via input / output</strong>.</p>
 <a class="reference internal image-reference" href="_images/wf_example.png"><img alt="_images/wf_example.png" src="_images/wf_example.png" style="width: 600px;" /></a>
@@ -168,7 +169,7 @@ The <strong>processes</strong> are blocks of code that can be executed - such as
 In the previous example, processes <strong>A</strong>, <strong>B</strong> and <strong>C</strong> can be run in parallel and only when they <strong>ALL</strong> end the process <strong>D</strong> is triggered.</p>
 </section>
 <section id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h3>
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Nextflow is already installed on the machines provided for this course.
@@ -263,9 +264,9 @@ The pipeline can also recognize the queue system which is used on the machine wh
 </section>
 </section>
 <section id="nextflow-main-concepts">
-<h2>Nextflow main concepts.<a class="headerlink" href="#nextflow-main-concepts" title="Permalink to this headline"></a></h2>
+<h2>Nextflow main concepts.<a class="headerlink" href="#nextflow-main-concepts" title="Permalink to this heading"></a></h2>
 <section id="channels-and-operators">
-<h3>Channels and Operators<a class="headerlink" href="#channels-and-operators" title="Permalink to this headline"></a></h3>
+<h3>Channels and Operators<a class="headerlink" href="#channels-and-operators" title="Permalink to this heading"></a></h3>
 <p>There are two different types of channels:</p>
 <ul class="simple">
 <li><p>A <strong>queue channel</strong> is a non-blocking unidirectional <a class="reference external" href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FIFO</a> (First In, First Out) queue which <strong>connects two processes or operators</strong>.</p></li>
@@ -377,7 +378,7 @@ The pipeline can also recognize the queue system which is used on the machine wh
 <p>We can reshape the channels in several ways and / or cross them using operators so that they can be used for a particular purpose. In brief, each “emission” of a channel can be used by a process for a specific purpose.</p>
 </section>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline"></a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h3>
 <p>Using again the previous 3 <cite>.txt</cite> files (“aa.txt”, “bb.txt”, “cc.txt”), reshape the channels to emit:</p>
 <blockquote>
 <div><ul class="simple">
@@ -419,7 +420,7 @@ The pipeline can also recognize the queue system which is used on the machine wh
 </div>
 </section>
 <section id="processes">
-<h3>Processes<a class="headerlink" href="#processes" title="Permalink to this headline"></a></h3>
+<h3>Processes<a class="headerlink" href="#processes" title="Permalink to this heading"></a></h3>
 <p>Let’s add a process to the previous script <cite>ex1.nf</cite> and let’s call it <cite>ex1_a.nf</cite></p>
 <p>The process can be seen as a function that is composed of:</p>
 <ul class="simple">
@@ -438,7 +439,7 @@ The pipeline can also recognize the queue system which is used on the machine wh
 </div>
 </section>
 <section id="workflow">
-<h3>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h3>
+<h3>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading"></a></h3>
 <p>The code above will produce nothing (actually a warning), because it requires the part that will actually <strong>call the process</strong> and connect it to the input channel.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run ex1_a.nf -dsl2</span>
 <span class="go">N E X T F L O W  ~  version 22.04.3</span>
@@ -514,7 +515,7 @@ The pipeline can also recognize the queue system which is used on the machine wh
 </section>
 </section>
 <section id="nextflow-log">
-<h2>Nextflow log<a class="headerlink" href="#nextflow-log" title="Permalink to this headline"></a></h2>
+<h2>Nextflow log<a class="headerlink" href="#nextflow-log" title="Permalink to this heading"></a></h2>
 <p>Let’s inspect the log file:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cat log.txt</span>
 
@@ -734,7 +735,7 @@ For example, using this code you can execute two different workflows that contai
 </div>
 </section>
 <section id="more-complex-scripts">
-<h2>More complex scripts<a class="headerlink" href="#more-complex-scripts" title="Permalink to this headline"></a></h2>
+<h2>More complex scripts<a class="headerlink" href="#more-complex-scripts" title="Permalink to this heading"></a></h2>
 <p>We can feed the channel that is generated by a process to another process in the workflow definition. The variable used by AWK need to be escaped, otherwise they will be considered as proper Nextflow variables and thus produce an error. Every special character, e.g., <strong>$</strong>, needs to be escaped (<strong>$</strong>). It can be tedeous when writing long one liners; therefore, it is recommended to make a small shell script and call it as an executable. It has to be placed in a folder named <strong>bin</strong> inside the pipeline folder to be automatically considered from Nextflow as a tool in the path. This script can be seen at <strong>/test1/test1.nf</strong></p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
 
@@ -950,7 +951,7 @@ This avoids clashes, and each process is isolated from the other.</p>
 </pre></div>
 </div>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>Optimize the previus pipeline to avoid running the process <strong>splitSequences</strong> twice.</p>
 <details>
 <summary><a>Solution</a></summary><div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
@@ -1028,7 +1029,7 @@ This avoids clashes, and each process is isolated from the other.</p>
 </div>
 </section>
 <section id="directives">
-<h3>Directives<a class="headerlink" href="#directives" title="Permalink to this headline"></a></h3>
+<h3>Directives<a class="headerlink" href="#directives" title="Permalink to this heading"></a></h3>
 <p>The <a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#directives">directives</a> are declaration blocks that can provide optional settings for a process.</p>
 <p>For example, they can affect the way a process stages in and out the input and output files (<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#stageinmode">stageInMode</a> and <a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#stageoutmode">stageOutMode</a>), or they can indicate which file has to be considered a final result and in which folder it should be published (<a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#publishdir">publishDir</a>).</p>
 <p>We can add the directive <a class="reference external" href="https://www.nextflow.io/docs/latest/process.html#publishdir">publishDir</a> to our previous example:</p>
@@ -1122,7 +1123,7 @@ This avoids clashes, and each process is isolated from the other.</p>
 </div>
 </section>
 <section id="resuming-a-pipeline">
-<h3>Resuming a pipeline<a class="headerlink" href="#resuming-a-pipeline" title="Permalink to this headline"></a></h3>
+<h3>Resuming a pipeline<a class="headerlink" href="#resuming-a-pipeline" title="Permalink to this heading"></a></h3>
 <p>You can resume the execution after the code modification using the parameter <strong>-resume</strong>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run test1.nf -bg -resume</span>
 
@@ -1168,7 +1169,7 @@ This avoids clashes, and each process is isolated from the other.</p>
 <p><strong>IMPORTANT: On some shared file systems you might have inconsistent file timestamps. Thus cache lenient prevents you from unwanted restarting of cached processes.</strong></p>
 </section>
 <section id="id2">
-<h3>EXERCISE<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<h3>EXERCISE<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>Make the previous pipeline resilient to the process failing and save the results so the process execution would be skipped when the pipeline is launched again.</p>
 <p>First, make the process <cite>reverseSequence</cite> to fail by introducing a typo in the command line, then add the directive to the process.</p>
 <details>

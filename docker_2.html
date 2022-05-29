@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
@@ -102,11 +103,11 @@
            <div itemprop="articleBody">
              
   <section id="docker-2">
-<span id="docker-2-page"></span><h1>Docker 2<a class="headerlink" href="#docker-2" title="Permalink to this headline"></a></h1>
+<span id="docker-2-page"></span><h1>Docker 2<a class="headerlink" href="#docker-2" title="Permalink to this heading"></a></h1>
 <section id="docker-recipes-build-your-own-images">
-<h2>Docker recipes: build your own images<a class="headerlink" href="#docker-recipes-build-your-own-images" title="Permalink to this headline"></a></h2>
+<h2>Docker recipes: build your own images<a class="headerlink" href="#docker-recipes-build-your-own-images" title="Permalink to this heading"></a></h2>
 <section id="os-commands-in-image-building">
-<h3>OS commands in image building<a class="headerlink" href="#os-commands-in-image-building" title="Permalink to this headline"></a></h3>
+<h3>OS commands in image building<a class="headerlink" href="#os-commands-in-image-building" title="Permalink to this heading"></a></h3>
 <p>Depending on the underlying OS, there are different ways to build images.</p>
 <p>Know your base system and their packages. Popular ones:</p>
 <ul class="simple">
@@ -116,7 +117,7 @@
 <li><p>Conda. <a class="reference external" href="https://anaconda.org/anaconda/repo">Anaconda</a>, <a class="reference external" href="https://conda-forge.org/feedstocks/">Conda-forge</a>, <a class="reference external" href="https://anaconda.org/bioconda/repo">Bioconda</a>, etc.</p></li>
 </ul>
 <section id="update-and-upgrade-packages">
-<h4>Update and upgrade packages<a class="headerlink" href="#update-and-upgrade-packages" title="Permalink to this headline"></a></h4>
+<h4>Update and upgrade packages<a class="headerlink" href="#update-and-upgrade-packages" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>In <strong>Ubuntu</strong>:</p></li>
 </ul>
@@ -129,7 +130,7 @@
 </div>
 </section>
 <section id="search-and-install-packages">
-<h4>Search and install packages<a class="headerlink" href="#search-and-install-packages" title="Permalink to this headline"></a></h4>
+<h4>Search and install packages<a class="headerlink" href="#search-and-install-packages" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>In <strong>Ubuntu</strong>:</p></li>
 </ul>
@@ -149,10 +150,10 @@ It is an important option in the context of Docker: it means that you <em>answer
 </section>
 </section>
 <section id="building-recipes">
-<h3>Building recipes<a class="headerlink" href="#building-recipes" title="Permalink to this headline"></a></h3>
+<h3>Building recipes<a class="headerlink" href="#building-recipes" title="Permalink to this heading"></a></h3>
 <p>All commands should be saved in a text file, named by default <strong>Dockerfile</strong>.</p>
 <section id="basic-instructions">
-<h4>Basic instructions<a class="headerlink" href="#basic-instructions" title="Permalink to this headline"></a></h4>
+<h4>Basic instructions<a class="headerlink" href="#basic-instructions" title="Permalink to this heading"></a></h4>
 <p>Each row in the recipe corresponds to a <strong>layer</strong> of the final image.</p>
 <p><strong>FROM</strong>: parent image. Typically, an operating system. The <strong>base layer</strong>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">ubuntu</span><span class="p">:</span><span class="mf">18.04</span>
@@ -169,7 +170,7 @@ It is an important option in the context of Docker: it means that you <em>answer
 </div>
 </section>
 <section id="docker-build">
-<h4>docker build<a class="headerlink" href="#docker-build" title="Permalink to this headline"></a></h4>
+<h4>docker build<a class="headerlink" href="#docker-build" title="Permalink to this heading"></a></h4>
 <p>Implicitely looks for a <strong>Dockerfile</strong> file in the current directory:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker build .</span>
 </pre></div>
@@ -202,7 +203,7 @@ It is an important option in the context of Docker: it means that you <em>answer
 </div>
 </section>
 <section id="more-instructions">
-<h4>More instructions<a class="headerlink" href="#more-instructions" title="Permalink to this headline"></a></h4>
+<h4>More instructions<a class="headerlink" href="#more-instructions" title="Permalink to this heading"></a></h4>
 <p><strong>MAINTAINER</strong></p>
 <p>Who is maintaining the container?</p>
 <p><strong>WORKDIR</strong>: all subsequent actions will be executed in that working directory</p>
@@ -291,14 +292,14 @@ If it is run with the argument <strong>hello moon</strong> it will execute <cite
 </section>
 </section>
 <section id="docker-tag">
-<h3>docker tag<a class="headerlink" href="#docker-tag" title="Permalink to this headline"></a></h3>
+<h3>docker tag<a class="headerlink" href="#docker-tag" title="Permalink to this heading"></a></h3>
 <p>To tag a local image with ID “e23aaea5dff1” into the “ubuntu_wget” image name repository with version “1.0”:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker tag e23aaea5dff1 ubuntu_wget:1.0</span>
 </pre></div>
 </div>
 </section>
 <section id="build-cache">
-<h3>Build cache<a class="headerlink" href="#build-cache" title="Permalink to this headline"></a></h3>
+<h3>Build cache<a class="headerlink" href="#build-cache" title="Permalink to this heading"></a></h3>
 <p>Every line of a Dockerfile is actually an image/layer by itself.</p>
 <p>Modify for instance the last bit of the previous image (let’s change the image URL) and rebuild it (even with a different name/tag):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">ubuntu</span><span class="p">:</span><span class="mf">18.04</span>
@@ -324,7 +325,7 @@ This is OK most of the times and very convenient for testing and trying new step
 </div>
 </section>
 <section id="build-exercise">
-<h3>Build exercise<a class="headerlink" href="#build-exercise" title="Permalink to this headline"></a></h3>
+<h3>Build exercise<a class="headerlink" href="#build-exercise" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Random numbers</p></li>
 <li><p>Copy the following short bash script in a file called random_numbers.bash.</p></li>
@@ -371,7 +372,7 @@ This is OK most of the times and very convenient for testing and trying new step
 </details></section>
 </section>
 <section id="additional-commands">
-<h2>Additional commands<a class="headerlink" href="#additional-commands" title="Permalink to this headline"></a></h2>
+<h2>Additional commands<a class="headerlink" href="#additional-commands" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>docker inspect</strong>: Get details from containers (both running and stopped). Things such as IPs, volumes, etc.</p></li>
 <li><p><strong>docker logs</strong>: Get <em>console</em> messages from running containers. Useful when using with web services.</p></li>
@@ -385,7 +386,7 @@ This is OK most of the times and very convenient for testing and trying new step
 <li><p><strong>docker import</strong>: Import a filesystem tar archive into an image (you need to specify a target tag).</p></li>
 </ul>
 <section id="example-dealing-with-tar-images">
-<h3>Example dealing with tar images<a class="headerlink" href="#example-dealing-with-tar-images" title="Permalink to this headline"></a></h3>
+<h3>Example dealing with tar images<a class="headerlink" href="#example-dealing-with-tar-images" title="Permalink to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span># Let&#39;s save the image in a tar
 docker save -o random_numbers.tar random_numbers
 
@@ -404,7 +405,7 @@ docker images
 </div>
 </section>
 <section id="note-about-the-tar-formats">
-<h3>Note about the tar formats<a class="headerlink" href="#note-about-the-tar-formats" title="Permalink to this headline"></a></h3>
+<h3>Note about the tar formats<a class="headerlink" href="#note-about-the-tar-formats" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>If you check the tar archives generated thanks to <strong>save</strong> with the ones using export, you will notice they do not look the same.</p></li>
 <li><p>The former ones ressemble more what you will find in <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code> (that is where Docker daemon stores its data) and it includes metadata information (so it is not necessary to specify an image tag).</p></li>
@@ -413,7 +414,7 @@ docker images
 </section>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline"></a></h2>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading"></a></h2>
 <p>We explore interactively the different examples in the containers/docker folders.</p>
 </section>
 </section>

@@ -149,15 +149,15 @@ We can now launch the pipeline indicating `-profile cloud`:
 	nextflow run test3.nf -bg -with-docker -profile cloud > log
 
 
-Note that there is no longer a **work** folder in the directory where test3.nf is located, because, in the AWS cloud, the output is copied locally in the folder **/mnt/class-bucket-NNN/work** (you can see the mounted folder - and the correspondign number - typing **df**).
+Note that there is no longer a **work** folder in the directory where test3.nf is located, because, in the AWS cloud, the output is copied locally in the folder **/mnt/nf-class-bucket-NNN/work** (you can see the mounted folder - and the correspondign number - typing **df**).
 
-The multiqc report can be seen on the AWS webpage at https://class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/ouptut_multiQC/multiqc_report.html
+The multiqc report can be seen on the AWS webpage at https://nf-class-bucket-NNN.s3.eu-central-1.amazonaws.com/results/ouptut_multiQC/multiqc_report.html
 
 But you need before to change permissions for that file as (where NNNN is the number of your bucket):
 
 .. code-block:: console
 
-	chmod 775 /mnt/class-bucket-NNNN/results/ouptut_multiQCmultiqc_report.html
+	chmod 775 /mnt/nf-class-bucket-NNNN/results/ouptut_multiQCmultiqc_report.html
 
 
 Sometimes you can find that the Nextflow process itself is very memory intensive and the main node can run out of memory. To avoid this, you can reduce the memory needed by setting an environmental variable:
@@ -173,7 +173,7 @@ We can also tell Nextflow to directly copy the output file to the S3 bucket: to 
 
 .. code-block:: groovy
 
-	outdir = "s3://class-bucket-NNNN/results"
+	outdir = "s3://nf-class-bucket-NNNN/results"
 
 
 

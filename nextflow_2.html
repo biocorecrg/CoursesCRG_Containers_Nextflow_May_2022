@@ -467,7 +467,7 @@ We can indicate which process and output can be considered the final output of t
 <p>To access the output files via the web they can be copied to your <a class="reference external" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html">S3 bucket</a> . Your bucket is mounted in <strong>/mnt</strong>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ls /mnt</span>
 
-<span class="go">/mnt/class-bucket-1</span>
+<span class="go">/mnt/nf-class-bucket-1</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -475,13 +475,13 @@ We can indicate which process and output can be considered the final output of t
 <p>In this class, each student has its own bucket, with the number correponding to the number of the AWS instance.</p>
 </div>
 <p>Let’s copy the <strong>multiqc_report.html</strong> file in the S3 bucket and change the privileges:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cp output_multiQC/multiqc_report.html /mnt/class-bucket-1</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cp output_multiQC/multiqc_report.html /mnt/nf-class-bucket-1</span>
 
-<span class="go">sudo chmod 775 /mnt/class-bucket-1/multiqc_report.html</span>
+<span class="go">sudo chmod 775 /mnt/nf-class-bucket-1/multiqc_report.html</span>
 </pre></div>
 </div>
 <p>Now you will be able to see this html file via the browser (change the bucket number to correspond to your instance):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">http://class-bucket-1.s3.eu-central-1.amazonaws.com/multiqc_report.html</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">http://nf-class-bucket-1.s3.eu-central-1.amazonaws.com/multiqc_report.html</span>
 </pre></div>
 </div>
 </section>

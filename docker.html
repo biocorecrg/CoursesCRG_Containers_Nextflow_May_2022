@@ -356,7 +356,7 @@
 <span class="gp"># </span>Can you run a container from this image and make it print a “hello world” message?
 <span class="go">docker run alpine:3.12 echo &quot;hello world&quot;</span>
 <span class="gp"># </span>Now run a container **interactively** from the same image.
-<span class="go">docker run -ti alpine:3.12</span>
+<span class="go">docker run --detach alpine:3.12 tail -f /dev/null</span>
 <span class="gp">  # </span>Run <span class="sb">`</span>whoami<span class="sb">`</span>
 <span class="go">  whoami</span>
 <span class="gp">  # </span>Exit the container.
@@ -377,7 +377,7 @@
 <li><p>Pull the imagemagick image that is official and that has the highest number of stars</p></li>
 <li><p>Check the version of the convert command.</p></li>
 <li><p>Start a container interactively.</p></li>
-<li><p>Inside the container: download this png image</p></li>
+<li><p>Inside the container: download this png image (<a class="reference external" href="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png">https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png</a>)</p></li>
 <li><p>Convert it to .jpg using the convert command of imagemagick (format; convert image.png image.jpg).</p></li>
 <li><p>Exit the container.</p></li>
 <li><p>Copy the jpg image back from the stopped container! Try new command <cite>docker cp</cite>.</p></li>
@@ -392,9 +392,9 @@
 <span class="gp"># </span>Start interactive container
 <span class="go">docker run -it acleancoder/imagemagick-full</span>
 <span class="gp">  # </span>fetch png image
-<span class="go">  &gt; wget https://pbs.twimg.com/profile_images/1273307847103635465/lfVWBmiW_400x400.png</span>
+<span class="go">  &gt; wget  https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png</span>
 <span class="gp">  # </span>convert to jpg
-<span class="go">  &gt; convert lfVWBmiW_400x400.png myimage.jpg</span>
+<span class="go">  &gt; convert vertical-logo-monochromatic.png myimage.jpg</span>
 <span class="gp">  # </span><span class="nb">exit</span> container
 
 <span class="gp"># </span>fetch container ID with <span class="sb">`</span>ps -a<span class="sb">`</span> and use <span class="sb">`</span>docker cp<span class="sb">`</span> to copy jpg file from the stopped container to the host

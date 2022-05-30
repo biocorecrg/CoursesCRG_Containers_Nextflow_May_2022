@@ -360,7 +360,7 @@ Exercises
   # Can you run a container from this image and make it print a “hello world” message?
   docker run alpine:3.12 echo "hello world"
   # Now run a container **interactively** from the same image.
-  docker run -ti alpine:3.12
+  docker run --detach alpine:3.12 tail -f /dev/null
     # Run `whoami`
     whoami
     # Exit the container.
@@ -390,7 +390,7 @@ Exercises
 
 * Start a container interactively.
 
-* Inside the container: download this png image
+* Inside the container: download this png image (https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png)
 
 * Convert it to .jpg using the convert command of imagemagick (format; convert image.png image.jpg).
 
@@ -415,9 +415,9 @@ Exercises
   # Start interactive container
   docker run -it acleancoder/imagemagick-full
     # fetch png image
-    > wget https://pbs.twimg.com/profile_images/1273307847103635465/lfVWBmiW_400x400.png
+    > wget  https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png
     # convert to jpg
-    > convert lfVWBmiW_400x400.png myimage.jpg
+    > convert vertical-logo-monochromatic.png myimage.jpg
     # exit container
 
   # fetch container ID with `ps -a` and use `docker cp` to copy jpg file from the stopped container to the host

@@ -200,7 +200,7 @@ To access the output files via the web they can be copied to your `S3 bucket <ht
 
 	ls /mnt
 
-	/mnt/class-bucket-1
+	/mnt/nf-class-bucket-1
 
 
 
@@ -211,16 +211,16 @@ Let's copy the **multiqc_report.html** file in the S3 bucket and change the priv
 
 .. code-block:: console
 
-	cp output_multiQC/multiqc_report.html /mnt/class-bucket-1
+	cp output_multiQC/multiqc_report.html /mnt/nf-class-bucket-1
 
-	sudo chmod 775 /mnt/class-bucket-1/multiqc_report.html
+	sudo chmod 775 /mnt/nf-class-bucket-1/multiqc_report.html
 
 
 Now you will be able to see this html file via the browser (change the bucket number to correspond to your instance):
 
 .. code-block:: console
 
-	http://class-bucket-1.s3.eu-central-1.amazonaws.com/multiqc_report.html
+	http://nf-class-bucket-1.s3.eu-central-1.amazonaws.com/multiqc_report.html
 
 
 

@@ -34,7 +34,7 @@ and then, we activate it.
 
 .. code-block:: console
 
-	conda create --name nf-core nf-core -c bioconda -y 
+	conda create --name nf-core nf-core=2.4.1 -c bioconda -c conda-forge -y 
 	conda activate nf-core
 
 .. note::	
@@ -92,7 +92,7 @@ nf-core for users
 =================
 
 Listing pipelines
-------------------
+-----------------
 
 To show all the nf-core available pipelines, we can use the nf-core list command. This command also
 provides some other information as the last version of each of the nf-core pipelines, its publication and
@@ -215,7 +215,8 @@ you want to use, this can be indicated using the `-r` flag e.g. ``nf-core launch
 
 Exercise
 ********
-Use the ``nf-core launch`` command to run a previous version of the pipeline and produce the ``nf-params.json``
+
+Pull version ``3.7`` of the nf-core/rnaseq pipeline, run it using the ``nf-core launch`` command and produce the ``nf-params.json``.
 
 .. raw:: html
 
@@ -224,11 +225,8 @@ Use the ``nf-core launch`` command to run a previous version of the pipeline and
 
 .. code-block:: console
 
-	nf-core launch rnaseq -r 3.6
-
-.. tip::
-	nf-core launch internally uses Nextflow pull to obtain the revision of the pipeline indicated so you can skip 
-	this step in the case of releases but not in the case of branches.
+	nextflow pull nf-core/rnaseq -r 3.7
+	nf-core launch rnaseq -r 3.7
 
 nf-core configs and profiles
 ----------------------------
@@ -294,6 +292,17 @@ Exercise
 
 	params.email = "youremail@address.com"
 
+Running pipelines with test data
+--------------------------------
+
+All nf-core pipelines include a special configuration named ``test``. This configuration defines all the files and parameters to test
+the whole pipeline with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results are not
+meaningful. 
+
+You can find the current most updated  `nf-core/configs <https://github.com/nf-core/configs>`__
+.. literalinclude:: ../nf-core/examples/test.config
+	:language: groovy
+
 
 Downloading pipelines
 ---------------------
@@ -308,7 +317,36 @@ files. Again, the ``-r`` flag allows to fetch a given revision of the pipeline.
 Finally, you can also download any singularity image files required by the pipeline, if you specify the ``--singularity`` flag.
 
 .. tip::
-	If you don't provide any option to ```nf-core download`` a interactive prompt will ask you for the required options.
+	If you don't provide any option to ```nf-core download`` an interactive prompt will ask you for the required options.
+
+We can now try to download the rnaseq pipeline using the command below:
+
+.. code-block:: console
+
+	nf-core download rnaseq
+
+Now we can inspect the structure of the downloaded directory:
+
+.. code-block:: console
+
+	$ tree -L 2 nf-core-rnaseq-3.8/
+
+	nf-core-rnaseq-3.8/
+	├── configs
+	│   ├── ..truncated..
+	│   ├── nextflow.config
+	│   ├── nfcore_custom.config
+	│   └── pipeline
+	├── singularity-images
+	│   ├── depot.galaxyproject.org-singularity-bbmap-38.93--he522d1c_0.img
+	│   ├── ..truncated..
+	│   └── depot.galaxyproject.org-singularity-umi_tools-1.1.2--py38h4a8c8d9_0.img
+	└── workflow
+		├── CHANGELOG.md
+		├── ..truncated..
+		├── main.nf
+		├── modules
+		└── workflows
 
 .. Exercise
 .. ********
@@ -316,11 +354,13 @@ Finally, you can also download any singularity image files required by the pipel
 .. Launch the nf-core chipseq pipeline dev branch --> you need to first do a nextflow pull
 .. Check if this can be done using nf-core launch?
 
-nf-core modules
----------------
+.. nf-core modules
+.. ---------------
 
 .. Fix corrupted pipeline
 
 .. N E X T F L O W  ~  version 22.04.0
 .. Can't find git repository config file -- Repository may be corrupted: .nextflow/assets/nf-core/atacseq
 .. explain -r ~/.nextflow/assets/nf-core/chipseq/
+
+.. explain the multiqc report in terms of reproducibility??

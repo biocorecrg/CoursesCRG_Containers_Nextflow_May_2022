@@ -43,7 +43,6 @@ Linting pipelines
 To make sticking to nf-core guidelines easier, nf-core includes the ``lint`` command. This command checks that the pipeline is following 
 nf-core standards. Interestingly, this command is the same that is used in the automated continuous integration tests.
 
-A complete list of the 
 Let's try to run this command on the pipeline we have just created.
 
 .. code-block:: console
@@ -51,7 +50,39 @@ Let's try to run this command on the pipeline we have just created.
 	cd nf-core-<your_pipeline_name>
 	nf-core lint
 
+.. tip::
+	You can use :kbd:`ctrl` + :kbd:`click` to navigate the documentation of each of the lint results. Otherwise, 
+	the complete list of the lint tests can be found `here <https://nf-co.re/tools-docs/lint_tests/index.html>`__
+
+To run only a specific nf-core lint test you can use the ``-k`` / ``--key`` option, this enables to run for example
+only a certain test that has failed, e.g. ``nf-core lint -k files_exist -k files_unchanged``.
+
+nf-core modules
+---------------
+
+Since the introduction of `Nextflow DSL2<https://www.nextflow.io/blog/2020/dsl2-is-here.html>`__, nf-core pipelines have being, 
+and still are, being ported to DSL2 syntax. One of the paramount features of the DSL2 syntax is the possibility of creating 
+modules and sub-workflows, as we have already discussed during this course. For this reason, the nf-core community has created
+a centralised repository to host modules and sub-workflows (the latter is still WIP). This enables multiple pipelines to use
+the same process defined as a module improving the developing speed and the robustness of pipelines by using tested modules.
+
+The nf-core DSL2 modules repository is at `https://github.com/nf-core/modules<https://github.com/nf-core/modules>`__ and you 
+can navigate the modules available on this section of the nf-core `website<https://nf-co.re/modules>`__.
+
+.. note::
+	We have recently reach 500 modules available in the modules repository.
+
+As you can see, modules have been become a central resource of the nf-core community and as so nf-core tools provides with 
+some dedicated utilities for modules. 
+
+Modules
+-------
+
+
 
 .. remove the conf/test.config file and run the lint
 
-.. LINT HELPER PACKAGE
+.. LINT HELPER PACKAGE for visual code
+
+.. In carpentries there is an example of using the nf-core/rnaseq pipeline with an example data test.
+

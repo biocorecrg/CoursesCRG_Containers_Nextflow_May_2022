@@ -21,3 +21,4 @@ Contents:
    nextflow_2
    nextflow_3
    nf-core_1
+   nf-core_2

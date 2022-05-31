@@ -92,7 +92,7 @@ nf-core for users
 =================
 
 Listing pipelines
-------------------
+-----------------
 
 To show all the nf-core available pipelines, we can use the nf-core list command. This command also
 provides some other information as the last version of each of the nf-core pipelines, its publication and

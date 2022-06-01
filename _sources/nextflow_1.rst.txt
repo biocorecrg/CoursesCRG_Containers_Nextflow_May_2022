@@ -20,9 +20,9 @@ What is Nextflow?
 
 `Nextflow <https://www.nextflow.io>`__ is a domain specific language (DSL) for workflow orchestration that stems from `Groovy <https://groovy-lang.org/>`__. It enables scalable and reproducible workflows using software containers.
 It was developed at the `CRG <www.crg.eu>`__ in the Lab of Cedric Notredame by `Paolo Di Tommaso <https://github.com/pditommaso>`__.
-The Nextflow documentation is `available here <https://www.nextflow.io/docs/latest/>`__ and you can ask help to the community using their `gitter channel <https://gitter.im/nextflow-io/nextflow>`__
+The Nextflow documentation is `available here <https://www.nextflow.io/docs/latest/>`__ and you can ask help to the community using their `gitter channel <https://gitter.im/nextflow-io/nextflow>`__ or joining their `slack channel <https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg>`__. 
 
-In 2020, Nextflow has been upgraded from DSL1 version to DSL2. In this course we will use exclusively DSL2.
+In 2020, Nextflow has been upgraded from DSL1 version to DSL2. In this course we will use exclusively DSL2. It is currently developed and mantained by the company `Seqera Labs <https://seqera.io/>`__
 
 What is Nextflow for?
 ---------------------

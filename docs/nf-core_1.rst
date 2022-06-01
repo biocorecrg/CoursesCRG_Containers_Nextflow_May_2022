@@ -298,14 +298,15 @@ Running pipelines with test data
 --------------------------------
 
 All nf-core pipelines include a special configuration named ``test``. This configuration defines all the files and parameters to test
-the whole pipeline with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results are not
-meaningful. 
-
-You can find the current most updated  `nf-core/configs <https://github.com/nf-core/configs>`__
+all pipeline functionality with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results
+are not meaningful. As an example, find on the snippet below the test configuration of the `nf-core/rnaseq <https://github.com/nf-core/rnaseq/>`__`
+pipeline.
 
 .. literalinclude:: ../nf-core/examples/test.config
 	:language: groovy
 
+.. tip::
+	You can find the current version of the config above `here <https://github.com/nf-core/rnaseq/blob/master/conf/test.config>`__
 
 Downloading pipelines
 ---------------------

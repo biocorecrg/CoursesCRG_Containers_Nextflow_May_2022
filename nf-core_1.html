@@ -368,9 +368,9 @@ config file and add it to your command with the <code class="docutils literal no
 <section id="running-pipelines-with-test-data">
 <h2>Running pipelines with test data<a class="headerlink" href="#running-pipelines-with-test-data" title="Permalink to this heading"></a></h2>
 <p>All nf-core pipelines include a special configuration named <code class="docutils literal notranslate"><span class="pre">test</span></code>. This configuration defines all the files and parameters to test
-the whole pipeline with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results are not
-meaningful.</p>
-<p>You can find the current most updated  <a class="reference external" href="https://github.com/nf-core/configs">nf-core/configs</a></p>
+all pipeline functionality with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results
+are not meaningful. As an example, find on the snippet below the test configuration of the <cite>nf-core/rnaseq &lt;https://github.com/nf-core/rnaseq/&gt;`__</cite>
+pipeline.</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
 <span class="cm">    Nextflow config file for running minimal tests</span>
@@ -418,6 +418,10 @@ meaningful.</p>
 <span class="w">    </span><span class="o">}</span><span class="w"></span>
 <span class="o">}</span><span class="w"></span>
 </pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can find the current version of the config above <a class="reference external" href="https://github.com/nf-core/rnaseq/blob/master/conf/test.config">here</a></p>
 </div>
 </section>
 <section id="downloading-pipelines">

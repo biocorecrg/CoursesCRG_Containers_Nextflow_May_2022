@@ -58,13 +58,25 @@ To run only a specific nf-core lint test you can use the ``-k`` / ``--key`` opti
 only a certain test that has failed, e.g. ``nf-core lint -k files_exist -k files_unchanged``.
 
 nf-core modules
----------------
+===============
 
-Since the introduction of `Nextflow DSL2<https://www.nextflow.io/blog/2020/dsl2-is-here.html>`__, nf-core pipelines have being, 
-and still are, being ported to DSL2 syntax. One of the paramount features of the DSL2 syntax is the possibility of creating 
+Since the introduction of `Nextflow DSL2<https://www.nextflow.io/blog/2020/dsl2-is-here.html>`__, nf-core pipelines have, 
+and still are, been ported to DSL2 syntax. One of the paramount features of the DSL2 syntax is the possibility of creating 
 modules and sub-workflows, as we have already discussed during this course. For this reason, the nf-core community has created
 a centralised repository to host modules and sub-workflows (the latter is still WIP). This enables multiple pipelines to use
 the same process defined as a module improving the developing speed and the robustness of pipelines by using tested modules.
+
+.. topic:: nf-core DSL2 concepts
+
+	**MODULE**: A process that can be used within different pipelines and is as a atomic as possible i.e, cannot be split into 
+	another module.
+	e.g. a module file containing the process definition for a single tool such as FastQC  
+	
+	**SUB-WORKFLOW**: A chain of multiple modules that offer a higher-level functionality within the context of a pipeline. 
+	e.g. a sub-workflow to sort, index and run some basic stats on a BAM file.
+
+	**WORKFLOW**: An end-to-end pipeline created by a combination of Nextflow DSL2 individual modules and sub-workflows. 
+	e.g. from one or more inputs to a series of final inputs
 
 The nf-core DSL2 modules repository is at `https://github.com/nf-core/modules<https://github.com/nf-core/modules>`__ and you 
 can navigate the modules available on this section of the nf-core `website<https://nf-co.re/modules>`__.
@@ -75,10 +87,83 @@ can navigate the modules available on this section of the nf-core `website<https
 As you can see, modules have been become a central resource of the nf-core community and as so nf-core tools provides with 
 some dedicated utilities for modules. 
 
-Modules
--------
+Listing modules
+---------------
+
+We can now list all the nf-core available modules getting advantage of the ``list remote`` sub-command. 
+
+.. code-block:: console
+
+	$ nf-core modules list remote
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.4.1 - https://nf-co.re
+
+	INFO     Modules available from nf-core/modules (master):                                                                                                                                                                                                            list.py:125
+
+	┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+	┃ Module Name                              ┃
+	┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+	│ abacas                                   │
+	│ abricate/run                             │
+	│ abricate/summary                         │
+	│ adapterremoval                           │
+	│ adapterremovalfixprefix                  │
+	│ agrvate                                  │
+	│ allelecounter                            │
+	│ amplify/predict                          │
+	│ amps                                     │
+	│ amrfinderplus/run                        │
+	│ amrfinderplus/update                     │
+	│ antismash/antismashlite                  │
+	│ antismash/antismashlitedownloaddatabases │
+	│ arriba                                   │
+	│ artic/guppyplex                          │
+	│ artic/minion                             │
+	│ ascat                                    │
+	│ assemblyscan                             │
+	│ ataqv/ataqv                              │
+	│ bakta                                    │
+	│ bamaligncleaner                          │
+	│ bamcmp                                   │
+	│ bamtools/convert                         │
+	[..truncated..]
+
+.. tip::
+	You can add a pattern to the end of the list command to filter the modules by keyword eg: ``nf-core modules list remote samtools``
+
+Likewise, it is also possible to list the modules installed in a pipeline by using the ``list local`` sub-command. By default, 
+the command will list the modules installed in the current working directory but you can provide a different directory by using
+the ``--dir <pipeline_dir>`` option.
+
+.. code-block:: console
+
+	$ nf-core modules list local
+
+Show information about a module
+-------------------------------
+
+You can render the basic information of a module using ``nf-core modules info <tool>``. This command will provide a brief
+summary of the module functionality, the description of the input and output channels, its type (``val``, ``path``, etc.) 
+and the its installation command.
+
+Install modules in a pipeline
+-----------------------------
 
 
+
+.. Exercise
+.. CREATE a toy nf-core pipeline
+.. install samtools/sort module in the pipeline
+.. list the modules installed in the pipeline and keep them in a json file.
+
+.. Add the link to the nf-core modules in the nf-core website
+
+.. 
 
 .. remove the conf/test.config file and run the lint
 

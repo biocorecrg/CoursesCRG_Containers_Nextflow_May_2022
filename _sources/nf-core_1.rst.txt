@@ -292,6 +292,8 @@ Exercise
 
 	params.email = "youremail@address.com"
 
+|
+
 Running pipelines with test data
 --------------------------------
 
@@ -300,6 +302,7 @@ the whole pipeline with a minimal dataset. Thus, although the functionality of t
 meaningful. 
 
 You can find the current most updated  `nf-core/configs <https://github.com/nf-core/configs>`__
+
 .. literalinclude:: ../nf-core/examples/test.config
 	:language: groovy
 

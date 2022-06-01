@@ -360,6 +360,9 @@ config file and add it to your command with the <code class="docutils literal no
 <summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">params.email = &quot;youremail@address.com&quot;</span>
 </pre></div>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 </section>
 <section id="running-pipelines-with-test-data">
@@ -367,15 +370,55 @@ config file and add it to your command with the <code class="docutils literal no
 <p>All nf-core pipelines include a special configuration named <code class="docutils literal notranslate"><span class="pre">test</span></code>. This configuration defines all the files and parameters to test
 the whole pipeline with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results are not
 meaningful.</p>
-<p>You can find the current most updated  <a class="reference external" href="https://github.com/nf-core/configs">nf-core/configs</a>
-.. literalinclude:: ../nf-core/examples/test.config</p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">language</dt>
-<dd class="field-odd"><p>groovy</p>
-</dd>
-</dl>
-</div></blockquote>
+<p>You can find the current most updated  <a class="reference external" href="https://github.com/nf-core/configs">nf-core/configs</a></p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    Nextflow config file for running minimal tests</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    Defines input files and everything required to run a fast and simple pipeline test.</span>
+<span class="cm">    Use as follows:</span>
+<span class="cm">        nextflow run nf-core/rnaseq -profile test,&lt;docker/singularity&gt; --outdir &lt;OUTDIR&gt;</span>
+<span class="cm">----------------------------------------------------------------------------------------</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="n">params</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">config_profile_name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Test profile&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">config_profile_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Minimal test dataset to check pipeline function&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Limit resources so that this can run on GitHub Actions</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_cpus</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;6.GB&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_time</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;6.h&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Input data</span><span class="w"></span>
+<span class="w">    </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://raw.githubusercontent.com/nf-core/test-datasets/rnaseq/samplesheet/v3.4/samplesheet_test.csv&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Genome references</span><span class="w"></span>
+<span class="w">    </span><span class="n">fasta</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/genome.fasta&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">gtf</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/genes.gtf.gz&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">gff</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/genes.gff.gz&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">transcript_fasta</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/transcriptome.fasta&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">additional_fasta</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/gfp.fa.gz&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">bbsplit_fasta_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/bbsplit_fasta_list.txt&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">hisat2_index</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/hisat2.tar.gz&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">salmon_index</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/salmon.tar.gz&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">rsem_index</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/test-datasets/raw/rnaseq/reference/rsem.tar.gz&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Other parameters</span><span class="w"></span>
+<span class="w">    </span><span class="n">skip_bbsplit</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="n">pseudo_aligner</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;salmon&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">umitools_bc_pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NNNN&#39;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="c1">// When using RSEM, remove warning from STAR whilst building tiny indices</span><span class="w"></span>
+<span class="n">process</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="nl">withName:</span><span class="w"> </span><span class="s1">&#39;RSEM_PREPAREREFERENCE_GENOME&#39;</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ext</span><span class="o">.</span><span class="na">args2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;--genomeSAindexNbases 7&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+</pre></div>
+</div>
 </section>
 <section id="downloading-pipelines">
 <h2>Downloading pipelines<a class="headerlink" href="#downloading-pipelines" title="Permalink to this heading"></a></h2>

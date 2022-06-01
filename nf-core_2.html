@@ -109,10 +109,16 @@ the nf-core template when it is updated (new tool releases).</p>
 <summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core create -n foo -d &quot;My awesome nf-core pipeline&quot; -a &quot;Your name&quot;</span>
 </pre></div>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>As shown in the message returned by the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">create</span></code> if you plan to contribute your pipeline to nf-core, it is
 highly advisable to drop a message on the nf-core before starting to write any code, read more <a class="reference external" href="https://nf-co.re/developers/adding_pipelines#join-the-community">here</a></p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 </section>
 </section>
@@ -218,6 +224,13 @@ the <code class="docutils literal notranslate"><span class="pre">--dir</span> <s
 <p>You can render the basic information of a module using <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">info</span> <span class="pre">&lt;tool&gt;</span></code>. This command will provide a brief
 summary of the module functionality, the description of the input and output channels, its type (<code class="docutils literal notranslate"><span class="pre">val</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, etc.)
 and the its installation command.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core modules info fastqc
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you prefer, you can also check the modules info in the <a class="reference external" href="https://nf-co.re/modules">nf-core website</a>.</p>
+</div>
 </section>
 <section id="install-modules-in-a-pipeline">
 <h2>Install modules in a pipeline<a class="headerlink" href="#install-modules-in-a-pipeline" title="Permalink to this heading"></a></h2>

@@ -32,10 +32,13 @@ Try to create your own pipeline using ``nf-core create``
 
 	nf-core create -n foo -d "My awesome nf-core pipeline" -a "Your name"
 
+|
+
 .. note:: 
 	As shown in the message returned by the ``nf-core create`` if you plan to contribute your pipeline to nf-core, it is 
 	highly advisable to drop a message on the nf-core before starting to write any code, read more `here <https://nf-co.re/developers/adding_pipelines#join-the-community>`__
 
+|
 
 Linting pipelines
 -----------------
@@ -150,6 +153,14 @@ Show information about a module
 You can render the basic information of a module using ``nf-core modules info <tool>``. This command will provide a brief
 summary of the module functionality, the description of the input and output channels, its type (``val``, ``path``, etc.) 
 and the its installation command.
+
+.. code-block:: console
+
+	$ nf-core modules info fastqc 
+
+.. tip::
+	If you prefer, you can also check the modules info in the `nf-core website <https://nf-co.re/modules>`__.
+
 
 Install modules in a pipeline
 -----------------------------

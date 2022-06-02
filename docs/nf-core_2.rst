@@ -200,16 +200,16 @@ Exercise
 ********
 
 Try to create a module (e.g. `fastqc`)  ``nf-core modules create``
-Which is the difference? NO ESTO SERIA EN EL MODULES REPOSITORY O EN UNA PIPELINE
+.. .. Which is the difference? NO ESTO SERIA EN EL MODULES REPOSITORY O EN UNA PIPELINE
 
-.. raw:: html
+.. .. raw:: html
 
-	<details>
-	<summary><a>Solution</a></summary>
+.. 	<details>
+.. 	<summary><a>Solution</a></summary>
 
-.. code-block:: console
+.. .. code-block:: console
 
-	nf-core create -n foo -d "My awesome nf-core pipeline" -a "Your name"
+.. 	nf-core create -n foo -d "My awesome nf-core pipeline" -a "Your name"
 
 
 

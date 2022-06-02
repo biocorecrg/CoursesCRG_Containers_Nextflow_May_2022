@@ -52,7 +52,7 @@ In the script **/test2/test2.nf file**, there are two processes to run two progr
 
 .. literalinclude:: ../nextflow/test2/test2.nf
    :language: groovy
-   :emphasize-lines: 85
+   :emphasize-lines: 84
 
 
 You can see that the process **fastQC** is labeled 'bigmem'.

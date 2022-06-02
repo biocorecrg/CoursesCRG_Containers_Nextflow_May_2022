@@ -222,9 +222,9 @@ This is achieved labeling processes in the nextflow.config file:</p>
 <span class="cm"> * Process 2. Run multiQC on fastQC results</span>
 <span class="cm"> */</span><span class="w"></span>
 <span class="n">process</span><span class="w"> </span><span class="n">multiQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">publishDir</span><span class="w"> </span><span class="n">multiqcOutputFolder</span><span class="o">,</span><span class="w"> </span><span class="nl">mode:</span><span class="w"> </span><span class="s1">&#39;copy&#39;</span><span class="w"> 	</span><span class="c1">// this time do not link but copy the output file</span><span class="w"></span>
-<span class="hll">
-</span><span class="w">    </span><span class="nl">input:</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="n">publishDir</span><span class="w"> </span><span class="n">multiqcOutputFolder</span><span class="o">,</span><span class="w"> </span><span class="nl">mode:</span><span class="w"> </span><span class="s1">&#39;copy&#39;</span><span class="w"> 	</span><span class="c1">// this time do not link but copy the output file</span><span class="w"></span>
+</span>
+<span class="w">    </span><span class="nl">input:</span><span class="w"></span>
 <span class="w">    </span><span class="n">path</span><span class="w"> </span><span class="o">(</span><span class="n">inputfiles</span><span class="o">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="nl">output:</span><span class="w"></span>

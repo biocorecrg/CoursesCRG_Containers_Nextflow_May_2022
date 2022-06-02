@@ -327,7 +327,7 @@ Processes
 
 Let's add a process to the previous script `ex1.nf` and let's call it `ex1_a.nf`
 
-.. literalinclude:: ../nextflow/examples/ex1a.nf
+.. literalinclude:: ../nextflow/examples/ex1_a.nf
    :language: groovy
 
 

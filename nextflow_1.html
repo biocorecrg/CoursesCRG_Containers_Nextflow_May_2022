@@ -424,6 +424,36 @@ The pipeline can also recognize the queue system which is used on the machine wh
 <section id="processes">
 <h3>Processes<a class="headerlink" href="#processes" title="Permalink to this heading"></a></h3>
 <p>Let’s add a process to the previous script <cite>ex1.nf</cite> and let’s call it <cite>ex1_a.nf</cite></p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/env nextflow</span><span class="w"></span>
+
+<span class="n">nextflow</span><span class="o">.</span><span class="na">enable</span><span class="o">.</span><span class="na">dsl</span><span class="o">=</span><span class="mi">2</span><span class="w"></span>
+
+<span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Channel</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s1">&#39;hello&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;hola&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;bonjour&#39;</span><span class="o">)</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Creates a process which receives an input channel containing values</span>
+<span class="cm"> * Each value emitted by the channel triggers the execution</span>
+<span class="cm"> * of the process. The process stdout is captured and sent over</span>
+<span class="cm"> * the another channel.</span>
+<span class="cm"> */</span><span class="w"></span>
+
+<span class="n">process</span><span class="w"> </span><span class="n">printHello</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// this is for displaying the content of `str_in` in the log file</span><span class="w"></span>
+<span class="w">    </span><span class="n">tag</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s2">&quot;${str_in}&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span>
+
+<span class="w">    </span><span class="nl">input:</span><span class="w"></span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="n">str_in</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">output:</span><span class="w"></span>
+<span class="w">    </span><span class="n">stdout</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">script:</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    echo ${str_in} in Italian is ciao</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+</pre></div>
+</div>
 <p>The process can be seen as a function that is composed of:</p>
 <ul class="simple">
 <li><p>An <strong>input</strong> part where the input channels are defined.</p></li>

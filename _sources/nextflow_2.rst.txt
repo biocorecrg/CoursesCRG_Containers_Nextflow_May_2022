@@ -185,7 +185,7 @@ In our pipeline we define these folders here:
 
 .. literalinclude:: ../nextflow/test2/test2.nf
    :language: groovy
-   :emphasize-lines: 61-65,83,103
+   :emphasize-lines: 63-67,83,105
 
 
 
@@ -234,7 +234,7 @@ Here we describe another good practice: the use of the `\-\-help` parameter. At 
 
 .. literalinclude:: ../nextflow/test2/test2.nf
    :language: groovy
-   :emphasize-lines: 44,45-59
+   :emphasize-lines: 34,35-49
 
 
 so that launching the pipeline with `\-\-help` will show you just the parameters and the help.

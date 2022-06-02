@@ -413,14 +413,14 @@ We can indicate which process and output can be considered the final output of t
 
 
 <span class="cm">/*</span>
-<span class="hll"><span class="cm"> * Process 1. Run FastQC on raw data. A process is the element for executing scripts / programs etc.</span>
-</span><span class="hll"><span class="cm"> */</span><span class="w"></span>
-</span><span class="hll"><span class="n">process</span><span class="w"> </span><span class="n">fastQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="cm"> * Process 1. Run FastQC on raw data. A process is the element for executing scripts / programs etc.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="hll"><span class="n">process</span><span class="w"> </span><span class="n">fastQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
 </span><span class="hll"><span class="w">    </span><span class="n">publishDir</span><span class="w"> </span><span class="n">fastqcOutputFolder</span><span class="w">  			</span><span class="c1">// where (and whether) to publish the results</span><span class="w"></span>
 </span><span class="hll"><span class="w">    </span><span class="n">tag</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s2">&quot;${reads}&quot;</span><span class="w"> </span><span class="o">}</span><span class="w">  							</span><span class="c1">// during the execution prints the indicated variable for follow-up</span><span class="w"></span>
-</span><span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="s1">&#39;big_mem&#39;</span><span class="w"> </span>
-
-<span class="w">    </span><span class="nl">input:</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="s1">&#39;big_mem&#39;</span><span class="w"> </span>
+</span><span class="hll">
+</span><span class="w">    </span><span class="nl">input:</span><span class="w"></span>
 <span class="w">    </span><span class="n">path</span><span class="w"> </span><span class="n">reads</span><span class="w">   							</span><span class="c1">// it defines the input of the process. It sets values from a channel</span><span class="w"></span>
 
 <span class="w">    </span><span class="nl">output:</span><span class="w">									</span><span class="c1">// It defines the output of the process (i.e. files) and send to a new channel</span><span class="w"></span>
@@ -455,10 +455,10 @@ We can indicate which process and output can be considered the final output of t
 <span class="w">	</span><span class="n">multiQC</span><span class="o">(</span><span class="n">fastqc_out</span><span class="o">.</span><span class="na">collect</span><span class="o">())</span><span class="w"></span>
 <span class="o">}</span><span class="w"></span>
 
-<span class="hll">
-</span><span class="n">workflow</span><span class="o">.</span><span class="na">onComplete</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<span class="w">	</span><span class="n">println</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">workflow</span><span class="o">.</span><span class="na">success</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;\nDone! Open the following report in your browser --&gt; ${multiqcOutputFolder}/multiqc_report.html\n&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Oops .. something went wrong&quot;</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
-<span class="o">}</span><span class="w"></span>
+
+<span class="n">workflow</span><span class="o">.</span><span class="na">onComplete</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="hll"><span class="w">	</span><span class="n">println</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">workflow</span><span class="o">.</span><span class="na">success</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;\nDone! Open the following report in your browser --&gt; ${multiqcOutputFolder}/multiqc_report.html\n&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Oops .. something went wrong&quot;</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
+</span><span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>You can see that the default mode to publish the results in Nextflow is <cite>soft linking</cite>. You can change this behaviour specifying the mode as indicated in the <strong>multiQC</strong> process.</p>
@@ -523,33 +523,33 @@ We can indicate which process and output can be considered the final output of t
 <span class="s2">reads                           : ${params.reads}</span>
 <span class="s2">&quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="c1">// this prints the help in case you use --help parameter in the command line and it stops the pipeline</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">help</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;This is the Biocore\&#39;s NF test pipeline&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;Enjoy!&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="n">exit</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="o">}</span><span class="w"></span>
-
-<span class="cm">/*</span>
-<span class="cm"> * Defining the output folders.</span>
-<span class="hll"><span class="cm"> */</span><span class="w"></span>
+<span class="hll"><span class="c1">// this prints the help in case you use --help parameter in the command line and it stops the pipeline</span><span class="w"></span>
+</span><span class="hll"><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">help</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;This is the Biocore\&#39;s NF test pipeline&#39;</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;Enjoy!&#39;</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="n">exit</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+</span><span class="hll"><span class="o">}</span><span class="w"></span>
+</span><span class="hll">
+</span><span class="hll"><span class="cm">/*</span>
+</span><span class="hll"><span class="cm"> * Defining the output folders.</span>
+</span><span class="hll"><span class="cm"> */</span><span class="w"></span>
 </span><span class="hll"><span class="n">fastqcOutputFolder</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_fastqc&quot;</span><span class="w"></span>
 </span><span class="hll"><span class="n">multiqcOutputFolder</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_multiQC&quot;</span><span class="w"></span>
 </span><span class="hll">
 </span><span class="hll">
 </span><span class="hll"><span class="cm">/* Reading the file list and creating a &quot;Channel&quot;: a queue that connects different channels.</span>
-</span><span class="hll"><span class="cm"> * The queue is consumed by channels, so you cannot re-use a channel for different processes. </span>
-</span><span class="hll"><span class="cm"> * If you need the same data for different processes you need to make more channels.</span>
-</span><span class="hll"><span class="cm"> */</span><span class="w"></span>
-</span><span class="hll"><span class="w"> </span>
-</span><span class="hll"><span class="n">Channel</span><span class="w"></span>
-</span><span class="hll"><span class="w">    </span><span class="o">.</span><span class="na">fromPath</span><span class="o">(</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">reads</span><span class="w"> </span><span class="o">)</span><span class="w">  											 </span><span class="c1">// read the files indicated by the wildcard                            </span><span class="w"></span>
-</span><span class="hll"><span class="w">    </span><span class="o">.</span><span class="na">ifEmpty</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="s2">&quot;Cannot find any reads matching: ${params.reads}&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="c1">// if empty, complains</span><span class="w"></span>
-</span><span class="hll"><span class="w">    </span><span class="o">.</span><span class="na">set</span><span class="w"> </span><span class="o">{</span><span class="n">reads_for_fastqc</span><span class="o">}</span><span class="w"> 											 </span><span class="c1">// make the channel &quot;reads_for_fastqc&quot;</span><span class="w"></span>
-</span><span class="hll">
-</span><span class="hll">
-</span><span class="cm">/*</span>
+</span><span class="cm"> * The queue is consumed by channels, so you cannot re-use a channel for different processes. </span>
+<span class="cm"> * If you need the same data for different processes you need to make more channels.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="w"> </span>
+<span class="n">Channel</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">fromPath</span><span class="o">(</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">reads</span><span class="w"> </span><span class="o">)</span><span class="w">  											 </span><span class="c1">// read the files indicated by the wildcard                            </span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">ifEmpty</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="s2">&quot;Cannot find any reads matching: ${params.reads}&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="c1">// if empty, complains</span><span class="w"></span>
+<span class="w">    </span><span class="o">.</span><span class="na">set</span><span class="w"> </span><span class="o">{</span><span class="n">reads_for_fastqc</span><span class="o">}</span><span class="w"> 											 </span><span class="c1">// make the channel &quot;reads_for_fastqc&quot;</span><span class="w"></span>
+
+
+<span class="cm">/*</span>
 <span class="cm"> * Process 1. Run FastQC on raw data. A process is the element for executing scripts / programs etc.</span>
 <span class="cm"> */</span><span class="w"></span>
 <span class="n">process</span><span class="w"> </span><span class="n">fastQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>

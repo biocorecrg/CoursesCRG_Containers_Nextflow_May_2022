@@ -185,7 +185,7 @@ In our pipeline we define these folders here:
 
 .. literalinclude:: ../nextflow/test2/test2.nf
    :language: groovy
-   :emphasize-lines: 63-67,83,105
+   :emphasize-lines: 42-46,64,84
 
 
 

@@ -6,6 +6,7 @@ Reproducible research and data analysis using Containers & Nextflow
 * [Course materials](https://biocorecrg.github.io/CoursesCRG_Containers_Nextflow_May_2022)
 
 
+
 ## About the course
 
 This slow-paced hands-on course is designed for absolute beginners who want to start using Linux Containers ([Docker](https://www.docker.com/) and [Singularity](https://www.apptainer.org/)) and [Nextflow](https://www.nextflow.io) to achieve reproducibility of data analysis. 

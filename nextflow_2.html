@@ -53,7 +53,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#adding-help-section-to-a-pipeline">Adding help section to a pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exercise">EXERCISE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-public-pipelines">Using public pipelines</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">EXERCISE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">EXERCISE</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#using-singularity">Using Singularity</a></li>
@@ -958,88 +958,110 @@ Let’s inspect the <strong>params.config</strong> file that points to a small d
 </pre></div>
 </div>
 <p>We can now inspect the <strong>log.txt</strong> file</p>
-<blockquote>
-<div><p>tail -f log.txt</p>
-<p>N E X T F L O W  ~  version 21.10.6
-Launching <cite>mop_preprocess.nf</cite> [furious_church] - revision: bbe0976770</p>
-<p>╔╦╗╔═╗╔═╗  ╔═╗┬─┐┌─┐┌─┐┬─┐┌─┐┌─┐┌─┐┌─┐┌─┐
-║║║║ ║╠═╝  ╠═╝├┬┘├┤ ├─┘├┬┘│ ││  ├┤ └─┐└─┐
-╩ ╩╚═╝╩    ╩  ┴└─└─┘┴  ┴└─└─┘└─┘└─┘└─┘└─┘</p>
-<p>conffile.                 : final_summary_01.txt</p>
-<p>fast5                     : /Users/lcozzuto/aaa/MOP2/mop_preprocess/../data/<a href="#id1"><span class="problematic" id="id2">**</span></a>/<a href="#id3"><span class="problematic" id="id4">*</span></a>.fast5
-fastq                     :</p>
-<p>reference                 : /Users/lcozzuto/aaa/MOP2/mop_preprocess/../anno/yeast_rRNA_ref.fa.gz
-annotation                :</p>
-<p>granularity.              : 1</p>
-<p>ref_type                  : transcriptome
-pars_tools                : drna_tool_splice_opt.tsv</p>
-<p>output                    : /Users/lcozzuto/aaa/MOP2/mop_preprocess/output</p>
-<p>GPU                       : OFF</p>
-<p>basecalling               : guppy
-demultiplexing            : NO
-demulti_fast5             : NO</p>
-<p>filtering                 : nanoq
-mapping                   : graphmap</p>
-<p>counting                  : nanocount
-discovery                 : NO</p>
-<p>cram_conv                 : YES
-subsampling_cram          : 50</p>
-<p>saveSpace                 : NO
-email                     : <a class="reference external" href="mailto:lucacozzuto&#37;&#52;&#48;crg&#46;es">lucacozzuto<span>&#64;</span>crg<span>&#46;</span>es</a></p>
-<p>Sending the email to <a class="reference external" href="mailto:lucacozzuto&#37;&#52;&#48;crg&#46;es">lucacozzuto<span>&#64;</span>crg<span>&#46;</span>es</a></p>
-<p>———————-CHECK TOOLS —————————–
-basecalling : guppy
-&gt; demultiplexing will be skipped
-mapping : graphmap
-filtering : nanoq
-counting : nanocount
-&gt; discovery will be skipped
-————————————————————–
-[73/6734e3] Submitted process &gt; preprocess_flow:checkRef (Checking yeast_rRNA_ref.fa.gz)
-[a0/75728f] Submitted process &gt; flow1:GUPPY_BASECALL:baseCall (mod—1)
-[68/4836ed] Submitted process &gt; flow1:GUPPY_BASECALL:baseCall (wt—2)
-[af/1f666e] Submitted process &gt; flow1:NANOQ_FILTER:filter (wt—2)
-[eb/4163e4] Submitted process &gt; preprocess_flow:RNA2DNA (wt—2)
-[51/2c755e] Submitted process &gt; preprocess_flow:GRAPHMAP:map (wt—2)
-[f5/a236b1] Submitted process &gt; flow1:NANOQ_FILTER:filter (mod—1)
-[9a/de49df] Submitted process &gt; preprocess_flow:MinIONQC (wt)
-[23/665791] Submitted process &gt; preprocess_flow:MinIONQC (mod)
-[1b/88879b] Submitted process &gt; preprocess_flow:RNA2DNA (mod—1)
-[79/a1ee98] Submitted process &gt; preprocess_flow:concatenateFastQFiles (wt)
-[57/02c2aa] Submitted process &gt; preprocess_flow:concatenateFastQFiles (mod)
-[22/6f493a] Submitted process &gt; preprocess_flow:FASTQC:fastQC (wt.fq.gz)
-[ad/b320ed] Submitted process &gt; preprocess_flow:GRAPHMAP:map (mod—1)
-[df/38fcda] Submitted process &gt; preprocess_flow:FASTQC:fastQC (mod.fq.gz)
-[65/66ff77] Submitted process &gt; preprocess_flow:SAMTOOLS_CAT:catAln (mod)
-[7f/21426f] Submitted process &gt; preprocess_flow:SAMTOOLS_CAT:catAln (wt)
-[c9/b71a9d] Submitted process &gt; preprocess_flow:SAMTOOLS_SORT:sortAln (mod)
-[6d/8582b7] Submitted process &gt; preprocess_flow:SAMTOOLS_SORT:sortAln (wt)
-[c0/12d9d7] Submitted process &gt; preprocess_flow:bam2stats (wt)
-[0c/161864] Submitted process &gt; preprocess_flow:NANOPLOT_QC:MOP_nanoPlot (wt)
-[de/778750] Submitted process &gt; preprocess_flow:AssignReads (wt)
-[32/ea79c9] Submitted process &gt; preprocess_flow:SAMTOOLS_INDEX:indexBam (wt)
-[51/e85eb2] Submitted process &gt; preprocess_flow:bam2stats (mod)
-[16/4a17f8] Submitted process &gt; preprocess_flow:SAMTOOLS_INDEX:indexBam (mod)
-[20/e6b19f] Submitted process &gt; preprocess_flow:AssignReads (mod)
-[5b/81b33d] Submitted process &gt; preprocess_flow:NANOPLOT_QC:MOP_nanoPlot (mod)
-[8c/d3efe9] Submitted process &gt; preprocess_flow:countStats (wt)
-[0a/84b180] Submitted process &gt; preprocess_flow:bam2Cram (wt)
-[95/5fee6f] Submitted process &gt; preprocess_flow:NANOCOUNT:nanoCount (wt)
-[15/710624] Submitted process &gt; preprocess_flow:joinAlnStats (joining aln stats)
-[3c/287861] Submitted process &gt; preprocess_flow:bam2Cram (mod)
-[50/f50978] Submitted process &gt; preprocess_flow:NANOCOUNT:nanoCount (mod)
-[d4/49c944] Submitted process &gt; preprocess_flow:countStats (mod)
-[db/ec149f] Submitted process &gt; preprocess_flow:joinCountStats (joining count stats)
-[61/7c5e3d] Submitted process &gt; preprocess_flow:MULTIQC:makeReport
-Pipeline BIOCORE&#64;CRG Master of Pore - preprocess completed!
-Started at  2022-05-09T11:50:28.676+02:00
-Finished at 2022-05-09T12:09:07.543+02:00
-Time elapsed: 18m 39s
-Execution status: OK</p>
-</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tail -f log.txt</span>
+
+<span class="go">N E X T F L O W  ~  version 21.10.6</span>
+<span class="go">Launching `mop_preprocess.nf` [furious_church] - revision: bbe0976770</span>
+
+
+<span class="go">╔╦╗╔═╗╔═╗  ╔═╗┬─┐┌─┐┌─┐┬─┐┌─┐┌─┐┌─┐┌─┐┌─┐</span>
+<span class="go">║║║║ ║╠═╝  ╠═╝├┬┘├┤ ├─┘├┬┘│ ││  ├┤ └─┐└─┐</span>
+<span class="go">╩ ╩╚═╝╩    ╩  ┴└─└─┘┴  ┴└─└─┘└─┘└─┘└─┘└─┘</span>
+
+<span class="go">====================================================</span>
+<span class="go">BIOCORE@CRG Master of Pores 2. Preprocessing - N F  ~  version 2.0</span>
+<span class="go">====================================================</span>
+
+<span class="go">conffile.                 : final_summary_01.txt</span>
+
+<span class="go">fast5                     : /Users/lcozzuto/aaa/MOP2/mop_preprocess/../data/**/*.fast5</span>
+<span class="go">fastq                     :</span>
+
+<span class="go">reference                 : /Users/lcozzuto/aaa/MOP2/mop_preprocess/../anno/yeast_rRNA_ref.fa.gz</span>
+<span class="go">annotation                :</span>
+
+<span class="go">granularity.              : 1</span>
+
+<span class="go">ref_type                  : transcriptome</span>
+<span class="go">pars_tools                : drna_tool_splice_opt.tsv</span>
+
+<span class="go">output                    : /Users/lcozzuto/aaa/MOP2/mop_preprocess/output</span>
+
+<span class="go">GPU                       : OFF</span>
+
+<span class="go">basecalling               : guppy</span>
+<span class="go">demultiplexing            : NO</span>
+<span class="go">demulti_fast5             : NO</span>
+
+<span class="go">filtering                 : nanoq</span>
+<span class="go">mapping                   : graphmap</span>
+
+<span class="go">counting                  : nanocount</span>
+<span class="go">discovery                 : NO</span>
+
+<span class="go">cram_conv                 : YES</span>
+<span class="go">subsampling_cram          : 50</span>
+
+
+<span class="go">saveSpace                 : NO</span>
+<span class="go">email                     : lucacozzuto@crg.es</span>
+
+<span class="go">Sending the email to lucacozzuto@crg.es</span>
+
+<span class="go">----------------------CHECK TOOLS -----------------------------</span>
+<span class="go">basecalling : guppy</span>
+<span class="go">&gt; demultiplexing will be skipped</span>
+<span class="go">mapping : graphmap</span>
+<span class="go">filtering : nanoq</span>
+<span class="go">counting : nanocount</span>
+<span class="go">&gt; discovery will be skipped</span>
+<span class="go">--------------------------------------------------------------</span>
+<span class="go">[73/6734e3] Submitted process &gt; preprocess_flow:checkRef (Checking yeast_rRNA_ref.fa.gz)</span>
+<span class="go">[a0/75728f] Submitted process &gt; flow1:GUPPY_BASECALL:baseCall (mod---1)</span>
+<span class="go">[68/4836ed] Submitted process &gt; flow1:GUPPY_BASECALL:baseCall (wt---2)</span>
+<span class="go">[af/1f666e] Submitted process &gt; flow1:NANOQ_FILTER:filter (wt---2)</span>
+<span class="go">[eb/4163e4] Submitted process &gt; preprocess_flow:RNA2DNA (wt---2)</span>
+<span class="go">[51/2c755e] Submitted process &gt; preprocess_flow:GRAPHMAP:map (wt---2)</span>
+<span class="go">[f5/a236b1] Submitted process &gt; flow1:NANOQ_FILTER:filter (mod---1)</span>
+<span class="go">[9a/de49df] Submitted process &gt; preprocess_flow:MinIONQC (wt)</span>
+<span class="go">[23/665791] Submitted process &gt; preprocess_flow:MinIONQC (mod)</span>
+<span class="go">[1b/88879b] Submitted process &gt; preprocess_flow:RNA2DNA (mod---1)</span>
+<span class="go">[79/a1ee98] Submitted process &gt; preprocess_flow:concatenateFastQFiles (wt)</span>
+<span class="go">[57/02c2aa] Submitted process &gt; preprocess_flow:concatenateFastQFiles (mod)</span>
+<span class="go">[22/6f493a] Submitted process &gt; preprocess_flow:FASTQC:fastQC (wt.fq.gz)</span>
+<span class="go">[ad/b320ed] Submitted process &gt; preprocess_flow:GRAPHMAP:map (mod---1)</span>
+<span class="go">[df/38fcda] Submitted process &gt; preprocess_flow:FASTQC:fastQC (mod.fq.gz)</span>
+<span class="go">[65/66ff77] Submitted process &gt; preprocess_flow:SAMTOOLS_CAT:catAln (mod)</span>
+<span class="go">[7f/21426f] Submitted process &gt; preprocess_flow:SAMTOOLS_CAT:catAln (wt)</span>
+<span class="go">[c9/b71a9d] Submitted process &gt; preprocess_flow:SAMTOOLS_SORT:sortAln (mod)</span>
+<span class="go">[6d/8582b7] Submitted process &gt; preprocess_flow:SAMTOOLS_SORT:sortAln (wt)</span>
+<span class="go">[c0/12d9d7] Submitted process &gt; preprocess_flow:bam2stats (wt)</span>
+<span class="go">[0c/161864] Submitted process &gt; preprocess_flow:NANOPLOT_QC:MOP_nanoPlot (wt)</span>
+<span class="go">[de/778750] Submitted process &gt; preprocess_flow:AssignReads (wt)</span>
+<span class="go">[32/ea79c9] Submitted process &gt; preprocess_flow:SAMTOOLS_INDEX:indexBam (wt)</span>
+<span class="go">[51/e85eb2] Submitted process &gt; preprocess_flow:bam2stats (mod)</span>
+<span class="go">[16/4a17f8] Submitted process &gt; preprocess_flow:SAMTOOLS_INDEX:indexBam (mod)</span>
+<span class="go">[20/e6b19f] Submitted process &gt; preprocess_flow:AssignReads (mod)</span>
+<span class="go">[5b/81b33d] Submitted process &gt; preprocess_flow:NANOPLOT_QC:MOP_nanoPlot (mod)</span>
+<span class="go">[8c/d3efe9] Submitted process &gt; preprocess_flow:countStats (wt)</span>
+<span class="go">[0a/84b180] Submitted process &gt; preprocess_flow:bam2Cram (wt)</span>
+<span class="go">[95/5fee6f] Submitted process &gt; preprocess_flow:NANOCOUNT:nanoCount (wt)</span>
+<span class="go">[15/710624] Submitted process &gt; preprocess_flow:joinAlnStats (joining aln stats)</span>
+<span class="go">[3c/287861] Submitted process &gt; preprocess_flow:bam2Cram (mod)</span>
+<span class="go">[50/f50978] Submitted process &gt; preprocess_flow:NANOCOUNT:nanoCount (mod)</span>
+<span class="go">[d4/49c944] Submitted process &gt; preprocess_flow:countStats (mod)</span>
+<span class="go">[db/ec149f] Submitted process &gt; preprocess_flow:joinCountStats (joining count stats)</span>
+<span class="go">[61/7c5e3d] Submitted process &gt; preprocess_flow:MULTIQC:makeReport</span>
+<span class="go">Pipeline BIOCORE@CRG Master of Pore - preprocess completed!</span>
+<span class="go">Started at  2022-05-09T11:50:28.676+02:00</span>
+<span class="go">Finished at 2022-05-09T12:09:07.543+02:00</span>
+<span class="go">Time elapsed: 18m 39s</span>
+<span class="go">Execution status: OK</span>
+</pre></div>
+</div>
 <p>You noticed we specify a <strong>profile</strong> here. This indicates where to launch the pipeline while several possiblities are available (like cluster, local computer etc). We will show this in detail later. If you skip this it will use the <strong>default</strong> configuration that is likely to heavy for our simple environment</p>
-<section id="id5">
-<h3>EXERCISE<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h3>EXERCISE<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Look at the documentation of <a class="reference external" href="https://github.com/biocorecrg/mop2">Master Of Pores</a> and change the default mapper and filtering. Try to skip some step.</p></li>
 </ul>

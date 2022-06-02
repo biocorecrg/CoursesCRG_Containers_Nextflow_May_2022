@@ -234,7 +234,7 @@ Here we describe another good practice: the use of the `\-\-help` parameter. At 
 
 .. literalinclude:: ../nextflow/test2/test2.nf
    :language: groovy
-   :emphasize-lines: 34,35-49
+   :emphasize-lines: 25-40
 
 
 so that launching the pipeline with `\-\-help` will show you just the parameters and the help.

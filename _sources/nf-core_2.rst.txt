@@ -147,8 +147,8 @@ the ``--dir <pipeline_dir>`` option.
 
 	$ nf-core modules list local
 
-Show information about a module
--------------------------------
+Showing information about a module
+----------------------------------
 
 You can render the basic information of a module using ``nf-core modules info <tool>``. This command will provide a brief
 summary of the module functionality, the description of the input and output channels, its type (``val``, ``path``, etc.) 
@@ -159,12 +159,63 @@ and the its installation command.
 	$ nf-core modules info fastqc 
 
 .. tip::
-	If you prefer, you can also check the modules info in the `nf-core website <https://nf-co.re/modules>`__.
+	If you prefer, you can also check the modules documentation in the `nf-core website <https://nf-co.re/modules>`__.
 
 
-Install modules in a pipeline
------------------------------
+Installing modules in a pipeline
+--------------------------------
 
+You can use nf-core tools to install a module in any pipeline. The only requirement is that the directory contains a 
+``main.nf`` a ``nextflow.config`` and a ``modules`` directory where the module will be installed.
+
+.. code-block:: console
+
+	$ nf-core modules install samtools/sort
+
+Removing modules from a pipeline
+--------------------------------
+
+In the same manner, we can delete a module from a pipeline by using:
+
+.. code-block:: console
+
+	``nf-core modules remove samtools/sort``.
+
+Creating modules
+----------------
+
+The ``nf-core modules create`` command for modules is the equivalent to the ``nf-core create`` command for pipelines and
+similarly uses the modules template to generate a module following nf-core guidelines.
+
+You can use this command both to create local modules for a pipeline or to create modules for the `nf-core modules <https://github.com/nf-core/modules>`__
+repository. The command can detect on which type of repository you are working thanks to the ``.nf-core.yml`` file that sets the type of repository using the 
+``repository_type`` tag.
+
+.. Note::
+	If you want to make available a module in ``nf-core/modules`` to the whole Nextflow community you can find the reference 
+	documentation `here https://nf-co.re/developers/modules#writing-a-new-module-reference>`__  and a step by step tutorial 
+	on `this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial>`__ link.
+
+Exercise
+********
+
+Try to create a module (e.g. `fastqc`)  ``nf-core modules create``
+Which is the difference? NO ESTO SERIA EN EL MODULES REPOSITORY O EN UNA PIPELINE
+
+.. raw:: html
+
+	<details>
+	<summary><a>Solution</a></summary>
+
+.. code-block:: console
+
+	nf-core create -n foo -d "My awesome nf-core pipeline" -a "Your name"
+
+
+
+.. Exercise
+.. CREATE a fake pipeline (tip: use touch to create the main.nf and nextflow.config).
+.. and install fastqc module there
 
 
 .. Exercise
@@ -172,7 +223,7 @@ Install modules in a pipeline
 .. install samtools/sort module in the pipeline
 .. list the modules installed in the pipeline and keep them in a json file.
 
-.. Add the link to the nf-core modules in the nf-core website
+.. Add the link to the nf-core modules in the nf-core website X done in Showing information about a module
 
 .. 
 

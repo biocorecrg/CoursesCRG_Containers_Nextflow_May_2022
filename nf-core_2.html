@@ -60,8 +60,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#nf-core-modules">nf-core modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#listing-modules">Listing modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#show-information-about-a-module">Show information about a module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-modules-in-a-pipeline">Install modules in a pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#showing-information-about-a-module">Showing information about a module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-modules-in-a-pipeline">Installing modules in a pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#removing-modules-from-a-pipeline">Removing modules from a pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-modules">Creating modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Exercise</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -142,7 +147,7 @@ only a certain test that has failed, e.g. <code class="docutils literal notransl
 </section>
 <section id="nf-core-modules">
 <h1>nf-core modules<a class="headerlink" href="#nf-core-modules" title="Permalink to this heading"></a></h1>
-<p>Since the introduction of <a href="#id1"><span class="problematic" id="id2">`Nextflow DSL2&lt;https://www.nextflow.io/blog/2020/dsl2-is-here.html&gt;`__</span></a>, nf-core pipelines have,
+<p>Since the introduction of <a href="#id2"><span class="problematic" id="id3">`Nextflow DSL2&lt;https://www.nextflow.io/blog/2020/dsl2-is-here.html&gt;`__</span></a>, nf-core pipelines have,
 and still are, been ported to DSL2 syntax. One of the paramount features of the DSL2 syntax is the possibility of creating
 modules and sub-workflows, as we have already discussed during this course. For this reason, the nf-core community has created
 a centralised repository to host modules and sub-workflows (the latter is still WIP). This enables multiple pipelines to use
@@ -157,8 +162,8 @@ e.g. a sub-workflow to sort, index and run some basic stats on a BAM file.</p>
 <p><strong>WORKFLOW</strong>: An end-to-end pipeline created by a combination of Nextflow DSL2 individual modules and sub-workflows.
 e.g. from one or more inputs to a series of final inputs</p>
 </div>
-<p>The nf-core DSL2 modules repository is at <a href="#id1"><span class="problematic" id="id3">`https://github.com/nf-core/modules&lt;https://github.com/nf-core/modules&gt;`__</span></a> and you
-can navigate the modules available on this section of the nf-core <a href="#id1"><span class="problematic" id="id4">`website&lt;https://nf-co.re/modules&gt;`__</span></a>.</p>
+<p>The nf-core DSL2 modules repository is at <a href="#id2"><span class="problematic" id="id4">`https://github.com/nf-core/modules&lt;https://github.com/nf-core/modules&gt;`__</span></a> and you
+can navigate the modules available on this section of the nf-core <a href="#id2"><span class="problematic" id="id5">`website&lt;https://nf-co.re/modules&gt;`__</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We have recently reach 500 modules available in the modules repository.</p>
@@ -219,8 +224,8 @@ the <code class="docutils literal notranslate"><span class="pre">--dir</span> <s
 </pre></div>
 </div>
 </section>
-<section id="show-information-about-a-module">
-<h2>Show information about a module<a class="headerlink" href="#show-information-about-a-module" title="Permalink to this heading"></a></h2>
+<section id="showing-information-about-a-module">
+<h2>Showing information about a module<a class="headerlink" href="#showing-information-about-a-module" title="Permalink to this heading"></a></h2>
 <p>You can render the basic information of a module using <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">info</span> <span class="pre">&lt;tool&gt;</span></code>. This command will provide a brief
 summary of the module functionality, the description of the input and output channels, its type (<code class="docutils literal notranslate"><span class="pre">val</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, etc.)
 and the its installation command.</p>
@@ -229,11 +234,46 @@ and the its installation command.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If you prefer, you can also check the modules info in the <a class="reference external" href="https://nf-co.re/modules">nf-core website</a>.</p>
+<p>If you prefer, you can also check the modules documentation in the <a class="reference external" href="https://nf-co.re/modules">nf-core website</a>.</p>
 </div>
 </section>
-<section id="install-modules-in-a-pipeline">
-<h2>Install modules in a pipeline<a class="headerlink" href="#install-modules-in-a-pipeline" title="Permalink to this heading"></a></h2>
+<section id="installing-modules-in-a-pipeline">
+<h2>Installing modules in a pipeline<a class="headerlink" href="#installing-modules-in-a-pipeline" title="Permalink to this heading"></a></h2>
+<p>You can use nf-core tools to install a module in any pipeline. The only requirement is that the directory contains a
+<code class="docutils literal notranslate"><span class="pre">main.nf</span></code> a <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and a <code class="docutils literal notranslate"><span class="pre">modules</span></code> directory where the module will be installed.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core modules install samtools/sort
+</pre></div>
+</div>
+</section>
+<section id="removing-modules-from-a-pipeline">
+<h2>Removing modules from a pipeline<a class="headerlink" href="#removing-modules-from-a-pipeline" title="Permalink to this heading"></a></h2>
+<p>In the same manner, we can delete a module from a pipeline by using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">``nf-core modules remove samtools/sort``.</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-modules">
+<h2>Creating modules<a class="headerlink" href="#creating-modules" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">create</span></code> command for modules is the equivalent to the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">create</span></code> command for pipelines and
+similarly uses the modules template to generate a module following nf-core guidelines.</p>
+<p>You can use this command both to create local modules for a pipeline or to create modules for the <a class="reference external" href="https://github.com/nf-core/modules">nf-core modules</a>
+repository. The command can detect on which type of repository you are working thanks to the <code class="docutils literal notranslate"><span class="pre">.nf-core.yml</span></code> file that sets the type of repository using the
+<code class="docutils literal notranslate"><span class="pre">repository_type</span></code> tag.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to make available a module in <code class="docutils literal notranslate"><span class="pre">nf-core/modules</span></code> to the whole Nextflow community you can find the reference
+documentation <a href="#id2"><span class="problematic" id="id6">`here https://nf-co.re/developers/modules#writing-a-new-module-reference&gt;`__</span></a>  and a step by step tutorial
+on <a href="#id2"><span class="problematic" id="id7">`this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial&gt;`__</span></a> link.</p>
+</div>
+<section id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Try to create a module (e.g. <cite>fastqc</cite>)  <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">create</span></code>
+Which is the difference? NO ESTO SERIA EN EL MODULES REPOSITORY O EN UNA PIPELINE</p>
+<details>
+<summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core create -n foo -d &quot;My awesome nf-core pipeline&quot; -a &quot;Your name&quot;</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 

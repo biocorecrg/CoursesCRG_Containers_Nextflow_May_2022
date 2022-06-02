@@ -514,32 +514,32 @@ We can indicate which process and output can be considered the final output of t
 
 <span class="n">version</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="w"></span>
 <span class="c1">// this prevents a warning of undefined parameter</span><span class="w"></span>
-<span class="n">params</span><span class="o">.</span><span class="na">help</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
-
-<span class="c1">// this prints the input parameters</span><span class="w"></span>
-<span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">BIOCORE@CRG - N F TESTPIPE  ~  version ${version}</span>
-<span class="s2">=============================================</span>
-<span class="s2">reads                           : ${params.reads}</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="w"></span>
-
-<span class="hll"><span class="c1">// this prints the help in case you use --help parameter in the command line and it stops the pipeline</span><span class="w"></span>
+<span class="hll"><span class="n">params</span><span class="o">.</span><span class="na">help</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+</span><span class="hll">
+</span><span class="hll"><span class="c1">// this prints the input parameters</span><span class="w"></span>
+</span><span class="hll"><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+</span><span class="hll"><span class="s2">BIOCORE@CRG - N F TESTPIPE  ~  version ${version}</span>
+</span><span class="hll"><span class="s2">=============================================</span>
+</span><span class="hll"><span class="s2">reads                           : ${params.reads}</span>
+</span><span class="hll"><span class="s2">&quot;&quot;&quot;</span><span class="w"></span>
+</span><span class="hll">
+</span><span class="hll"><span class="c1">// this prints the help in case you use --help parameter in the command line and it stops the pipeline</span><span class="w"></span>
 </span><span class="hll"><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">help</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
 </span><span class="hll"><span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;This is the Biocore\&#39;s NF test pipeline&#39;</span><span class="w"></span>
 </span><span class="hll"><span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;Enjoy!&#39;</span><span class="w"></span>
 </span><span class="hll"><span class="w">    </span><span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"></span>
 </span><span class="hll"><span class="w">    </span><span class="n">exit</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 </span><span class="hll"><span class="o">}</span><span class="w"></span>
-</span><span class="hll">
-</span><span class="hll"><span class="cm">/*</span>
-</span><span class="hll"><span class="cm"> * Defining the output folders.</span>
-</span><span class="hll"><span class="cm"> */</span><span class="w"></span>
-</span><span class="hll"><span class="n">fastqcOutputFolder</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_fastqc&quot;</span><span class="w"></span>
-</span><span class="hll"><span class="n">multiqcOutputFolder</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_multiQC&quot;</span><span class="w"></span>
-</span><span class="hll">
-</span><span class="hll">
-</span><span class="hll"><span class="cm">/* Reading the file list and creating a &quot;Channel&quot;: a queue that connects different channels.</span>
-</span><span class="cm"> * The queue is consumed by channels, so you cannot re-use a channel for different processes. </span>
+</span>
+<span class="cm">/*</span>
+<span class="cm"> * Defining the output folders.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">fastqcOutputFolder</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_fastqc&quot;</span><span class="w"></span>
+<span class="n">multiqcOutputFolder</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_multiQC&quot;</span><span class="w"></span>
+
+
+<span class="cm">/* Reading the file list and creating a &quot;Channel&quot;: a queue that connects different channels.</span>
+<span class="cm"> * The queue is consumed by channels, so you cannot re-use a channel for different processes. </span>
 <span class="cm"> * If you need the same data for different processes you need to make more channels.</span>
 <span class="cm"> */</span><span class="w"></span>
 <span class="w"> </span>

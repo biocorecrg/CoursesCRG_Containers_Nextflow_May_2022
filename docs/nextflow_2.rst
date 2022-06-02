@@ -444,6 +444,8 @@ Let's now run the pipeline following the instructions in the **README**. As you 
 
 We can now inspect the **log.txt** file
 
+.. code-block:: console
+
 	tail -f log.txt
 
 	N E X T F L O W  ~  version 21.10.6

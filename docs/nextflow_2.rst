@@ -52,7 +52,7 @@ In the script **/test2/test2.nf file**, there are two processes to run two progr
 
 .. literalinclude:: ../nextflow/test2/test2.nf
    :language: groovy
-   :emphasize-lines: 85
+   :emphasize-lines: 66
 
 
 You can see that the process **fastQC** is labeled 'bigmem'.
@@ -185,7 +185,7 @@ In our pipeline we define these folders here:
 
 .. literalinclude:: ../nextflow/test2/test2.nf
    :language: groovy
-   :emphasize-lines: 61-65,83,103
+   :emphasize-lines: 42-46,64,84
 
 
 
@@ -234,7 +234,7 @@ Here we describe another good practice: the use of the `\-\-help` parameter. At 
 
 .. literalinclude:: ../nextflow/test2/test2.nf
    :language: groovy
-   :emphasize-lines: 44,45-59
+   :emphasize-lines: 25-40
 
 
 so that launching the pipeline with `\-\-help` will show you just the parameters and the help.
@@ -443,6 +443,8 @@ Let's now run the pipeline following the instructions in the **README**. As you 
 	nextflow run mop_preprocess.nf -with-docker -bg -profile local > log.txt
 
 We can now inspect the **log.txt** file
+
+.. code-block:: console
 
 	tail -f log.txt
 

@@ -394,12 +394,12 @@ We can indicate which process and output can be considered the final output of t
 <span class="w">    </span><span class="n">exit</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 <span class="o">}</span><span class="w"></span>
 
-<span class="cm">/*</span>
-<span class="cm"> * Defining the output folders.</span>
-<span class="cm"> */</span><span class="w"></span>
-<span class="n">fastqcOutputFolder</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_fastqc&quot;</span><span class="w"></span>
-<span class="n">multiqcOutputFolder</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_multiQC&quot;</span><span class="w"></span>
-
+<span class="hll"><span class="cm">/*</span>
+</span><span class="hll"><span class="cm"> * Defining the output folders.</span>
+</span><span class="hll"><span class="cm"> */</span><span class="w"></span>
+</span><span class="hll"><span class="n">fastqcOutputFolder</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_fastqc&quot;</span><span class="w"></span>
+</span><span class="hll"><span class="n">multiqcOutputFolder</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ouptut_multiQC&quot;</span><span class="w"></span>
+</span>
 
 <span class="cm">/* Reading the file list and creating a &quot;Channel&quot;: a queue that connects different channels.</span>
 <span class="cm"> * The queue is consumed by channels, so you cannot re-use a channel for different processes. </span>
@@ -415,12 +415,12 @@ We can indicate which process and output can be considered the final output of t
 <span class="cm">/*</span>
 <span class="cm"> * Process 1. Run FastQC on raw data. A process is the element for executing scripts / programs etc.</span>
 <span class="cm"> */</span><span class="w"></span>
-<span class="hll"><span class="n">process</span><span class="w"> </span><span class="n">fastQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-</span><span class="hll"><span class="w">    </span><span class="n">publishDir</span><span class="w"> </span><span class="n">fastqcOutputFolder</span><span class="w">  			</span><span class="c1">// where (and whether) to publish the results</span><span class="w"></span>
-</span><span class="hll"><span class="w">    </span><span class="n">tag</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s2">&quot;${reads}&quot;</span><span class="w"> </span><span class="o">}</span><span class="w">  							</span><span class="c1">// during the execution prints the indicated variable for follow-up</span><span class="w"></span>
-</span><span class="hll"><span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="s1">&#39;big_mem&#39;</span><span class="w"> </span>
-</span><span class="hll">
-</span><span class="w">    </span><span class="nl">input:</span><span class="w"></span>
+<span class="n">process</span><span class="w"> </span><span class="n">fastQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="n">publishDir</span><span class="w"> </span><span class="n">fastqcOutputFolder</span><span class="w">  			</span><span class="c1">// where (and whether) to publish the results</span><span class="w"></span>
+</span><span class="w">    </span><span class="n">tag</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="s2">&quot;${reads}&quot;</span><span class="w"> </span><span class="o">}</span><span class="w">  							</span><span class="c1">// during the execution prints the indicated variable for follow-up</span><span class="w"></span>
+<span class="w">    </span><span class="n">label</span><span class="w"> </span><span class="s1">&#39;big_mem&#39;</span><span class="w"> </span>
+
+<span class="w">    </span><span class="nl">input:</span><span class="w"></span>
 <span class="w">    </span><span class="n">path</span><span class="w"> </span><span class="n">reads</span><span class="w">   							</span><span class="c1">// it defines the input of the process. It sets values from a channel</span><span class="w"></span>
 
 <span class="w">    </span><span class="nl">output:</span><span class="w">									</span><span class="c1">// It defines the output of the process (i.e. files) and send to a new channel</span><span class="w"></span>
@@ -435,9 +435,9 @@ We can indicate which process and output can be considered the final output of t
 <span class="cm">/*</span>
 <span class="cm"> * Process 2. Run multiQC on fastQC results</span>
 <span class="cm"> */</span><span class="w"></span>
-<span class="hll"><span class="n">process</span><span class="w"> </span><span class="n">multiQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-</span><span class="w">    </span><span class="n">publishDir</span><span class="w"> </span><span class="n">multiqcOutputFolder</span><span class="o">,</span><span class="w"> </span><span class="nl">mode:</span><span class="w"> </span><span class="s1">&#39;copy&#39;</span><span class="w"> 	</span><span class="c1">// this time do not link but copy the output file</span><span class="w"></span>
-
+<span class="n">process</span><span class="w"> </span><span class="n">multiQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="n">publishDir</span><span class="w"> </span><span class="n">multiqcOutputFolder</span><span class="o">,</span><span class="w"> </span><span class="nl">mode:</span><span class="w"> </span><span class="s1">&#39;copy&#39;</span><span class="w"> 	</span><span class="c1">// this time do not link but copy the output file</span><span class="w"></span>
+</span>
 <span class="w">    </span><span class="nl">input:</span><span class="w"></span>
 <span class="w">    </span><span class="n">path</span><span class="w"> </span><span class="o">(</span><span class="n">inputfiles</span><span class="o">)</span><span class="w"></span>
 
@@ -457,8 +457,8 @@ We can indicate which process and output can be considered the final output of t
 
 
 <span class="n">workflow</span><span class="o">.</span><span class="na">onComplete</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<span class="hll"><span class="w">	</span><span class="n">println</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">workflow</span><span class="o">.</span><span class="na">success</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;\nDone! Open the following report in your browser --&gt; ${multiqcOutputFolder}/multiqc_report.html\n&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Oops .. something went wrong&quot;</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
-</span><span class="o">}</span><span class="w"></span>
+<span class="w">	</span><span class="n">println</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="n">workflow</span><span class="o">.</span><span class="na">success</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;\nDone! Open the following report in your browser --&gt; ${multiqcOutputFolder}/multiqc_report.html\n&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Oops .. something went wrong&quot;</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>You can see that the default mode to publish the results in Nextflow is <cite>soft linking</cite>. You can change this behaviour specifying the mode as indicated in the <strong>multiQC</strong> process.</p>

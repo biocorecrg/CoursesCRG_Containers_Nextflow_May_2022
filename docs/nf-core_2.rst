@@ -233,3 +233,9 @@ Try to create a module (e.g. `fastqc`)  ``nf-core modules create``
 
 .. In carpentries there is an example of using the nf-core/rnaseq pipeline with an example data test.
 
+.. exercise create a nf-core pipeline
+	add a new parameter to the pipeline e.g. skip-multiqc
+	make the multiqc conditional
+	lint the pipeline
+	fix lint problems 
+	add 

@@ -512,8 +512,8 @@ And we can launch directly this pipeline with:
 .. code-block:: console
 
 	nextflow run lucacozzuto/test_course -with-docker -r main \
-	--reads "/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/testdata/*.fastq.gz" \
-	--reference "/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/testdata/chr19.fasta.gz"
+	--reads "/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2022/testdata/*.fastq.gz" \
+	--reference "/home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2022/testdata/chr19.fasta.gz"
 
 
 As you can see we just use the repository name and two Nextflow parameters:
@@ -533,8 +533,8 @@ Then we pass to the pipelines the path of our input files:
 	Launching `lucacozzuto/test_course` [voluminous_feynman] - revision: 95d1028adf [main]
 	BIOCORE@CRG - N F TESTPIPE  ~  version 1.0
 	=============================================
-	reads                           : /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/testdata/*.fastq.gz
-	reference                       : /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2021/nextflow/nextflow/testdata/chr19.fasta.gz
+	reads                           : /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2022/testdata/*.fastq.gz
+	reference                       : /home/ec2-user/git/CoursesCRG_Containers_Nextflow_May_2022/chr19.fasta.gz
 	executor >  local (5)
 	[5b/4a36e8] process > fastqc (B7_input_s_chr19.fastq.gz)             [100%] 2 of 2 ✔
 	[5c/644577] process > BOWTIE:bowtieIdx (chr19.fasta.gz)              [100%] 1 of 1 ✔

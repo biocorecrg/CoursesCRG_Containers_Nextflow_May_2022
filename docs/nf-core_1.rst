@@ -6,25 +6,56 @@
 Introduction to nf-core
 =======================
 
-nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow. 
+nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow. As such nf-core is:
+
+* A community of users and developers.
+
+* A curated set of analysis pipelines build using Nextflow.
+
+* A set of guidelines (standard).
+
+* A set of helper tools.
 
 Community
 ---------
 
+The nf-core community is a collaborative effort that has been growing since its creation in early 2018, as you can check on
+the `nf-core stats site <https://nf-co.re/stats/>`__.
+
+.. image:: images/nfcore_community.png
+	:width: 600
+
+.. image:: images/nfcore_community_map.png
+	:width: 600
+
 Pipelines
 ---------
 
-Standard
---------
+Currently, there are 66 pipelines that are available as part of nf-core (37 released, 23 under development and 6 archived). 
+You can browse all of them on this `link <https://nf-co.re/pipelines>`__.
+
+Guidelines
+----------
+
+All nf-core pipelines must meet a series of requirements or guidelines. These guidelines ensure that all nf-core pipelines
+follow the same standard and stick to current computational standards to achieve reproducibility, interoperability and 
+portability. The guidelines are make available on `this <https://nf-co.re/docs/contributing/guidelines>`__ link.
 
 Helper tools
 ------------
 
-The main nf-core was published in 2020 in `Nature Biotechnology <https://pubmed.ncbi.nlm.nih.gov/32055031/>`__ and 
-describes the community and framework.
+To ease the use and development of nf-core pipelines, the community makes available a set of helper tools that we will
+introduce on this tutorial.
+
+Paper
+-----
+
+The main nf-core paper was published in 2020 in `Nature Biotechnology <https://pubmed.ncbi.nlm.nih.gov/32055031/>`__ and 
+describes the community and the nf-core framework.
 
 .. image:: images/nf-core-paper.png
 	:width: 600
+
 
 Installation
 ------------

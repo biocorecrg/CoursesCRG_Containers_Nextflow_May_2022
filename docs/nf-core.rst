@@ -420,7 +420,8 @@ Pipeline output
 nf-core pipelines produce a `MultiQC <https://multiqc.info/>`__ report which summarises results at the end of the execution 
 along with software versions of the different tools used, nf-core pipeline version and Nextflow version itself.
 
-
+Each pipeline provides an example of a MultiQC report from a real execution in the nf-core website. For instance you can find
+the report corresponding to the current version of nf-core/rnaseq `here <https://nf-co.re/rnaseq/results#rnaseq>`.
 
 .. Exercise
 .. ********
@@ -501,6 +502,18 @@ Let's try to run this command on the pipeline we have just created.
 
 To run only a specific nf-core lint test you can use the ``-k`` / ``--key`` option, this enables to run for example
 only a certain test that has failed, e.g. ``nf-core lint -k files_exist -k files_unchanged``.
+
+nf-core schema
+--------------
+
+As we discussed before, nf-core pipelines include a ``nextflow_schema.json`` that it is used to describe the parameters
+of the pipelines and validate them when provided as input. Since the creation of this file could be very error prompt, 
+nf-core tools provide with a command to create ``build``, ``validate`` and ``lint`` the nextflow_schema.json.
+
+We will see an example of how to use this command on the final exercise.
+
+.. note::
+	You can find more documentation about the ``nf-core schema`` on the ``nf-core website <https://nf-co.re/tools/#pipeline-schema>`__.
 
 nf-core modules
 ===============
@@ -610,6 +623,41 @@ Installing modules in a pipeline
 You can use nf-core tools to install a module in any pipeline. The only requirement is that the directory contains a 
 ``main.nf`` a ``nextflow.config`` and a ``modules`` directory where the module will be installed.
 
+Exercise
+********
+
+* Create a folder with an empty ``main.nf``, ``nextflow.config`` and a ``modules`` directory and try to install a module, 
+e.g. samtools/sort.
+
+.. raw:: html
+
+	<details>
+	<summary><a>Solution</a></summary>
+
+.. code-block:: console
+	mkdir my_pipeline
+	cd my_pipeline
+	touch main.nf nextflow.config 
+	mkdir modules
+	nf-core modules install samtools/sort
+
+* Now, place yourself in the nf-core-toy pipeline we created before and try to install the same module.
+
+.. raw:: html
+
+	<details>
+	<summary><a>Solution</a></summary>
+
+.. code-block:: console
+	cd your_path_here/nf-core-toy
+	nf-core modules install samtools/sort
+
+.. raw:: html
+
+	</details>
+|
+
+
 .. code-block:: console
 
 	nf-core modules install samtools/sort
@@ -638,10 +686,10 @@ repository. The command can detect on which type of repository you are working t
 	documentation `here https://nf-co.re/developers/modules#writing-a-new-module-reference>`__  and a step by step tutorial 
 	on `this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial>`__ link.
 
-Exercise
-********
 
-Try to create a module (e.g. `fastqc`)  ``nf-core modules create``
+* Try to create a module (e.g. `fastqc`) ``nf-core modules create``
+
+
 .. .. Which is the difference? NO ESTO SERIA EN EL MODULES REPOSITORY O EN UNA PIPELINE
 
 .. .. raw:: html
@@ -680,4 +728,23 @@ Try to create a module (e.g. `fastqc`)  ``nf-core modules create``
 	make the multiqc conditional
 	lint the pipeline
 	fix lint problems 
-	add 
+	add
+
+Interesting links
+=================
+
+* `nf-core website <https://nf-co.re/>`__.
+
+* `nf-core github <https://github.com/nf-core/>`__.
+
+* `Join nf-core slack <https://nf-co.re/join/slack>`__.
+
+* `Join Nextflow slack <https://nextflow.io/slack-invite.html`__.
+
+* `nf-core YouTube channel <https://www.youtube.com/c/nf-core>`__.
+
+Acknowledgements
+================
+
+This nf-core tutorial has been build taking as inspiration the `nf-core official tools documentation <https://nf-co.re/tools/>`__ 
+and the Carpentries materials "Introduction to Bioinformatics workflows with Nextflow and nf-core" that can be find `here <https://carpentries-incubator.github.io/workflows-nextflow/>`__.

@@ -266,6 +266,12 @@ Pull version ``3.8.1`` of the nf-core/rnaseq pipeline, run it using the ``nf-cor
 	nextflow pull nf-core/rnaseq -r 3.8.1
 	nf-core launch rnaseq -r 3.8.1
 
+.. raw:: html
+
+	</details>
+|
+|
+
 nf-core configs and profiles
 ----------------------------
 

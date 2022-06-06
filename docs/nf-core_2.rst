@@ -46,8 +46,9 @@ Try to create your own pipeline using ``nf-core create``
 Linting pipelines
 -----------------
 
-To make sticking to nf-core guidelines easier, nf-core includes the ``lint`` command. This command checks that the pipeline is following 
-nf-core standards. Interestingly, this command is the same that is used in the automated continuous integration tests.
+To make sticking to nf-core guidelines easier, nf-core includes the ``lint`` command. This command checks that the pipeline 
+is following some of the nf-core standards. Interestingly, the command is the same that is used in the automated continuous 
+integration tests.
 
 Let's try to run this command on the pipeline we have just created.
 
@@ -148,7 +149,7 @@ the ``--dir <pipeline_dir>`` option.
 
 .. code-block:: console
 
-	$ nf-core modules list local
+	nf-core modules list local
 
 Showing information about a module
 ----------------------------------
@@ -159,7 +160,7 @@ and the its installation command.
 
 .. code-block:: console
 
-	$ nf-core modules info fastqc 
+	nf-core modules info fastqc 
 
 .. tip::
 	If you prefer, you can also check the modules documentation in the `nf-core website <https://nf-co.re/modules>`__.
@@ -173,7 +174,7 @@ You can use nf-core tools to install a module in any pipeline. The only requirem
 
 .. code-block:: console
 
-	$ nf-core modules install samtools/sort
+	nf-core modules install samtools/sort
 
 Removing modules from a pipeline
 --------------------------------
@@ -182,7 +183,7 @@ In the same manner, we can delete a module from a pipeline by using:
 
 .. code-block:: console
 
-	``nf-core modules remove samtools/sort``.
+	nf-core modules remove samtools/sort
 
 Creating modules
 ----------------

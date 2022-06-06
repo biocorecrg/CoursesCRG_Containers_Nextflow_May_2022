@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Introduction to nf-core &mdash; Courses@CRG: Reproducible research and data analysis using Containers &amp; Nextflow 2022  documentation</title>
+  <title>nf-core &mdash; Courses@CRG: Reproducible research and data analysis using Containers &amp; Nextflow 2022  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="canonical" href="https://biocorecrg.github.io/CoursesCRG_Containers_Nextflow_May_2022/nf-core_1.html" />
@@ -49,33 +49,36 @@
 <li class="toctree-l1"><a class="reference internal" href="nextflow_1.html">Nextflow 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nextflow_2.html">Nextflow 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nextflow_3.html">Nextflow 3</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to nf-core</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#community">Community</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pipelines">Pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#guidelines">Guidelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#helper-tools">Helper tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#paper">Paper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">nf-core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-nf-core">Introduction to nf-core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#community">Community</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipelines">Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#guidelines">Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#helper-tools">Helper tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paper">Paper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#nf-core-for-users">nf-core for users</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#listing-pipelines">Listing pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#filtering-available-nf-core-pipelines">Filtering available nf-core pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pulling-pipelines">Pulling pipelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#launching-pipelines">Launching pipelines</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#exercise">Exercise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nf-core-for-users">nf-core for users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#listing-pipelines">Listing pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-available-nf-core-pipelines">Filtering available nf-core pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pulling-pipelines">Pulling pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launching-pipelines">Launching pipelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exercise">Exercise</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#nf-core-configs-and-profiles">nf-core configs and profiles</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nf-core-configs">nf-core configs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nf-core-core-profiles">nf-core core profiles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#institutional-profiles">Institutional profiles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#custom-config">Custom config</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nf-core-configs-and-profiles">nf-core configs and profiles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nf-core-configs">nf-core configs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nf-core-core-profiles">nf-core core profiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#institutional-profiles">Institutional profiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-config">Custom config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Exercise</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#running-pipelines-with-test-data">Running pipelines with test data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#downloading-pipelines">Downloading pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-pipelines-with-test-data">Running pipelines with test data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-pipelines">Downloading pipelines</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nf-core_2.html">nf-core for developers</a></li>
@@ -96,7 +99,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Introduction to nf-core</li>
+      <li>nf-core</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/nf-core_1.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,8 +110,10 @@
            <div itemprop="articleBody">
              
   <a class="reference internal image-reference" href="_images/nf-core-logo.png" id="nf-core-1-page"><img alt="_images/nf-core-logo.png" id="nf-core-1-page" src="_images/nf-core-logo.png" style="width: 400px;" /></a>
+<section id="nf-core">
+<h1>nf-core<a class="headerlink" href="#nf-core" title="Permalink to this heading"></a></h1>
 <section id="introduction-to-nf-core">
-<h1>Introduction to nf-core<a class="headerlink" href="#introduction-to-nf-core" title="Permalink to this heading"></a></h1>
+<h2>Introduction to nf-core<a class="headerlink" href="#introduction-to-nf-core" title="Permalink to this heading"></a></h2>
 <p>nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow. As such nf-core is:</p>
 <ul class="simple">
 <li><p>A community of users and developers.</p></li>
@@ -117,36 +122,36 @@
 <li><p>A set of helper tools.</p></li>
 </ul>
 <section id="community">
-<h2>Community<a class="headerlink" href="#community" title="Permalink to this heading"></a></h2>
+<h3>Community<a class="headerlink" href="#community" title="Permalink to this heading"></a></h3>
 <p>The nf-core community is a collaborative effort that has been growing since its creation in early 2018, as you can check on
 the <a class="reference external" href="https://nf-co.re/stats/">nf-core stats site</a>.</p>
 <a class="reference internal image-reference" href="_images/nfcore_community.png"><img alt="_images/nfcore_community.png" src="_images/nfcore_community.png" style="width: 600px;" /></a>
-<a class="reference internal image-reference" href="images/nfcore_community_map.png"><img alt="images/nfcore_community_map.png" src="images/nfcore_community_map.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/nfcore_community_map.png"><img alt="_images/nfcore_community_map.png" src="_images/nfcore_community_map.png" style="width: 600px;" /></a>
 </section>
 <section id="pipelines">
-<h2>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this heading"></a></h2>
+<h3>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this heading"></a></h3>
 <p>Currently, there are 66 pipelines that are available as part of nf-core (37 released, 23 under development and 6 archived).
 You can browse all of them on this <a class="reference external" href="https://nf-co.re/pipelines">link</a>.</p>
 </section>
 <section id="guidelines">
-<h2>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this heading"></a></h2>
+<h3>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this heading"></a></h3>
 <p>All nf-core pipelines must meet a series of requirements or guidelines. These guidelines ensure that all nf-core pipelines
 follow the same standard and stick to current computational standards to achieve reproducibility, interoperability and
 portability. The guidelines are make available on <a class="reference external" href="https://nf-co.re/docs/contributing/guidelines">this</a> link.</p>
 </section>
 <section id="helper-tools">
-<h2>Helper tools<a class="headerlink" href="#helper-tools" title="Permalink to this heading"></a></h2>
+<h3>Helper tools<a class="headerlink" href="#helper-tools" title="Permalink to this heading"></a></h3>
 <p>To ease the use and development of nf-core pipelines, the community makes available a set of helper tools that we will
 introduce on this tutorial.</p>
 </section>
 <section id="paper">
-<h2>Paper<a class="headerlink" href="#paper" title="Permalink to this heading"></a></h2>
+<h3>Paper<a class="headerlink" href="#paper" title="Permalink to this heading"></a></h3>
 <p>The main nf-core paper was published in 2020 in <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/32055031/">Nature Biotechnology</a> and
 describes the community and the nf-core framework.</p>
 <a class="reference internal image-reference" href="_images/nf-core-paper.png"><img alt="_images/nf-core-paper.png" src="_images/nf-core-paper.png" style="width: 600px;" /></a>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
 <p>You can use Conda to install nf-core tools, in the command below we create a new named environment that includes nf-core
 and then, we activate it.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda create --name nf-core nf-core=2.4.1 -c bioconda -c conda-forge -y</span>
@@ -206,9 +211,9 @@ for developers. We will start first discussing how nf-core can be used from a us
 </section>
 </section>
 <section id="nf-core-for-users">
-<h1>nf-core for users<a class="headerlink" href="#nf-core-for-users" title="Permalink to this heading"></a></h1>
+<h2>nf-core for users<a class="headerlink" href="#nf-core-for-users" title="Permalink to this heading"></a></h2>
 <section id="listing-pipelines">
-<h2>Listing pipelines<a class="headerlink" href="#listing-pipelines" title="Permalink to this heading"></a></h2>
+<h3>Listing pipelines<a class="headerlink" href="#listing-pipelines" title="Permalink to this heading"></a></h3>
 <p>To show all the nf-core available pipelines, we can use the nf-core list command. This command also
 provides some other information as the last version of each of the nf-core pipelines, its publication and
 and when you last pulled the pipeline to your local system.</p>
@@ -257,7 +262,7 @@ and when you last pulled the pipeline to your local system.</p>
 </div>
 </section>
 <section id="filtering-available-nf-core-pipelines">
-<h2>Filtering available nf-core pipelines<a class="headerlink" href="#filtering-available-nf-core-pipelines" title="Permalink to this heading"></a></h2>
+<h3>Filtering available nf-core pipelines<a class="headerlink" href="#filtering-available-nf-core-pipelines" title="Permalink to this heading"></a></h3>
 <p>It is also possible to use keywords after the <code class="docutils literal notranslate"><span class="pre">list</span></code> command so that the list of pipelines is shortened to those
 matching the keywords or including them in the description. We can use the command below to filter on the <strong>rna</strong>
 and <strong>rna-seq</strong> keywords:</p>
@@ -287,7 +292,7 @@ and <strong>rna-seq</strong> keywords:</p>
 </div>
 </section>
 <section id="pulling-pipelines">
-<h2>Pulling pipelines<a class="headerlink" href="#pulling-pipelines" title="Permalink to this heading"></a></h2>
+<h3>Pulling pipelines<a class="headerlink" href="#pulling-pipelines" title="Permalink to this heading"></a></h3>
 <p>Once we have identified the nf-core pipeline we want to use we can pull it using the Nextflow <a class="reference external" href="https://www.nextflow.io/docs/latest/sharing.html#pulling-or-updating-a-project">built-in functionality</a>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow pull nf-core/&lt;PIPELINE&gt;</span>
 </pre></div>
@@ -298,7 +303,7 @@ and <strong>rna-seq</strong> keywords:</p>
 </div>
 </section>
 <section id="launching-pipelines">
-<h2>Launching pipelines<a class="headerlink" href="#launching-pipelines" title="Permalink to this heading"></a></h2>
+<h3>Launching pipelines<a class="headerlink" href="#launching-pipelines" title="Permalink to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">launch</span></code> command enables to launch nf-core, and also Nextflow, pipelines via a web-based graphical interface or an
 interactive command-line wizard tool. This command becomes handy for pipelines with a considerable number of parameters
 since it displays the documentation alongside each of the parameters and validate your inputs.</p>
@@ -324,7 +329,7 @@ executions using the <code class="docutils literal notranslate"><span class="pre
 <p>It is a good practice in terms of reproducibility to explicitly indicate the version (revision) of the pipeline that
 you want to use, this can be indicated using the <cite>-r</cite> flag e.g. <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">launch</span> <span class="pre">rnaseq</span> <span class="pre">-r</span> <span class="pre">3.8.1</span></code>.</p>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h3>
+<h4>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h4>
 <p>Pull version <code class="docutils literal notranslate"><span class="pre">3.8.1</span></code> of the nf-core/rnaseq pipeline, run it using the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">launch</span></code> command and produce the <code class="docutils literal notranslate"><span class="pre">nf-params.json</span></code>.</p>
 <details>
 <summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow pull nf-core/rnaseq -r 3.8.1</span>
@@ -334,16 +339,16 @@ you want to use, this can be indicated using the <cite>-r</cite> flag e.g. <code
 </section>
 </section>
 <section id="nf-core-configs-and-profiles">
-<h2>nf-core configs and profiles<a class="headerlink" href="#nf-core-configs-and-profiles" title="Permalink to this heading"></a></h2>
+<h3>nf-core configs and profiles<a class="headerlink" href="#nf-core-configs-and-profiles" title="Permalink to this heading"></a></h3>
 <section id="nf-core-configs">
-<h3>nf-core configs<a class="headerlink" href="#nf-core-configs" title="Permalink to this heading"></a></h3>
+<h4>nf-core configs<a class="headerlink" href="#nf-core-configs" title="Permalink to this heading"></a></h4>
 <p>We have already introduced Nextflow configuration files and profiles during the course. Config files are used by
 nf-core pipelines to specify the computational requirements of the pipeline, define custom parameters and set which
 software management system to be used (Docker, Singularity or Conda). As an example take a look to the <a class="reference external" href="https://github.com/nf-core/smrnaseq/blob/master/conf/base.config">base.config</a>
 that is used to set sensible defaults for the computational resources needed by the pipeline.</p>
 </section>
 <section id="nf-core-core-profiles">
-<h3>nf-core core profiles<a class="headerlink" href="#nf-core-core-profiles" title="Permalink to this heading"></a></h3>
+<h4>nf-core core profiles<a class="headerlink" href="#nf-core-core-profiles" title="Permalink to this heading"></a></h4>
 <p>nf-core pipelines use profiles to bundle a set of configuration attributes. By doing so, we can activate these
 attributes by using the <code class="docutils literal notranslate"><span class="pre">-profile</span></code> Nextflow command line option.  All nf-core pipelines come along with a set of common
 “Core profiles” that include the <code class="docutils literal notranslate"><span class="pre">conda</span></code>, <code class="docutils literal notranslate"><span class="pre">docker</span></code> and <code class="docutils literal notranslate"><span class="pre">singularity</span></code> that define which software manager to use and the
@@ -354,7 +359,7 @@ attributes by using the <code class="docutils literal notranslate"><span class="
 </div>
 </section>
 <section id="institutional-profiles">
-<h3>Institutional profiles<a class="headerlink" href="#institutional-profiles" title="Permalink to this heading"></a></h3>
+<h4>Institutional profiles<a class="headerlink" href="#institutional-profiles" title="Permalink to this heading"></a></h4>
 <p>Institutional profiles are profiles where you can specify the configuration attributes for your institution system. They are
 hosted in <a class="reference external" href="https://github.com/nf-core/configs">https://github.com/nf-core/configs</a> and all pipelines pull this repository when a pipeline is run. The idea is that
 these profiles set the custom config attributes to run nf-core pipelines in your institution (scheduler, container technology,
@@ -366,7 +371,7 @@ resources, etc.). This way all the users in a cluster can make use of the profil
 </div>
 </section>
 <section id="custom-config">
-<h3>Custom config<a class="headerlink" href="#custom-config" title="Permalink to this heading"></a></h3>
+<h4>Custom config<a class="headerlink" href="#custom-config" title="Permalink to this heading"></a></h4>
 <p>If you need to provide any custom parameter or setting when running a nf-core pipeline, you can do it by creating a local custom
 config file and add it to your command with the <code class="docutils literal notranslate"><span class="pre">-c</span></code> flag.</p>
 <a class="reference internal image-reference" href="_images/nfcore_config.png"><img alt="_images/nfcore_config.png" src="_images/nfcore_config.png" style="width: 600px;" /></a>
@@ -376,7 +381,7 @@ config file and add it to your command with the <code class="docutils literal no
 </div>
 </section>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h4>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>1 - Create a custom config that sets <code class="docutils literal notranslate"><span class="pre">params.email</span></code> to your email address and try to run the pipeline.</p></li>
 </ul>
@@ -391,7 +396,7 @@ config file and add it to your command with the <code class="docutils literal no
 </section>
 </section>
 <section id="running-pipelines-with-test-data">
-<h2>Running pipelines with test data<a class="headerlink" href="#running-pipelines-with-test-data" title="Permalink to this heading"></a></h2>
+<h3>Running pipelines with test data<a class="headerlink" href="#running-pipelines-with-test-data" title="Permalink to this heading"></a></h3>
 <p>All nf-core pipelines include a special configuration named <code class="docutils literal notranslate"><span class="pre">test</span></code>. This configuration defines all the files and parameters to test
 all pipeline functionality with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results
 are not meaningful. As an example, find on the snippet below the test configuration of the <cite>nf-core/rnaseq &lt;https://github.com/nf-core/rnaseq/&gt;`__</cite>
@@ -450,7 +455,7 @@ pipeline.</p>
 </div>
 </section>
 <section id="downloading-pipelines">
-<h2>Downloading pipelines<a class="headerlink" href="#downloading-pipelines" title="Permalink to this heading"></a></h2>
+<h3>Downloading pipelines<a class="headerlink" href="#downloading-pipelines" title="Permalink to this heading"></a></h3>
 <p>If your HPC system or server does not have an internet connection you can still run nf-core pipelines by fetching the
 pipeline files first and then, manually transferring them to your system.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">download</span></code> option simplifies this process and ensures the correct versioning of all the code and containers
@@ -486,6 +491,7 @@ files. Again, the <code class="docutils literal notranslate"><span class="pre">-
 <span class="go">        └── workflows</span>
 </pre></div>
 </div>
+</section>
 </section>
 </section>
 

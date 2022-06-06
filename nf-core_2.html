@@ -21,7 +21,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Introduction to nf-core" href="nf-core_1.html" /> 
+    <link rel="prev" title="nf-core" href="nf-core_1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,8 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="nextflow_1.html">Nextflow 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nextflow_2.html">Nextflow 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nextflow_3.html">Nextflow 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nf-core_1.html">Introduction to nf-core</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nf-core_1.html#nf-core-for-users">nf-core for users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf-core_1.html">nf-core</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">nf-core for developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#creating-pipelines">Creating pipelines</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#exercise">Exercise</a></li>
@@ -127,8 +126,9 @@ highly advisable to drop a message on the nf-core before starting to write any c
 </section>
 <section id="linting-pipelines">
 <h2>Linting pipelines<a class="headerlink" href="#linting-pipelines" title="Permalink to this heading"></a></h2>
-<p>To make sticking to nf-core guidelines easier, nf-core includes the <code class="docutils literal notranslate"><span class="pre">lint</span></code> command. This command checks that the pipeline is following
-nf-core standards. Interestingly, this command is the same that is used in the automated continuous integration tests.</p>
+<p>To make sticking to nf-core guidelines easier, nf-core includes the <code class="docutils literal notranslate"><span class="pre">lint</span></code> command. This command checks that the pipeline
+is following some of the nf-core standards. Interestingly, the command is the same that is used in the automated continuous
+integration tests.</p>
 <p>Let’s try to run this command on the pipeline we have just created.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd nf-core-&lt;your_pipeline_name&gt;</span>
 <span class="go">nf-core lint</span>
@@ -218,7 +218,7 @@ some dedicated utilities for modules.</p>
 <p>Likewise, it is also possible to list the modules installed in a pipeline by using the <code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">local</span></code> sub-command. By default,
 the command will list the modules installed in the current working directory but you can provide a different directory by using
 the <code class="docutils literal notranslate"><span class="pre">--dir</span> <span class="pre">&lt;pipeline_dir&gt;</span></code> option.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core modules list <span class="nb">local</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules list local</span>
 </pre></div>
 </div>
 </section>
@@ -227,7 +227,7 @@ the <code class="docutils literal notranslate"><span class="pre">--dir</span> <s
 <p>You can render the basic information of a module using <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">info</span> <span class="pre">&lt;tool&gt;</span></code>. This command will provide a brief
 summary of the module functionality, the description of the input and output channels, its type (<code class="docutils literal notranslate"><span class="pre">val</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, etc.)
 and the its installation command.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core modules info fastqc
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules info fastqc</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -239,14 +239,14 @@ and the its installation command.</p>
 <h2>Installing modules in a pipeline<a class="headerlink" href="#installing-modules-in-a-pipeline" title="Permalink to this heading"></a></h2>
 <p>You can use nf-core tools to install a module in any pipeline. The only requirement is that the directory contains a
 <code class="docutils literal notranslate"><span class="pre">main.nf</span></code> a <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and a <code class="docutils literal notranslate"><span class="pre">modules</span></code> directory where the module will be installed.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nf-core modules install samtools/sort
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules install samtools/sort</span>
 </pre></div>
 </div>
 </section>
 <section id="removing-modules-from-a-pipeline">
 <h2>Removing modules from a pipeline<a class="headerlink" href="#removing-modules-from-a-pipeline" title="Permalink to this heading"></a></h2>
 <p>In the same manner, we can delete a module from a pipeline by using:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">``nf-core modules remove samtools/sort``.</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules remove samtools/sort</span>
 </pre></div>
 </div>
 </section>
@@ -275,7 +275,7 @@ on <a href="#id2"><span class="problematic" id="id4">`this https://nf-co.re/deve
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="nf-core_1.html" class="btn btn-neutral float-left" title="Introduction to nf-core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nf-core_1.html" class="btn btn-neutral float-left" title="nf-core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

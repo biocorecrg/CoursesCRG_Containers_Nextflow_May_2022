@@ -30,14 +30,17 @@ Try to create your own pipeline using ``nf-core create``
 
 .. code-block:: console
 
-	nf-core create -n foo -d "My awesome nf-core pipeline" -a "Your name"
+	nf-core create -n "toy" -d "My awesome nf-core pipeline" -a "Your name"
 
-|
 
 .. note:: 
 	As shown in the message returned by the ``nf-core create`` if you plan to contribute your pipeline to nf-core, it is 
 	highly advisable to drop a message on the nf-core before starting to write any code, read more `here <https://nf-co.re/developers/adding_pipelines#join-the-community>`__
 
+.. raw:: html
+
+	</details>
+|
 |
 
 Linting pipelines
@@ -55,7 +58,7 @@ Let's try to run this command on the pipeline we have just created.
 
 .. tip::
 	You can use :kbd:`ctrl` + :kbd:`click` to navigate the documentation of each of the lint results. Otherwise, 
-	the complete list of the lint tests can be found `here <https://nf-co.re/tools-docs/lint_tests/index.html>`__
+	the complete list of the lint tests can be found `here <https://nf-co.re/tools-docs/lint_tests/index.html>`__.
 
 To run only a specific nf-core lint test you can use the ``-k`` / ``--key`` option, this enables to run for example
 only a certain test that has failed, e.g. ``nf-core lint -k files_exist -k files_unchanged``.
@@ -63,7 +66,7 @@ only a certain test that has failed, e.g. ``nf-core lint -k files_exist -k files
 nf-core modules
 ===============
 
-Since the introduction of `Nextflow DSL2<https://www.nextflow.io/blog/2020/dsl2-is-here.html>`__, nf-core pipelines have, 
+Since the introduction of `Nextflow DSL2 <https://www.nextflow.io/blog/2020/dsl2-is-here.html>`__, nf-core pipelines have, 
 and still are, been ported to DSL2 syntax. One of the paramount features of the DSL2 syntax is the possibility of creating 
 modules and sub-workflows, as we have already discussed during this course. For this reason, the nf-core community has created
 a centralised repository to host modules and sub-workflows (the latter is still WIP). This enables multiple pipelines to use
@@ -81,8 +84,8 @@ the same process defined as a module improving the developing speed and the robu
 	**WORKFLOW**: An end-to-end pipeline created by a combination of Nextflow DSL2 individual modules and sub-workflows. 
 	e.g. from one or more inputs to a series of final inputs
 
-The nf-core DSL2 modules repository is at `https://github.com/nf-core/modules<https://github.com/nf-core/modules>`__ and you 
-can navigate the modules available on this section of the nf-core `website<https://nf-co.re/modules>`__.
+The nf-core DSL2 modules repository is at `https://github.com/nf-core/modules <https://github.com/nf-core/modules>`__ and you 
+can navigate the modules available on this section of the nf-core `website <https://nf-co.re/modules>`__.
 
 .. note::
 	We have recently reach 500 modules available in the modules repository.

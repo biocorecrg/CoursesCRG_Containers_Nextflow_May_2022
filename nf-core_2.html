@@ -111,18 +111,16 @@ the nf-core template when it is updated (new tool releases).</p>
 <h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h3>
 <p>Try to create your own pipeline using <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">create</span></code></p>
 <details>
-<summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core create -n foo -d &quot;My awesome nf-core pipeline&quot; -a &quot;Your name&quot;</span>
+<summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core create -n &quot;toy&quot; -d &quot;My awesome nf-core pipeline&quot; -a &quot;Your name&quot;</span>
 </pre></div>
-</div>
-<div class="line-block">
-<div class="line"><br /></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>As shown in the message returned by the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">create</span></code> if you plan to contribute your pipeline to nf-core, it is
 highly advisable to drop a message on the nf-core before starting to write any code, read more <a class="reference external" href="https://nf-co.re/developers/adding_pipelines#join-the-community">here</a></p>
 </div>
-<div class="line-block">
+</details><div class="line-block">
+<div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
@@ -139,7 +137,7 @@ nf-core standards. Interestingly, this command is the same that is used in the a
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can use <kbd class="kbd docutils literal notranslate">ctrl</kbd> + <kbd class="kbd docutils literal notranslate">click</kbd> to navigate the documentation of each of the lint results. Otherwise,
-the complete list of the lint tests can be found <a class="reference external" href="https://nf-co.re/tools-docs/lint_tests/index.html">here</a></p>
+the complete list of the lint tests can be found <a class="reference external" href="https://nf-co.re/tools-docs/lint_tests/index.html">here</a>.</p>
 </div>
 <p>To run only a specific nf-core lint test you can use the <code class="docutils literal notranslate"><span class="pre">-k</span></code> / <code class="docutils literal notranslate"><span class="pre">--key</span></code> option, this enables to run for example
 only a certain test that has failed, e.g. <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">lint</span> <span class="pre">-k</span> <span class="pre">files_exist</span> <span class="pre">-k</span> <span class="pre">files_unchanged</span></code>.</p>
@@ -147,7 +145,7 @@ only a certain test that has failed, e.g. <code class="docutils literal notransl
 </section>
 <section id="nf-core-modules">
 <h1>nf-core modules<a class="headerlink" href="#nf-core-modules" title="Permalink to this heading"></a></h1>
-<p>Since the introduction of <a href="#id2"><span class="problematic" id="id3">`Nextflow DSL2&lt;https://www.nextflow.io/blog/2020/dsl2-is-here.html&gt;`__</span></a>, nf-core pipelines have,
+<p>Since the introduction of <a class="reference external" href="https://www.nextflow.io/blog/2020/dsl2-is-here.html">Nextflow DSL2</a>, nf-core pipelines have,
 and still are, been ported to DSL2 syntax. One of the paramount features of the DSL2 syntax is the possibility of creating
 modules and sub-workflows, as we have already discussed during this course. For this reason, the nf-core community has created
 a centralised repository to host modules and sub-workflows (the latter is still WIP). This enables multiple pipelines to use
@@ -162,8 +160,8 @@ e.g. a sub-workflow to sort, index and run some basic stats on a BAM file.</p>
 <p><strong>WORKFLOW</strong>: An end-to-end pipeline created by a combination of Nextflow DSL2 individual modules and sub-workflows.
 e.g. from one or more inputs to a series of final inputs</p>
 </div>
-<p>The nf-core DSL2 modules repository is at <a href="#id2"><span class="problematic" id="id4">`https://github.com/nf-core/modules&lt;https://github.com/nf-core/modules&gt;`__</span></a> and you
-can navigate the modules available on this section of the nf-core <a href="#id2"><span class="problematic" id="id5">`website&lt;https://nf-co.re/modules&gt;`__</span></a>.</p>
+<p>The nf-core DSL2 modules repository is at <a class="reference external" href="https://github.com/nf-core/modules">https://github.com/nf-core/modules</a> and you
+can navigate the modules available on this section of the nf-core <a class="reference external" href="https://nf-co.re/modules">website</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We have recently reach 500 modules available in the modules repository.</p>
@@ -262,8 +260,8 @@ repository. The command can detect on which type of repository you are working t
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you want to make available a module in <code class="docutils literal notranslate"><span class="pre">nf-core/modules</span></code> to the whole Nextflow community you can find the reference
-documentation <a href="#id2"><span class="problematic" id="id6">`here https://nf-co.re/developers/modules#writing-a-new-module-reference&gt;`__</span></a>  and a step by step tutorial
-on <a href="#id2"><span class="problematic" id="id7">`this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial&gt;`__</span></a> link.</p>
+documentation <a href="#id2"><span class="problematic" id="id3">`here https://nf-co.re/developers/modules#writing-a-new-module-reference&gt;`__</span></a>  and a step by step tutorial
+on <a href="#id2"><span class="problematic" id="id4">`this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial&gt;`__</span></a> link.</p>
 </div>
 <section id="id1">
 <h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>

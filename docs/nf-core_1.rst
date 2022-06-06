@@ -3,6 +3,10 @@
 .. image:: images/nf-core-logo.png
 	:width: 400
 
+*******
+nf-core
+*******
+
 Introduction to nf-core
 =======================
 

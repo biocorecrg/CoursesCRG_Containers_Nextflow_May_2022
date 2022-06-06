@@ -334,7 +334,26 @@ Exercise
 
 .. code-block:: console
 
-	params.email = "youremail@address.com"
+	echo 'params.email = "youremail@address.com"' > mycustom.config
+	nextflow run nf-core/rnaseq -r 3.8.1 -profile test,docker -c mycustom.config --outdir results
+
+
+.. raw:: html
+
+	</details>
+
+* Create a custom config that sets the process cpus to 2 and the memory to 8 Gb.
+
+.. raw:: html
+
+	<details>
+	<summary><a>Solution</a></summary>
+
+.. literalinclude:: ../nf-core/examples/mycustom.config
+	:language: groovy
+
+.. code-block:: console	
+	nextflow run nf-core/rnaseq -r 3.8.1 -profile test,docker -c mycustom.config --outdir results
 
 .. raw:: html
 

@@ -407,10 +407,15 @@ config file and add it to your command with the <code class="docutils literal no
 <li><p>1 - Create a custom config that sets <code class="docutils literal notranslate"><span class="pre">params.email</span></code> to your email address and try to run the pipeline.</p></li>
 </ul>
 <details>
-<summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">params.email = &quot;youremail@address.com&quot;</span>
+<summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &#39;params.email = &quot;youremail@address.com&quot;&#39; &gt; mycustom.config</span>
+<span class="go">nextflow run nf-core/rnaseq -r 3.8.1 -profile test,docker -c mycustom.config --outdir results</span>
 </pre></div>
 </div>
-</details><div class="line-block">
+</details><ul class="simple">
+<li><p>Create a custom config that sets the process cpus to 2 and the memory to 8 Gb.</p></li>
+</ul>
+<details>
+<summary><a>Solution</a></summary></details><div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>

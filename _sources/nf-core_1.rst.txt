@@ -102,37 +102,40 @@ and when you last pulled the pipeline to your local system.
 .. code-block:: console
 
 	$ nf-core list
-	                                          ,--./,-.
-	          ___     __   __   __   ___     /,-._.--~\
-	    |\ | |__  __ /  ` /  \ |__) |__         }  {
-	    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-	                                          `._,._,'
 
-    	nf-core/tools version 2.4.1 - https://nf-co.re
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.4.1 - https://nf-co.re
 
 
 	┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
 	┃ Pipeline Name          ┃ Stars ┃ Latest Release ┃      Released ┃  Last Pulled ┃ Have latest release? ┃
 	┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
-	│ rnafusion              │    70 │          2.0.0 │    5 days ago │            - │ -                    │
-	│ fetchngs               │    57 │            1.6 │    1 week ago │            - │ -                    │
-	│ atacseq                │   106 │          1.2.2 │   2 weeks ago │  5 hours ago │ Yes (v1.2.2)         │
-	│ mhcquant               │    19 │          2.3.1 │   2 weeks ago │            - │ -                    │
-	│ hicar                  │     2 │          1.0.0 │   3 weeks ago │            - │ -                    │
-	│ rnaseq                 │   460 │            3.7 │   3 weeks ago │ 2 months ago │ No (v3.6)            │
-	│ quantms                │     1 │            1.0 │   3 weeks ago │            - │ -                    │
-	│ airrflow               │    19 │          2.1.0 │   3 weeks ago │            - │ -                    │
-	│ eager                  │    65 │          2.4.4 │  2 months ago │            - │ -                    │
-	│ ampliseq               │    88 │          2.3.1 │  2 months ago │            - │ -                    │
-	│ viralrecon             │    69 │          2.4.1 │  3 months ago │ 6 months ago │ No (v2.2)            │
-	│ cutandrun              │    27 │            1.1 │  4 months ago │            - │ -                    │
-	│ epitopeprediction      │    18 │          2.0.0 │  5 months ago │            - │ -                    │
-	│ nanoseq                │    73 │          2.0.1 │  6 months ago │            - │ -                    │
+	│ airrflow               │    19 │          2.2.0 │    2 days ago │            - │ -                    │
+	│ circdna                │     4 │          1.0.0 │    5 days ago │            - │ -                    │
+	│ smrnaseq               │    39 │          2.0.0 │    5 days ago │ 7 months ago │ No (v1.1.0)          │
+	│ rnaseq                 │   465 │          3.8.1 │   1 weeks ago │   6 days ago │ Yes (v3.8.1)         │
+	│ ampliseq               │    88 │          2.3.2 │   1 weeks ago │            - │ -                    │
+	│ mnaseseq               │     7 │          1.0.0 │   2 weeks ago │            - │ -                    │
+	│ rnafusion              │    71 │          2.0.0 │   3 weeks ago │            - │ -                    │
+	│ fetchngs               │    58 │            1.6 │   3 weeks ago │  2 weeks ago │ No (v1.5)            │
+	│ atacseq                │   107 │          1.2.2 │   3 weeks ago │  2 weeks ago │ Yes (v1.2.2)         │
+	│ mhcquant               │    19 │          2.3.1 │   4 weeks ago │            - │ -                    │
+	│ hicar                  │     2 │          1.0.0 │  1 months ago │            - │ -                    │
+	│ quantms                │     1 │            1.0 │  1 months ago │            - │ -                    │
+	│ eager                  │    66 │          2.4.4 │  2 months ago │            - │ -                    │
+	│ viralrecon             │    70 │          2.4.1 │  3 months ago │ 7 months ago │ No (v2.2)            │
+	│ cutandrun              │    27 │            1.1 │  5 months ago │            - │ -                    │
+	│ epitopeprediction      │    18 │          2.0.0 │  6 months ago │            - │ -                    │
+	│ nanoseq                │    76 │          2.0.1 │  6 months ago │            - │ -                    │
 	│ mag                    │    88 │          2.1.1 │  6 months ago │            - │ -                    │
 	│ bacass                 │    35 │          2.0.0 │  9 months ago │            - │ -                    │
-	│ bactmap                │    29 │          1.0.0 │ 11 months ago │            - │ -                    │
-	│ smrnaseq               │    39 │          1.1.0 │ 11 months ago │ 6 months ago │ Yes (v1.1.0)         │
-	│ sarek                  │   167 │          2.7.1 │ 11 months ago │ 2 months ago │ Yes (v2.7.1)         │
+	│ bactmap                │    29 │          1.0.0 │ 12 months ago │            - │ -                    │
+	│ sarek                  │   168 │          2.7.1 │ 12 months ago │ 2 months ago │ Yes (v2.7.1)         │
 	[..truncated..]
 
 .. tip::
@@ -149,27 +152,27 @@ and **rna-seq** keywords:
 .. code-block:: console
 	
 	$ nf-core list rna rna-seq
-	                                          ,--./,-.
-	          ___     __   __   __   ___     /,-._.--~\
-	    |\ | |__  __ /  ` /  \ |__) |__         }  {
-	    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-	                                          `._,._,'
 
-    	nf-core/tools version 2.4.1 - https://nf-co.re
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
 
+    nf-core/tools version 2.4.1 - https://nf-co.re
 
-	┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
-	┃ Pipeline Name          ┃ Stars ┃ Latest Release ┃      Released ┃  Last Pulled ┃ Have latest release? ┃
-	┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
-	│ rnafusion              │    70 │          2.0.0 │    5 days ago │            - │ -                    │
-	│ rnaseq                 │   460 │            3.7 │   3 weeks ago │ 2 months ago │ No (v3.6)            │
-	│ smrnaseq               │    39 │          1.1.0 │ 11 months ago │ 6 months ago │ Yes (v1.1.0)         │
-	│ dualrnaseq             │     7 │          1.0.0 │   1 years ago │            - │ -                    │
-	│ circrna                │    18 │            dev │             - │            - │ -                    │
-	│ lncpipe                │    23 │            dev │             - │            - │ -                    │
-	│ scflow                 │    12 │            dev │             - │            - │ -                    │
-	│ spatialtranscriptomics │     3 │            dev │             - │            - │ -                    │
-	└────────────────────────┴───────┴────────────────┴───────────────┴──────────────┴──────────────────────┘
+	┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+	┃ Pipeline Name          ┃ Stars ┃ Latest Release ┃    Released ┃  Last Pulled ┃ Have latest release? ┃
+	┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+	│ smrnaseq               │    39 │          2.0.0 │  5 days ago │ 7 months ago │ No (v1.1.0)          │
+	│ rnaseq                 │   465 │          3.8.1 │ 1 weeks ago │   6 days ago │ Yes (v3.8.1)         │
+	│ rnafusion              │    71 │          2.0.0 │ 3 weeks ago │            - │ -                    │
+	│ dualrnaseq             │     7 │          1.0.0 │ 1 years ago │            - │ -                    │
+	│ circrna                │    18 │            dev │           - │            - │ -                    │
+	│ lncpipe                │    23 │            dev │           - │            - │ -                    │
+	│ scflow                 │    12 │            dev │           - │            - │ -                    │
+	│ spatialtranscriptomics │     3 │            dev │           - │            - │ -                    │
+	└────────────────────────┴───────┴────────────────┴─────────────┴──────────────┴──────────────────────┘
 
 
 Pulling pipelines
@@ -211,12 +214,12 @@ executions using the ``-params-file`` flag. See below an example:
 	:language: json
 
 It is a good practice in terms of reproducibility to explicitly indicate the version (revision) of the pipeline that 
-you want to use, this can be indicated using the `-r` flag e.g. ``nf-core launch rnaseq -r 3.7``.
+you want to use, this can be indicated using the `-r` flag e.g. ``nf-core launch rnaseq -r 3.8.1``.
 
 Exercise
 ********
 
-Pull version ``3.7`` of the nf-core/rnaseq pipeline, run it using the ``nf-core launch`` command and produce the ``nf-params.json``.
+Pull version ``3.8.1`` of the nf-core/rnaseq pipeline, run it using the ``nf-core launch`` command and produce the ``nf-params.json``.
 
 .. raw:: html
 
@@ -225,8 +228,8 @@ Pull version ``3.7`` of the nf-core/rnaseq pipeline, run it using the ``nf-core 
 
 .. code-block:: console
 
-	nextflow pull nf-core/rnaseq -r 3.7
-	nf-core launch rnaseq -r 3.7
+	nextflow pull nf-core/rnaseq -r 3.8.1
+	nf-core launch rnaseq -r 3.8.1
 
 nf-core configs and profiles
 ----------------------------
@@ -236,7 +239,7 @@ nf-core configs
 
 We have already introduced Nextflow configuration files and profiles during the course. Config files are used by 
 nf-core pipelines to specify the computational requirements of the pipeline, define custom parameters and set which 
-software management system to be used (Docker, Singularity or Conda). As an example take a look to the `base.config <https://github.com/nf-core/chipseq/blob/master/conf/base.config>`__
+software management system to be used (Docker, Singularity or Conda). As an example take a look to the `base.config <https://github.com/nf-core/smrnaseq/blob/master/conf/base.config>`__
 that is used to set sensible defaults for the computational resources needed by the pipeline. 
 
 nf-core core profiles
@@ -292,6 +295,10 @@ Exercise
 
 	params.email = "youremail@address.com"
 
+.. raw:: html
+
+	</details>
+|
 |
 
 Running pipelines with test data
@@ -306,7 +313,7 @@ pipeline.
 	:language: groovy
 
 .. tip::
-	You can find the current version of the config above `here <https://github.com/nf-core/rnaseq/blob/master/conf/test.config>`__
+	You can find the current version of the above config above `here <https://github.com/nf-core/rnaseq/blob/master/conf/test.config>`__
 
 Downloading pipelines
 ---------------------
@@ -333,9 +340,9 @@ Now we can inspect the structure of the downloaded directory:
 
 .. code-block:: console
 
-	$ tree -L 2 nf-core-rnaseq-3.8/
+	$ tree -L 2 nf-core-rnaseq-3.8.1/
 
-	nf-core-rnaseq-3.8/
+	nf-core-rnaseq-3.8.1/
 	├── configs
 	│   ├── ..truncated..
 	│   ├── nextflow.config

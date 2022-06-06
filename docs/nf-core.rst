@@ -64,7 +64,7 @@ describes the community and the nf-core framework.
 Installation
 ------------
 
-You can use Conda to install nf-core tools, in the command below we create a new named environment that includes nf-core
+You can use Conda to install nf-core tools. In the command below we create a new named environment that includes nf-core
 and then, we activate it.
 
 .. code-block:: console
@@ -79,7 +79,7 @@ and then, we activate it.
 .. tip::
 	Find alternative ways of installation on the nf-core `documentation <https://nf-co.re/tools/#installation>`__
 
-We can now check nf-core available commands:
+We can now check the nf-core available commands:
 
 .. code-block:: console
 
@@ -91,8 +91,6 @@ We can now check nf-core available commands:
                                           `._,._,'
 
     nf-core/tools version 2.4.1 - https://nf-co.re
-
-
 																																			
 	Usage: nf-core [OPTIONS] COMMAND [ARGS]...                                                                                                
 																																			
@@ -209,7 +207,6 @@ and **rna-seq** keywords:
 	│ spatialtranscriptomics │     3 │            dev │           - │            - │ -                    │
 	└────────────────────────┴───────┴────────────────┴─────────────┴──────────────┴──────────────────────┘
 
-
 Pulling pipelines
 -----------------
 
@@ -249,7 +246,7 @@ executions using the ``-params-file`` flag. See below an example:
 	:language: json
 
 It is a good practice in terms of reproducibility to explicitly indicate the version (revision) of the pipeline that 
-you want to use, this can be indicated using the `-r` flag e.g. ``nf-core launch rnaseq -r 3.8.1``.
+you want to use, this can be indicated using the ``-r`` flag e.g. ``nf-core launch rnaseq -r 3.8.1``.
 
 Exercise
 ********
@@ -270,7 +267,7 @@ Pull version ``3.8.1`` of the nf-core/rnaseq pipeline, run it using the ``nf-cor
 
 	</details>
 |
-|
+
 
 nf-core configs and profiles
 ----------------------------
@@ -315,17 +312,15 @@ config file and add it to your command with the ``-c`` flag.
 .. image:: images/nfcore_config.png
 	:width: 600
 
+*Image from `https://carpentries-incubator.github.io/workflows-nextflow <https://carpentries-incubator.github.io/workflows-nextflow/>`__.
+
 .. note::	
 	Profiles will be prioritized from left to right in case conflicting settings are found.	 
 
 Exercise
 ********
 
-* 1 - Create a custom config that sets ``params.email`` to your email address and try to run the pipeline.
-
-.. * 2 - Create a custom config that sets the process cpus to 1 and the memory to 500 Mb.
-
-.. * 3 - Why do you think the ``NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GUNZIP_GTF`` process stills complains about not having enough CPUs?
+* Create a custom config that sets ``params.email`` to your email address and try to run the pipeline.
 
 .. raw:: html
 
@@ -366,7 +361,7 @@ Running pipelines with test data
 
 All nf-core pipelines include a special configuration named ``test``. This configuration defines all the files and parameters to test
 all pipeline functionality with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results
-are not meaningful. As an example, find on the snippet below the test configuration of the `nf-core/rnaseq <https://github.com/nf-core/rnaseq/>`__`
+are not meaningful. As an example, find on the snippet below the test configuration of the `nf-core/rnaseq <https://github.com/nf-core/rnaseq/>`__.
 pipeline.
 
 .. literalinclude:: ../nf-core/examples/test.config

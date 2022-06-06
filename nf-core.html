@@ -71,7 +71,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#nf-core-core-profiles">nf-core core profiles</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#institutional-profiles">Institutional profiles</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#custom-config">Custom config</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Exercise</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#running-pipelines-with-test-data">Running pipelines with test data</a></li>
@@ -81,23 +81,26 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#nf-core-for-developers">nf-core for developers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-pipelines">Creating pipelines</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Exercise</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#linting-pipelines">Linting pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nf-core-schema">nf-core schema</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#nf-core-modules">nf-core modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#listing-modules">Listing modules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#showing-information-about-a-module">Showing information about a module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installing-modules-in-a-pipeline">Installing modules in a pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-modules-in-a-pipeline">Installing modules in a pipeline</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Exercise</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#removing-modules-from-a-pipeline">Removing modules from a pipeline</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#creating-modules">Creating modules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-modules">Creating modules</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#interesting-links">Interesting links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 </li>
 </ul>
@@ -169,7 +172,7 @@ describes the community and the nf-core framework.</p>
 </section>
 <section id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
-<p>You can use Conda to install nf-core tools, in the command below we create a new named environment that includes nf-core
+<p>You can use Conda to install nf-core tools. In the command below we create a new named environment that includes nf-core
 and then, we activate it.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda create --name nf-core nf-core=2.4.1 -c bioconda -c conda-forge -y</span>
 <span class="go">conda activate nf-core</span>
@@ -184,7 +187,7 @@ executable to <code class="docutils literal notranslate"><span class="pre">sudo<
 <p class="admonition-title">Tip</p>
 <p>Find alternative ways of installation on the nf-core <a class="reference external" href="https://nf-co.re/tools/#installation">documentation</a></p>
 </div>
-<p>We can now check nf-core available commands:</p>
+<p>We can now check the nf-core available commands:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">    $ </span>nf-core
 <span class="go">                                      ,--./,-.</span>
 <span class="go">      ___     __   __   __   ___     /,-._.--~\</span>
@@ -193,8 +196,6 @@ executable to <code class="docutils literal notranslate"><span class="pre">sudo<
 <span class="go">                                      `._,._,&#39;</span>
 
 <span class="go">nf-core/tools version 2.4.1 - https://nf-co.re</span>
-
-
 
 <span class="go">    Usage: nf-core [OPTIONS] COMMAND [ARGS]...</span>
 
@@ -344,7 +345,7 @@ executions using the <code class="docutils literal notranslate"><span class="pre
 </pre></div>
 </div>
 <p>It is a good practice in terms of reproducibility to explicitly indicate the version (revision) of the pipeline that
-you want to use, this can be indicated using the <cite>-r</cite> flag e.g. <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">launch</span> <span class="pre">rnaseq</span> <span class="pre">-r</span> <span class="pre">3.8.1</span></code>.</p>
+you want to use, this can be indicated using the <code class="docutils literal notranslate"><span class="pre">-r</span></code> flag e.g. <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">launch</span> <span class="pre">rnaseq</span> <span class="pre">-r</span> <span class="pre">3.8.1</span></code>.</p>
 <section id="exercise">
 <h4>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h4>
 <p>Pull version <code class="docutils literal notranslate"><span class="pre">3.8.1</span></code> of the nf-core/rnaseq pipeline, run it using the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">launch</span></code> command and produce the <code class="docutils literal notranslate"><span class="pre">nf-params.json</span></code>.</p>
@@ -354,7 +355,6 @@ you want to use, this can be indicated using the <cite>-r</cite> flag e.g. <code
 </pre></div>
 </div>
 </details><div class="line-block">
-<div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 </section>
@@ -396,15 +396,16 @@ resources, etc.). This way all the users in a cluster can make use of the profil
 <p>If you need to provide any custom parameter or setting when running a nf-core pipeline, you can do it by creating a local custom
 config file and add it to your command with the <code class="docutils literal notranslate"><span class="pre">-c</span></code> flag.</p>
 <a class="reference internal image-reference" href="_images/nfcore_config.png"><img alt="_images/nfcore_config.png" src="_images/nfcore_config.png" style="width: 600px;" /></a>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>Image from <a class="reference external" href="https://carpentries-incubator.github.io/workflows-nextflow/">https://carpentries-incubator.github.io/workflows-nextflow</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Profiles will be prioritized from left to right in case conflicting settings are found.</p>
 </div>
 </section>
-<section id="id1">
-<h4>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<section id="id3">
+<h4>Exercise<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
 <ul class="simple">
-<li><p>1 - Create a custom config that sets <code class="docutils literal notranslate"><span class="pre">params.email</span></code> to your email address and try to run the pipeline.</p></li>
+<li><p>Create a custom config that sets <code class="docutils literal notranslate"><span class="pre">params.email</span></code> to your email address and try to run the pipeline.</p></li>
 </ul>
 <details>
 <summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &#39;params.email = &quot;youremail@address.com&quot;&#39; &gt; mycustom.config</span>
@@ -415,7 +416,13 @@ config file and add it to your command with the <code class="docutils literal no
 <li><p>Create a custom config that sets the process cpus to 2 and the memory to 8 Gb.</p></li>
 </ul>
 <details>
-<summary><a>Solution</a></summary></details><div class="line-block">
+<summary><a>Solution</a></summary><div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_cpus</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;8.GB&#39;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+</pre></div>
+</div>
+</details><div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
@@ -425,7 +432,7 @@ config file and add it to your command with the <code class="docutils literal no
 <h3>Running pipelines with test data<a class="headerlink" href="#running-pipelines-with-test-data" title="Permalink to this heading"></a></h3>
 <p>All nf-core pipelines include a special configuration named <code class="docutils literal notranslate"><span class="pre">test</span></code>. This configuration defines all the files and parameters to test
 all pipeline functionality with a minimal dataset. Thus, although the functionality of the pipeline is maintained often the results
-are not meaningful. As an example, find on the snippet below the test configuration of the <cite>nf-core/rnaseq &lt;https://github.com/nf-core/rnaseq/&gt;`__</cite>
+are not meaningful. As an example, find on the snippet below the test configuration of the <a class="reference external" href="https://github.com/nf-core/rnaseq/">nf-core/rnaseq</a>.
 pipeline.</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
@@ -522,6 +529,8 @@ files. Again, the <code class="docutils literal notranslate"><span class="pre">-
 <h3>Pipeline output<a class="headerlink" href="#pipeline-output" title="Permalink to this heading"></a></h3>
 <p>nf-core pipelines produce a <a class="reference external" href="https://multiqc.info/">MultiQC</a> report which summarises results at the end of the execution
 along with software versions of the different tools used, nf-core pipeline version and Nextflow version itself.</p>
+<p>Each pipeline provides an example of a MultiQC report from a real execution in the nf-core website. For instance you can find
+the report corresponding to the current version of nf-core/rnaseq <cite>here &lt;https://nf-co.re/rnaseq/results#rnaseq&gt;</cite>.</p>
 </section>
 </section>
 <section id="nf-core-for-developers">
@@ -536,8 +545,8 @@ With this information, the pipeline will be initialized following the nf-core st
 <p>Besides creating the files, the command initializes the folder containing the new pipeline as a git repository and makes and initial
 commit. This first commit is identical to the nf-core template and it is important since it enables to keep your pipeline in sync with
 the nf-core template when it is updated (new tool releases).</p>
-<section id="id2">
-<h4>Exercise<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<section id="id4">
+<h4>Exercise<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
 <p>Try to create your own pipeline using <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">create</span></code></p>
 <details>
 <summary><a>Solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core create -n &quot;toy&quot; -d &quot;My awesome nf-core pipeline&quot; -a &quot;Your name&quot;</span>
@@ -571,6 +580,17 @@ the complete list of the lint tests can be found <a class="reference external" h
 </div>
 <p>To run only a specific nf-core lint test you can use the <code class="docutils literal notranslate"><span class="pre">-k</span></code> / <code class="docutils literal notranslate"><span class="pre">--key</span></code> option, this enables to run for example
 only a certain test that has failed, e.g. <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">lint</span> <span class="pre">-k</span> <span class="pre">files_exist</span> <span class="pre">-k</span> <span class="pre">files_unchanged</span></code>.</p>
+</section>
+<section id="nf-core-schema">
+<h3>nf-core schema<a class="headerlink" href="#nf-core-schema" title="Permalink to this heading"></a></h3>
+<p>As we discussed before, nf-core pipelines include a <code class="docutils literal notranslate"><span class="pre">nextflow_schema.json</span></code> that it is used to describe the parameters
+of the pipelines and validate them when provided as input. Since the creation of this file could be very error prompt,
+nf-core tools provide with a command to create <code class="docutils literal notranslate"><span class="pre">build</span></code>, <code class="docutils literal notranslate"><span class="pre">validate</span></code> and <code class="docutils literal notranslate"><span class="pre">lint</span></code> the nextflow_schema.json.</p>
+<p>We will see an example of how to use this command on the final exercise.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find more documentation about the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">schema</span></code> on the <a href="#id5"><span class="problematic" id="id6">``</span></a>nf-core website &lt;<a class="reference external" href="https://nf-co.re/tools/#pipeline-schema">https://nf-co.re/tools/#pipeline-schema</a>&gt;`__.</p>
+</div>
 </section>
 </section>
 <section id="nf-core-modules">
@@ -669,9 +689,24 @@ and the its installation command.</p>
 <h3>Installing modules in a pipeline<a class="headerlink" href="#installing-modules-in-a-pipeline" title="Permalink to this heading"></a></h3>
 <p>You can use nf-core tools to install a module in any pipeline. The only requirement is that the directory contains a
 <code class="docutils literal notranslate"><span class="pre">main.nf</span></code> a <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and a <code class="docutils literal notranslate"><span class="pre">modules</span></code> directory where the module will be installed.</p>
+<section id="id7">
+<h4>Exercise<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>Create a folder with an empty <code class="docutils literal notranslate"><span class="pre">main.nf</span></code>, <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and a <code class="docutils literal notranslate"><span class="pre">modules</span></code> directory and try to install a module,</p></li>
+</ul>
+<p>e.g. samtools/sort.</p>
+<details>
+<summary><a>Solution</a></summary><ul class="simple">
+<li><p>Now, place yourself in the nf-core-toy pipeline we created before and try to install the same module.</p></li>
+</ul>
+<details>
+<summary><a>Solution</a></summary></details><div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules install samtools/sort</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="removing-modules-from-a-pipeline">
 <h3>Removing modules from a pipeline<a class="headerlink" href="#removing-modules-from-a-pipeline" title="Permalink to this heading"></a></h3>
@@ -690,15 +725,28 @@ repository. The command can detect on which type of repository you are working t
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you want to make available a module in <code class="docutils literal notranslate"><span class="pre">nf-core/modules</span></code> to the whole Nextflow community you can find the reference
-documentation <a href="#id4"><span class="problematic" id="id5">`here https://nf-co.re/developers/modules#writing-a-new-module-reference&gt;`__</span></a>  and a step by step tutorial
-on <a href="#id4"><span class="problematic" id="id6">`this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial&gt;`__</span></a> link.</p>
+documentation <a href="#id8"><span class="problematic" id="id9">`here https://nf-co.re/developers/modules#writing-a-new-module-reference&gt;`__</span></a>  and a step by step tutorial
+on <a href="#id8"><span class="problematic" id="id10">`this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial&gt;`__</span></a> link.</p>
 </div>
-<section id="id3">
-<h4>Exercise<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
-<p>Try to create a module (e.g. <cite>fastqc</cite>)  <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">create</span></code>
-.. .. Which is the difference? NO ESTO SERIA EN EL MODULES REPOSITORY O EN UNA PIPELINE</p>
+<ul class="simple">
+<li><p>Try to create a module (e.g. <cite>fastqc</cite>) <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">create</span></code></p></li>
+</ul>
 </section>
 </section>
+<section id="interesting-links">
+<h2>Interesting links<a class="headerlink" href="#interesting-links" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nf-co.re/">nf-core website</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/nf-core/">nf-core github</a>.</p></li>
+<li><p><a class="reference external" href="https://nf-co.re/join/slack">Join nf-core slack</a>.</p></li>
+<li><p><a href="#id8"><span class="problematic" id="id11">`Join Nextflow slack &lt;https://nextflow.io/slack-invite.html`__</span></a>.</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/c/nf-core">nf-core YouTube channel</a>.</p></li>
+</ul>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading"></a></h2>
+<p>This nf-core tutorial has been build taking as inspiration the <a class="reference external" href="https://nf-co.re/tools/">nf-core official tools documentation</a>
+and the Carpentries materials “Introduction to Bioinformatics workflows with Nextflow and nf-core” that can be find <a class="reference external" href="https://carpentries-incubator.github.io/workflows-nextflow/">here</a>.</p>
 </section>
 </section>
 

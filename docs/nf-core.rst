@@ -686,8 +686,34 @@ repository. The command can detect on which type of repository you are working t
 	documentation `here https://nf-co.re/developers/modules#writing-a-new-module-reference>`__  and a step by step tutorial 
 	on `this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial>`__ link.
 
+Exercise
+********
 
-* Try to create a module (e.g. `fastqc`) ``nf-core modules create``
+* Place yourself in the nf-core-toy pipeline we created before and try to install the same module. You will n
+
+.. raw:: html
+
+	<details>
+	<summary><a>Solution</a></summary>
+
+.. code-block:: console
+	cd your_path_here/nf-core-toy
+	nf-core modules create fastqc --author @github_user --label process_low --meta
+
+* In which folder does it create the module?
+
+.. raw:: html
+
+	<details>
+	<summary><a>Solution</a></summary>
+
+.. topic:: Answers
+	The ``create`` command generates the file inside `modules/local` since it is created as a local module to the pipeline.
+
+.. raw:: html
+
+	</details>
+|
 
 
 .. .. Which is the difference? NO ESTO SERIA EN EL MODULES REPOSITORY O EN UNA PIPELINE

@@ -421,24 +421,7 @@ nf-core pipelines produce a `MultiQC <https://multiqc.info/>`__ report which sum
 along with software versions of the different tools used, nf-core pipeline version and Nextflow version itself.
 
 Each pipeline provides an example of a MultiQC report from a real execution in the nf-core website. For instance you can find
-the report corresponding to the current version of nf-core/rnaseq `here <https://nf-co.re/rnaseq/results#rnaseq>`.
-
-.. Exercise
-.. ********
-
-.. Launch the nf-core chipseq pipeline dev branch --> you need to first do a nextflow pull
-.. Check if this can be done using nf-core launch?
-
-.. nf-core modules
-.. ---------------
-
-.. Fix corrupted pipeline
-
-.. N E X T F L O W  ~  version 22.04.0
-.. Can't find git repository config file -- Repository may be corrupted: .nextflow/assets/nf-core/atacseq
-.. explain -r ~/.nextflow/assets/nf-core/chipseq/
-
-.. explain the multiqc report in terms of reproducibility??
+the report corresponding to the current version of nf-core/rnaseq `here <https://nf-co.re/rnaseq/results#rnaseq>`__.
 
 nf-core for developers
 ======================

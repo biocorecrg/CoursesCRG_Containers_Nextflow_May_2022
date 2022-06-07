@@ -852,13 +852,16 @@ Exercise
 
 .. literalinclude:: ../nf-core/examples/toy.nf
 	:language: groovy
+	:emphasize-lines: 51-52
+	:emphasize-lines: 82-87
 
 .. literalinclude:: ../nf-core/examples/nextflow_schema.json
 	:language: JSON
+	:emphasize-lines: 279-283
 
 .. literalinclude:: ../nf-core/examples/custom.config
 	:language: groovy
-
+	
 .. raw:: html
 
 	</details>

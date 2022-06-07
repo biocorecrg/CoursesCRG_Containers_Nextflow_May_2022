@@ -83,7 +83,7 @@ We can now check the nf-core available commands:
 
 .. code-block:: console
 
-	$ nf-core
+	$ nf-core -h
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
     |\ | |__  __ /  ` /  \ |__) |__         }  {

@@ -1274,6 +1274,220 @@ even if it does not exist, using the command below:</p>
 </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    nf-core/toy Nextflow config file</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    Default config options for all compute environments</span>
+<span class="cm">----------------------------------------------------------------------------------------</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="c1">// Global default params, used in configs</span><span class="w"></span>
+<span class="n">params</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// TODO nf-core: Specify your pipeline&#39;s command line flags</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Input options</span><span class="w"></span>
+<span class="w">    </span><span class="n">input</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// References</span><span class="w"></span>
+<span class="w">    </span><span class="n">genome</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">igenomes_base</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;s3://ngi-igenomes/igenomes&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">igenomes_ignore</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+
+<span class="hll"><span class="w">    </span><span class="c1">// Adapterremoval options</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="n">skip_adapterremoval</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+</span>
+<span class="w">    </span><span class="c1">// MultiQC options</span><span class="w"></span>
+<span class="w">    </span><span class="n">multiqc_config</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">multiqc_title</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_multiqc_email_size</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;25.MB&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Boilerplate options</span><span class="w"></span>
+<span class="w">    </span><span class="n">outdir</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">tracedir</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${params.outdir}/pipeline_info&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">publish_dir_mode</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;copy&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">email</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">email_on_fail</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">plaintext_email</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="n">monochrome_logs</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="n">help</span><span class="w">                       </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="n">validate_params</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="n">show_hidden_params</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="n">schema_ignore_params</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;genomes&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">enable_conda</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Config options</span><span class="w"></span>
+<span class="w">    </span><span class="n">custom_config_version</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;master&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">custom_config_base</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/nf-core/configs/${params.custom_config_version}&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">config_profile_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">config_profile_contact</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">config_profile_url</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="w">    </span><span class="n">config_profile_name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Max resource options</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Defaults only, expecting to be overwritten</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_memory</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;128.GB&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_cpus</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="w"></span>
+<span class="w">    </span><span class="n">max_time</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;240.h&#39;</span><span class="w"></span>
+
+<span class="o">}</span><span class="w"></span>
+
+<span class="c1">// Load base.config by default for all pipelines</span><span class="w"></span>
+<span class="n">includeConfig</span><span class="w"> </span><span class="s1">&#39;conf/base.config&#39;</span><span class="w"></span>
+
+<span class="c1">// Load nf-core custom profiles from different Institutions</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">includeConfig</span><span class="w"> </span><span class="s2">&quot;${params.custom_config_base}/nfcore_custom.config&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="o">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s2">&quot;WARNING: Could not load nf-core/config profiles: ${params.custom_config_base}/nfcore_custom.config&quot;</span><span class="o">)</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="c1">// Load nf-core/toy custom profiles from different institutions.</span><span class="w"></span>
+<span class="c1">// Warning: Uncomment only if a pipeline-specific instititutional config already exists on nf-core/configs!</span><span class="w"></span>
+<span class="c1">// try {</span><span class="w"></span>
+<span class="c1">//   includeConfig &quot;${params.custom_config_base}/pipeline/toy.config&quot;</span><span class="w"></span>
+<span class="c1">// } catch (Exception e) {</span><span class="w"></span>
+<span class="c1">//   System.err.println(&quot;WARNING: Could not load nf-core/config/toy profiles: ${params.custom_config_base}/pipeline/toy.config&quot;)</span><span class="w"></span>
+<span class="c1">// }</span><span class="w"></span>
+
+
+<span class="n">profiles</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">debug</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">process</span><span class="o">.</span><span class="na">beforeScript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;echo $HOSTNAME&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">conda</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">params</span><span class="o">.</span><span class="na">enable_conda</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="n">docker</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">singularity</span><span class="o">.</span><span class="na">enabled</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">podman</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">shifter</span><span class="o">.</span><span class="na">enabled</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">charliecloud</span><span class="o">.</span><span class="na">enabled</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">docker</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">docker</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="n">docker</span><span class="o">.</span><span class="na">userEmulation</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="n">singularity</span><span class="o">.</span><span class="na">enabled</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">podman</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">shifter</span><span class="o">.</span><span class="na">enabled</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">charliecloud</span><span class="o">.</span><span class="na">enabled</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">singularity</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">singularity</span><span class="o">.</span><span class="na">enabled</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="n">singularity</span><span class="o">.</span><span class="na">autoMounts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="n">docker</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">podman</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">shifter</span><span class="o">.</span><span class="na">enabled</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">charliecloud</span><span class="o">.</span><span class="na">enabled</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">podman</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">podman</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="n">docker</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">singularity</span><span class="o">.</span><span class="na">enabled</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">shifter</span><span class="o">.</span><span class="na">enabled</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">charliecloud</span><span class="o">.</span><span class="na">enabled</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">shifter</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">shifter</span><span class="o">.</span><span class="na">enabled</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="n">docker</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">singularity</span><span class="o">.</span><span class="na">enabled</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">podman</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">charliecloud</span><span class="o">.</span><span class="na">enabled</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">charliecloud</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">charliecloud</span><span class="o">.</span><span class="na">enabled</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">        </span><span class="n">docker</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">singularity</span><span class="o">.</span><span class="na">enabled</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">podman</span><span class="o">.</span><span class="na">enabled</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="n">shifter</span><span class="o">.</span><span class="na">enabled</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">test</span><span class="w">      </span><span class="o">{</span><span class="w"> </span><span class="n">includeConfig</span><span class="w"> </span><span class="s1">&#39;conf/test.config&#39;</span><span class="w">      </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">test_full</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">includeConfig</span><span class="w"> </span><span class="s1">&#39;conf/test_full.config&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="c1">// Load igenomes.config if required</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="o">(!</span><span class="n">params</span><span class="o">.</span><span class="na">igenomes_ignore</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">includeConfig</span><span class="w"> </span><span class="s1">&#39;conf/igenomes.config&#39;</span><span class="w"></span>
+<span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">params</span><span class="o">.</span><span class="na">genomes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[:]</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="c1">// Export these variables to prevent local Python/R libraries from conflicting with those in the container</span><span class="w"></span>
+<span class="c1">// The JULIA depot path has been adjusted to a fixed path `/usr/local/share/julia` that needs to be used for packages in the container.</span><span class="w"></span>
+<span class="c1">// See https://apeltzer.github.io/post/03-julia-lang-nextflow/ for details on that. Once we have a common agreement on where to keep Julia packages, this is adjustable.</span><span class="w"></span>
+
+<span class="n">env</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">PYTHONNOUSERSITE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="n">R_PROFILE_USER</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/.Rprofile&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">R_ENVIRON_USER</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/.Renviron&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">JULIA_DEPOT_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/usr/local/share/julia&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="c1">// Capture exit codes from upstream processes when piping</span><span class="w"></span>
+<span class="n">process</span><span class="o">.</span><span class="na">shell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;/bin/bash&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;-euo&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;pipefail&#39;</span><span class="o">]</span><span class="w"></span>
+
+<span class="kt">def</span><span class="w"> </span><span class="n">trace_timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">().</span><span class="na">format</span><span class="o">(</span><span class="w"> </span><span class="s1">&#39;yyyy-MM-dd_HH-mm-ss&#39;</span><span class="o">)</span><span class="w"></span>
+<span class="n">timeline</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="n">file</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${params.tracedir}/execution_timeline_${trace_timestamp}.html&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+<span class="n">report</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="n">file</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${params.tracedir}/execution_report_${trace_timestamp}.html&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+<span class="n">trace</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="n">file</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${params.tracedir}/execution_trace_${trace_timestamp}.txt&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+<span class="n">dag</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="n">file</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${params.tracedir}/pipeline_dag_${trace_timestamp}.html&quot;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="n">manifest</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">name</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;nf-core/toy&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">author</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;toy&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">homePage</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://github.com/nf-core/toy&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">description</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;toy&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">mainScript</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;main.nf&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">nextflowVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;!&gt;=21.10.3&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">version</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1.0dev&#39;</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="c1">// Load modules.config for DSL2 module specific options</span><span class="w"></span>
+<span class="n">includeConfig</span><span class="w"> </span><span class="s1">&#39;conf/modules.config&#39;</span><span class="w"></span>
+
+<span class="c1">// Function to ensure that resource requirements don&#39;t go beyond</span><span class="w"></span>
+<span class="c1">// a maximum limit</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="nf">check_max</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span><span class="w"> </span><span class="n">type</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;memory&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">max_memory</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">nextflow</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MemoryUnit</span><span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">)</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">max_memory</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">nextflow</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">MemoryUnit</span><span class="w"></span>
+<span class="w">            </span><span class="k">else</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span><span class="w"></span>
+<span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="o">(</span><span class="n">all</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">println</span><span class="w"> </span><span class="s2">&quot;   ### ERROR ###   Max memory &#39;${params.max_memory}&#39; is not valid! Using default value: $obj&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span><span class="w"></span>
+<span class="w">        </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;time&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">max_time</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">nextflow</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Duration</span><span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="o">)</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">max_time</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">nextflow</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Duration</span><span class="w"></span>
+<span class="w">            </span><span class="k">else</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span><span class="w"></span>
+<span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="o">(</span><span class="n">all</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">println</span><span class="w"> </span><span class="s2">&quot;   ### ERROR ###   Max time &#39;${params.max_time}&#39; is not valid! Using default value: $obj&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span><span class="w"></span>
+<span class="w">        </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;cpus&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="w"> </span><span class="n">obj</span><span class="o">,</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">max_cpus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
+<span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="o">(</span><span class="n">all</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">println</span><span class="w"> </span><span class="s2">&quot;   ### ERROR ###   Max cpus &#39;${params.max_cpus}&#39; is not valid! Using default value: $obj&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span><span class="w"></span>
+<span class="w">        </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+</pre></div>
+</div>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">process</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
 <span class="w">    </span><span class="nl">withName:</span><span class="w"> </span><span class="n">FASTQC</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
 <span class="w">            </span><span class="n">ext</span><span class="o">.</span><span class="na">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"></span>

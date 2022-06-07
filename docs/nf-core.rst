@@ -525,7 +525,7 @@ can navigate the modules available on this section of the nf-core `website <http
 .. note::
 	We have recently reach 500 modules available in the modules repository.
 
-As you can see, modules have been become a central resource of the nf-core community and as so nf-core tools provides with 
+As you can see, modules have become a central resource of the nf-core community and as so nf-core tools provides with 
 some dedicated utilities for modules. 
 
 Listing modules

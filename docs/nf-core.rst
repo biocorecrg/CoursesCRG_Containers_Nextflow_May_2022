@@ -813,7 +813,7 @@ Exercise
 
 * Fix the linting by using the ``nf-core schema build`` command.
 
-* Modify the arguments pass to the ``fastqc`` module by creating a custom config, see ``./conf/modules.config`` for inspiration.
+* Modify the arguments passed to the ``fastqc`` module (you can just provide it empty) by creating a custom config, see ``./conf/modules.config`` for inspiration.
 
 .. raw:: html
 
@@ -871,3 +871,5 @@ Acknowledgements
 
 This nf-core tutorial has been build taking as inspiration the `nf-core official tools documentation <https://nf-co.re/tools/>`__ 
 and the Carpentries materials *"Introduction to Bioinformatics workflows with Nextflow and nf-core"* that can be find `here <https://carpentries-incubator.github.io/workflows-nextflow/>`__.
+
+.. Ext arguments!!!

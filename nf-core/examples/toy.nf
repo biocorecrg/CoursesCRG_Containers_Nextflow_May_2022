@@ -85,7 +85,6 @@ workflow TOY {
             []
         )
     }
-    ch_versions = ch_versions.mix(ADAPTERREMOVAL.out.versions.first())
 
     CUSTOM_DUMPSOFTWAREVERSIONS (
         ch_versions.unique().collectFile(name: 'collated_versions.yml')

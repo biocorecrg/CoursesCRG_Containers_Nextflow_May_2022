@@ -825,8 +825,8 @@ Exercise
 * Use the ``adapterremoval`` module in the ``toy.nf`` script.
 
 * Add a parameter to make the call of ``adapterremoval`` optional (``skip_adapterremoval``) in the ``nextflow.config``
-and implement the code to make the call of the process in ``rna.toy`` controlled by the parameter, see `here <https://github.com/nf-core/rnaseq/blob/89bf536ce4faa98b4d50a8ec0a0343780bc62e0a/workflows/rnaseq.nf#L182>`__
-for an example.
+	and implement the code to make the call of the process in ``rna.toy`` controlled by the parameter, see `here <https://github.com/nf-core/rnaseq/blob/89bf536ce4faa98b4d50a8ec0a0343780bc62e0a/workflows/rnaseq.nf#L182>`__
+	for an example.
 
 * Lint the pipeline.
 
@@ -858,28 +858,6 @@ for an example.
 
 .. literalinclude:: ../nf-core/examples/custom.config
 	:language: groovy
-
-* In which folder does it create the module?
-
-.. raw:: html
-
-	<details>
-	<summary><a>Solution</a></summary>
-
-.. code-block:: console
-	The ``create`` command generates the file inside `modules/local` since it is created as a local module to the pipeline.
-
-* Clone the nf-core modules repository locally ``git clone https://github.com/nf-core/modules.git`` and try the same command
-you use to create the fastqc module locally there, what happens?
-
-.. raw:: html
-
-	<details>
-	<summary><a>Solution</a></summary>
-
-.. code-block:: console
-	The ``create`` command generates now the file inside `modules/fastqc` since it is created as a nf-core repository module. 
-	You will need to include the --force flag since it is already available.
 
 .. raw:: html
 

@@ -236,7 +236,7 @@ executable to <code class="docutils literal notranslate"><span class="pre">sudo<
 <span class="go">    ╰──────────────────────────────────────────────────────────────────────────────────────────────────╯</span>
 </pre></div>
 </div>
-<p>As shown in the screenshot, nf-core tools provide with some commands meant for users and with some commands meant
+<p>As shown in the screenshot, nf-core tools provides with some commands meant for users and with some commands meant
 for developers. We will start first discussing how nf-core can be used from a user point of view.</p>
 </section>
 </section>
@@ -860,6 +860,138 @@ for an example.</p>
 <details>
 <summary><a>Solution</a></summary><div class="line-block">
 <div class="line"><br /></div>
+</div>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    VALIDATE INPUTS</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="kt">def</span><span class="w"> </span><span class="n">summary_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NfcoreSchema</span><span class="o">.</span><span class="na">paramsSummaryMap</span><span class="o">(</span><span class="n">workflow</span><span class="o">,</span><span class="w"> </span><span class="n">params</span><span class="o">)</span><span class="w"></span>
+
+<span class="c1">// Validate input parameters</span><span class="w"></span>
+<span class="n">WorkflowToy</span><span class="o">.</span><span class="na">initialise</span><span class="o">(</span><span class="n">params</span><span class="o">,</span><span class="w"> </span><span class="n">log</span><span class="o">)</span><span class="w"></span>
+
+<span class="c1">// Check input path parameters to see if they exist</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="n">checkPathParamList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">input</span><span class="o">,</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">multiqc_config</span><span class="o">,</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">fasta</span><span class="w"> </span><span class="o">]</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">param</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">checkPathParamList</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">param</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="n">param</span><span class="o">,</span><span class="w"> </span><span class="nl">checkIfExists:</span><span class="w"> </span><span class="kc">true</span><span class="o">)</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">}</span><span class="w"></span>
+
+<span class="c1">// Check mandatory parameters</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">input</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">ch_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">input</span><span class="o">)</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Input samplesheet not specified!&#39;</span><span class="w"> </span><span class="o">}</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    CONFIG FILES</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="n">ch_multiqc_config</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="o">(</span><span class="s2">&quot;$projectDir/assets/multiqc_config.yml&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">checkIfExists:</span><span class="w"> </span><span class="kc">true</span><span class="o">)</span><span class="w"></span>
+<span class="n">ch_multiqc_custom_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">multiqc_config</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Channel</span><span class="o">.</span><span class="na">fromPath</span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">multiqc_config</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Channel</span><span class="o">.</span><span class="na">empty</span><span class="o">()</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    IMPORT LOCAL MODULES/SUBWORKFLOWS</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="c1">//</span><span class="w"></span>
+<span class="c1">// SUBWORKFLOW: Consisting of a mix of local and nf-core/modules</span><span class="w"></span>
+<span class="c1">//</span><span class="w"></span>
+<span class="n">include</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">INPUT_CHECK</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="s1">&#39;../subworkflows/local/input_check&#39;</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    IMPORT NF-CORE MODULES/SUBWORKFLOWS</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="c1">//</span><span class="w"></span>
+<span class="c1">// MODULE: Installed directly from nf-core/modules</span><span class="w"></span>
+<span class="c1">//</span><span class="w"></span>
+<span class="n">include</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">FASTQC</span><span class="w">                      </span><span class="o">}</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="s1">&#39;../modules/nf-core/modules/fastqc/main&#39;</span><span class="w"></span>
+<span class="n">include</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">MULTIQC</span><span class="w">                     </span><span class="o">}</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="s1">&#39;../modules/nf-core/modules/multiqc/main&#39;</span><span class="w"></span>
+<span class="n">include</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">CUSTOM_DUMPSOFTWAREVERSIONS</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="s1">&#39;../modules/nf-core/modules/custom/dumpsoftwareversions/main&#39;</span><span class="w"></span>
+<span class="hll"><span class="n">include</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">ADAPTERREMOVAL</span><span class="w">              </span><span class="o">}</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="s1">&#39;../modules/nf-core/modules/adapterremoval/main&#39;</span><span class="w"></span>
+</span><span class="hll">
+</span><span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    RUN MAIN WORKFLOW</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="c1">// Info required for completion email and summary</span><span class="w"></span>
+<span class="kt">def</span><span class="w"> </span><span class="n">multiqc_report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[]</span><span class="w"></span>
+
+<span class="n">workflow</span><span class="w"> </span><span class="n">TOY</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ch_versions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Channel</span><span class="o">.</span><span class="na">empty</span><span class="o">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// SUBWORKFLOW: Read in samplesheet, validate and stage input files</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="n">INPUT_CHECK</span><span class="w"> </span><span class="o">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">ch_input</span><span class="w"></span>
+<span class="w">    </span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_versions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch_versions</span><span class="o">.</span><span class="na">mix</span><span class="o">(</span><span class="n">INPUT_CHECK</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">versions</span><span class="o">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// MODULE: Run FastQC</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="n">FASTQC</span><span class="w"> </span><span class="o">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">INPUT_CHECK</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">reads</span><span class="w"></span>
+<span class="w">    </span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_versions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch_versions</span><span class="o">.</span><span class="na">mix</span><span class="o">(</span><span class="n">FASTQC</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">versions</span><span class="o">.</span><span class="na">first</span><span class="o">())</span><span class="w"></span>
+
+<span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(!</span><span class="n">params</span><span class="o">.</span><span class="na">skip_adapterremoval</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+</span><span class="hll"><span class="w">        </span><span class="n">ADAPTERREMOVAL</span><span class="w"> </span><span class="o">(</span><span class="w"></span>
+</span><span class="hll"><span class="w">            </span><span class="n">INPUT_CHECK</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">reads</span><span class="o">,</span><span class="w"></span>
+</span><span class="hll"><span class="w">            </span><span class="o">[]</span><span class="w"></span>
+</span><span class="hll"><span class="w">        </span><span class="o">)</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="o">}</span><span class="w"></span>
+</span>
+<span class="w">    </span><span class="n">CUSTOM_DUMPSOFTWAREVERSIONS</span><span class="w"> </span><span class="o">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">ch_versions</span><span class="o">.</span><span class="na">unique</span><span class="o">().</span><span class="na">collectFile</span><span class="o">(</span><span class="nl">name:</span><span class="w"> </span><span class="s1">&#39;collated_versions.yml&#39;</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// MODULE: MultiQC</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="n">workflow_summary</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">WorkflowToy</span><span class="o">.</span><span class="na">paramsSummaryMultiqc</span><span class="o">(</span><span class="n">workflow</span><span class="o">,</span><span class="w"> </span><span class="n">summary_params</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_workflow_summary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Channel</span><span class="o">.</span><span class="na">value</span><span class="o">(</span><span class="n">workflow_summary</span><span class="o">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ch_multiqc_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Channel</span><span class="o">.</span><span class="na">empty</span><span class="o">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_multiqc_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch_multiqc_files</span><span class="o">.</span><span class="na">mix</span><span class="o">(</span><span class="n">Channel</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">ch_multiqc_config</span><span class="o">))</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_multiqc_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch_multiqc_files</span><span class="o">.</span><span class="na">mix</span><span class="o">(</span><span class="n">ch_multiqc_custom_config</span><span class="o">.</span><span class="na">collect</span><span class="o">().</span><span class="na">ifEmpty</span><span class="o">([]))</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_multiqc_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch_multiqc_files</span><span class="o">.</span><span class="na">mix</span><span class="o">(</span><span class="n">ch_workflow_summary</span><span class="o">.</span><span class="na">collectFile</span><span class="o">(</span><span class="nl">name:</span><span class="w"> </span><span class="s1">&#39;workflow_summary_mqc.yaml&#39;</span><span class="o">))</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_multiqc_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch_multiqc_files</span><span class="o">.</span><span class="na">mix</span><span class="o">(</span><span class="n">CUSTOM_DUMPSOFTWAREVERSIONS</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">mqc_yml</span><span class="o">.</span><span class="na">collect</span><span class="o">())</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_multiqc_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch_multiqc_files</span><span class="o">.</span><span class="na">mix</span><span class="o">(</span><span class="n">FASTQC</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">zip</span><span class="o">.</span><span class="na">collect</span><span class="o">{</span><span class="n">it</span><span class="o">[</span><span class="mi">1</span><span class="o">]}.</span><span class="na">ifEmpty</span><span class="o">([]))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">MULTIQC</span><span class="w"> </span><span class="o">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">ch_multiqc_files</span><span class="o">.</span><span class="na">collect</span><span class="o">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">multiqc_report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MULTIQC</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">report</span><span class="o">.</span><span class="na">toList</span><span class="o">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">ch_versions</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">ch_versions</span><span class="o">.</span><span class="na">mix</span><span class="o">(</span><span class="n">MULTIQC</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">versions</span><span class="o">)</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    COMPLETION EMAIL AND SUMMARY</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">*/</span><span class="w"></span>
+
+<span class="n">workflow</span><span class="o">.</span><span class="na">onComplete</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">email</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">email_on_fail</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">NfcoreTemplate</span><span class="o">.</span><span class="na">email</span><span class="o">(</span><span class="n">workflow</span><span class="o">,</span><span class="w"> </span><span class="n">params</span><span class="o">,</span><span class="w"> </span><span class="n">summary_params</span><span class="o">,</span><span class="w"> </span><span class="n">projectDir</span><span class="o">,</span><span class="w"> </span><span class="n">log</span><span class="o">,</span><span class="w"> </span><span class="n">multiqc_report</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">NfcoreTemplate</span><span class="o">.</span><span class="na">summary</span><span class="o">(</span><span class="n">workflow</span><span class="o">,</span><span class="w"> </span><span class="n">params</span><span class="o">,</span><span class="w"> </span><span class="n">log</span><span class="o">)</span><span class="w"></span>
+<span class="o">}</span><span class="w"></span>
+
+<span class="cm">/*</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">    THE END</span>
+<span class="cm">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="cm">*/</span><span class="w"></span>
+</pre></div>
 </div>
 <div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://json-schema.org/draft-07/schema&quot;</span><span class="p">,</span><span class="w"></span>

@@ -318,7 +318,7 @@ See here the list of `Operators <https://www.nextflow.io/docs/latest/operator.ht
 
 .. raw:: html
 
-   </details>
+	</details>
 |
 |
 

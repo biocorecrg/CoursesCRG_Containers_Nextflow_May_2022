@@ -807,9 +807,7 @@ Exercise
 
 * Use the ``adapterremoval`` module in the ``toy.nf`` script.
 
-* Add a parameter to make the call of ``adapterremoval`` optional (``skip_adapterremoval``) in the ``nextflow.config``
-	and implement the code to make the call of the process in ``rna.toy`` controlled by the parameter, see `here <https://github.com/nf-core/rnaseq/blob/89bf536ce4faa98b4d50a8ec0a0343780bc62e0a/workflows/rnaseq.nf#L182>`__
-	for an example.
+* Add a parameter to make the call of ``adapterremoval`` optional (``skip_adapterremoval``) in the ``nextflow.config`` and implement the code to make the call of the process in ``rna.toy`` controlled by the parameter, see `here <https://github.com/nf-core/rnaseq/blob/89bf536ce4faa98b4d50a8ec0a0343780bc62e0a/workflows/rnaseq.nf#L182>`__ for an example.
 
 * Lint the pipeline.
 

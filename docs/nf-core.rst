@@ -118,7 +118,7 @@ We can now check the nf-core available commands:
 	│  sync          Sync a pipeline TEMPLATE branch with the nf-core template.                        │
 	╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
 
-As shown in the screenshot, nf-core tools provide with some commands meant for users and with some commands meant
+As shown in the screenshot, nf-core tools provides with some commands meant for users and with some commands meant
 for developers. We will start first discussing how nf-core can be used from a user point of view.
 
 nf-core for users
@@ -852,8 +852,7 @@ Exercise
 
 .. literalinclude:: ../nf-core/examples/toy.nf
 	:language: groovy
-	:emphasize-lines: 51-52
-	:emphasize-lines: 82-87
+	:emphasize-lines: 51-52,82-87 
 
 .. literalinclude:: ../nf-core/examples/nextflow_schema.json
 	:language: JSON

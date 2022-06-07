@@ -100,6 +100,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#id8">Exercise</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#other-commands-for-developing-nf-core-modules">Other commands for developing nf-core modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lint-modules">Lint modules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-unit-test">Create unit test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-module-test-using-pytest">Run module test using pytest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bump-bioconda-and-containers-versions-of-a-module-tool">Bump bioconda and containers versions of a module tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate-the-name-of-a-mulled-container">Generate the name of a mulled container</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#interesting-links">Interesting links</a></li>
@@ -728,21 +736,108 @@ repository. The command can detect on which type of repository you are working t
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you want to make available a module in <code class="docutils literal notranslate"><span class="pre">nf-core/modules</span></code> to the whole Nextflow community you can find the reference
-documentation <a href="#id9"><span class="problematic" id="id10">`here https://nf-co.re/developers/modules#writing-a-new-module-reference&gt;`__</span></a>  and a step by step tutorial
-on <a href="#id9"><span class="problematic" id="id11">`this https://nf-co.re/developers/tutorials/dsl2_modules_tutorial&gt;`__</span></a> link.</p>
+documentation <a class="reference external" href="https://nf-co.re/developers/modules#writing-a-new-module-reference">here</a>  and a step by step tutorial
+on <a class="reference external" href="https://nf-co.re/developers/tutorials/dsl2_modules_tutorial">this</a> link.</p>
 </div>
 <section id="id8">
 <h4>Exercise<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
 <ul class="simple">
-<li><p>Place yourself in the nf-core-toy pipeline we created before and try to install the same module. You will n</p></li>
+<li><p>Place yourself in the nf-core-toy pipeline we created before and try to install the same module.</p></li>
 </ul>
 <details>
-<summary><a>Solution</a></summary><ul class="simple">
+<summary><a>Solution</a></summary><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
 <li><p>In which folder does it create the module?</p></li>
 </ul>
 <details>
+<summary><a>Solution</a></summary><ul class="simple">
+<li><p>Clone the nf-core modules repository locally <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/nf-core/modules.git</span></code> and try the same command</p></li>
+</ul>
+<p>you use to create the fastqc module locally there, what happens?</p>
+<details>
 <summary><a>Solution</a></summary></details><div class="line-block">
 <div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="other-commands-for-developing-nf-core-modules">
+<h3>Other commands for developing nf-core modules<a class="headerlink" href="#other-commands-for-developing-nf-core-modules" title="Permalink to this heading"></a></h3>
+<section id="lint-modules">
+<h4>Lint modules<a class="headerlink" href="#lint-modules" title="Permalink to this heading"></a></h4>
+<p>As for pipelines, nf-core tools provides a command to lint the modules against nf-core guidelines.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules lint</span>
+</pre></div>
+</div>
+</section>
+<section id="create-unit-test">
+<h4>Create unit test<a class="headerlink" href="#create-unit-test" title="Permalink to this heading"></a></h4>
+<p>nf-core modules have the requirement of being unit tested using a minimal test data. These tests are run using <a class="reference external" href="https://pytest-workflow.readthedocs.io/en/stable/">pytest</a>
+and can be automatically generated using the command below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules create-test-yml</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find more info about the <code class="docutils literal notranslate"><span class="pre">create-test-yml</span></code> command <a class="reference external" href="https://nf-co.re/tools/#create-a-module-test-config-file">here</a>.</p>
+</div>
+</section>
+<section id="run-module-test-using-pytest">
+<h4>Run module test using pytest<a class="headerlink" href="#run-module-test-using-pytest" title="Permalink to this heading"></a></h4>
+<p>Also, it is possible to run the unit test of a module using the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">test</span></code> command using again <a class="reference external" href="https://pytest-workflow.readthedocs.io/en/stable/">pytest</a>.
+To run the test for a given module (e.g. fastqc) you can use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules test fastqc</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To run the modules unit test you need to install <a class="reference external" href="https://pytest-workflow.readthedocs.io/en/stable/#installation">pytest</a> first.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Further documenation <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">test</span></code> can be found on this <a class="reference external" href="https://nf-co.re/tools/#run-the-tests-for-a-module-using-pytest">link</a>.</p>
+</div>
+</section>
+<section id="bump-bioconda-and-containers-versions-of-a-module-tool">
+<h4>Bump bioconda and containers versions of a module tool<a class="headerlink" href="#bump-bioconda-and-containers-versions-of-a-module-tool" title="Permalink to this heading"></a></h4>
+<p>To ease the update of the modules installed in a pipeline, nf-core provides with the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">bump-versions</span></code>
+command. It is possible to both update a single or all modules in a pipeline. Also, this command can be used when contributing
+to the nf-core modules repository to update the versions of modules upon release in Bioconda. The typical <code class="docutils literal notranslate"><span class="pre">bump-versions</span></code>
+command looks like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nf-core modules bump-versions</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Find the whole documenation of the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">modules</span> <span class="pre">bump-versions</span></code> command <a class="reference external" href="https://nf-co.re/tools/#bump-bioconda-and-container-versions-of-modules-in">here</a>.</p>
+</div>
+</section>
+<section id="generate-the-name-of-a-mulled-container">
+<h4>Generate the name of a mulled container<a class="headerlink" href="#generate-the-name-of-a-mulled-container" title="Permalink to this heading"></a></h4>
+<p>Biocontainers offer the possibility of generating what is known as mulled containers and that consist of multi-tool containers
+generated by combinating a given version of single tool and adding them to the <a class="reference external" href="https://github.com/BioContainers/multi-package-containers/blob/master/combinations/hash.tsv">hash.tsv</a>
+of the Biocontainers <code class="docutils literal notranslate"><span class="pre">multi-package-containers</span></code> repository. This command generates the name of a BioContainers mulled image,
+even if it does not exists, using the command below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">    $ </span>nf-core modules mulled <span class="nv">bowtie2</span><span class="o">==</span><span class="m">2</span>.4.4 <span class="nv">samtools</span><span class="o">==</span><span class="m">1</span>.15.1 <span class="nv">pigz</span><span class="o">==</span><span class="m">2</span>.6
+
+<span class="go">                                      ,--./,-.</span>
+<span class="go">      ___     __   __   __   ___     /,-._.--~\</span>
+<span class="go">|\ | |__  __ /  ` /  \ |__) |__         }  {</span>
+<span class="go">| \| |       \__, \__/ |  \ |___     \`-._,-`-,</span>
+<span class="go">                                      `._,._,&#39;</span>
+
+<span class="go">nf-core/tools version 2.4.1 - https://nf-co.re</span>
+
+
+<span class="go">    INFO     Found docker image on quay.io! ✨                                                                                                                                                                                                                          mulled.py:68</span>
+<span class="go">    INFO     Mulled container hash:                                                                                                                                                                                                                                  __main__.py:717</span>
+<span class="go">    mulled-v2-ac74a7f02cebcfcc07d8e8d1d750af9c83b4d45a:1744f68fe955578c63054b55309e05b41c37a80d-0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above mulled container is used in the <code class="docutils literal notranslate"><span class="pre">bowtie2/align</span> <span class="pre">module</span></code>, see <a class="reference external" href="https://github.com/nf-core/modules/blob/61f68913fefc20241ceccb671b104230b2d775d7/modules/bowtie2/align/main.nf#L6-L9">here</a></p>
 </div>
 </section>
 </section>
@@ -753,14 +848,15 @@ on <a href="#id9"><span class="problematic" id="id11">`this https://nf-co.re/dev
 <li><p><a class="reference external" href="https://nf-co.re/">nf-core website</a>.</p></li>
 <li><p><a class="reference external" href="https://github.com/nf-core/">nf-core github</a>.</p></li>
 <li><p><a class="reference external" href="https://nf-co.re/join/slack">Join nf-core slack</a>.</p></li>
-<li><p><a href="#id9"><span class="problematic" id="id12">`Join Nextflow slack &lt;https://nextflow.io/slack-invite.html`__</span></a>.</p></li>
+<li><p><a class="reference external" href="https://nextflow.io/slack-invite.html">Join Nextflow slack</a>.</p></li>
 <li><p><a class="reference external" href="https://www.youtube.com/c/nf-core">nf-core YouTube channel</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/nf-core/vscode-extensionpack">nf-core Visual Code extension pack</a>.</p></li>
 </ul>
 </section>
 <section id="acknowledgements">
 <h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this heading"></a></h2>
 <p>This nf-core tutorial has been build taking as inspiration the <a class="reference external" href="https://nf-co.re/tools/">nf-core official tools documentation</a>
-and the Carpentries materials “Introduction to Bioinformatics workflows with Nextflow and nf-core” that can be find <a class="reference external" href="https://carpentries-incubator.github.io/workflows-nextflow/">here</a>.</p>
+and the Carpentries materials <em>“Introduction to Bioinformatics workflows with Nextflow and nf-core”</em> that can be find <a class="reference external" href="https://carpentries-incubator.github.io/workflows-nextflow/">here</a>.</p>
 </section>
 </section>
 

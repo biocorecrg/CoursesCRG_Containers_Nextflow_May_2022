@@ -839,6 +839,10 @@ Exercise
 	:language: JSON
 	:emphasize-lines: 279-283
 
+.. literalinclude:: ../nf-core/examples/nextflow.config
+	:language: groovy
+	:emphasize-lines: 21-22
+
 .. literalinclude:: ../nf-core/examples/custom.config
 	:language: groovy
 	

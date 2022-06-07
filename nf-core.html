@@ -628,7 +628,7 @@ can navigate the modules available on this section of the nf-core <a class="refe
 <p class="admonition-title">Note</p>
 <p>We have recently reach 500 modules available in the modules repository.</p>
 </div>
-<p>As you can see, modules have been become a central resource of the nf-core community and as so nf-core tools provides with
+<p>As you can see, modules have become a central resource of the nf-core community and as so nf-core tools provides with
 some dedicated utilities for modules.</p>
 <section id="listing-modules">
 <h3>Listing modules<a class="headerlink" href="#listing-modules" title="Permalink to this heading"></a></h3>
@@ -847,12 +847,7 @@ even if it does not exist, using the command below:</p>
 <li><p>Create or use the previous toy nf-core pipeline</p></li>
 <li><p>Install the <code class="docutils literal notranslate"><span class="pre">adapterremoval</span></code> module</p></li>
 <li><p>Use the <code class="docutils literal notranslate"><span class="pre">adapterremoval</span></code> module in the <code class="docutils literal notranslate"><span class="pre">toy.nf</span></code> script.</p></li>
-<li><dl class="simple">
-<dt>Add a parameter to make the call of <code class="docutils literal notranslate"><span class="pre">adapterremoval</span></code> optional (<code class="docutils literal notranslate"><span class="pre">skip_adapterremoval</span></code>) in the <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code></dt><dd><p>and implement the code to make the call of the process in <code class="docutils literal notranslate"><span class="pre">rna.toy</span></code> controlled by the parameter, see <a class="reference external" href="https://github.com/nf-core/rnaseq/blob/89bf536ce4faa98b4d50a8ec0a0343780bc62e0a/workflows/rnaseq.nf#L182">here</a>
-for an example.</p>
-</dd>
-</dl>
-</li>
+<li><p>Add a parameter to make the call of <code class="docutils literal notranslate"><span class="pre">adapterremoval</span></code> optional (<code class="docutils literal notranslate"><span class="pre">skip_adapterremoval</span></code>) in the <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and implement the code to make the call of the process in <code class="docutils literal notranslate"><span class="pre">rna.toy</span></code> controlled by the parameter, see <a class="reference external" href="https://github.com/nf-core/rnaseq/blob/89bf536ce4faa98b4d50a8ec0a0343780bc62e0a/workflows/rnaseq.nf#L182">here</a> for an example.</p></li>
 <li><p>Lint the pipeline.</p></li>
 <li><p>Fix the linting by using the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">schema</span> <span class="pre">build</span></code> command.</p></li>
 <li><p>Modify the arguments pass to the <code class="docutils literal notranslate"><span class="pre">fastqc</span></code> module by creating a custom config, see <code class="docutils literal notranslate"><span class="pre">./conf/modules.config</span></code> for inspiration.</p></li>

@@ -496,7 +496,7 @@ nf-core tools provide with a command to create ``build``, ``validate`` and ``lin
 We will see an example of how to use this command on the final exercise.
 
 .. note::
-	You can find more documentation about the ``nf-core schema`` on the ``nf-core website <https://nf-co.re/tools/#pipeline-schema>`__.
+	You can find more documentation about the ``nf-core schema`` on the `nf-core website <https://nf-co.re/tools/#pipeline-schema>`__.
 
 nf-core modules
 ===============

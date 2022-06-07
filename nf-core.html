@@ -92,12 +92,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#listing-modules">Listing modules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#showing-information-about-a-module">Showing information about a module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-modules-in-a-pipeline">Installing modules in a pipeline</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id7">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Exercise</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#removing-modules-from-a-pipeline">Removing modules from a pipeline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#creating-modules">Creating modules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id8">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Exercise</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#other-commands-for-developing-nf-core-modules">Other commands for developing nf-core modules</a><ul>
@@ -106,7 +106,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#run-module-test-using-pytest">Run module test using pytest</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bump-bioconda-and-containers-versions-of-a-module-tool">Bump bioconda and containers versions of a module tool</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#generate-the-name-of-a-mulled-container">Generate the name of a mulled container</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">Exercise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Exercise</a></li>
 </ul>
 </li>
 </ul>
@@ -601,7 +601,7 @@ nf-core tools provide with a command to create <code class="docutils literal not
 <p>We will see an example of how to use this command on the final exercise.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can find more documentation about the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">schema</span></code> on the <a href="#id5"><span class="problematic" id="id6">``</span></a>nf-core website &lt;<a class="reference external" href="https://nf-co.re/tools/#pipeline-schema">https://nf-co.re/tools/#pipeline-schema</a>&gt;`__.</p>
+<p>You can find more documentation about the <code class="docutils literal notranslate"><span class="pre">nf-core</span> <span class="pre">schema</span></code> on the <a class="reference external" href="https://nf-co.re/tools/#pipeline-schema">nf-core website</a>.</p>
 </div>
 </section>
 </section>
@@ -701,8 +701,8 @@ and the its installation command.</p>
 <h3>Installing modules in a pipeline<a class="headerlink" href="#installing-modules-in-a-pipeline" title="Permalink to this heading"></a></h3>
 <p>You can use nf-core tools to install a module in any pipeline. The only requirement is that the directory contains a
 <code class="docutils literal notranslate"><span class="pre">main.nf</span></code> a <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and a <code class="docutils literal notranslate"><span class="pre">modules</span></code> directory where the module will be installed.</p>
-<section id="id7">
-<h4>Exercise<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<section id="id5">
+<h4>Exercise<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Create a folder with an empty <code class="docutils literal notranslate"><span class="pre">main.nf</span></code>, <code class="docutils literal notranslate"><span class="pre">nextflow.config</span></code> and a <code class="docutils literal notranslate"><span class="pre">modules</span></code> directory and try to install a module,</p></li>
 </ul>
@@ -740,8 +740,8 @@ repository. The command can detect on which type of repository you are working t
 documentation <a class="reference external" href="https://nf-co.re/developers/modules#writing-a-new-module-reference">here</a>  and a step by step tutorial
 on <a class="reference external" href="https://nf-co.re/developers/tutorials/dsl2_modules_tutorial">this</a> link.</p>
 </div>
-<section id="id8">
-<h4>Exercise<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<section id="id6">
+<h4>Exercise<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Place yourself in the nf-core-toy pipeline we created before and try to install the same module.</p></li>
 </ul>
@@ -841,8 +841,8 @@ even if it does not exist, using the command below:</p>
 <p>The above mulled container is used in the <code class="docutils literal notranslate"><span class="pre">bowtie2/align</span> <span class="pre">module</span></code>, see <a class="reference external" href="https://github.com/nf-core/modules/blob/61f68913fefc20241ceccb671b104230b2d775d7/modules/bowtie2/align/main.nf#L6-L9">here</a></p>
 </div>
 </section>
-<section id="id9">
-<h4>Exercise<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<section id="id7">
+<h4>Exercise<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Create or use the previous toy nf-core pipeline</p></li>
 <li><p>Install the <code class="docutils literal notranslate"><span class="pre">adapterremoval</span></code> module</p></li>
